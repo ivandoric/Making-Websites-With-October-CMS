@@ -276,34 +276,42 @@
 	"buffers":
 	[
 		{
+			"file": "gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 484,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 275,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/sass/_globals.scss",
+			"settings":
+			{
+				"buffer_size": 820,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "themes/olympos/layouts/default.htm",
 			"settings":
 			{
-				"buffer_size": 1052,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "themes/olympos/assets/js/app.js",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "themes/olympos/assets/css/style.css",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "themes/demo/assets/javascript/jquery.js",
-			"settings":
-			{
-				"buffer_size": 95783,
+				"buffer_size": 987,
 				"line_ending": "Unix"
 			}
 		}
@@ -315,10 +323,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 83.0,
-		"last_filter": "satisf",
+		"height": 392.0,
+		"last_filter": "inst",
 		"selected_items":
 		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"satisf",
 				"Package Control: Satisfy Dependencies"
@@ -338,14 +358,6 @@
 			[
 				"Package Control: inst",
 				"Package Control: Install Package"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
-				"remo",
-				"Package Control: Remove Package"
 			],
 			[
 				"m",
@@ -426,10 +438,6 @@
 			[
 				"dele",
 				"ANF: Delete File"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"custom",
@@ -524,7 +532,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 485.0
 	},
 	"console":
 	{
@@ -547,16 +555,16 @@
 	[
 		"/Users/ivan/Development/public/octobermovies",
 		"/Users/ivan/Development/public/octobermovies/themes",
-		"/Users/ivan/Development/public/octobermovies/themes/demo",
 		"/Users/ivan/Development/public/octobermovies/themes/demo/layouts",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts"
+		"/Users/ivan/Development/public/octobermovies/themes/olympos"
 	],
 	"file_history":
 	[
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/js/app.js",
+		"/Users/ivan/Development/public/octobermovies/.htaccess",
+		"/Users/ivan/Development/public/octobermovies/modules/backend/routes.php",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/public/css/style.css",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/css/style.css",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/js/app.js",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts/default.htm",
 		"/Users/ivan/Development/public/octobermovies/themes/demo/pages/home.htm",
 		"/Users/ivan/Development/public/octobermovies/themes/demo/pages/about.htm",
@@ -679,14 +687,11 @@
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/includes/geoip.php",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_activities-slider.scss",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/subpage-slider.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/single-venue-slider.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_modal.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_buttons.scss",
-		"/Users/ivan/Development/public/activenation/.gitignore"
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/single-venue-slider.php"
 	],
 	"find":
 	{
-		"height": 37.0
+		"height": 75.0
 	},
 	"find_in_files":
 	{
@@ -888,24 +893,147 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "themes/olympos/layouts/default.htm",
+					"file": "gulpfile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1052,
+						"buffer_size": 484,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								691,
-								691
+								473,
+								473
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Seti_UI/icons/Langs/Gulpfile JS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 275,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								207,
+								207
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Seti_UI/icons/Langs/Git.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "themes/olympos/assets/sass/_globals.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 820,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								265,
+								265
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Syntax Highlighting for Sass/Syntaxes/SCSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "themes/olympos/layouts/default.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 987,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								644,
+								644
 							]
 						],
 						"settings":
@@ -916,102 +1044,7 @@
 							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 254.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "themes/olympos/assets/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"_anf_new": "",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "themes/olympos/assets/css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"_anf_new": "",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "themes/demo/assets/javascript/jquery.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 95783,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 192.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -1072,6 +1105,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"rou",
+				"modules/backend/routes.php"
+			],
 			[
 				"u",
 				"app/Resources/views/userdashboard.html.twig"
@@ -1579,10 +1616,6 @@
 			[
 				"portf",
 				"wp-content/themes/olympos/parts/homepage/portfolio.php"
-			],
-			[
-				"funct",
-				"wp-content/themes/olympos/functions.php"
 			]
 		],
 		"width": 0.0
@@ -1590,9 +1623,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "wat",
+		"last_filter": "wp",
 		"selected_items":
 		[
+			[
+				"wp",
+				"~/Development/public/wprest/wprest.sublime-project"
+			],
 			[
 				"wat",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1628,10 +1665,6 @@
 			[
 				"active",
 				"~/Development/public/activenation/activenation.sublime-project"
-			],
-			[
-				"wp",
-				"~/Development/public/wprest/wprest.sublime-project"
 			],
 			[
 				"acti",
