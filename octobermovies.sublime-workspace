@@ -1,0 +1,2085 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"to",
+				"toggleClass"
+			],
+			[
+				"fac",
+				"facilityPhone"
+			],
+			[
+				"event",
+				"eventData"
+			],
+			[
+				"faci",
+				"facilityID"
+			],
+			[
+				"fa",
+				"facilityID"
+			],
+			[
+				"facility",
+				"facilityTitle"
+			],
+			[
+				"time",
+				"timestamp"
+			],
+			[
+				"tyo",
+				"typeOfActivity"
+			],
+			[
+				"type",
+				"typeOfActivity"
+			],
+			[
+				"act",
+				"activityTypes"
+			],
+			[
+				"activities",
+				"activitiesAvailable"
+			],
+			[
+				"venue",
+				"venuesNearYou"
+			],
+			[
+				"hi",
+				"hideBookNow"
+			],
+			[
+				"cooi",
+				"cookieName"
+			],
+			[
+				"cooki",
+				"cookieName"
+			],
+			[
+				"regi",
+				"regionSet"
+			],
+			[
+				"but",
+				"buttonText"
+			],
+			[
+				"butt",
+				"button_text"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"poolID",
+				"poolIDs"
+			],
+			[
+				"pool",
+				"poolResponse"
+			],
+			[
+				"day",
+				"dayResponse"
+			],
+			[
+				"re",
+				"response"
+			],
+			[
+				"fet",
+				"fetchTimetables"
+			],
+			[
+				"timeTables",
+				"timetablesNormal"
+			],
+			[
+				"ch",
+				"checkboxes"
+			],
+			[
+				"window",
+				"windowHeight"
+			],
+			[
+				"mp4",
+				"mp4Video"
+			],
+			[
+				"intro",
+				"introText1"
+			],
+			[
+				"tit",
+				"titleHeight"
+			],
+			[
+				"image",
+				"imagemin"
+			],
+			[
+				"tag",
+				"tagLineText"
+			],
+			[
+				"clic",
+				"clickedImage"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"pos",
+				"postLink"
+			],
+			[
+				"aja",
+				"ajax_response"
+			],
+			[
+				"wp_res",
+				"wp_reset_query"
+			],
+			[
+				"get_head",
+				"get_header"
+			],
+			[
+				"hero",
+				"heroHeight"
+			],
+			[
+				"in",
+				"intro_text"
+			],
+			[
+				"the",
+				"the_title"
+			],
+			[
+				"get_template",
+				"get_template_part"
+			],
+			[
+				"uvodni",
+				"uvodni-tekst"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"post",
+				"postID"
+			],
+			[
+				"the_ti",
+				"the_title"
+			],
+			[
+				"next",
+				"nextLink"
+			],
+			[
+				"ne",
+				"nextLink"
+			],
+			[
+				"get_templa",
+				"get_template_part"
+			],
+			[
+				"get_th",
+				"get_the_category"
+			],
+			[
+				"cat",
+				"catid"
+			],
+			[
+				"mindma",
+				"mindmapping"
+			],
+			[
+				"st",
+				"store_cats"
+			],
+			[
+				"slider",
+				"sliderImage"
+			],
+			[
+				"cms",
+				"cmsPageUrlKey"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"the_post",
+				"the_post_thumbnail"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"more",
+				"morelinkname  (variable)"
+			],
+			[
+				"border",
+				"border-top"
+			],
+			[
+				"borde",
+				"border-top"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "themes/olympos/layouts/default.htm",
+			"settings":
+			{
+				"buffer_size": 1052,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/js/app.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/css/style.css",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/demo/assets/javascript/jquery.js",
+			"settings":
+			{
+				"buffer_size": 95783,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 83.0,
+		"last_filter": "satisf",
+		"selected_items":
+		[
+			[
+				"satisf",
+				"Package Control: Satisfy Dependencies"
+			],
+			[
+				"Package Control: inat",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: sat",
+				"Package Control: Satisfy Dependencies"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"m",
+				"Snippet: media-queries-comment"
+			],
+			[
+				"mco",
+				"Snippet: media-queries-comment"
+			],
+			[
+				"mcom",
+				"Snippet: media-queries-comment"
+			],
+			[
+				"mcomm",
+				"Snippet: media-queries-comment"
+			],
+			[
+				"colo",
+				"ColorSchemeSelector: Select Color Scheme"
+			],
+			[
+				"comm1",
+				"Snippet: comm1"
+			],
+			[
+				"co",
+				"Snippet: comm2"
+			],
+			[
+				"del",
+				"ANF: Delete File"
+			],
+			[
+				"twi",
+				"Snippet: Twig : Comment"
+			],
+			[
+				"comm3",
+				"Snippet: comm3"
+			],
+			[
+				"comm4",
+				"Snippet: comm4"
+			],
+			[
+				"com",
+				"Snippet: comm4"
+			],
+			[
+				"file",
+				"File: Rename"
+			],
+			[
+				"comm",
+				"Snippet: comm4"
+			],
+			[
+				"wp",
+				"Snippet: CustomWPQUery"
+			],
+			[
+				"send to",
+				"Evernote: Send to Evernote as new note"
+			],
+			[
+				"eve",
+				"Evernote: New empty note"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"dele",
+				"ANF: Delete File"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"custom",
+				"Snippet: CustomWPQUery"
+			],
+			[
+				"quer",
+				"Snippet: CustomWPQUery"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"wpquer",
+				"Snippet: CustomWPQUery"
+			],
+			[
+				"query",
+				"Snippet: CustomWPQUery"
+			],
+			[
+				"qu",
+				"Snippet: newquery"
+			],
+			[
+				"bkg",
+				"Snippet: bkg"
+			],
+			[
+				"comm2",
+				"Snippet: comm2"
+			],
+			[
+				"snipp",
+				"Snippet: newquery"
+			],
+			[
+				"loop",
+				"Snippet: wploop"
+			],
+			[
+				"snippet",
+				"Snippet: newquery"
+			],
+			[
+				"sni",
+				"Snippet: newquery"
+			],
+			[
+				"bk",
+				"Snippet: bkg"
+			],
+			[
+				"bkg\t",
+				"Snippet: bkg"
+			],
+			[
+				"gis",
+				"Gist: Create Public Gist"
+			],
+			[
+				"bk\t",
+				"Snippet: bkg"
+			],
+			[
+				"gist",
+				"Gist: Open Gist"
+			],
+			[
+				"block",
+				"Snippet: static-block"
+			],
+			[
+				"pac",
+				"Package Control: Disable Package"
+			],
+			[
+				"ta",
+				"Tasks: New"
+			],
+			[
+				"tas",
+				"Tasks: New"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ivan/Development/public/octobermovies",
+		"/Users/ivan/Development/public/octobermovies/themes",
+		"/Users/ivan/Development/public/octobermovies/themes/demo",
+		"/Users/ivan/Development/public/octobermovies/themes/demo/layouts",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts"
+	],
+	"file_history":
+	[
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/js/app.js",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/css/style.css",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts/default.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/demo/pages/home.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/demo/pages/about.htm",
+		"/Users/ivan/Development/public/octobermovies/config/app.php",
+		"/Users/ivan/Development/public/octobermovies/themes/demo/content/welcome.htm",
+		"/Users/ivan/Development/public/watchlearn/user/pages/02.video-tutorials/frontend-tips-using-laravel-elixir-with-wordpress/default.md",
+		"/Users/ivan/Development/public/watchlearn/user/pages/02.video-tutorials/theming-with-wp-rest-api-part-16-simple-pagination/default.md",
+		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/_html-head.tpl",
+		"/Users/ivan/Development/public/watchlearn/user/pages/02.video-tutorials/theming-with-wp-rest-api-part-15-add-image-to-post-type/default.md",
+		"/Users/ivan/Development/public/watchlearn/user/pages/02.video-tutorials/theming-with-wp-rest-api-part-14-adding-custom-fields/default.md",
+		"/Users/ivan/Development/public/watchlearn/user/pages/02.video-tutorials/theming-with-wp-rest-api-part-13-custom-post-types/default.md",
+		"/Users/ivan/Development/public/watchlearn/user/pages/02.video-tutorials/theming-with-wp-rest-api-part-12-wrapping-up-full-post/default.md",
+		"/Users/ivan/Development/public/watchlearn/.gitignore",
+		"/Users/ivan/Development/public/ivandoric/source/_assets/sass/main.scss",
+		"/Users/ivan/Development/public/ivandoric/source/index.blade.php",
+		"/Users/ivan/Development/public/ivandoric/gulpfile.js",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_header.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_packages.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_bonus-minutes.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_fonts.scss",
+		"/Users/ivan/Development/public/umobility/app/Resources/views/userdashboard.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_share-minutes.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_my-account.scss",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/index.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_modules.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_footer.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_globals.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/js/frontend.js",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_mixins.scss",
+		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/includes/package_list.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/bonus-minute.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_pickadate.scss",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/podijeli-minute.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_user-account.scss",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/account.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/js/phone.js",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_sprite.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_phone-field.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/js/utils.js",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/js/pickdate-trans/hr_HR.js",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/style.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_view-bills.scss",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/pregled-racuna.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/korisnicki-racun.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_view-bills.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/paketi.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/includes/paketi/spin-save.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/includes/paketi/prepaid.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/includes/paketi/spin-na-sat.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/config/routing.yml",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/includes/paketi/fineprint.html.twig",
+		"/Users/ivan/Development/public/umobility/src/Carsharing/CrmBundle/Resources/views/UserDashboard/includes/paketi/cijenik.html.twig",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/userdashboard/sass/_variables.scss",
+		"/Users/ivan/Development/public/umobility/web/bundles/carsharingcrm/assets/sass/modules/_variables.scss",
+		"/Users/ivan/Development/public/umobility/.gitignore",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_single-activity.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/prices.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/single-activity-slider.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/single-activities.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-02.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_golden-ticket.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-01.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/goldenticket.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/lib/main.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_goldenticket-animations.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-03.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_mixins.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/style.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/timetables.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/timetable-response.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/single-venues.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/timetables.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_fonts.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/activity-slider.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/alert-bar.php",
+		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/geoip.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/newsletter-subscribe.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/notes.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_globals.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/gt-activities.php",
+		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/document-box.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_timetable.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/get-in-touch-form.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/footer.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/header.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_single-venue.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/feeling-social.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/functions.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/404.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_404.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_lockeroom-article.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_lockeroom-single.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/prices.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_modules.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_news-box.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/page-book.php",
+		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/index.html",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_alert-bar.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/get_cookie.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/archive-venues.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/homepage.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/archive-activities.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_list-activities.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/homepage/venues-near-you.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/list-venue/venue-description.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/map-everything.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_twitter-feed.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/ask-for-region-modal.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_typeahead.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/issue-list.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/featured-article.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/olympos.min.js",
+		"/private/etc/hosts",
+		"/Users/ivan/Development/public/activenation/gulpfile.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/vendor/autoload.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/vendor/composer/autoload_real.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/includes/geoip2.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/includes/geoip.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_activities-slider.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/subpage-slider.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/single-venue-slider.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_modal.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_buttons.scss",
+		"/Users/ivan/Development/public/activenation/.gitignore"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 173.0,
+		"where_history":
+		[
+			"<current file>",
+			"/Users/ivan/Development/public/activenation/wp-content/themes/olympos",
+			"<open files>,/Users/ivan/Development/public/activenation/wp-content/themes",
+			"<open files>",
+			"/Users/ivan/Sites/GaussDevNew/wp-content/themes/olympos/sass",
+			"/Users/ivan/Sites/GaussDevNew/wp-content/themes/olympos",
+			"<open files>",
+			"/Users/ivan/Sites/GaussDevNew/wp-content/themes/olympos/sass",
+			"<open files>",
+			"/Users/ivan/Sites/cordwainers/wp-content/themes/twentytwelve",
+			"<open files>",
+			"/Applications/MAMP/htdocs/electroniccentar/skin,/Applications/MAMP/htdocs/electroniccentar/app",
+			"/Applications/MAMP/htdocs/electroniccentar/skin",
+			"/Applications/MAMP/htdocs/electroniccentar/app",
+			"/Applications/MAMP/htdocs/electroniccentar/app/locale/en_US",
+			"/Applications/MAMP/htdocs/electroniccentar/app/design/frontend/olympos",
+			"/Applications/MAMP/htdocs/PresentaNova/Newsletter",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"offer-lin",
+			"phon",
+			"cc-link",
+			">\n",
+			"resize",
+			"prevent",
+			"resize",
+			"$regionID",
+			"$GLOBAL['geolocation'][",
+			"geolocation()[",
+			"$geolocation[",
+			"$geolocation",
+			"$GLOBALS['geolocation']",
+			"$matchingVenues",
+			"Nutrition",
+			"Nutrition landing page",
+			".activities-option-filter",
+			"Cookies.set",
+			"debug",
+			"innerH",
+			"$termsAvailable",
+			"didWeGetIP",
+			"userRegion",
+			"1",
+			"wp",
+			"25",
+			"atomi",
+			"bind",
+			"flex",
+			"-->\n",
+			"stra",
+			"siječan",
+			"ponedj",
+			"windowHeight",
+			"svg",
+			"http://gausshr.dev",
+			"http://gauss.dev",
+			"wordpress",
+			".addresses",
+			"addresses",
+			"635x450",
+			"680x400",
+			"690x460",
+			"420x280",
+			"480x480",
+			"consl",
+			"635x450",
+			"680x400",
+			"480x480",
+			"690x460",
+			"420x280",
+			"480x480",
+			"http://gaussnew.gaussx.com",
+			"5px",
+			"box-sizing:border-box;",
+			"box-sizing: border-box;",
+			";\n",
+			"%;",
+			"@include bold",
+			"@include medium",
+			"@include regular",
+			"@include light",
+			"@include thin",
+			"cursor",
+			"multipl",
+			"light",
+			"thin",
+			"box-sizing",
+			"box-shadow",
+			"background-image",
+			"backgroind-image",
+			"@include border-radius",
+			"border-radius",
+			"        \n",
+			"right",
+			"\"></",
+			"clients",
+			"http://gauss-development.com",
+			"http://gauss.dev",
+			"http://gauss-development.com",
+			"footer",
+			"badges",
+			"<h3>\n            <?php _e( 'In need of a web shop, mobile app or custom solution? Or maybe you need a partner? Feel free to contact us.' , 'olympos'); ?>\n        </h3>\n\n        a.btn.red",
+			"http://gauss.dev",
+			"upload_",
+			"post_max_size",
+			"http://gauss-development.com",
+			"mobile",
+			"http://www.u-t-s.info",
+			"tb_tweet",
+			"tb_tweetlist",
+			"ul",
+			"memb",
+			"http://cordwainers.dev",
+			"twentytwelve_content_nav",
+			"nav-below",
+			"signup",
+			"http://cordwainers.dev",
+			"click",
+			"&amp",
+			"&amp;&amp;",
+			"tinymce.DOM.hasClass",
+			"tinymce.DOM.hasClass( wrapper, 'tmce-active' )",
+			"http://nicole.localhost",
+			"<h3>",
+			"http://nicole.localhost",
+			".page",
+			"http://nicole.localhost",
+			"page-form",
+			"http://nicole.localhost",
+			"box",
+			"line",
+			"move_to",
+			"line",
+			"process",
+			"%s was added into cart",
+			"was added",
+			"Growler-notice-body",
+			"Growler-notice",
+			"was added into cart",
+			"into cart",
+			"was added into cart.",
+			"added",
+			"cart",
+			"was added into",
+			"was added into cart",
+			"was added",
+			"Warning"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$_COOKIE['region']",
+			"$GLOBALS['geolocation'][",
+			"$GLOBAL['geolocation'][",
+			"geolocation()[",
+			"$geolocation",
+			"http://gauss.hr",
+			"http://gausshr.dev",
+			"http://gauss-development.com",
+			"",
+			"@extend .bold",
+			"@extend .medium",
+			"@extend .regular",
+			"@extend .light",
+			"@extend .thin",
+			"http://gauss.dev",
+			"http://gaussnew.gaussx.com",
+			"http://gauss.dev",
+			"http://gaussnew.gaussx.com",
+			"http://gauss.dev",
+			"http://uts.gaussx.com",
+			"http://cordwainers.gaussx.com",
+			"http://nicole.marketingtailor.com",
+			"<font face=\"arial\" ",
+			"<td align=\"left\"",
+			"http://www.presenta-nova.com/Newsletter/Images"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "themes/olympos/layouts/default.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1052,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								691,
+								691
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "themes/olympos/assets/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "themes/olympos/assets/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "themes/demo/assets/javascript/jquery.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 95783,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 75.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 92.0
+	},
+	"pinned_build_system": "",
+	"project": "octobermovies.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"u",
+				"app/Resources/views/userdashboard.html.twig"
+			],
+			[
+				"_use",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_user-account.scss"
+			],
+			[
+				"_fo",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_fonts.scss"
+			],
+			[
+				"_mo",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_modules.scss"
+			],
+			[
+				"_sha",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_share-minutes.scss"
+			],
+			[
+				"bonus",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_bonus-minutes.scss"
+			],
+			[
+				"_pa",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_packages.scss"
+			],
+			[
+				"user",
+				"app/Resources/views/userdashboard.html.twig"
+			],
+			[
+				"_hea",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_header.scss"
+			],
+			[
+				"_my",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_my-account.scss"
+			],
+			[
+				"_foo",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_footer.scss"
+			],
+			[
+				"_mod",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_modules.scss"
+			],
+			[
+				"_gl",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_globals.scss"
+			],
+			[
+				"_mi",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_mixins.scss"
+			],
+			[
+				"_glo",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_globals.scss"
+			],
+			[
+				"_he",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_header.scss"
+			],
+			[
+				"_fon",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_fonts.scss"
+			],
+			[
+				"_modu",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_modules.scss"
+			],
+			[
+				"_vi",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_view-bills.scss"
+			],
+			[
+				"_sh",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_share-minutes.scss"
+			],
+			[
+				"_bo",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_bonus-minutes.scss"
+			],
+			[
+				"bonus-",
+				"src/Carsharing/CrmBundle/Resources/views/UserDashboard/bonus-minute.html.twig"
+			],
+			[
+				"_bon",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_bonus-minutes.scss"
+			],
+			[
+				"_ma",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_my-account.scss"
+			],
+			[
+				"fro",
+				"web/bundles/carsharingcrm/assets/userdashboard/js/frontend.js"
+			],
+			[
+				"pake",
+				"src/Carsharing/CrmBundle/Resources/views/UserDashboard/paketi.html.twig"
+			],
+			[
+				"rout",
+				"src/Carsharing/CrmBundle/Resources/config/routing.yml"
+			],
+			[
+				"style.",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/style.scss"
+			],
+			[
+				"userdas",
+				"app/Resources/views/userdashboard.html.twig"
+			],
+			[
+				"_va",
+				"web/bundles/carsharingcrm/assets/userdashboard/sass/_variables.scss"
+			],
+			[
+				"single-",
+				"wp-content/themes/olympos/parts/single-activity/single-activity-slider.php"
+			],
+			[
+				"pri",
+				"wp-content/themes/olympos/parts/single-activity/prices.php"
+			],
+			[
+				"_si",
+				"wp-content/themes/olympos/sass/_single-activity.scss"
+			],
+			[
+				"sin",
+				"wp-content/themes/olympos/single-activities.php"
+			],
+			[
+				"sli",
+				"wp-content/themes/olympos/parts/goldenticket/slide-02.php"
+			],
+			[
+				"sl",
+				"wp-content/themes/olympos/parts/goldenticket/slide-03.php"
+			],
+			[
+				"golden",
+				"wp-content/themes/olympos/goldenticket.php"
+			],
+			[
+				"mai",
+				"wp-content/themes/olympos/lib/main.js"
+			],
+			[
+				"style.sc",
+				"wp-content/themes/olympos/sass/style.scss"
+			],
+			[
+				"slid",
+				"wp-content/themes/olympos/parts/goldenticket/slide-01.php"
+			],
+			[
+				"_mixin",
+				"wp-content/themes/olympos/sass/_mixins.scss"
+			],
+			[
+				"main",
+				"wp-content/themes/olympos/lib/main.js"
+			],
+			[
+				"timetable-",
+				"wp-content/themes/olympos/parts/single-venue/timetable-response.php"
+			],
+			[
+				"timetab",
+				"wp-content/themes/olympos/js/timetables.js"
+			],
+			[
+				"single",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"_font",
+				"wp-content/themes/olympos/sass/_fonts.scss"
+			],
+			[
+				"aler",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"activi",
+				"wp-content/themes/olympos/parts/activity-slider.php"
+			],
+			[
+				"head",
+				"wp-content/themes/olympos/header.php"
+			],
+			[
+				"foo",
+				"wp-content/themes/olympos/footer.php"
+			],
+			[
+				"geo",
+				"wp-content/themes/olympos/parts/geoip.php"
+			],
+			[
+				"venue",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"_time",
+				"wp-content/themes/olympos/sass/modules/_timetable.scss"
+			],
+			[
+				"_sing",
+				"wp-content/themes/olympos/sass/_single-venue.scss"
+			],
+			[
+				"main.js",
+				"wp-content/themes/olympos/lib/main.js"
+			],
+			[
+				"feeling",
+				"wp-content/themes/olympos/parts/feeling-social.php"
+			],
+			[
+				"func",
+				"wp-content/themes/olympos/functions.php"
+			],
+			[
+				"_singl",
+				"wp-content/themes/olympos/sass/_single-venue.scss"
+			],
+			[
+				"timetable",
+				"wp-content/themes/olympos/parts/single-venue/timetables.php"
+			],
+			[
+				"sing",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"_locke",
+				"wp-content/themes/olympos/sass/_lockeroom-single.scss"
+			],
+			[
+				"_lock",
+				"wp-content/themes/olympos/sass/modules/_lockeroom-article.scss"
+			],
+			[
+				"404.php",
+				"wp-content/themes/olympos/404.php"
+			],
+			[
+				"_new",
+				"wp-content/themes/olympos/sass/modules/_news-box.scss"
+			],
+			[
+				"price",
+				"wp-content/themes/olympos/parts/single-activity/prices.php"
+			],
+			[
+				"_aler",
+				"wp-content/themes/olympos/sass/modules/_alert-bar.scss"
+			],
+			[
+				"alert",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"_al",
+				"wp-content/themes/olympos/sass/modules/_alert-bar.scss"
+			],
+			[
+				"_lis",
+				"wp-content/themes/olympos/sass/_list-activities.scss"
+			],
+			[
+				"alret",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"venu",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"home",
+				"wp-content/themes/olympos/homepage.php"
+			],
+			[
+				"heade",
+				"wp-content/themes/olympos/header.php"
+			],
+			[
+				"ge",
+				"wp-content/themes/olympos/parts/geoip.php"
+			],
+			[
+				"functi",
+				"wp-content/themes/olympos/functions.php"
+			],
+			[
+				"_locker",
+				"wp-content/themes/olympos/sass/_lockeroom-single.scss"
+			],
+			[
+				"time",
+				"wp-content/themes/olympos/js/timetables.js"
+			],
+			[
+				"issu",
+				"wp-content/themes/olympos/parts/lockeroom/issue-list.php"
+			],
+			[
+				"feature",
+				"wp-content/themes/olympos/parts/lockeroom/featured-article.php"
+			],
+			[
+				"_type",
+				"wp-content/themes/olympos/sass/modules/_typeahead.scss"
+			],
+			[
+				"_",
+				"wp-content/themes/olympos/sass/_list-activities.scss"
+			],
+			[
+				"archi",
+				"wp-content/themes/olympos/archive-activities.php"
+			],
+			[
+				"parts/fee",
+				"wp-content/themes/olympos/parts/feeling-social.php"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"arch",
+				"wp-content/themes/olympos/archive-activities.php"
+			],
+			[
+				"map",
+				"wp-content/themes/olympos/parts/map-everything.php"
+			],
+			[
+				"ven",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"archive",
+				"wp-content/themes/olympos/archive-activities.php"
+			],
+			[
+				"moda",
+				"wp-content/themes/olympos/parts/ask-for-region-modal.php"
+			],
+			[
+				"fun",
+				"wp-content/themes/olympos/functions.php"
+			],
+			[
+				"gulpfi",
+				"gulpfile.js"
+			],
+			[
+				"header",
+				"wp-content/themes/olympos/header.php"
+			],
+			[
+				"_activi",
+				"wp-content/themes/olympos/sass/modules/_activities-slider.scss"
+			],
+			[
+				"arci",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"",
+				"wp-content/themes/olympos/single-activities.php"
+			],
+			[
+				"single-act",
+				"wp-content/themes/olympos/parts/single-activity/single-activity-slider.php"
+			],
+			[
+				"subpage",
+				"wp-content/themes/olympos/parts/subpage-slider.php"
+			],
+			[
+				"single-ven",
+				"wp-content/themes/olympos/parts/single-venue/single-venue-slider.php"
+			],
+			[
+				"button",
+				"wp-content/themes/olympos/sass/modules/_buttons.scss"
+			],
+			[
+				"alre",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"arvh",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"_modal",
+				"wp-content/themes/olympos/sass/modules/_modal.scss"
+			],
+			[
+				"footer",
+				"wp-content/themes/olympos/footer.php"
+			],
+			[
+				"geoi",
+				"wp-content/themes/olympos/parts/geoip.php"
+			],
+			[
+				".gitig",
+				".gitignore"
+			],
+			[
+				"singe",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"_foote",
+				"wp-content/themes/olympos/sass/_footer.scss"
+			],
+			[
+				"_venu",
+				"wp-content/themes/olympos/sass/_list-venues.scss"
+			],
+			[
+				"ve",
+				"wp-content/themes/olympos/parts/list-venue/venue-description.php"
+			],
+			[
+				"_heda",
+				"wp-content/themes/olympos/sass/_header.scss"
+			],
+			[
+				"slide",
+				"wp-content/themes/olympos/parts/activity-slider.php"
+			],
+			[
+				"_home",
+				"wp-content/themes/olympos/sass/_homepage.scss"
+			],
+			[
+				"homep",
+				"wp-content/themes/olympos/homepage.php"
+			],
+			[
+				"inde",
+				"wp-content/themes/olympos/index.php"
+			],
+			[
+				"_head",
+				"wp-content/themes/olympos/sass/_header.scss"
+			],
+			[
+				"timeta",
+				"wp-content/themes/olympos/parts/single-venue/timetables.php"
+			],
+			[
+				"parts/me",
+				"wp-content/themes/olympos/parts/membership-options.php"
+			],
+			[
+				"_list",
+				"wp-content/themes/olympos/sass/_list-venues.scss"
+			],
+			[
+				"locke",
+				"wp-content/themes/olympos/parts/lockeroom/lockeroom-footer.php"
+			],
+			[
+				"news",
+				"wp-content/themes/olympos/parts/newsletter-subscribe.php"
+			],
+			[
+				"lockeroo",
+				"wp-content/themes/olympos/parts/lockeroom/lockeroom-header.php"
+			],
+			[
+				"loce",
+				"wp-content/themes/olympos/parts/lockeroom/lockeroom-header.php"
+			],
+			[
+				"glo",
+				"wp-content/themes/olympos/sass/_globals.scss"
+			],
+			[
+				"hed",
+				"wp-content/themes/olympos/header.php"
+			],
+			[
+				"wp-con",
+				"wp-config.php"
+			],
+			[
+				"_port",
+				"wp-content/themes/olympos/sass/_portfolio.scss"
+			],
+			[
+				"portf",
+				"wp-content/themes/olympos/parts/homepage/portfolio.php"
+			],
+			[
+				"funct",
+				"wp-content/themes/olympos/functions.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "wat",
+		"selected_items":
+		[
+			[
+				"wat",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"wprest",
+				"~/Development/public/wprest/wprest.sublime-project"
+			],
+			[
+				"repo",
+				"~/Development/public/reportgorilla/report.sublime-project"
+			],
+			[
+				"spring",
+				"~/Development/public/springfall/springfall.sublime-project"
+			],
+			[
+				"",
+				"~/Development/public/ivandoric/ivandoric.sublime-project"
+			],
+			[
+				"umo",
+				"~/Development/public/umobility/umobility.sublime-project"
+			],
+			[
+				"ivan",
+				"~/Development/public/ivandoric/ivandoric.sublime-project"
+			],
+			[
+				"wl",
+				"~/Development/public/wlgrav/wlgrav.sublime-project"
+			],
+			[
+				"active",
+				"~/Development/public/activenation/activenation.sublime-project"
+			],
+			[
+				"wp",
+				"~/Development/public/wprest/wprest.sublime-project"
+			],
+			[
+				"acti",
+				"~/Development/public/activenation/activenation.sublime-project"
+			],
+			[
+				"um",
+				"~/Development/public/umobility/umobility.sublime-project"
+			],
+			[
+				"hg",
+				"~/Development/public/hgk/hgk.sublime-project"
+			],
+			[
+				"wpres",
+				"~/Development/public/wprest/wprest.sublime-project"
+			],
+			[
+				"movi",
+				"~/Development/public/moviesapp/moviesapp.sublime-project"
+			],
+			[
+				"quer",
+				"~/Development/public/query/query.sublime-project"
+			],
+			[
+				"gau",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"query",
+				"~/Development/public/query/query.sublime-project"
+			],
+			[
+				"wine",
+				"~/Development/public/wineapp/wineapp.sublime-project"
+			],
+			[
+				"tz",
+				"~/Development/public/tzvrsar/tzvrsar.sublime-project"
+			],
+			[
+				"gauss",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"que",
+				"~/Development/public/query/query.sublime-project"
+			],
+			[
+				"hgk",
+				"~/Development/public/hgk/hgk.sublime-project"
+			],
+			[
+				"act",
+				"~/Development/public/wineapp/wineapp.sublime-project"
+			],
+			[
+				"puha",
+				"~/Sites/Projects/puhalek.sublime-project"
+			],
+			[
+				"ga",
+				"~/Sites/Projects/gaussdev.sublime-project"
+			],
+			[
+				"reso",
+				"~/Sites/Projects/Reson.sublime-project"
+			],
+			[
+				"ido",
+				"~/Sites/Projects/idoric.sublime-project"
+			],
+			[
+				"gaus",
+				"~/Sites/Projects/gaussdev.sublime-project"
+			],
+			[
+				"puh",
+				"~/Sites/Projects/puhalek.sublime-project"
+			],
+			[
+				"mil",
+				"~/Sites/Projects/milkmen.sublime-project"
+			],
+			[
+				"edd",
+				"~/Sites/Projects/edd.sublime-project"
+			],
+			[
+				"ed",
+				"~/Sites/Projects/edd.sublime-project"
+			],
+			[
+				"pu",
+				"~/Sites/Projects/puhalek.sublime-project"
+			],
+			[
+				"hod",
+				"~/Sites/Projects/hodnett.sublime-project"
+			],
+			[
+				"tzvr",
+				"~/Sites/Projects/tzvrsar.sublime-project"
+			],
+			[
+				"at",
+				"~/Sites/Projects/atlas.sublime-project"
+			],
+			[
+				"atlas",
+				"~/Sites/Projects/atlas.sublime-project"
+			],
+			[
+				"wlex",
+				"~/Sites/Projects/wlexample.sublime-project"
+			],
+			[
+				"tzv",
+				"~/Sites/Projects/tzvrsar.sublime-project"
+			],
+			[
+				"cor",
+				"~/Sites/Projects/cordwainers.sublime-project"
+			],
+			[
+				"res",
+				"~/Sites/Projects/Reson.sublime-project"
+			],
+			[
+				"iva",
+				"~/Sites/Projects/ivandoric.sublime-project"
+			],
+			[
+				"tzvr\t",
+				"~/Sites/Projects/tzvrsar.sublime-project"
+			],
+			[
+				"news",
+				"~/Sites/Projects/newscoop.sublime-project"
+			],
+			[
+				"tka",
+				"~/Sites/Projects/tkanine.sublime-project"
+			],
+			[
+				"next",
+				"~/Sites/Projects/nextis.sublime-project"
+			],
+			[
+				"nex",
+				"~/Sites/Projects/nextis.sublime-project"
+			],
+			[
+				"new",
+				"~/Sites/Projects/newscoop.sublime-project"
+			],
+			[
+				"reson",
+				"~/Sites/Projects/Reson.sublime-project"
+			],
+			[
+				"ne",
+				"~/Sites/Projects/nextis.sublime-project"
+			],
+			[
+				"odo",
+				"~/Sites/Projects/odom.sublime-project"
+			],
+			[
+				"tee",
+				"~/Sites/Projects/teetoolkit.sublime-project"
+			],
+			[
+				"pre",
+				"~/Sites/Projects/PresentaNova.sublime-project"
+			],
+			[
+				"mig",
+				"~/Sites/Projects/migwan.sublime-project"
+			],
+			[
+				"chan",
+				"~/Sites/Projects/change.sublime-project"
+			],
+			[
+				"cha",
+				"~/Sites/Projects/change.sublime-project"
+			],
+			[
+				"ho",
+				"~/Sites/Projects/hodnett.sublime-project"
+			],
+			[
+				"jq",
+				"~/Sites/Projects/jquery.sublime-project"
+			],
+			[
+				"hodne",
+				"~/Sites/Projects/hodnett.sublime-project"
+			],
+			[
+				"ele",
+				"~/Sites/Projects/electroniccentar.sublime-project"
+			],
+			[
+				"re",
+				"~/Sites/Projects/Reson.sublime-project"
+			],
+			[
+				"ree",
+				"~/Sites/Projects/reebokfitness.sublime-project"
+			],
+			[
+				"info",
+				"~/Sites/Projects/infovrsar.sublime-project"
+			],
+			[
+				"fed",
+				"/Users/ivan/Sites/Projects/fednew.sublime-project"
+			],
+			[
+				"cord",
+				"/Users/ivan/Sites/Projects/cordwainers.sublime-project"
+			],
+			[
+				"o",
+				"/Users/ivan/Sites/Projects/cordwainers.sublime-project"
+			],
+			[
+				"gled",
+				"/Users/ivan/Sites/Projects/gledajuci.sublime-project"
+			],
+			[
+				"nic",
+				"/Users/ivan/Sites/Projects/nicole.sublime-project"
+			],
+			[
+				"ni",
+				"/Users/ivan/Sites/Projects/nicole.sublime-project"
+			],
+			[
+				"pres",
+				"/Users/ivan/Sites/Projects/PresentaNovaDEV.sublime-project"
+			],
+			[
+				"med",
+				"/Users/ivan/Sites/Projects/medisimo.sublime-project"
+			],
+			[
+				"presenta",
+				"/Users/ivan/Sites/Projects/PresentaNovaDEV.sublime-project"
+			],
+			[
+				"us",
+				"/Users/ivan/Sites/Projects/usluga.sublime-project"
+			],
+			[
+				"m",
+				"/Users/ivan/Sites/Projects/medisimo.sublime-project"
+			],
+			[
+				"gle",
+				"/Users/ivan/Sites/Projects/gledajuci.sublime-project"
+			],
+			[
+				"jqu",
+				"/Users/ivan/Projects/jquery.sublime-project"
+			],
+			[
+				"j",
+				"/Users/ivan/Projects/jquery.sublime-project"
+			],
+			[
+				"watc",
+				"/Users/ivan/Projects/watchlearn.sublime-project"
+			],
+			[
+				"ipo",
+				"/Users/ivan/Projects/ipoduzetnik.sublime-project"
+			],
+			[
+				"in",
+				"/Users/ivan/Projects/infovrsar.sublime-project"
+			],
+			[
+				"ipod",
+				"/Users/ivan/Projects/ipoduzetnik.sublime-project"
+			],
+			[
+				"ol",
+				"/Users/ivan/Projects/olympos.sublime-project"
+			],
+			[
+				"ut",
+				"/Users/ivan/Projects/uts.sublime-project"
+			],
+			[
+				"el",
+				"/Users/ivan/Projects/electroniccentar.sublime-project"
+			],
+			[
+				"pe",
+				"/Users/ivan/Projects/pearl2love.sublime-project"
+			],
+			[
+				"pear",
+				"/Users/ivan/Projects/pearl2love.sublime-project"
+			],
+			[
+				"bez",
+				"/Users/ivan/Projects/bezrecepta.sublime-project"
+			],
+			[
+				"prese",
+				"/Users/ivan/Projects/PresentaNova.sublime-project"
+			],
+			[
+				"ip",
+				"/Users/ivan/Projects/ipoduzetnik.sublime-project"
+			],
+			[
+				"me",
+				"/Users/ivan/Projects/medisimo.sublime-project"
+			],
+			[
+				"i",
+				"/Users/ivan/Projects/ipoduzetnik.sublime-project"
+			],
+			[
+				"medi",
+				"/Users/ivan/Projects/medisimo.sublime-project"
+			],
+			[
+				"usu",
+				"/Users/ivan/Projects/usluga.sublime-project"
+			],
+			[
+				"b",
+				"/Users/ivan/Projects/bezrecepta.sublime-project"
+			],
+			[
+				"dru",
+				"/Users/ivan/Projects/druzina.sublime-project"
+			],
+			[
+				"usl",
+				"/Users/ivan/Projects/usluga.sublime-project"
+			],
+			[
+				"ur",
+				"/Users/ivan/Projects/UrbanSailor.sublime-project"
+			],
+			[
+				"dr",
+				"/Users/ivan/Projects/druzina.sublime-project"
+			],
+			[
+				"urban",
+				"/Users/ivan/Projects/UrbanSailor.sublime-project"
+			],
+			[
+				"be",
+				"/Users/ivan/Projects/bezrecepta.sublime-project"
+			],
+			[
+				"usluga",
+				"/Users/ivan/Projects/usluga.sublime-project"
+			],
+			[
+				"presn",
+				"/Users/ivan/Projects/PresentaNova.sublime-project"
+			],
+			[
+				"gl",
+				"/Users/ivan/Projects/GledajUci.sublime-project"
+			],
+			[
+				"da",
+				"/Users/ivan/Projects/dadatoys.sublime-project"
+			],
+			[
+				"biv",
+				"/Users/ivan/Projects/Bivelo.sublime-project"
+			],
+			[
+				"je",
+				"/Users/ivan/Projects/JeffAndVaden.sublime-project"
+			],
+			[
+				"tota",
+				"/Users/ivan/Projects/TotalTubs.sublime-project"
+			],
+			[
+				"to",
+				"/Users/ivan/Projects/TotalTubs.sublime-project"
+			],
+			[
+				"urb",
+				"/Users/ivan/Projects/UrbanSailor.sublime-project"
+			],
+			[
+				"ch",
+				"/Users/ivan/Projects/ChrisChickering.sublime-project"
+			],
+			[
+				"tot",
+				"/Users/ivan/Projects/TotalTubs.sublime-project"
+			],
+			[
+				"chris",
+				"/Users/ivan/Projects/ChrisChickering.sublime-project"
+			],
+			[
+				"urba",
+				"/Users/ivan/Projects/UrbanSailor.sublime-project"
+			],
+			[
+				"por",
+				"/Users/ivan/Projects/PorecPort.sublime-project"
+			],
+			[
+				"Gleda",
+				"/Users/ivan/Projects/GledajUci.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 475.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

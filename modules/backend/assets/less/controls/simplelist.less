@@ -1,0 +1,179 @@
+//
+// Simple List
+// --------------------------------------------------
+// Usage (bullets):
+//   <div class="control-simplelist">
+//       <ul>
+//           <li>Hello friend</li>
+//       </ul>
+//   </div>
+//
+// With icons (no bullets):
+//   <div class="control-simplelist with-icons">
+//       <ul>
+//           <li class="oc-icon-check">Hello friend</li>
+//       </ul>
+//   </div>
+//
+// With checkboxes:
+//   <div class="control-simplelist with-checkboxes">
+//       <ul>
+//           <li>
+//               <div class="checkbox custom-checkbox">
+//                   <input id="checkbox-example1" name="checkbox" value="1" type="checkbox">
+//                   <label class="choice" for="checkbox-example1"> Dodge Viper</label>
+//               </div>
+//           </li>
+//       </ul>
+//   </div>
+//
+// Divided (basic):
+//   <div class="control-simplelist is-divided">
+//       <ul>
+//           <li>Hello friend</li>
+//       </ul>
+//   </div>
+//
+// Selectable:
+//   <div class="control-simplelist is-selectable">
+//       <ul>
+//           <li>
+//               <a href="#">
+//                   <h5 class="heading">Hello friend</h5>
+//                   <p class="description">Something cool over here</p>
+//               </a>
+//           </li>
+//       </ul>
+//   </div>
+//
+
+.control-simplelist {
+    font-size: 13px;
+    padding: 20px 20px 2px 20px;
+    margin-bottom: @padding-standard;
+    background: @color-form-checkboxlist-background;
+    .border-radius(@border-radius-base);
+
+    ul { padding-left: 15px; }
+
+    &.form-control {
+        ul { margin-bottom: 0; }
+        li {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+
+    &.with-icons,
+    &.with-checkboxes,
+    &.is-divided,
+    &.is-selectable {
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    }
+
+    &.with-checkboxes {
+        li {
+            margin-top: -5px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                div.custom-checkbox {
+                    margin-bottom: 0;
+
+                    label {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.is-sortable {
+
+        li.placeholder {
+            position: relative;
+            &:before {
+                top: -10px;
+                position: absolute;
+                .triangle(right, 5px, 9px, @color-sortable-caret);
+            }
+        }
+
+        li.dragged {
+            position: absolute;
+            .opacity(.5);
+            z-index: 2000;
+            color: @color-sortable-active;
+
+            width: auto !important; // Prevent browser scrollbars
+        }
+    }
+
+    &.is-scrollable {
+        height: 200px;
+        &.size-tiny { min-height: @size-tiny + 200; }
+        &.size-small { min-height: @size-small + 200; }
+        &.size-large { min-height: @size-large + 200; }
+        &.size-huge { min-height: @size-huge + 200; }
+        &.size-giant { min-height: @size-giant + 200; }
+    }
+
+    &.is-divided,
+    &.is-selectable {
+        li {
+            padding: 5px 10px;
+            border-bottom: 1px solid @color-list-border;
+            .heading {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .description {}
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    &.is-selectable {
+        li {
+            a {
+                padding: 5px 10px;
+                margin: -5px -10px;
+                display: block;
+                color: @text-color;
+            }
+            &:hover {
+                background: @color-list-hover-bg;
+                cursor: pointer;
+                &, a { color: white; }
+                a { text-decoration: none; }
+            }
+
+            &.active {
+                a {
+                    background: #f0f0f0;
+                    &:hover {
+                        background: @color-list-hover-bg;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.list-preview .control-simplelist {
+    &.is-selectable {
+        ul {
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "name": "october/backend",
+    "type": "october-module",
+    "description": "Backend module for October CMS",
+    "homepage": "http://octobercms.com",
+    "keywords": ["october cms", "october", "backend"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Bobkov",
+            "email": "aleksey.bobkov@gmail.com"
+        },
+        {
+            "name": "Samuel Georges",
+            "email": "daftspunky@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "composer/installers": "~1.0",
+        "october/rain": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Backend\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

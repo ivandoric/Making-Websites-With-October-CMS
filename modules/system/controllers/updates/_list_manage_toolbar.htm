@@ -1,0 +1,52 @@
+<div data-control="toolbar">
+    <a href="<?= Backend::url('system/updates') ?>" class="btn btn-default oc-icon-chevron-left">
+        <?= e(trans('system::lang.updates.return_link')) ?>
+    </a>
+    <div class="btn-group">
+        <button
+            class="btn btn-default oc-icon-magic"
+            disabled="disabled"
+            onclick="$(this).data('request-data', {
+                checked: $('.control-list').listWidget('getChecked')
+            })"
+            data-control="popup"
+            data-handler="onLoadDisableForm"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-stripe-load-indicator>
+            <?= e(trans('system::lang.plugins.enable_or_disable')) ?>
+        </button>
+        <!--
+        <button
+            class="btn btn-default oc-icon-refresh"
+            disabled="disabled"
+            onclick="$(this).data('request-data', {
+                checked: $('.control-list').listWidget('getChecked')
+            })"
+            data-request="onRefreshPlugins"
+            data-request-confirm="<?= e(trans('system::lang.plugins.refresh_confirm')) ?>"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-stripe-load-indicator>
+            <?= e(trans('system::lang.plugins.refresh')) ?>
+        </button>
+        -->
+        <button
+            class="btn btn-default oc-icon-trash-o"
+            disabled="disabled"
+            onclick="$(this).data('request-data', {
+                checked: $('.control-list').listWidget('getChecked')
+            })"
+            data-request="onRemovePlugins"
+            data-request-confirm="<?= e(trans('system::lang.plugins.remove_confirm')) ?>"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="$(this).closest('.btn-group').find('button').prop('disabled', true)"
+            data-stripe-load-indicator>
+            <?= e(trans('system::lang.plugins.remove')) ?>
+        </button>
+    </div>
+</div>

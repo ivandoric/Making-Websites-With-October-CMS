@@ -1,0 +1,81 @@
+<?php
+    $activeItem = BackendMenu::getActiveMainMenuItem();
+    $mySettings = System\Classes\SettingsManager::instance()->listItems('mysettings');
+    $navbarMode = Backend\Models\BrandSetting::get('menu_mode', 'inline');
+?>
+<nav class="navbar control-toolbar navbar-mode-<?= $navbarMode ?>" id="layout-mainmenu" role="navigation">
+    <div class="toolbar-item toolbar-primary">
+        <div data-control="toolbar">
+            <a class="menu-toggle" href="javascript:;">
+                <span class="menu-toggle-icon">
+                    <i class="icon-bars"></i>
+                </span>
+                <span class="menu-toggle-title">
+                    <?= $activeItem ? e(trans($activeItem->label)) : 'CMS' ?>
+                </span>
+            </a>
+
+            <ul class="nav mainmenu-nav">
+                <?php foreach (BackendMenu::listMainMenuItems() as $item): ?>
+                    <?php
+                        $isActive = BackendMenu::isMainMenuItemActive($item);
+                    ?>
+                    <li class="<?= $isActive ? 'active' : null ?> svg-icon-container svg-active-effects">
+                        <a href="<?= $item->url ?>">
+                            <span class="nav-icon">
+                                <?php if ($item->iconSvg): ?>
+                                    <img class="svg-icon" src="<?= URL::asset($item->iconSvg) ?>">
+                                <?php endif ?>
+
+                                <i class="<?= $item->iconSvg ? 'svg-replace' : null ?> <?= $item->icon ?>"></i>
+                            </span>
+                            <span class="nav-label">
+                                <?= e(trans($item->label)) ?>
+                            </span>
+                        </a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+    <div class="toolbar-item" data-calculate-width>
+        <ul class="mainmenu-toolbar">
+            <li class="mainmenu-preview with-tooltip">
+                <a
+                    href="<?= URL::to('/') ?>"
+                    target="_blank"
+                    title="<?= e(trans('backend::lang.tooltips.preview_website')) ?>">
+                    <i class="icon-crosshairs"></i>
+                </a>
+            </li>
+            <li class="mainmenu-account">
+                <a href="javascript:;" onclick="$.oc.layout.toggleAccountMenu(this)">
+                    <span class="account-name hidden-xs">
+                        <?= e($this->user->first_name.' '.$this->user->last_name) ?>
+                    </span>
+                    <img src="<?= $this->user->getAvatarThumb(90, ['mode' => 'crop', 'extension' => 'png']) ?>" class="account-avatar" />
+                </a>
+                <div class="mainmenu-accountmenu">
+                    <ul>
+                        <?php foreach ($mySettings as $category => $items): ?>
+                            <?php foreach ($items as $item): ?>
+                                <li>
+                                    <a href="<?= $item->url ?>">
+                                        <?= e(trans($item->label)) ?>
+                                    </a>
+                                </li>
+                            <?php endforeach ?>
+                            <li class="divider"></li>
+                        <?php endforeach ?>
+
+                        <li>
+                            <a href="<?= Backend::url('backend/auth/signout') ?>">
+                                <?= e(trans('backend::lang.account.sign_out')) ?>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

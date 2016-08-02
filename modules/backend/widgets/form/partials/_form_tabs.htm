@@ -1,0 +1,30 @@
+<?php
+    $type = $tabs->section;
+
+    $navCss = '';
+    $contentCss = '';
+    $paneCss = '';
+
+    if ($tabs->stretch) {
+        $navCss = 'layout-row min-size';
+        $contentCss = 'layout-row';
+        $paneCss = 'layout-cell';
+    }
+?>
+<div class="<?= $navCss ?>">
+    <ul class="nav nav-tabs">
+        <?php $index = 0; foreach ($tabs as $name => $fields): ?>
+            <li class="<?= $index++==0?'active':''?>"><a href="#<?= $type.'tab-'.$index ?>"><?= e(trans($name)) ?></a></li>
+        <?php endforeach ?>
+    </ul>
+</div>
+
+<div class="tab-content <?= $contentCss ?>">
+    <?php $index = 0; foreach ($tabs as $name => $fields): ?>
+        <div
+            class="tab-pane <?= $index++==0?'active':''?> <?= $paneCss ?>"
+            id="<?= $type.'tab-'.$index ?>">
+            <?= $this->makePartial('form_fields', ['fields' => $fields]) ?>
+        </div>
+    <?php endforeach ?>
+</div>
