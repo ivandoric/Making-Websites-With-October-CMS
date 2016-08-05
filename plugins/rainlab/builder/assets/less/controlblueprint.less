@@ -1,0 +1,260 @@
+.builder-building-area {
+    .builder-blueprint-control-text,
+    .builder-blueprint-control-textarea,
+    .builder-blueprint-control-partial,
+    .builder-blueprint-control-unknown,
+    .builder-blueprint-control-dropdown {
+        padding: 10px 12px;
+        border: 2px solid @builder-control-border-color;
+        color: @builder-control-text-color;
+        .border-radius(4px);
+
+        i {
+            margin-right: 5px;
+        }
+    }
+
+    li.control:hover, li.inspector-open {
+         > .control-wrapper {
+            .builder-blueprint-control-text,
+            .builder-blueprint-control-textarea,
+            .builder-blueprint-control-dropdown {
+                border-color: @builder-hover-color;
+            }
+
+            .builder-blueprint-control-dropdown:before {
+                background-color: @builder-hover-color;
+            }
+         }
+    }
+
+    .builder-blueprint-control-textarea {
+        &.size-tiny { min-height: @size-tiny; }
+        &.size-small { min-height: @size-small; }
+        &.size-large { min-height: @size-large; }
+        &.size-huge { min-height: @size-huge; }
+        &.size-giant { min-height: @size-giant; }
+    }
+
+    .builder-blueprint-control-section {
+        border-bottom: 1px solid @builder-control-border-color;
+        padding-bottom: 4px;
+
+        .builder-control-label {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+    }
+
+    .builder-blueprint-control-unknown {
+        border-color: #eee;
+        background: #eee;
+    }
+
+    .builder-blueprint-control-partial {
+        border-color: #eee;
+        background: #eee;
+    }
+
+    .builder-blueprint-control-dropdown {
+        position: relative;
+
+        &:before, &:after {
+            position: absolute;
+            content: '';
+        }
+
+        &:before {
+            top: 0;
+            width: 2px;
+            background: @builder-control-border-color;
+            right: 40px;
+            height: 100%;
+        }
+
+        &:after {
+            .icon(@angle-down);
+            color: inherit;
+            right: 15px;
+            top: 12px;
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
+
+    .builder-blueprint-control-checkbox {
+        &:before {
+            float: left;
+            content: ' ';
+            border: 2px solid @builder-control-border-color;
+            .border-radius(4px);
+            width: 17px;
+            height: 17px;
+            position: relative;
+            top: 2px;
+        }
+
+        .builder-control-label {
+            margin-left: 25px;
+            font-weight: normal;
+        }
+
+        .builder-control-comment-below {
+            margin-left: 25px;
+        }
+    }
+
+    li.control:hover, li.inspector-open {
+         > .control-wrapper {
+            .builder-blueprint-control-checkbox:before {
+                border-color: @builder-hover-color;
+            }
+        }
+    }
+
+    .builder-blueprint-control-switch {
+        position: relative;
+
+        &:before, &:after {
+            position: absolute;
+            content: ' ';
+            .border-radius(30px);
+        }
+
+        &:before {
+            background-color: @builder-control-border-color;
+
+            width: 34px;
+            height: 18px;
+            top: 2px;
+            left: 2px;
+        }
+
+        &:after {
+            background-color: white;
+
+            width: 14px;
+            height: 14px;
+            top: 4px;
+            left: 4px;
+            margin-left: 16px;
+        }
+
+        .builder-control-label {
+            margin-left: 45px;
+            font-weight: normal;
+        }
+
+        .builder-control-comment-below {
+            margin-left: 45px;
+        }
+    }
+
+    li.control:hover, li.inspector-open {
+         > .control-wrapper {
+            .builder-blueprint-control-switch:before {
+                background-color: @builder-hover-color;
+            }
+        }
+    }
+
+    .builder-blueprint-control-repeater-body {
+        > .repeater-button {
+            padding: 8px 13px;
+            background: @builder-control-border-color;
+            color: white;
+            display: inline-block;
+            margin-bottom: 10px;
+            .border-radius(2px);
+        }
+    }
+
+    ul.builder-control-list > li.control:hover,
+    ul.builder-control-list > li.inspector-open {
+        > .control-wrapper > .control-body {
+            .builder-blueprint-control-repeater-body {
+                > .repeater-button {
+                    background: @builder-hover-color;
+                    color: white!important;
+                    span {
+                        color: white!important;
+                    }
+                }
+            }
+        }
+    }
+
+    .builder-blueprint-control-repeater {
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            top: 0;
+            left: 2px;
+            height: 100%;
+            background: @builder-control-border-color;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            top: 14px;
+            left: 0;
+            .border-radius(6px);
+            background: @builder-control-border-color;
+        }
+
+        > ul.builder-control-list {
+            padding-right: 0;
+            padding-bottom: 0;
+            padding-top: 10px;
+        }
+    }
+
+    li.control:hover, li.inspector-open {
+        > .builder-blueprint-control-repeater {
+            &:before, &:after {
+                background-color: @builder-hover-color;
+            }
+        }
+    }
+
+    .builder-blueprint-control-radiolist,
+    .builder-blueprint-control-checkboxlist {
+        ul {
+            list-style: none;
+            padding: 0;
+            color: @builder-control-text-color;
+
+            li {
+                margin-bottom: 3px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+ 
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .builder-blueprint-control-text {
+        &.fileupload.image {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+
+            i {
+                line-height: 77px;
+                margin-right: 0;
+            }
+        }
+    }
+
+}

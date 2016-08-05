@@ -1,0 +1,185 @@
+@import "../../../../../modules/backend/assets/less/core/boot.less";
+
+@builder-control-border-color: #bdc3c7;
+@builder-control-text-color: #95a5a6;
+@builder-hover-color: #2581b8;
+
+@import "buildingarea.less";
+@import "controlblueprint.less";
+@import "behaviors.less";
+@import "tabs.less";
+@import "menus.less";
+@import "localization.less";
+
+.control-filelist ul li.group.model > h4 a:after {
+    content: @random;
+    top: 10px;
+}
+
+.control-filelist ul li.group.form > h4 a:after {
+    content: @check-square;
+}
+
+.control-filelist ul li.group.list > h4 a:after {
+    content: @th-list;
+    top: 10px;
+}
+
+.control-filelist ul li.group > ul > li.group > ul > li > a {
+    padding-left: 73px;
+    margin-left: -20px;
+}
+
+.control-filelist ul li.with-icon {
+    span.title, span.description {
+        padding-left: 22px;
+    }
+
+    i.list-icon {
+        position: absolute;
+        left: 20px;
+        top: 12px;
+        color: #405261;
+
+        &.mute {
+            color: #8f8f8f;
+        }
+
+        &.icon-check-square {
+            color: #8da85e;
+        }
+    }
+}
+
+html.gecko .control-filelist ul li.group {
+    margin-right: 10px;
+}
+
+.builder-inspector-container {
+    width: 350px;
+    border-left: 1px solid #d9d9d9;
+
+    &:empty {
+        display: none!important;
+    }
+}
+
+form.hide-secondary-tabs {
+    div.control-tabs.secondary-tabs {
+        ul.nav.nav-tabs {
+            display: none;
+        }
+    }
+}
+
+.form-group {
+    &.size-quarter {
+        width: 23.5%;
+    }
+
+    &.size-three-quarter {
+        width: 73.5%;
+    }
+}
+
+// Full height database columns table
+
+form[data-entity=database] {
+    div.field-datatable {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        div[data-control=table] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            div.table-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+
+                div.control-scrollbar {
+                    top: 74px;
+                    bottom: 0;
+                    position: absolute;
+                    max-height: none!important;
+                    height: auto!important;
+                }
+            }
+        }
+    }
+}
+
+// TODO: Move the aux tab styles to the tab.less
+
+.control-tabs {
+    &.auxiliary-tabs {
+        background: white;
+
+        .border-top(@color) {
+            content: ' ';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: @color;
+            top: 0;
+            left: 0;
+        }
+
+        > ul.nav-tabs, > div > ul.nav-tabs {
+            padding-left: 20px;
+            padding-bottom: 2px;
+            background: white;
+            position: relative;
+            
+            &:before {
+                .border-top(#95a5a6);
+            }
+
+            > li {
+                margin-right: 2px;
+
+                > a {
+                    background: white;
+                    color: #bdc3c7;
+                    border-left: 1px solid #ecf0f1!important;
+                    border-right: 1px solid #ecf0f1!important;
+                    border-bottom: 1px solid #ecf0f1!important;
+                    padding: 4px 10px;
+                    line-height: 100%;
+                    .border-radius(0 0 4px 4px);
+
+                    > span.title > span {
+                        margin-bottom: 0;
+                        font-size: 13px;
+                        height: auto;
+                    }
+                }
+
+                &.active{
+                    top: 0;
+
+                    &:before {
+                        .border-top(white);
+                        top: -1px;
+                    }
+
+                    a {
+                        padding-top: 5px;
+                        border-left: 1px solid #95a5a6!important;
+                        border-right: 1px solid #95a5a6!important;
+                        border-bottom: 1px solid #95a5a6!important;
+                        color: #95a5a6;
+                    }
+                }
+            }
+        }
+
+        > div.tab-content > .tab-pane {
+            background: white;
+        }
+    }
+}

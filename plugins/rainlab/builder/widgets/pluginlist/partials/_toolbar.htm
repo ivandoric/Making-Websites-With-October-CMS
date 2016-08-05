@@ -1,0 +1,22 @@
+<div class="layout-row min-size panel-contents compact-toolbar">
+    <div class="control-toolbar toolbar-padded separator">
+        <div class="toolbar-item" data-calculate-width>
+            <div class="toolbar" id="<?= $this->getId('toolbar-buttons') ?>">
+                <?= $this->makePartial("toolbar-buttons") ?>
+            </div>
+        </div>
+        <div class="relative toolbar-item loading-indicator-container size-input-text">
+            <input
+                type="text"
+                name="search"
+                value="<?= e($this->getSearchTerm()) ?>"
+                class="form-control icon search" autocomplete="off"
+                placeholder="<?= e(trans('rainlab.builder::lang.plugin.search')) ?>"
+                data-track-input
+                data-load-indicator
+                data-load-indicator-opaque
+                data-request="<?= $this->getEventHandler('onSearch') ?>"
+            />
+        </div>
+    </div>
+</div>

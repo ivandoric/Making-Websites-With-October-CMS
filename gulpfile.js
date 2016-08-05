@@ -1,7 +1,6 @@
 var elixir = require('laravel-elixir');
 require('laravel-elixir-livereload');
 
-
 elixir.config.assetsPath = 'themes/olympos/assets/';
 elixir.config.publicPath = 'themes/olympos/assets/compiled/';
 
@@ -19,4 +18,5 @@ elixir(function(mix){
         'themes/olympos/**/*.htm',
         'themes/olympos/assets/compiled/js/*.js'
     ])
+
 })

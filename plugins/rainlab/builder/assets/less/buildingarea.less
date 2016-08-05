@@ -1,0 +1,250 @@
+.builder-building-area {
+    background: white;
+
+    ul.builder-control-list {
+        .clearfix();
+
+        padding: 20px;
+        margin-bottom: 0;
+        list-style: none;
+        > li.control {
+            position: relative;
+            margin-bottom: 20px;
+            cursor: pointer;
+            .user-select(none);
+
+            &[data-unknown] {
+                cursor: default;
+            }
+
+            &.placeholder, &.loading-control {
+                padding: 10px 12px;
+                position: relative;
+                text-align: center;
+                border: 2px dotted #dde0e2;
+                margin-top: 20px;
+                .border-radius(4px);
+                color: #dae0e0;
+
+                i {
+                    margin-right: 8px;
+                }
+            }
+
+            &.clear-row {
+                display: none;
+                margin-bottom: 0;
+            }
+
+            &.loading-control {
+                border-color: #bdc3c7;
+                text-align: left;
+            }
+
+            &.updating-control:after, 
+            &.loading-control:before {
+                background-image:url(../../../../../modules/system/assets/ui/images/loader-transparent.svg);
+                background-size: 15px 15px;
+                background-position: 50% 50%;
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                content: ' ';
+                margin-right: 13px;
+                position: relative;
+                top: 2px;
+                .animation(spin 1s linear infinite);
+            }
+
+            &.loading-control:after {
+                content: attr(data-builder-loading-text);
+                display: inline-block;
+            }
+
+            &.updating-control:after {
+                position: absolute;
+                right: -8px;
+                top: 5px;
+            }
+
+            &.updating-control:before {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 25px;
+                height: 25px;
+                background: rgba(127, 127, 127, 0.1);
+                .border-radius(4px);
+            }
+
+            &.drag-over {
+                color: @builder-hover-color;
+                border-color: @builder-hover-color;
+            }
+
+            &.span-full {
+                width: 100%;
+                float: left;
+            }
+
+            &.span-left {
+                float: left;
+                width: 48.5%;
+                clear: left;
+            }
+
+            &.span-right {
+                float: right;
+                width: 48.5%;
+                clear: right;
+            }
+
+            &.span-right + li.clear-row {
+                display: block;
+                clear: both;
+            }
+
+            > div.remove-control {
+                display: none;
+            }
+
+            &:not(.placeholder):not(.loading-control):not(.updating-control):hover > {
+                > div.remove-control {
+                    display: block;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    cursor: pointer;
+                    width: 21px;
+                    height: 21px;
+                    padding-left: 6px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    line-height: 21px;
+                    .border-radius(20px);
+                    background: #ecf0f1;
+                    color: #95a5a6!important;
+
+                    &:hover {
+                        color: white!important;
+                        background: #c03f31;
+                    }
+                }
+
+                &[data-control-type=hint], &[data-control-type=partial] {
+                    > div.remove-control {
+                        top: 12px;
+                        right: 12px;
+                    }
+                }
+            }
+
+            &[data-control-type=hint], &[data-control-type=partial] {
+                &.updating-control {
+                    &:before {
+                        right: 12px;
+                        top: 7;
+                    }
+
+                    &:after {
+                        right: 4px;
+                        top: 13px;
+                    }
+                }
+            }
+
+            > .control-wrapper,
+            > .control-static-contents {
+                position: relative;
+                .transition(margin 0.1s);
+            }
+        }
+
+        > li.placeholder:hover,
+        > li.placeholder.popover-highlight,
+        > li.placeholder.control-palette-open {
+            background-color: @builder-hover-color!important;
+            color: white!important;
+            border-style: solid;
+            border-color: @builder-hover-color;
+        }
+
+        > li.control:not(.placeholder):not(.loading-control):not([data-unknown]):hover > .control-wrapper *,
+        > li.control.inspector-open:not(.placeholder):not(.loading-control) > .control-wrapper * {
+            color: @builder-hover-color!important;
+        }
+
+        > li.control.drag-over:not(.placeholder) {
+            &:before {
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                width: 10px;
+                height: 100%;
+                .border-radius(5px);
+                background-color: @builder-hover-color;
+            }
+
+            > .control-wrapper,
+            > .control-static-contents {
+                margin-left: 20px;
+                margin-right: -20px;
+            }
+        }
+    }
+
+    .control-body {
+        &.field-disabled,
+        &.field-hidden {
+            .opacity(0.5);
+        }
+    }
+
+    .builder-control-label {
+        margin-bottom: 10px;
+        color: #555555;
+        font-size: 14px;
+        font-weight: 600;
+
+        &.required:after {
+            vertical-align: super;
+            font-size: 60%;
+            content: " *";
+        }
+    }
+
+    .builder-control-label:empty {
+        margin-bottom: 0;
+    }
+
+    .builder-control-comment-above {
+        margin-bottom: 8px;
+        margin-top: -3px;
+    }
+
+    .builder-control-comment-below {
+        margin-top: 6px;
+    }
+
+    .builder-control-comment-above, 
+    .builder-control-comment-below {
+        color: #737373;
+        font-size: 12px;
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+html.gecko.mac {
+    // Fixes a quirk in FireFox on mac
+
+    .builder-building-area {
+        div[data-root-control-wrapper] {
+            margin-right: 17px;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 {
   "name": "octobermovies",
   "version": "1.0.0",
-  "description": "<p align=\"center\">     <img src=\"https://github.com/octobercms/october/blob/master/themes/demo/assets/images/october.png?raw=true\" alt=\"October\" width=\"25%\" height=\"25%\" /> </p>",
+  "description": "Laravel Elixir",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -9,8 +9,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivandoric/Making-Websites-With-October-CMS.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivandoric/Making-Websites-With-October-CMS/issues"
+  },
+  "homepage": "https://github.com/ivandoric/Making-Websites-With-October-CMS#readme",
   "devDependencies": {
     "laravel-elixir": "^5.0.0",
     "laravel-elixir-livereload": "^1.1.6"

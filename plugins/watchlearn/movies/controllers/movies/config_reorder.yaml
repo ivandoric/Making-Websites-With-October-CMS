@@ -1,0 +1,4 @@
+title: Movies
+modelClass: Watchlearn\Movies\Models\Movie
+toolbar:
+    buttons: reorder_toolbar
