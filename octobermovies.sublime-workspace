@@ -279,7 +279,7 @@
 			"file": "themes/olympos/layouts/default.htm",
 			"settings":
 			{
-				"buffer_size": 978,
+				"buffer_size": 1079,
 				"line_ending": "Unix"
 			}
 		},
@@ -287,15 +287,23 @@
 			"file": "themes/olympos/pages/homepage.htm",
 			"settings":
 			{
-				"buffer_size": 100,
+				"buffer_size": 1803,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "gulpfile.js",
+			"file": "themes/olympos/partials/header.htm",
 			"settings":
 			{
-				"buffer_size": 483,
+				"buffer_size": 470,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/sass/_fonts.scss",
+			"settings":
+			{
+				"buffer_size": 1444,
 				"line_ending": "Unix"
 			}
 		},
@@ -303,7 +311,23 @@
 			"file": "themes/olympos/assets/sass/_globals.scss",
 			"settings":
 			{
-				"buffer_size": 820,
+				"buffer_size": 922,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/pages/movies.htm",
+			"settings":
+			{
+				"buffer_size": 1959,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "themes/olympos/partials/footer.htm",
+			"settings":
+			{
+				"buffer_size": 311,
 				"line_ending": "Unix"
 			}
 		}
@@ -547,24 +571,34 @@
 	[
 		"/Users/ivan/Development/public/octobermovies",
 		"/Users/ivan/Development/public/octobermovies/themes",
+		"/Users/ivan/Development/public/octobermovies/themes/demo",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/compiled/css",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/compiled/js",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages"
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials"
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials/header.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/_header.scss",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/homepage.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movies.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/_globals.scss",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/_footer.scss",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/_fonts.scss",
+		"/Users/ivan/Development/public/octobermovies/.gitignore",
+		"/Users/ivan/Development/public/octobermovies/modules/backend/layouts/default.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials/footer.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts/default.htm",
+		"/Users/ivan/Development/public/octobermovies/modules/backend/layouts/_footer.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/_homepage.scss",
+		"/Users/ivan/Development/public/octobermovies/gulpfile.js",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/style.scss",
 		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/blog/Plugin.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/blog/routes.php",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/css/style.css",
 		"/Users/ivan/Development/public/octobermovies/themes/demo/layouts/default.htm",
-		"/Users/ivan/Development/public/octobermovies/.gitignore",
-		"/Users/ivan/Development/public/octobermovies/gulpfile.js",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts/default.htm",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/assets/sass/_globals.scss",
 		"/Users/ivan/Development/public/octobermovies/README.md",
 		"/Users/ivan/Development/public/octobermovies/.htaccess",
 		"/Users/ivan/Development/public/octobermovies/modules/backend/routes.php",
@@ -673,21 +707,11 @@
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/archive-venues.php",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/homepage.php",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/archive-activities.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_list-activities.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/homepage/venues-near-you.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/list-venue/venue-description.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/map-everything.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_twitter-feed.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/ask-for-region-modal.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_typeahead.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/issue-list.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/featured-article.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/olympos.min.js",
-		"/private/etc/hosts"
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_list-activities.scss"
 	],
 	"find":
 	{
-		"height": 75.0
+		"height": 42.0
 	},
 	"find_in_files":
 	{
@@ -889,7 +913,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -898,15 +922,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 978,
+						"buffer_size": 1079,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								898,
-								898
+								855,
+								855
 							]
 						],
 						"settings":
@@ -914,13 +938,13 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 460.0,
+						"translation.y": 320.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -929,15 +953,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 100,
+						"buffer_size": 1803,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								95,
-								95
+								106,
+								106
 							]
 						],
 						"settings":
@@ -945,61 +969,62 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 123.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "themes/olympos/partials/header.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 470,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								389,
+								384
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "gulpfile.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 483,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								471,
-								433
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Seti_UI/icons/Langs/Gulpfile JS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 263.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "themes/olympos/assets/sass/_globals.scss",
-					"semi_transient": false,
+					"file": "themes/olympos/assets/sass/_fonts.scss",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 820,
+						"buffer_size": 1444,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								264,
-								264
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1010,10 +1035,104 @@
 							"syntax": "Packages/Syntax Highlighting for Sass/Syntaxes/SCSS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 40.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "themes/olympos/assets/sass/_globals.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								284,
+								277
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Syntax Highlighting for Sass/Syntaxes/SCSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "themes/olympos/pages/movies.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1959,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "themes/olympos/partials/footer.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								118,
+								118
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1021,7 +1140,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 37.0
+		"height": 42.0
 	},
 	"input":
 	{
@@ -1062,7 +1181,7 @@
 	"project": "octobermovies.sublime-project",
 	"replace":
 	{
-		"height": 70.0
+		"height": 80.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1071,6 +1190,50 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"_glo",
+				"themes/olympos/assets/sass/_globals.scss"
+			],
+			[
+				"_header",
+				"themes/olympos/assets/sass/_header.scss"
+			],
+			[
+				"header",
+				"themes/olympos/partials/header.htm"
+			],
+			[
+				"_font",
+				"themes/olympos/assets/sass/_fonts.scss"
+			],
+			[
+				"_foot",
+				"themes/olympos/assets/sass/_footer.scss"
+			],
+			[
+				"home",
+				"themes/olympos/pages/homepage.htm"
+			],
+			[
+				"def",
+				"themes/olympos/layouts/default.htm"
+			],
+			[
+				"_foote",
+				"themes/olympos/assets/sass/_footer.scss"
+			],
+			[
+				"_foo",
+				"modules/backend/layouts/_footer.htm"
+			],
+			[
+				"_he",
+				"themes/olympos/assets/sass/_header.scss"
+			],
+			[
+				"_hom",
+				"themes/olympos/assets/sass/_homepage.scss"
+			],
 			[
 				"rou",
 				"modules/backend/routes.php"
@@ -1116,10 +1279,6 @@
 				"web/bundles/carsharingcrm/assets/userdashboard/sass/_my-account.scss"
 			],
 			[
-				"_foo",
-				"web/bundles/carsharingcrm/assets/userdashboard/sass/_footer.scss"
-			],
-			[
 				"_mod",
 				"web/bundles/carsharingcrm/assets/userdashboard/sass/_modules.scss"
 			],
@@ -1130,14 +1289,6 @@
 			[
 				"_mi",
 				"web/bundles/carsharingcrm/assets/userdashboard/sass/_mixins.scss"
-			],
-			[
-				"_glo",
-				"web/bundles/carsharingcrm/assets/userdashboard/sass/_globals.scss"
-			],
-			[
-				"_he",
-				"web/bundles/carsharingcrm/assets/userdashboard/sass/_header.scss"
 			],
 			[
 				"_fon",
@@ -1256,10 +1407,6 @@
 				"wp-content/themes/olympos/single-venues.php"
 			],
 			[
-				"_font",
-				"wp-content/themes/olympos/sass/_fonts.scss"
-			],
-			[
 				"aler",
 				"wp-content/themes/olympos/parts/alert-bar.php"
 			],
@@ -1360,10 +1507,6 @@
 				"wp-content/themes/olympos/archive-venues.php"
 			],
 			[
-				"home",
-				"wp-content/themes/olympos/homepage.php"
-			],
-			[
 				"heade",
 				"wp-content/themes/olympos/header.php"
 			],
@@ -1440,10 +1583,6 @@
 				"gulpfile.js"
 			],
 			[
-				"header",
-				"wp-content/themes/olympos/header.php"
-			],
-			[
 				"_activi",
 				"wp-content/themes/olympos/sass/modules/_activities-slider.scss"
 			],
@@ -1498,10 +1637,6 @@
 			[
 				"singe",
 				"wp-content/themes/olympos/single-venues.php"
-			],
-			[
-				"_foote",
-				"wp-content/themes/olympos/sass/_footer.scss"
 			],
 			[
 				"_venu",
@@ -1566,22 +1701,6 @@
 			[
 				"glo",
 				"wp-content/themes/olympos/sass/_globals.scss"
-			],
-			[
-				"hed",
-				"wp-content/themes/olympos/header.php"
-			],
-			[
-				"wp-con",
-				"wp-config.php"
-			],
-			[
-				"_port",
-				"wp-content/themes/olympos/sass/_portfolio.scss"
-			],
-			[
-				"portf",
-				"wp-content/themes/olympos/parts/homepage/portfolio.php"
 			]
 		],
 		"width": 0.0
@@ -1589,9 +1708,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "watc",
+		"last_filter": "wat",
 		"selected_items":
 		[
+			[
+				"wat",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
 			[
 				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1611,10 +1734,6 @@
 			[
 				"wp",
 				"~/Development/public/wprest/wprest.sublime-project"
-			],
-			[
-				"wat",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"wprest",

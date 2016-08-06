@@ -1,0 +1,36 @@
+.main-header{
+    background: #333;
+    
+    h1{
+        color:#fff;
+        font-size: rem(20px);
+        margin:0;
+        padding:0;
+        font-weight: 700;
+        float: left;
+    }
+}
+
+.main-nav{
+    float: right;
+    
+    li{
+        float: left;
+    }
+
+    a{
+        display: inline-block;
+        padding: 0 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        &:hover{
+            color:#fff;
+        }
+    }
+
+    li.active a{
+        text-decoration: underline;
+    }
+}

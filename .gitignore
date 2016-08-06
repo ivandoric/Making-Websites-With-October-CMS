@@ -20,3 +20,4 @@ composer.lock
 nbproject
 
 /node_modules
+_assets_

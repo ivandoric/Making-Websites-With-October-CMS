@@ -8,10 +8,22 @@ html{
 body{
     -webkit-font-smoothing: antialiased;
     background: #fff;
+    color: #566b78;
+}
+
+.container{
+    max-width: 40em;
+    margin:0 auto;
 }
 
 *{
     box-sizing:border-box;
+}
+
+
+
+a {
+  color: #e81c4f;
 }
 
 

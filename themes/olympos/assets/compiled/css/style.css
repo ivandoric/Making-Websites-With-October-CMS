@@ -1,6 +1,7 @@
 /* Vendor */
 /* Setup */
 /* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+@import 'https://fonts.googleapis.com/css?family=Roboto:400,700';
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   border: 0;
   font-size: 100%;
@@ -61,15 +62,16 @@ table {
 /* Setup */
 html {
   /* Change default typefaces here */
-  font-family: serif;
-  font-size: 137.5%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
   -webkit-font-smoothing: antialiased; }
 
 /* Copy & Lists */
 p {
   line-height: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0; }
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 14px; }
 
 ul,
 ol {
@@ -101,17 +103,20 @@ h5,
 h6 {
   /* Change heading typefaces here */
   font-family: sans-serif;
-  margin-top: 1.5rem;
+  margin-top: 1em;
+  padding-top: 1em;
   margin-bottom: 0;
-  line-height: 1.5rem; }
+  line-height: 1.5rem;
+  color: #333;
+  font-weight: 700; }
 
 h1 {
-  font-size: 4.242rem;
+  font-size: 1rem;
   line-height: 4.5rem;
   margin-top: 3rem; }
 
 h2 {
-  font-size: 2.828rem;
+  font-size: 1rem;
   line-height: 3rem;
   margin-top: 3rem; }
 
@@ -158,10 +163,18 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
-  background: #fff; }
+  background: #fff;
+  color: #566b78; }
+
+.container {
+  max-width: 40em;
+  margin: 0 auto; }
 
 * {
   box-sizing: border-box; }
+
+a {
+  color: #e81c4f; }
 
 /* =======================================================================
 ## ++ Cleafix
@@ -189,5 +202,38 @@ body {
 
 .clr {
   content: "test"; }
+
+.main-header {
+  background: #333; }
+  .main-header h1 {
+    color: #fff;
+    font-size: 1.25rem;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    float: left; }
+
+.main-nav {
+  float: right; }
+  .main-nav li {
+    float: left; }
+  .main-nav a {
+    display: inline-block;
+    padding: 0 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700; }
+    .main-nav a:hover {
+      color: #fff; }
+  .main-nav li.active a {
+    text-decoration: underline; }
+
+.main-footer {
+  background: #efefef;
+  padding: 20px 0;
+  margin-top: 40px; }
+  .main-footer h3 {
+    margin: 0; }
 
 /*# sourceMappingURL=style.css.map */
