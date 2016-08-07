@@ -1,0 +1,27 @@
+title = "Movie single"
+url = "/movie/:id"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Watchlearn\Movies\Models\Movie"
+identifierValue = "{{ :id }}"
+modelKeyColumn = "id"
+displayColumn = "name"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+    <h2>{{ record.name}}</h2>
+
+    <h4>{{ record.year }}</h4>
+
+    <h3>Description</h3>
+
+    {{ record.description|raw }}
+{% else %}
+    {{ notFoundMessage }}
+{% endif %}
