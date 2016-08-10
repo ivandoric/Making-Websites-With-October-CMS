@@ -1,12 +1,12 @@
 title = "Movie single"
-url = "/movie/:id"
+url = "/movies/movie/:slug"
 layout = "default"
 is_hidden = 0
 
 [builderDetails]
 modelClass = "Watchlearn\Movies\Models\Movie"
-identifierValue = "{{ :id }}"
-modelKeyColumn = "id"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
 displayColumn = "name"
 notFoundMessage = "Record not found"
 ==
@@ -16,12 +16,27 @@ notFoundMessage = "Record not found"
 
 {% if record %}
     <h2>{{ record.name}}</h2>
+    <img src="{{ record.poster.thumb(200,auto) }}">
 
+    
+    
     <h4>{{ record.year }}</h4>
 
     <h3>Description</h3>
 
     {{ record.description|raw }}
+
+    <h3>Gallery</h3>
+
+    <ul class="gallery clearfix">
+    {% for image in record.movie_gallery %}
+        <li>
+            <a href="{{ image.path}}">
+                <img src="{{ image.thumb(80,80, {'mode':'crop'}) }}">
+            </a>
+        </li>  
+    {% endfor %}
+    </ul>
 {% else %}
     {{ notFoundMessage }}
 {% endif %}
