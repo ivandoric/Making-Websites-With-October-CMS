@@ -9,3 +9,8 @@ navigation:
         label: Movies
         url: watchlearn/movies/movies
         icon: icon-video-camera
+        sideMenu:
+            side-menu-item:
+                label: Genres
+                url: watchlearn/movies/genres
+                icon: icon-tag

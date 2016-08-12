@@ -29,6 +29,14 @@ class Movie extends Model
 
     /* Relations */
 
+    public $belongsToMany =[
+        'genres' =>[
+            'Watchlearn\Movies\Models\Genre',
+            'table' => 'watchlearn_movies_movies_genres',
+            'order' => 'genre_title'
+        ]
+    ];
+
     public $attachOne = [
         'poster' => 'System\Models\File'
     ];

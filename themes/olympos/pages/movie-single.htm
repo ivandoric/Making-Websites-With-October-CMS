@@ -37,6 +37,13 @@ notFoundMessage = "Record not found"
         </li>  
     {% endfor %}
     </ul>
+
+    <h3>Genres</h3>
+
+    {% for genre in record.genres %}
+        {{ genre.genre_title }}<br>
+    {% endfor %}
+
 {% else %}
     {{ notFoundMessage }}
 {% endif %}

@@ -520,11 +520,19 @@
 	"buffers":
 	[
 		{
-			"file": "themes/olympos/pages/movies.htm",
+			"file": "themes/olympos/pages/movie-single.htm",
 			"settings":
 			{
-				"buffer_size": 2133,
+				"buffer_size": 1067,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "plugins/watchlearn/movies/models/Movie.php",
+			"settings":
+			{
+				"buffer_size": 878,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -794,12 +802,17 @@
 	"expanded_folders":
 	[
 		"/Users/ivan/Development/public/octobermovies",
+		"/Users/ivan/Development/public/octobermovies/plugins",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models",
 		"/Users/ivan/Development/public/octobermovies/themes",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages"
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movies.htm",
 		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_accommodation.scss",
 		"/Users/ivan/Development/public/springfall/resources/views/accommodation/form.blade.php",
 		"/Users/ivan/Development/public/springfall/resources/assets/js/app.js",
@@ -926,8 +939,7 @@
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_24_093937_create_regions_table.php",
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_24_093407_create_accommodation_categories_table.php",
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_24_073614_add_long_lat_to_accommodations_table.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_23_100725_add_dir_to_units_table.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_card.scss"
+		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_23_100725_add_dir_to_units_table.php"
 	],
 	"find":
 	{
@@ -1139,19 +1151,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "themes/olympos/pages/movies.htm",
+					"file": "themes/olympos/pages/movie-single.htm",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2133,
+						"buffer_size": 1067,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1760,
-								1760
+								1017,
+								1017
 							]
 						],
 						"settings":
@@ -1162,10 +1174,41 @@
 							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1442.0,
+						"translation.y": 1589.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "plugins/watchlearn/movies/models/Movie.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 878,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								718,
+								718
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1152.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1741,9 +1784,17 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "watc",
+		"last_filter": "spring",
 		"selected_items":
 		[
+			[
+				"spring",
+				"~/Development/public/springfall/springfall.sublime-project"
+			],
+			[
+				"watch",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
 			[
 				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1751,10 +1802,6 @@
 			[
 				"octo",
 				"~/Development/public/octobermovies/octobermovies.sublime-project"
-			],
-			[
-				"watch",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"oc",

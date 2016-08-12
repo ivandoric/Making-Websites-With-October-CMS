@@ -1,0 +1,10 @@
+name: Genres
+form: $/watchlearn/movies/models/genre/fields.yaml
+modelClass: Watchlearn\Movies\Models\Genre
+defaultRedirect: watchlearn/movies/genres
+create:
+    redirect: 'watchlearn/movies/genres/update/:id'
+    redirectClose: watchlearn/movies/genres
+update:
+    redirect: watchlearn/movies/genres
+    redirectClose: watchlearn/movies/genres

@@ -47,3 +47,10 @@ fields:
         imageWidth: '80'
         imageHeight: '80'
         type: fileupload
+    genres:
+        label: Genres
+        span: auto
+        oc.commentPosition: ''
+        nameFrom: genre_title
+        descriptionFrom: description
+        type: relation

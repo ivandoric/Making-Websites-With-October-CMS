@@ -1,0 +1,4 @@
+title: Genres
+modelClass: Watchlearn\Movies\Models\Genre
+toolbar:
+    buttons: reorder_toolbar

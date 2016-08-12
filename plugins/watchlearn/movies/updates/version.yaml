@@ -6,3 +6,9 @@
 1.0.3:
     - 'Updated table watchlearn_movies_'
     - builder_table_update_watchlearn_movies_.php
+1.0.4:
+    - 'Created table watchlearn_movies_genres'
+    - builder_table_create_watchlearn_movies_genres.php
+1.0.5:
+    - 'Created table watchlearn_movies_movies_genres'
+    - builder_table_create_watchlearn_movies_movies_genres.php
