@@ -25,4 +25,12 @@ class Genre extends Model
      * @var string The database table used by the model.
      */
     public $table = 'watchlearn_movies_genres';
+
+    public $belongsToMany =[
+        'movies' =>[
+            'Watchlearn\Movies\Models\Movie',
+            'table' => 'watchlearn_movies_movies_genres',
+            'order' => 'name'
+        ]
+    ];
 }

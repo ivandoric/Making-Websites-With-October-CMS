@@ -523,8 +523,16 @@
 			"file": "themes/olympos/pages/movie-single.htm",
 			"settings":
 			{
-				"buffer_size": 1067,
+				"buffer_size": 1106,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "themes/olympos/pages/genres.htm",
+			"settings":
+			{
+				"buffer_size": 618,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -532,6 +540,14 @@
 			"settings":
 			{
 				"buffer_size": 878,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "plugins/watchlearn/movies/models/Genre.php",
+			"settings":
+			{
+				"buffer_size": 697,
 				"line_ending": "Unix"
 			}
 		}
@@ -1146,7 +1162,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1155,15 +1171,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1067,
+						"buffer_size": 1106,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1017,
-								1017
+								954,
+								954
 							]
 						],
 						"settings":
@@ -1174,14 +1190,45 @@
 							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1589.0,
+						"translation.y": 1428.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "themes/olympos/pages/genres.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 618,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								552,
+								552
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 556.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "plugins/watchlearn/movies/models/Movie.php",
 					"semi_transient": false,
 					"settings":
@@ -1194,7 +1241,7 @@
 						[
 							[
 								718,
-								718
+								515
 							]
 						],
 						"settings":
@@ -1205,10 +1252,41 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1152.0,
+						"translation.y": 1077.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "plugins/watchlearn/movies/models/Genre.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 697,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								678,
+								678
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1025.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1784,16 +1862,16 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "spring",
+		"last_filter": "watch",
 		"selected_items":
 		[
 			[
-				"spring",
-				"~/Development/public/springfall/springfall.sublime-project"
-			],
-			[
 				"watch",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"spring",
+				"~/Development/public/springfall/springfall.sublime-project"
 			],
 			[
 				"watc",
