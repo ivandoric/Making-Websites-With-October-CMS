@@ -54,3 +54,21 @@ fields:
         nameFrom: genre_title
         descriptionFrom: description
         type: relation
+    actors:
+        label: Actors
+        oc.commentPosition: ''
+        prompt: 'Add new item'
+        span: auto
+        type: repeater
+        form:
+            fields:
+                actor_name:
+                    label: 'Actor name'
+                    oc.commentPosition: ''
+                    span: auto
+                    type: text
+                actor_age:
+                    label: 'Actor Age'
+                    span: auto
+                    oc.commentPosition: ''
+                    type: text

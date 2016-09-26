@@ -523,31 +523,17 @@
 			"file": "themes/olympos/pages/movie-single.htm",
 			"settings":
 			{
-				"buffer_size": 1106,
+				"buffer_size": 1242,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "themes/olympos/pages/genres.htm",
-			"settings":
-			{
-				"buffer_size": 618,
-				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "plugins/watchlearn/movies/models/Movie.php",
 			"settings":
 			{
-				"buffer_size": 878,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "plugins/watchlearn/movies/models/Genre.php",
-			"settings":
-			{
-				"buffer_size": 697,
+				"buffer_size": 916,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -828,6 +814,10 @@
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Movie.php",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movie-single.htm",
+		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/genres.htm",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Genre.php",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movies.htm",
 		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_accommodation.scss",
 		"/Users/ivan/Development/public/springfall/resources/views/accommodation/form.blade.php",
@@ -951,11 +941,7 @@
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_25_095135_entrust_setup_tables.php",
 		"/Users/ivan/Development/public/springfall/config/breadcrumbs.php",
 		"/Users/ivan/Development/public/springfall/app/AccommodationCategory.php",
-		"/Users/ivan/Development/public/springfall/app/Region.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_24_093937_create_regions_table.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_24_093407_create_accommodation_categories_table.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_24_073614_add_long_lat_to_accommodations_table.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_23_100725_add_dir_to_units_table.php"
+		"/Users/ivan/Development/public/springfall/app/Region.php"
 	],
 	"find":
 	{
@@ -1162,7 +1148,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1171,15 +1157,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1106,
+						"buffer_size": 1242,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								954,
-								954
+								622,
+								622
 							]
 						],
 						"settings":
@@ -1190,58 +1176,27 @@
 							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1428.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "themes/olympos/pages/genres.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 618,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								552,
-								552
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 556.0,
+						"translation.y": 802.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "plugins/watchlearn/movies/models/Movie.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 878,
+						"buffer_size": 916,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								718,
-								515
+								517,
+								523
 							]
 						],
 						"settings":
@@ -1252,41 +1207,10 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1077.0,
+						"translation.y": 841.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "plugins/watchlearn/movies/models/Genre.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 697,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								678,
-								678
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1025.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

@@ -26,6 +26,12 @@ notFoundMessage = "Record not found"
 
     {{ record.description|raw }}
 
+    <h3>Actors</h3>
+
+    {% for actor in record.actors %}
+        {{ actor.actor_name }}
+        {{ actor.actor_age }}
+    {% endfor %}
     <h3>Gallery</h3>
 
     <ul class="gallery clearfix">
