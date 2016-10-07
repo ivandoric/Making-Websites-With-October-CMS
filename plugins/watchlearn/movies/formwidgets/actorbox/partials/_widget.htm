@@ -1,0 +1,23 @@
+<style type="text/css">
+    .select2-container{
+        width:100% !important;
+        display:block;
+    }
+</style>
+
+<select class="s2" multiple>
+    <option value="1">Leonardo Di Caprio</option>
+    <option value="2">Al Pacino</option>
+    <option value="3">Robert De Niro</option>
+</select>
+
+<script type="text/javascript">
+    $(document).on('render', function(){
+        $('.s2').select2({
+            placeholder: 'Add actors',
+            tags: true
+        })
+    });
+
+</script>
+
