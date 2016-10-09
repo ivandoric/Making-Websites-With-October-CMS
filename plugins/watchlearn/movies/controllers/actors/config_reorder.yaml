@@ -1,0 +1,4 @@
+title: Actors
+modelClass: Watchlearn\Movies\Models\Actor
+toolbar:
+    buttons: reorder_toolbar

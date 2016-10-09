@@ -5,10 +5,11 @@
     }
 </style>
 
-<select class="s2" multiple>
-    <option value="1">Leonardo Di Caprio</option>
-    <option value="2">Al Pacino</option>
-    <option value="3">Robert De Niro</option>
+<select class="s2" name="<?php echo $name ?>" multiple>
+    <?php foreach($actors as $key => $value): ?>
+        <option value="<?php echo $key ?>"  
+        <?php echo in_array($key, $selectedValues) ? 'selected="selected"' : '';  ?>><?php echo $value ?></option>
+    <?php endforeach; ?>
 </select>
 
 <script type="text/javascript">

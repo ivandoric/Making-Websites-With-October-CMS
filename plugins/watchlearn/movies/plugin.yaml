@@ -14,3 +14,7 @@ navigation:
                 label: Genres
                 url: watchlearn/movies/genres
                 icon: icon-tag
+            side-menu-item2:
+                label: Actors
+                url: watchlearn/movies/actors
+                icon: icon-user
