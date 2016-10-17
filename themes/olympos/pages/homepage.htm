@@ -2,8 +2,9 @@ title = "Homepage"
 url = "/"
 layout = "default"
 is_hidden = 0
-==
 
+[actors]
+==
 <h2>This is our homepage! Yay!</h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore reiciendis, porro perspiciatis officia maiores dignissimos. Veritatis ea nulla illo qui.</p>
@@ -15,4 +16,10 @@ is_hidden = 0
 <p>Voluptatem amet fugiat harum illo blanditiis reprehenderit, animi possimus repellendus illum, iusto? Explicabo porro accusantium, fugit laborum perspiciatis, nemo totam!</p>
 <p>Autem saepe dicta quae perferendis, nihil, praesentium nesciunt eum aspernatur fugit eaque optio reprehenderit, expedita quos at vel doloremque nobis.</p>
 <p>Tenetur iure quidem ratione perferendis molestias repudiandae officiis consequatur repellat perspiciatis nulla, dolorum incidunt rem assumenda minus exercitationem. Ea, accusamus!</p>
-<p>Nihil laborum quasi ab harum omnis deserunt debitis distinctio laboriosam odit, vero explicabo voluptate veritatis facilis aliquid voluptatibus inventore. Perferendis.</p>
+<p>Nihil laborum quasi ab harum omnis deserunt debitis distinctio laboriosam odit, vero explicabo voluptate veritatis facilis aliquid voluptatibus inventore. Perferendis.</p>{%  set actors = actors.actors %}
+
+<ul>
+    {% for actor in actors %}
+        <li>{{ actor.name }} {{ actor.lastname }}</li>
+    {% endfor %}
+</ul>
