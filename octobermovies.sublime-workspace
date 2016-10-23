@@ -520,28 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/movies/Plugin.php",
-			"settings":
-			{
-				"buffer_size": 542,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "plugins/watchlearn/movies/components/Actors.php",
 			"settings":
 			{
-				"buffer_size": 486,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "plugins/watchlearn/movies/components/actors/default.htm",
-			"settings":
-			{
-				"buffer_size": 149,
+				"buffer_size": 1634,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -813,6 +795,7 @@
 	"expanded_folders":
 	[
 		"/Users/ivan/Development/public/octobermovies",
+		"/Users/ivan/Development/public/octobermovies/_assets_",
 		"/Users/ivan/Development/public/octobermovies/plugins",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies",
@@ -820,17 +803,16 @@
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actors",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/formwidgets",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/formwidgets/actorbox",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/formwidgets/actorbox/assets/css",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/formwidgets/actorbox/assets/js",
 		"/Users/ivan/Development/public/octobermovies/themes",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages"
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actors/default.htm",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/Plugin.php",
 		"/Users/ivan/components/Actors.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/movie/fields.yaml",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/Plugin.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Movie.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Actor.php",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movie-single.htm",
@@ -954,12 +936,11 @@
 		"/Users/ivan/Development/public/springfall/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php",
 		"/Users/ivan/Development/public/springfall/resources/views/partials/footer.blade.php",
 		"/Users/ivan/Development/public/springfall/.env",
-		"/Users/ivan/Development/public/springfall/app/Role.php",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+		"/Users/ivan/Development/public/springfall/app/Role.php"
 	],
 	"find":
 	{
-		"height": 37.0
+		"height": 44.0
 	},
 	"find_in_files":
 	{
@@ -1162,55 +1143,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/movies/Plugin.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 542,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								238,
-								238
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "plugins/watchlearn/movies/components/Actors.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 486,
+						"buffer_size": 1634,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								446,
-								446
+								1188,
+								1188
 							]
 						],
 						"settings":
@@ -1222,39 +1172,7 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 223.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "plugins/watchlearn/movies/components/actors/default.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 149,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								91,
-								91
-							]
-						],
-						"settings":
-						{
-							"_anf_new": "",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1889.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1265,7 +1183,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 37.0
+		"height": 44.0
 	},
 	"input":
 	{
@@ -1306,7 +1224,7 @@
 	"project": "octobermovies.sublime-project",
 	"replace":
 	{
-		"height": 70.0
+		"height": 84.0
 	},
 	"save_all_on_build": true,
 	"select_file":
