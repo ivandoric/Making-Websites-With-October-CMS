@@ -520,37 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/contact/Plugin.php",
-			"settings":
-			{
-				"buffer_size": 312,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "plugins/watchlearn/contact/views/mail/message.htm",
-			"settings":
-			{
-				"buffer_size": 120,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "plugins/watchlearn/contact/components/ContactForm.php",
 			"settings":
 			{
-				"buffer_size": 692,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/mail.php",
-			"settings":
-			{
-				"buffer_size": 4432,
+				"buffer_size": 1149,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -559,7 +532,7 @@
 			"file": "plugins/watchlearn/contact/components/contactform/default.htm",
 			"settings":
 			{
-				"buffer_size": 290,
+				"buffer_size": 461,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -831,17 +804,21 @@
 	"expanded_folders":
 	[
 		"/Users/ivan/Development/public/octobermovies",
-		"/Users/ivan/Development/public/octobermovies/config",
 		"/Users/ivan/Development/public/octobermovies/plugins",
 		"/Users/ivan/Development/public/octobermovies/plugins/october",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/classes",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail"
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/Plugin.php",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail/message.htm",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
 		"/Users/ivan/Development/public/octobermovies/config/mail.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/Actors.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actors/default.htm",
@@ -966,10 +943,7 @@
 		"/Users/ivan/Development/public/springfall/resources/assets/js/rating.js",
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_09_071152_create_reviews_table.php",
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_09_071307_create_accommodation_review_table.php",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/Auth/AuthController.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_05_31_101837_add_additional_fields_to_users_table.php",
-		"/Users/ivan/Development/public/springfall/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php",
-		"/Users/ivan/Development/public/springfall/resources/views/partials/footer.blade.php"
+		"/Users/ivan/Development/public/springfall/app/Http/Controllers/Auth/AuthController.php"
 	],
 	"find":
 	{
@@ -1176,87 +1150,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/contact/Plugin.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 312,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								251,
-								251
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "plugins/watchlearn/contact/views/mail/message.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 120,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								115,
-								115
-							]
-						],
-						"settings":
-						{
-							"_anf_new": "",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "plugins/watchlearn/contact/components/ContactForm.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 692,
+						"buffer_size": 1149,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								578,
-								578
+								629,
+								629
 							]
 						],
 						"settings":
@@ -1268,63 +1179,31 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 689.0,
+						"translation.y": 797.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "config/mail.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4432,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3930,
-								3930
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 4548.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
+					"buffer": 1,
 					"file": "plugins/watchlearn/contact/components/contactform/default.htm",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 290,
+						"buffer_size": 461,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								28,
-								28
+								92,
+								92
 							]
 						],
 						"settings":
 						{
-							"_anf_new": "",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -1334,7 +1213,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1910,15 +1789,19 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "wat",
+		"last_filter": "watc",
 		"selected_items":
 		[
 			[
-				"wat",
+				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
-				"watc",
+				"g",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"wat",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
