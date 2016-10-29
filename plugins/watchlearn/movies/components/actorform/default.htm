@@ -1,0 +1,13 @@
+<form data-request="onSave">
+    <label>Actor name</label>
+    <input type="text" name="name">
+
+    <label>Actor last name</label>
+    <input type="text" name="lastname">
+
+    <button type="submit">Save actor</button>
+
+    {% flash success %}
+        <p>{{ message }}</p>
+    {% endflash %}
+</form>

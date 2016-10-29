@@ -520,19 +520,28 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/contact/components/ContactForm.php",
+			"file": "plugins/watchlearn/movies/components/ActorForm.php",
 			"settings":
 			{
-				"buffer_size": 1149,
+				"buffer_size": 616,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/contact/components/contactform/default.htm",
+			"file": "plugins/watchlearn/movies/components/actorform/default.htm",
 			"settings":
 			{
-				"buffer_size": 461,
+				"buffer_size": 298,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "plugins/watchlearn/movies/Plugin.php",
+			"settings":
+			{
+				"buffer_size": 611,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -807,18 +816,18 @@
 		"/Users/ivan/Development/public/octobermovies/plugins",
 		"/Users/ivan/Development/public/octobermovies/plugins/october",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/classes",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail"
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actorform"
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/ContactForm.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/Plugin.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail/message.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
 		"/Users/ivan/Development/public/octobermovies/config/mail.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/Actors.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actors/default.htm",
@@ -942,8 +951,7 @@
 		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_reviews.scss",
 		"/Users/ivan/Development/public/springfall/resources/assets/js/rating.js",
 		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_09_071152_create_reviews_table.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_09_071307_create_accommodation_review_table.php",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/Auth/AuthController.php"
+		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_09_071307_create_accommodation_review_table.php"
 	],
 	"find":
 	{
@@ -1150,56 +1158,55 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/contact/components/ContactForm.php",
+					"file": "plugins/watchlearn/movies/components/ActorForm.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1149,
+						"buffer_size": 616,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								629,
-								629
+								607,
+								607
 							]
 						],
 						"settings":
 						{
-							"_anf_new": "",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 797.0,
+						"translation.y": 861.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "plugins/watchlearn/contact/components/contactform/default.htm",
+					"file": "plugins/watchlearn/movies/components/actorform/default.htm",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 461,
+						"buffer_size": 298,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								92,
-								92
+								242,
+								242
 							]
 						],
 						"settings":
@@ -1213,7 +1220,38 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "plugins/watchlearn/movies/Plugin.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 611,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 89.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1789,9 +1827,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "watc",
+		"last_filter": "wat",
 		"selected_items":
 		[
+			[
+				"wat",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
 			[
 				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1799,10 +1841,6 @@
 			[
 				"g",
 				"~/Development/public/gaussdev/gaussdev.sublime-project"
-			],
-			[
-				"wat",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"watch",
