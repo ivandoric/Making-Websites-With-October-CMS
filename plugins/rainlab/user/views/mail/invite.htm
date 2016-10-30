@@ -1,0 +1,28 @@
+subject = "An account has been created for you"
+==
+
+Hello {{- name -}},
+
+A user account has been created for you. Please use the following login and password to sign in:
+
+Login: {{ login }}
+
+Password: {{ password }}
+
+*** After signing in you should change your password as soon as possible.
+
+==
+
+<p>Hello {{- name -}},</p>
+
+<p>
+    A user account has been created for you.
+    Please use the following login and password to sign in:
+</p>
+
+<p>
+    Login: {{ login }}<br />
+    Password: {{ password }}
+</p>
+
+<p>After signing in you should change your password as soon as possible.</p>

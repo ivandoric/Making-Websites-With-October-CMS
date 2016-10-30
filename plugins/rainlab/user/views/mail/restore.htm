@@ -1,0 +1,36 @@
+subject = "Requested Password Reset"
+==
+
+Hello {{ name }},
+
+Somebody has requested a password reset for your account, if this was not you, please ignore this email.
+
+Use the this activation code to restore your password:
+{{ code }}
+
+
+You can use the following link:
+{{ link }}
+
+
+---
+This is an automatic message. Please do not reply to it.
+
+==
+
+<p>Hello {{ name }},</p>
+
+<p>Somebody has requested a password reset for your account, if this was not you, please ignore this email.</p>
+
+<p>
+    Use the this activation code to restore your password:<br />
+    {{ code }}
+</p>
+
+<p>
+    You can use the following link:<br />
+    <a href="{{ link }}">{{ link }}</a>
+</p>
+
+<hr />
+<p>This is an automatic message. Please do not reply to it.</p>
