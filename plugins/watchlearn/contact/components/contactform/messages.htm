@@ -1,0 +1,15 @@
+{% for message in errorMsgs %}
+    <div>{{ message }}</div>
+{% endfor %}
+
+<script type="text/javascript">
+
+    $('.error-msg').remove();
+    
+    var errors = {{ fieldMsgs|json_encode()|raw }};
+    console.log(errors);
+
+    $.each(errors, function(name, msg){
+        $('<div class="error-msg">' + msg + '</div>').insertAfter($('input[name=' + name + ']'));
+    })
+</script>
