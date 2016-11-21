@@ -520,28 +520,28 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/contact/components/ContactForm.php",
+			"file": "plugins/watchlearn/profile/updates/version.yaml",
 			"settings":
 			{
-				"buffer_size": 1304,
+				"buffer_size": 56,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/contact/components/contactform/default.htm",
+			"file": "plugins/watchlearn/profile/updates/add_new_fields.php",
 			"settings":
 			{
-				"buffer_size": 499,
+				"buffer_size": 471,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/contact/components/contactform/messages.htm",
+			"file": "plugins/watchlearn/profile/Plugin.php",
 			"settings":
 			{
-				"buffer_size": 374,
+				"buffer_size": 782,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -554,10 +554,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 354.0,
-		"last_filter": "",
+		"height": 220.0,
+		"last_filter": "sysphp",
 		"selected_items":
 		[
+			[
+				"sysphp",
+				"Set Syntax: PHP"
+			],
 			[
 				"proje",
 				"Project: Save As"
@@ -791,7 +795,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 944.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -814,18 +818,25 @@
 	[
 		"/Users/ivan/Development/public/octobermovies",
 		"/Users/ivan/Development/public/octobermovies/plugins",
+		"/Users/ivan/Development/public/octobermovies/plugins/rainlab",
+		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user",
+		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user/models",
+		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user/models/user",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile/updates",
 		"/Users/ivan/Development/public/octobermovies/themes",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials"
 	],
 	"file_history":
 	[
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile/Plugin.php",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/ContactForm.php",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/messages.htm",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts/default.htm",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/Plugin.php",
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/add-actors.htm",
@@ -834,8 +845,6 @@
 		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movies.htm",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/ActorForm.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actorform/default.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/ContactForm.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/Plugin.php",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail/message.htm",
 		"/Users/ivan/Development/public/octobermovies/config/mail.php",
@@ -951,9 +960,7 @@
 		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/_edit-article.tpl",
 		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_messages.scss",
 		"/Users/ivan/Development/public/springfall/public/js/app.js",
-		"/Users/ivan/Development/public/springfall/config/recaptcha.php",
-		"/Users/ivan/Development/public/springfall/config/app.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/vendor/_rating.scss"
+		"/Users/ivan/Development/public/springfall/config/recaptcha.php"
 	],
 	"find":
 	{
@@ -1165,19 +1172,82 @@
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/contact/components/ContactForm.php",
+					"file": "plugins/watchlearn/profile/updates/version.yaml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1304,
+						"buffer_size": 56,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								885,
-								885
+								56,
+								56
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/YAML/YAML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "plugins/watchlearn/profile/updates/add_new_fields.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 471,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								340,
+								340
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 292.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "plugins/watchlearn/profile/Plugin.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								397,
+								397
 							]
 						],
 						"settings":
@@ -1188,70 +1258,7 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1145.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "plugins/watchlearn/contact/components/contactform/default.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 499,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								193,
-								205
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "plugins/watchlearn/contact/components/contactform/messages.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 374,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								218,
-								218
-							]
-						],
-						"settings":
-						{
-							"_anf_new": "",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 628.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1830,9 +1837,17 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "wat",
+		"last_filter": "watc",
 		"selected_items":
 		[
+			[
+				"watc",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"",
+				"~/Development/public/gaussocto/gaussocto.sublime-project"
+			],
 			[
 				"wat",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1844,10 +1859,6 @@
 			[
 				"oc",
 				"~/Development/public/octobermovies/octobermovies.sublime-project"
-			],
-			[
-				"",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
 			],
 			[
 				"octo",
@@ -1863,10 +1874,6 @@
 			],
 			[
 				"watch",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
-			],
-			[
-				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
