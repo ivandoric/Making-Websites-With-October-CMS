@@ -536,15 +536,6 @@
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
-		},
-		{
-			"file": "plugins/watchlearn/profile/Plugin.php",
-			"settings":
-			{
-				"buffer_size": 782,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
 		}
 	],
 	"build_system": "",
@@ -819,17 +810,13 @@
 		"/Users/ivan/Development/public/octobermovies",
 		"/Users/ivan/Development/public/octobermovies/plugins",
 		"/Users/ivan/Development/public/octobermovies/plugins/rainlab",
-		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user",
 		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user/models",
-		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user/models/user",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies",
+		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile",
 		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile/updates",
-		"/Users/ivan/Development/public/octobermovies/themes",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials"
+		"/Users/ivan/Development/public/octobermovies/themes"
 	],
 	"file_history":
 	[
@@ -1167,7 +1154,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1198,7 +1185,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1228,37 +1215,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 292.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "plugins/watchlearn/profile/Plugin.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 782,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								397,
-								397
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 628.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1837,9 +1793,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "watc",
+		"last_filter": "gau",
 		"selected_items":
 		[
+			[
+				"gau",
+				"~/Development/public/gaussocto/gaussocto.sublime-project"
+			],
 			[
 				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1983,10 +1943,6 @@
 			[
 				"quer",
 				"~/Development/public/query/query.sublime-project"
-			],
-			[
-				"gau",
-				"~/Development/public/gaussdev/gaussdev.sublime-project"
 			],
 			[
 				"query",
