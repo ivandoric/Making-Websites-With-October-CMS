@@ -5,6 +5,7 @@ use Input;
 use Mail;
 use Validator;
 use Redirect;
+use ValidationException;
 
 class ContactForm extends ComponentBase
 {
@@ -18,24 +19,18 @@ class ContactForm extends ComponentBase
 
 
     public function onSend(){
-        $validator = Validator::make(
-            [
-                'name' => Input::get('name'),
-                'email' => Input::get('email')
-            ],
-            [
-                'name' => 'required|min:5',
-                'email' => 'required|email'
-            ]
-        );
+
+        $data = post();
+
+        $rules = [
+            'name' => 'required|min:5',
+            'email' => 'required|email'
+        ];
+
+        $validator = Validator::make($data, $rules);
 
         if($validator->fails()){
-            return ['#result' => $this->renderPartial('contactform::messages', [
-                'errorMsgs' => $validator->messages()->all(),
-                'fieldMsgs' => $validator->messages()
-            ])];
-
-
+            throw new ValidationException($validator);
         } else {
             $vars = ['name' => Input::get('name'), 'email' => Input::get('email'), 'content' => Input::get('content')];
 

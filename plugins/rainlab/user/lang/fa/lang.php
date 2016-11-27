@@ -1,32 +1,59 @@
-<?php
-
-return [
+<?php return [
     'plugin' => [
         'name' => 'کاربران',
         'description' => 'مدیریت کاربران',
         'tab' => 'کاربران',
         'access_users' => 'مدیریت کاربران',
         'access_groups' => 'مدیریت گروه ها',
-        'access_settings' => 'مدیریت تنطیمات کاربران'
+        'access_settings' => 'مدیریت تنطیمات کاربران',
     ],
     'users' => [
         'menu_label' => 'کاربران',
         'all_users' => 'همه کاربران',
         'new_user' => 'کاربر جدید',
         'list_title' => 'مدیریت کاربران',
-        'activating' => 'فعال سازی...',
         'trashed_hint_title' => 'کاربر حساب خود را غیر فعال کرده است',
         'trashed_hint_desc' => 'این کاربر حساب خود را غیر فعال کرده است و علاقه ای به ادامه فعالیت در سایت را ندارد. کاربران با ورود مجدد به سایت میتوانند حساب خود را فعال کنند.',
+        'banned_hint_title' => 'حساب کاربری مسدود است',
+        'banned_hint_desc' => 'حساب این کاربر توسط مدیر مسدود است و نمی تواند به سیستم وارد شود',
+        'guest_hint_title' => 'این کاربر مهمان است',
+        'guest_hint_desc' => 'این کاربر برای مرجع دهی ثبت شده است باید ثبت نام و وارد سیستم شود.',
         'activate_warning_title' => 'کاربر فعال نمیباشد!',
         'activate_warning_desc' => 'این کاربر فعال نشده است و نمیتواند وارد سایت شود.',
         'activate_confirm' => 'آیا از فعالسازی این کاربر اطمینان دارید؟',
-        'activate_manually' => 'فعال سازی دستی این کاربر',
-        'delete_confirm' => 'آیا از حذف این کاربر اطمینان دارید؟',
         'activated_success' => 'کاربر با موفقیت فعال شد.',
+        'activate_manually' => 'فعال سازی دستی این کاربر',
+        'convert_guest_confirm' => 'تبدیل این کاربر به مهمان؟',
+        'convert_guest_manually' => 'تبدیل به کاربر ثبت نام شده',
+        'convert_guest_success' => 'کارب به حالت ثبت نام شده تغییر پیدا کرد',
+        'delete_confirm' => 'آیا از حذف این کاربر اطمینان دارید؟',
+        'unban_user' => 'رفع انتسداد حساب کاربری',
+        'unban_confirm' => 'آیا از رفع انسداد حساب کاربری این شخص اطمینان دارید؟',
+        'unbanned_success' => 'حساب کاربری رفع انسداد شد',
         'return_to_list' => 'بازگشت به لیست کاربران',
-        'delete_selected_empty' => 'کاربری جهت حذف انتخاب نشده است.',
+        'update_details' => 'ویرایش جزئیات',
+        'bulk_actions' => 'اعمال گروهی',
+        'delete_selected' => 'حذف انتخاب شده',
         'delete_selected_confirm' => 'آیا از حذف کاربران انتخاب شده اطمینان داری؟',
-        'delete_selected_success' => 'کاربران انتخاب شده با موفقیت حذف شدند.'
+        'delete_selected_empty' => 'کاربری جهت حذف انتخاب نشده است.',
+        'delete_selected_success' => 'کاربران انتخاب شده با موفقیت حذف شدند.',
+        'deactivate_selected' => 'غیر فعال سازی انتخاب شده',
+        'deactivate_selected_confirm' => 'کاربران انتخاب شده غیرفعال شوند؟',
+        'deactivate_selected_empty' => 'کاربری برای غیر فعال سازی انتخاب نشده است',
+        'deactivate_selected_success' => 'کاربران انتخاب شده با موفقیت غیرفعال شدند',
+        'restore_selected' => 'بازسازی انتخاب شده ها',
+        'restore_selected_confirm' => 'کاربرانت انتخاب شده بازسازی شوند؟',
+        'restore_selected_empty' => 'کاربری برای بازسازی انتخاب نشده',
+        'restore_selected_success' => 'کاربران انتخاب شده با موفقیت بازسازی شدند',
+        'ban_selected' => 'مسدود کردن انتخاب شده ها',
+        'ban_selected_confirm' => 'کاربران انتخاب شده مسدود شوند؟',
+        'ban_selected_empty' => 'کاربری برای اسنداد حساب انتخاب نشده است',
+        'ban_selected_success' => 'حساب کاربران انتخاب شده با موفقیت مسدود شد',
+        'unban_selected' => 'رفع انسداد انتخاب شده ها',
+        'unban_selected_confirm' => 'کاربران انتخاب شده رفع انسداد شوند؟',
+        'unban_selected_empty' => 'کاربری برای رفع انسداد انتخاب نشده است',
+        'unban_selected_success' => 'کاربران انتخاب شده با موفقیت رفع انسداد شدند',
+        'activating' => 'فعال سازی...',
     ],
     'settings' => [
         'users' => 'کاربران',
@@ -55,25 +82,40 @@ return [
         'login_attribute' => 'مشخصه ی ورود',
         'login_attribute_comment' => 'مشخصه ای را که کاربر برای ورود باید وارد نماید انتخاب نمایید.',
         'no_mail_template' => 'اطلاع رسانی نکن',
-        'hint_templates' => 'شما میتوانید قالب پست الکترونیکی را با انتخاب "پست الکترونیکی" > "قالب های نامه الکترونیکی" از قسمت "سیستم" تغییر دهید.'
+        'hint_templates' => 'شما میتوانید قالب پست الکترونیکی را با انتخاب "پست الکترونیکی" > "قالب های نامه الکترونیکی" از قسمت "سیستم" تغییر دهید.',
     ],
     'user' => [
-        'user' => 'user',
+        'label' => 'کاربر',
         'id' => 'مشخصه',
         'username' => 'نام کاربری',
         'name' => 'نام',
+        'name_empty' => 'ناشناس',
         'surname' => 'نام خانوادگی',
         'email' => 'پست الکترونیکی',
         'created_at' => 'تاریخ ثبت نام',
+        'last_seen' => 'آخرین بازدید',
+        'is_guest' => 'مهمان',
+        'joined' => 'عضو شده',
+        'is_online' => 'آنلاین',
+        'is_offline' => 'هم اکنون آفلاین',
+        'send_invite' => 'ارسال دعوت نامه با ایمیل',
+        'send_invite_comment' => 'ارسال ایمیل خوش آمد شامل رمز عبور و نام کاربری',
+        'create_password' => 'ساخت رمزعبور',
+        'create_password_comment' => 'رمز جدید برای استفاده کاربر در زمان ورود را وارد کنید',
         'reset_password' => 'تنظیم مجدد کلمه عبور',
         'reset_password_comment' => 'جهت تنظیم مجدد کلمه عبور کاربر ، کلمه عبور جدید را وارد نمایید.',
         'confirm_password' => 'تایید کلمه عبور',
         'confirm_password_comment' => 'جهت تایید کلمه عبور را مجددا وارد نمایید.',
-        'groups' => 'Groups',
-        'empty_groups' => 'There are no user groups available.',
+        'groups' => 'گرو ها',
+        'empty_groups' => 'گروه کاربری موجود نیست',
         'avatar' => 'نمایه',
         'details' => 'جزییات',
-        'account' => 'حساب کاربری'
+        'account' => 'حساب کاربری',
+        'block_mail' => 'هیچ ایمیلی به این کاربر ارسال نشود',
+        'status_guest' => 'مهمان',
+        'status_activated' => 'فعال',
+        'status_registered' => 'عضو شده',
+        'user' => 'user',
     ],
     'group' => [
         'label' => 'گروه',
@@ -83,7 +125,7 @@ return [
         'code' => 'کد یکتا',
         'code_comment' => 'کد یکتایی را جهت دسترسی به این گروه وارد نمایید',
         'created_at' => 'تاریخ ایجاد',
-        'users_count' => 'کاربران'
+        'users_count' => 'کاربران',
     ],
     'groups' => [
         'menu_label' => 'گروه ها',
@@ -98,11 +140,11 @@ return [
         'return_to_users' => 'بازگشت به لیست کاربران',
         'create_title' => 'ایجاد گروه کاربری جدید',
         'update_title' => 'ویرایش گروه کاربری',
-        'preview_title' => 'پیش نمایش گروه کاربری'
+        'preview_title' => 'پیش نمایش گروه کاربری',
     ],
     'login' => [
         'attribute_email' => 'پست الکترونیکی',
-        'attribute_username' => 'نام کاربری'
+        'attribute_username' => 'نام کاربری',
     ],
     'account' => [
         'account' => 'حساب کاربری',
@@ -128,13 +170,13 @@ return [
         'password' => 'کلمه عبور',
         'login' => 'نام کاربری',
         'new_password' => 'کلمه عبور جدید',
-        'new_password_confirm' => 'تایید کلمه عبور'
+        'new_password_confirm' => 'تایید کلمه عبور',
     ],
     'reset_password' => [
         'reset_password' => 'بازنشانی کلمه عبور',
         'reset_password_desc' => 'فرم کلمه عبور فراموش شده.',
         'code_param' => 'پارامتر کد بازنشانی',
-        'code_param_desc' => 'پارامتر آدرس صفحه ای که جهت کد بازنشانی استفاده خوهد شد'
+        'code_param_desc' => 'پارامتر آدرس صفحه ای که جهت کد بازنشانی استفاده خوهد شد',
     ],
     'session' => [
         'session' => 'جلسه',
@@ -146,6 +188,6 @@ return [
         'guests' => 'میهمان ها',
         'redirect_title' => 'انتقال به',
         'redirect_desc' => 'نام صفحه ای که در صورت عدم اجازه دسترسی کاربر به آن انتقال پیدا میکند.',
-        'logout' => 'شما شده اند با موفقیت از سیستم خارج!'
-    ]
+        'logout' => 'شما شده اند با موفقیت از سیستم خارج!',
+    ],
 ];

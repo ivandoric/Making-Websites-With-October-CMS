@@ -103,47 +103,53 @@ class Account extends ComponentBase
      */
     public function onSignin()
     {
-        /*
-         * Validate input
-         */
-        $data = post();
-        $rules = [];
+        try {
+            /*
+             * Validate input
+             */
+            $data = post();
+            $rules = [];
 
-        $rules['login'] = $this->loginAttribute() == UserSettings::LOGIN_USERNAME
-            ? 'required|between:2,255'
-            : 'required|email|between:6,255';
+            $rules['login'] = $this->loginAttribute() == UserSettings::LOGIN_USERNAME
+                ? 'required|between:2,255'
+                : 'required|email|between:6,255';
 
-        $rules['password'] = 'required|between:4,255';
+            $rules['password'] = 'required|between:4,255';
 
-        if (!array_key_exists('login', $data)) {
-            $data['login'] = post('username', post('email'));
+            if (!array_key_exists('login', $data)) {
+                $data['login'] = post('username', post('email'));
+            }
+
+            $validation = Validator::make($data, $rules);
+            if ($validation->fails()) {
+                throw new ValidationException($validation);
+            }
+
+            /*
+             * Authenticate user
+             */
+            $credentials = [
+                'login'    => array_get($data, 'login'),
+                'password' => array_get($data, 'password')
+            ];
+
+            Event::fire('rainlab.user.beforeAuthenticate', [$this, $credentials]);
+
+            $user = Auth::authenticate($credentials, true);
+
+            /*
+             * Redirect to the intended page after successful sign in
+             */
+            $redirectUrl = $this->pageUrl($this->property('redirect'))
+                ?: $this->property('redirect');
+
+            if ($redirectUrl = input('redirect', $redirectUrl)) {
+                return Redirect::intended($redirectUrl);
+            }
         }
-
-        $validation = Validator::make($data, $rules);
-        if ($validation->fails()) {
-            throw new ValidationException($validation);
-        }
-
-        /*
-         * Authenticate user
-         */
-        $credentials = [
-            'login'    => array_get($data, 'login'),
-            'password' => array_get($data, 'password')
-        ];
-
-        Event::fire('rainlab.user.beforeAuthenticate', [$this, $credentials]);
-
-        $user = Auth::authenticate($credentials, true);
-
-        /*
-         * Redirect to the intended page after successful sign in
-         */
-        $redirectUrl = $this->pageUrl($this->property('redirect'))
-            ?: $this->property('redirect');
-
-        if ($redirectUrl = input('redirect', $redirectUrl)) {
-            return Redirect::intended($redirectUrl);
+        catch (Exception $ex) {
+            if (Request::ajax()) throw $ex;
+            else Flash::error($ex->getMessage());
         }
     }
 

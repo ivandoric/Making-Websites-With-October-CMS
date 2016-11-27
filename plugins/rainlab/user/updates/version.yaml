@@ -56,3 +56,4 @@
     - users_add_superuser_flag.php
 1.3.1: User notification variables can now be extended.
 1.3.2: Minor fix to the Auth::register method.
+1.3.3: Allow prevention of concurrent user sessions via the user settings.

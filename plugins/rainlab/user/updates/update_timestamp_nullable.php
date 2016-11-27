@@ -1,12 +1,10 @@
 <?php namespace RainLab\User\Updates;
 
-use Schema;
-use DbDongle;
 use October\Rain\Database\Updates\Migration;
+use DbDongle;
 
 class UpdateTimestampsNullable extends Migration
 {
-
     public function up()
     {
         DbDongle::disableStrictMode();
@@ -20,5 +18,4 @@ class UpdateTimestampsNullable extends Migration
     {
         // ...
     }
-
 }

@@ -107,6 +107,15 @@ class Posts extends ComponentBase
                 'default'     => 'blog/post',
                 'group'       => 'Links',
             ],
+            'exceptPost' => [
+                'title'             => 'rainlab.blog::lang.settings.posts_except_post',
+                'description'       => 'rainlab.blog::lang.settings.posts_except_post_description',
+                'type'              => 'string',
+                'validationPattern' => 'string',
+                'validationMessage' => 'rainlab.blog::lang.settings.posts_except_post_validation',
+                'default'           => '',
+                'group'             => 'Exceptions',
+            ],
         ];
     }
 
@@ -167,7 +176,8 @@ class Posts extends ComponentBase
             'sort'       => $this->property('sortOrder'),
             'perPage'    => $this->property('postsPerPage'),
             'search'     => trim(input('search')),
-            'category'   => $category
+            'category'   => $category,
+            'exceptPost' => $this->property('exceptPost'),
         ]);
 
         /*
@@ -186,12 +196,18 @@ class Posts extends ComponentBase
 
     protected function loadCategory()
     {
-        if (!$categoryId = $this->property('categoryFilter'))
+        if (!$slug = $this->property('categoryFilter')) {
             return null;
+        }
 
-        if (!$category = BlogCategory::whereSlug($categoryId)->first())
-            return null;
+        $category = new BlogCategory;
 
-        return $category;
+        $category = $category->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
+            ? $category->transWhere('slug', $slug)
+            : $category->where('slug', $slug);
+
+        $category = $category->first();
+
+        return $category ?: null;
     }
 }

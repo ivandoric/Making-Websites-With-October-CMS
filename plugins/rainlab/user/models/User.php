@@ -137,7 +137,9 @@ class User extends UserBase
      */
     public function getPersistCode()
     {
-        if (!$this->persist_code) {
+        $block = UserSettings::get('block_persistence', false);
+
+        if ($block || !$this->persist_code) {
             return parent::getPersistCode();
         }
 
