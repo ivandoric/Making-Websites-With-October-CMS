@@ -22,6 +22,7 @@ class ActorForm extends ComponentBase
        $actor = new Actor();
        $actor->name = Input::get('name');
        $actor->lastname = Input::get('lastname');
+       $actor->actorimage = Input::file('actorimage');
        $actor->save();
        Flash::success('Actor added!');
        return Redirect::back();

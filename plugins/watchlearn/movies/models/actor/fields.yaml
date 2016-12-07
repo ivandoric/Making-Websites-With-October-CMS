@@ -9,3 +9,15 @@ fields:
         span: auto
         oc.commentPosition: ''
         type: text
+    actorimage:
+        label: 'Actor image'
+        span: auto
+        oc.commentPosition: ''
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        imageWidth: '100'
+        imageHeight: '100'
+        type: fileupload
