@@ -4,396 +4,88 @@
 		"selected_items":
 		[
 			[
-				"erro",
-				"errorMsgs"
+				"vaucher-",
+				"vaucher-form\t(vaucher-landing.php)"
 			],
 			[
-				"Acto",
-				"Actors\t(Actors.php)"
+				"vaucher",
+				"vaucher-landing\t(style.scss)"
 			],
 			[
-				"Wat",
-				"Watchlearn"
+				"content",
+				"contentBackgroundColor"
 			],
 			[
-				"Componen",
-				"ComponentBase"
-			],
-			[
-				"name",
-				"nameLastname"
-			],
-			[
-				"new",
-				"newArray"
-			],
-			[
-				"acto",
-				"actorID"
-			],
-			[
-				"is_nu",
-				"is_numeric"
-			],
-			[
-				"selected",
-				"selectedValues"
-			],
-			[
-				"Mo",
-				"Models\t(Actor.php)"
-			],
-			[
-				"get",
-				"getActivity\t(activity-accommodation.js)"
-			],
-			[
-				"ac",
-				"activities"
-			],
-			[
-				"activt",
-				"activities"
-			],
-			[
-				"has",
-				"hasClass\t.hasClass()"
-			],
-			[
-				"ame",
-				"amenities"
-			],
-			[
-				"acc",
-				"accommodations\t(frontpage.blade.php)"
-			],
-			[
-				"Acc",
-				"Accommodation"
-			],
-			[
-				"my",
-				"my-accommodations"
-			],
-			[
-				"activity",
-				"activity-images"
-			],
-			[
-				"activ",
-				"activity"
-			],
-			[
-				"activities",
-				"activitiesNearby"
-			],
-			[
-				"active",
-				"activeActivity"
-			],
-			[
-				"current",
-				"current_page"
-			],
-			[
-				"getacti",
-				"getActivities"
-			],
-			[
-				"ca",
-				"categoryName"
-			],
-			[
-				"attr",
-				"attractions"
-			],
-			[
-				"activi",
-				"activities"
-			],
-			[
-				"img",
-				"imgsize"
-			],
-			[
-				"get-activi",
-				"get-activities\t(routes.php)"
-			],
-			[
-				"acti",
-				"activity"
-			],
-			[
-				"ap",
-				"appendTo\t.appendTo()"
-			],
-			[
-				"activty",
-				"activitySingle"
-			],
-			[
-				"activit",
-				"activities"
-			],
-			[
-				"pag",
-				"pageTitle"
-			],
-			[
-				"page",
-				"pageSubTitle"
-			],
-			[
-				"icon-add-a",
-				"icon-add-activity\t(_icons.scss)"
-			],
-			[
-				"accom",
-				"accommodation"
-			],
-			[
-				"accommodation_",
-				"accommodation_category\t(form.blade.php)"
-			],
-			[
-				"acco",
-				"accommodation"
-			],
-			[
-				"err",
-				"error\t.error()"
-			],
-			[
-				"app",
-				"append\t.append()"
-			],
-			[
-				"pas",
-				"password_confirmation"
-			],
-			[
-				"pasw",
-				"password_confirmation"
-			],
-			[
-				"rating",
-				"ratingCount"
-			],
-			[
-				"revi",
-				"review"
-			],
-			[
-				"password",
-				"password_confirmation"
-			],
-			[
-				"unit",
-				"unitcreate\t(routes.php)"
-			],
-			[
-				"cre",
-				"createaccommodation\t(routes.php)"
-			],
-			[
-				"accomm",
-				"accommodations"
-			],
-			[
-				"AccommodationC",
-				"AccommodationCategory"
-			],
-			[
-				"data",
-				"data-deleteurl"
-			],
-			[
-				"data-",
-				"data-dirname"
-			],
-			[
-				"pos",
-				"postsPerPage"
+				"time",
+				"timetableID"
 			],
 			[
 				"image",
-				"imageUrl"
+				"imagePosition"
 			],
 			[
-				"D",
-				"Dzone"
+				"contet",
+				"contentWidth"
 			],
 			[
-				"availa",
-				"availableImages"
+				"cont",
+				"content\t(_fonts.scss)"
 			],
 			[
-				"avai",
-				"availableImages"
+				"tit",
+				"titleColor"
 			],
 			[
-				"upload",
-				"upload-modal"
+				"cursive",
+				"cursive-title"
 			],
 			[
-				"file",
-				"filename"
+				"main",
+				"mainText"
 			],
 			[
-				"exit",
-				"existingImages"
+				"bold",
+				"boldIntroText"
 			],
 			[
-				"append",
-				"appendTo\t.appendTo()"
+				"browser",
+				"browserSync"
 			],
 			[
-				"gall",
-				"galleryForm\t(app.js)"
+				"current",
+				"currentDate"
 			],
 			[
-				"date",
-				"datepicker"
+				"array_fil",
+				"array_filter"
 			],
 			[
-				"del",
-				"deleteData"
+				"activity",
+				"activityName"
 			],
 			[
-				"number",
-				"numberOfItems"
+				"acti",
+				"activityName"
 			],
 			[
-				"json",
-				"json_encode"
+				"faci",
+				"facilities"
 			],
 			[
-				"unitpri",
-				"unitprices"
+				"venue",
+				"venueTitle"
 			],
 			[
-				"num",
-				"number_of_prices\t(form.blade.php)"
+				"wp_",
+				"wp_dbug"
 			],
 			[
-				"numbe",
-				"numberOfPrices"
+				"ac",
+				"activityName"
 			],
 			[
-				"pr",
-				"prices"
-			],
-			[
-				"sa",
-				"safe\t(form.blade.php)"
-			],
-			[
-				"inter",
-				"internet\t(form.blade.php)"
-			],
-			[
-				"hea",
-				"heating\t(form.blade.php)"
-			],
-			[
-				"Unit",
-				"Unitimage"
-			],
-			[
-				"be",
-				"beach_concrete"
-			],
-			[
-				"pla",
-				"playstation"
-			],
-			[
-				"wa",
-				"water_heater"
-			],
-			[
-				"kit",
-				"kitchen_use"
-			],
-			[
-				"te",
-				"terrace"
-			],
-			[
-				"null",
-				"nullable"
-			],
-			[
-				"aci",
-				"acimage"
-			],
-			[
-				"ima",
-				"imageWorksMultiple\t(helpers.php)"
-			],
-			[
-				"thu",
-				"thumbnailPath"
-			],
-			[
-				"Ac",
-				"Acimage"
-			],
-			[
-				"pa",
-				"pageSubTitle"
-			],
-			[
-				"Acco",
-				"AccommodationController\t(AccommodationController.php)"
-			],
-			[
-				"nu",
-				"nullable\t(2016_05_09_114745_add_accommodation_category_to_accommodations_table.php)"
-			],
-			[
-				"bea",
-				"beach_pebble"
-			],
-			[
-				"small-",
-				"small-section-title"
-			],
-			[
-				"cl",
-				"clearfix"
-			],
-			[
-				"border",
-				"borderless"
-			],
-			[
-				"bord",
-				"borderless\t(_forms.scss)"
-			],
-			[
-				"ameni",
-				"amenities-01"
-			],
-			[
-				"small",
-				"small-image.jpg"
-			],
-			[
-				"Re",
-				"Request::url\tGet the URL (no query string) for the request."
-			],
-			[
-				"chec",
-				"checkbox\t(checkbox.js)"
-			],
-			[
-				"clea",
-				"clearfix\t(_globals.scss)"
-			],
-			[
-				"to",
-				"toggleClass"
+				"scroll",
+				"scrollTop\t.scrollTop()"
 			],
 			[
 				"fac",
@@ -404,20 +96,12 @@
 				"eventData"
 			],
 			[
-				"faci",
-				"facilityID"
-			],
-			[
 				"fa",
 				"facilityID"
 			],
 			[
 				"facility",
 				"facilityTitle"
-			],
-			[
-				"time",
-				"timestamp"
 			],
 			[
 				"tyo",
@@ -432,8 +116,8 @@
 				"activityTypes"
 			],
 			[
-				"venue",
-				"venuesNearYou"
+				"activities",
+				"activitiesAvailable"
 			],
 			[
 				"hi",
@@ -508,35 +192,149 @@
 				"introText1"
 			],
 			[
-				"tit",
-				"titleHeight"
-			],
-			[
 				"tag",
 				"tagLineText"
+			],
+			[
+				"clic",
+				"clickedImage"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"pos",
+				"postLink"
+			],
+			[
+				"aja",
+				"ajax_response"
+			],
+			[
+				"wp_res",
+				"wp_reset_query"
+			],
+			[
+				"get_head",
+				"get_header"
+			],
+			[
+				"hero",
+				"heroHeight"
+			],
+			[
+				"in",
+				"intro_text"
+			],
+			[
+				"the",
+				"the_title"
+			],
+			[
+				"get_template",
+				"get_template_part"
+			],
+			[
+				"uvodni",
+				"uvodni-tekst"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"post",
+				"postID"
+			],
+			[
+				"the_ti",
+				"the_title"
+			],
+			[
+				"next",
+				"nextLink"
+			],
+			[
+				"ne",
+				"nextLink"
+			],
+			[
+				"get_templa",
+				"get_template_part"
+			],
+			[
+				"get_th",
+				"get_the_category"
+			],
+			[
+				"cat",
+				"catid"
+			],
+			[
+				"mindma",
+				"mindmapping"
+			],
+			[
+				"st",
+				"store_cats"
+			],
+			[
+				"slider",
+				"sliderImage"
+			],
+			[
+				"cms",
+				"cmsPageUrlKey"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"the_post",
+				"the_post_thumbnail"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"more",
+				"morelinkname  (variable)"
+			],
+			[
+				"border",
+				"border-top"
+			],
+			[
+				"borde",
+				"border-top"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "plugins/watchlearn/contact/components/contactform/default.htm",
-			"settings":
-			{
-				"buffer_size": 587,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "plugins/watchlearn/contact/components/ContactForm.php",
-			"settings":
-			{
-				"buffer_size": 1071,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -545,125 +343,45 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 220.0,
-		"last_filter": "sysphp",
+		"height": 354.0,
+		"last_filter": "synph",
 		"selected_items":
 		[
 			[
-				"sysphp",
+				"synph",
 				"Set Syntax: PHP"
 			],
 			[
-				"proje",
-				"Project: Save As"
-			],
-			[
-				"add ",
-				"Project: Add Folder"
+				"wpqu",
+				"Snippet: CustomWPQUery"
 			],
 			[
 				"comm1",
 				"Snippet: comm1"
 			],
 			[
-				"evernote",
-				"Evernote: Search Note"
-			],
-			[
-				"evernote sav",
-				"Evernote: Send to Evernote as new note"
-			],
-			[
-				"evernote re",
-				"Evernote Settings: Reconfigure Authorization"
-			],
-			[
-				"ever",
-				"Evernote Settings: User"
-			],
-			[
-				"eve",
-				"Set Syntax: Evernote Note"
+				"mco",
+				"Snippet: media-queries-comment"
 			],
 			[
 				"mcom",
 				"Snippet: media-queries-comment"
 			],
 			[
-				"ren",
-				"File: Rename"
+				"query",
+				"Snippet: CustomWPQUery"
 			],
 			[
-				"comm",
-				"Snippet: comm4"
+				"comm2",
+				"Snippet: comm2"
 			],
 			[
-				"rena",
-				"File: Rename"
-			],
-			[
-				"open ",
-				"PackageResourceViewer: Open Resource"
-			],
-			[
-				"gis",
-				"Gist: Create Public Gist"
-			],
-			[
-				"rene",
-				"File: Rename"
-			],
-			[
-				"up",
-				"Package Control: Upgrade Package"
-			],
-			[
-				"inst",
+				"install",
 				"Package Control: Install Package"
-			],
-			[
-				"rem",
-				"Package Control: Remove Package"
-			],
-			[
-				"upa",
-				"Package Control: Upgrade Package"
 			],
 			[
 				"m",
 				"Snippet: media-queries-comment"
-			],
-			[
-				"mco",
-				"Snippet: media-queries-comment"
-			],
-			[
-				"mcomm",
-				"Snippet: media-queries-comment"
-			],
-			[
-				"colo",
-				"ColorSchemeSelector: Select Color Scheme"
-			],
-			[
-				"co",
-				"Snippet: comm2"
-			],
-			[
-				"del",
-				"ANF: Delete File"
-			],
-			[
-				"twi",
-				"Snippet: Twig : Comment"
-			],
-			[
-				"comm3",
-				"Snippet: comm3"
-			],
-			[
-				"comm4",
-				"Snippet: comm4"
 			],
 			[
 				"com",
@@ -672,6 +390,10 @@
 			[
 				"file",
 				"File: Rename"
+			],
+			[
+				"comm",
+				"Snippet: comm4"
 			],
 			[
 				"wp",
@@ -686,6 +408,10 @@
 				"Evernote: Send to Evernote as new note"
 			],
 			[
+				"eve",
+				"Evernote: New empty note"
+			],
+			[
 				"remo",
 				"Package Control: Remove Package"
 			],
@@ -698,8 +424,28 @@
 				"Package Control: Install Package"
 			],
 			[
+				"del",
+				"File: Delete"
+			],
+			[
 				"dele",
 				"ANF: Delete File"
+			],
+			[
+				"mcomm",
+				"Snippet: media-queries-comment"
+			],
+			[
+				"co",
+				"Snippet: comm1"
+			],
+			[
+				"colo",
+				"ColorSchemeSelector: Select Color Scheme"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
 			],
 			[
 				"custom",
@@ -710,15 +456,15 @@
 				"Snippet: CustomWPQUery"
 			],
 			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
 				"re",
 				"Package Control: Remove Package"
 			],
 			[
 				"wpquer",
-				"Snippet: CustomWPQUery"
-			],
-			[
-				"query",
 				"Snippet: CustomWPQUery"
 			],
 			[
@@ -728,10 +474,6 @@
 			[
 				"bkg",
 				"Snippet: bkg"
-			],
-			[
-				"comm2",
-				"Snippet: comm2"
 			],
 			[
 				"snipp",
@@ -756,6 +498,10 @@
 			[
 				"bkg\t",
 				"Snippet: bkg"
+			],
+			[
+				"gis",
+				"Gist: Create Public Gist"
 			],
 			[
 				"bk\t",
@@ -807,158 +553,153 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/ivan/Development/public/octobermovies",
-		"/Users/ivan/Development/public/octobermovies/plugins",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform",
-		"/Users/ivan/Development/public/octobermovies/themes",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials"
+		"/Users/idoric/Development/public/octobermovies"
 	],
 	"file_history":
 	[
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/login.htm",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials/user-update.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile/Plugin.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/rainlab/user/components/account/update.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile/updates/version.yaml",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/profile/updates/add_new_fields.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/ContactForm.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/messages.htm",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/layouts/default.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/Plugin.php",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/add-actors.htm",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/partials/header.htm",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movies.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/ActorForm.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actorform/default.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/Plugin.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/contact/views/mail/message.htm",
-		"/Users/ivan/Development/public/octobermovies/config/mail.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/Actors.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/components/actors/default.htm",
-		"/Users/ivan/components/Actors.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/movie/fields.yaml",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Movie.php",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Actor.php",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/movie-single.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/formwidgets/actorbox/partials/_widget.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/formwidgets/Actorbox.php",
-		"/Users/ivan/Development/public/octobermovies/modules/backend/formwidgets/TagList.php",
-		"/Users/ivan/Development/public/octobermovies/themes/olympos/pages/genres.htm",
-		"/Users/ivan/Development/public/octobermovies/plugins/watchlearn/movies/models/Genre.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_accommodation.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/form.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/js/app.js",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/ActivityController.php",
-		"/Users/ivan/Development/public/springfall/app/Http/routes.php",
-		"/Users/ivan/Development/public/springfall/resources/views/activity/all-activities.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_unit.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_slider.scss",
-		"/Users/ivan/Development/public/springfall/app/helpers.php",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/AccommodationController.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_gallery.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/js/image-upload.js",
-		"/Users/ivan/Development/public/springfall/resources/views/unit/form.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/partials/map.blade.php",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/GalleryController.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/partials/units.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/vendor/components/_settings.scss",
-		"/Users/ivan/Development/public/springfall/gulpfile.js",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/style.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_icons.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/vendor/lightcase.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/show.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/partials/unit-list.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/lang/en/messages.php",
-		"/Users/ivan/Development/public/springfall/app/Unit.php",
-		"/Users/ivan/Development/public/springfall/.gitignore",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_homepage.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/frontpage.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/activity/index.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/partials/header.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/partials/frontpage-excursions.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_globals.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/my-accommodations.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_buttons.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_variables.scss",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Evernote.sublime-settings",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/Evernote/Evernote.sublime-settings",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_table.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/index.blade.php",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/HomeController.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_activities.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_typography.scss",
-		"/Users/ivan/Development/public/springfall/public/js/vue-activity-list.js",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_bricks.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_pagination.scss",
-		"/Users/ivan/Development/public/springfall/public/js/vue.js",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/transl.sublime-snippet",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_modules.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_activity-list-filter.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_single-activity.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_modal.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_loader.scss",
-		"/Users/ivan/Development/public/springfall/_assets_/single-activity.blade",
-		"/Users/ivan/Development/public/springfall/resources/views/activity/form.blade.php",
-		"/Users/ivan/Development/public/springfall/app/User.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/js/submit-review.js",
-		"/Users/ivan/Development/public/springfall/_assets_/activity-list.blade",
-		"/Users/ivan/Development/public/springfall/public/js/submit-review.js",
-		"/Users/ivan/Development/public/springfall/public/js/user-register.js",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/vendor/_checkbox.scss",
-		"/Users/ivan/Development/public/springfall/app/Http/breadcrumbs.php",
-		"/Users/ivan/Development/public/springfall/resources/views/activity/show.blade.php",
-		"/Users/ivan/Development/public/springfall/app/Activity.php",
-		"/Users/ivan/Development/public/springfall/database/factories/ModelFactory.php",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/UnitController.php",
-		"/Users/ivan/Development/public/springfall/resources/views/activity/edit.blade.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_21_133626_add_dir_to_activities_table.php",
-		"/Users/ivan/Development/public/springfall/resources/views/activity/create.blade.php",
-		"/Users/ivan/Development/public/springfall/app/Accommodation.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_21_121127_add_city_to_activities_table_2.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_user-menu.scss",
-		"/Users/ivan/Development/public/springfall/app/Http/Controllers/ActivitiesController.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_21_093639_create_activities_table.php",
-		"/Users/ivan/Development/public/springfall/database/migrations/2016_06_21_101152_add_longitude_latitude_to_activities_table.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_header.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/partials/guest-reviews.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/create.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/partials/more-details.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_section-title.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_checkbox-filter.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/_layout.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_steps.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/unit/edit.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/unit/index.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/edit.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/vendor/_select.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_login.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/unit/create.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/layouts/_single-apartment.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_more-details.scss",
-		"/Users/ivan/Development/public/springfall/resources/assets/sass/modules/_forms.scss",
-		"/Users/ivan/Development/public/springfall/resources/views/auth/login.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/auth/register.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/accommodation/partials/aside.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/views/layout.blade.php",
-		"/Users/ivan/Development/public/springfall/resources/assets/js/user-register.js",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+		"/Users/idoric/Development/public/starterkit/scss/components/_header.scss",
+		"/Users/idoric/Development/public/starterkit/package.json",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/js/subpage-timetable.js",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/style.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/vaucher-landing.php",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/_vaucher-landing.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/vaucher-print.php",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/parts/geoip.php",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/lib/main.js",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/vendor/_classic.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/vendor/_classic.date.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/timetables.php",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/_fonts.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/_mixins.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/_lockeroom-single.scss",
+		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/sass/_globals.scss",
+		"/Users/idoric/Development/public/activenation/gulpfile.js",
+		"/private/etc/hosts",
+		"/Users/idoric/.config/fish/config.fish",
+		"/Users/ivan/Development/public/activenation/Assets/Animacija/index.html",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/header.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/geoip.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/single-activities.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/map.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/footer.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/timetables.php",
+		"/Users/ivan/Development/public/activenation/gulpfile.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/single-venues.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/single-lockeroom.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_globals.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/landing/_globals.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing.php",
+		"/Users/ivan/Development/public/activenation/wp-login.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/subpage-timetable-response.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/subpage-timetable-locations-response.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/subpage-timetable.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_timetable.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/subpage-timetable.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/functions.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_mixins.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/inquiry.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/header-landing.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/landing/_header.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_landing.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/timetable.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/button.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_header.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/video.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/contact.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/title.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_buttons.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/subtitle.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_fonts.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/full-width-text.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/bold-intro-text.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing/normal-text.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/landing/video.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/style.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/nutrition-landing/css/styles.css",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/nutrition-landing/index.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/landing",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/homepage.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/timetables.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_page.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/subpage.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/venue-page-timetable.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/pooltable-response.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/timetable-response.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/get-in-touch-form.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/feeling-social.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_modal.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_single-venue.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/animations.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/lib/main.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/timetables-activity.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/prices.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_single-activity.scss",
+		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/_html-head.tpl",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_list-venues.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/archive-venues.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/alert-bar.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/single-activity-slider.php",
+		"/Users/ivan/.config/fish/config.fish",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-activity/video-slider.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/timetables-activities.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/subpage-slider.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_footer.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/homepage/community-social.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-03.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-01.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_goldenticket-animations.scss",
+		"/Users/ivan/Development/public/activenation/Assets/krave/index.html",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/goldenticket.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_golden-ticket.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-02.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_homepage.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/lockeroom-footer.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_lockeroom-index.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/activity-slider.php",
+		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/newsletter-subscribe.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/notes.php",
+		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/gt-activities.php",
+		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/document-box.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/404.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_404.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_lockeroom-article.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_lockeroom-single.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/single-venue/prices.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_modules.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_news-box.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/page-book.php",
+		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/index.html",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_alert-bar.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/get_cookie.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/archive-activities.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_list-activities.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/homepage/venues-near-you.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/list-venue/venue-description.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/map-everything.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_twitter-feed.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/ask-for-region-modal.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_typeahead.scss",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/issue-list.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/featured-article.php",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/olympos.min.js",
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/vendor/autoload.php"
 	],
 	"find":
 	{
-		"height": 44.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
 		"height": 173.0,
 		"where_history":
 		[
-			"/Users/ivan/Development/public/springfall/resources/assets/sass",
+			"/Users/ivan/Development/public/activenation/wp-admin",
+			"/Users/ivan/Development/public/activenation/wp-includes",
+			"/Users/ivan/Development/public/activenation/wp-admin",
+			"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass",
+			"/Users/ivan/Development/public/activenation/wp-content/themes/olympos",
 			"<current file>",
 			"/Users/ivan/Development/public/activenation/wp-content/themes/olympos",
 			"<open files>,/Users/ivan/Development/public/activenation/wp-content/themes",
@@ -984,23 +725,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"fit",
-			"file",
-			"accommodation",
-			"font-size",
-			"reviews",
-			"small-se",
-			"font-size",
-			"write",
-			"font-size",
-			"half-select",
-			"hover",
-			"content:",
-			"40px",
-			"offer-lin",
-			"phon",
-			"cc-link",
-			">\n",
+			"$",
+			"book",
+			"administrator",
+			"class=\"administrator\"",
+			"test",
+			"notifica",
+			"timetables",
+			"faux",
+			"fetchTimetablesGT",
+			"pool",
+			"active",
+			"bug",
+			"table",
 			"resize",
 			"prevent",
 			"resize",
@@ -1111,7 +848,11 @@
 			"line",
 			"move_to",
 			"line",
-			"process"
+			"process",
+			"%s was added into cart",
+			"was added",
+			"Growler-notice-body",
+			"Growler-notice"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1154,77 +895,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "plugins/watchlearn/contact/components/contactform/default.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 587,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								337,
-								337
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "plugins/watchlearn/contact/components/ContactForm.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1071,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								153,
-								153
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 874.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 44.0
+		"height": 41.0
 	},
 	"input":
 	{
@@ -1265,7 +943,7 @@
 	"project": "octobermovies.sublime-project",
 	"replace":
 	{
-		"height": 84.0
+		"height": 78.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1275,516 +953,516 @@
 		"selected_items":
 		[
 			[
-				"def",
-				"themes/olympos/layouts/default.htm"
+				"movie.",
+				"plugins/watchlearn/movies/models/Movie.php"
 			],
 			[
-				"taglist",
-				"modules/backend/formwidgets/TagList.php"
+				"_time",
+				"wp-content/themes/olympos/sass/modules/_timetable.scss"
 			],
 			[
-				"_load",
-				"resources/assets/sass/modules/_loader.scss"
+				"subpage",
+				"wp-content/themes/olympos/parts/single-venue/subpage-timetable.php"
 			],
 			[
-				"_slide",
-				"resources/assets/sass/modules/_slider.scss"
+				"timetables.php",
+				"wp-content/themes/olympos/parts/single-venue/timetables.php"
 			],
 			[
-				"index.",
-				"resources/views/activity/index.blade.php"
-			],
-			[
-				"_single",
-				"resources/assets/sass/layouts/_single-apartment.scss"
-			],
-			[
-				"_acc",
-				"resources/assets/sass/layouts/_accommodation.scss"
-			],
-			[
-				"index.bla",
-				"resources/views/activity/index.blade.php"
-			],
-			[
-				"activ",
-				"app/Http/Controllers/ActivityController.php"
-			],
-			[
-				"rou",
-				"app/Http/routes.php"
-			],
-			[
-				"app",
-				"resources/assets/js/app.js"
-			],
-			[
-				"form",
-				"resources/views/accommodation/form.blade.php"
-			],
-			[
-				"_sli",
-				"resources/assets/sass/modules/_slider.scss"
-			],
-			[
-				"acc",
-				"app/Http/Controllers/AccommodationController.php"
-			],
-			[
-				"hel",
-				"app/helpers.php"
-			],
-			[
-				"_gall",
-				"resources/assets/sass/modules/_gallery.scss"
-			],
-			[
-				"show",
-				"resources/views/accommodation/show.blade.php"
-			],
-			[
-				"map",
-				"resources/views/accommodation/partials/map.blade.php"
-			],
-			[
-				"activity",
-				"app/Http/Controllers/ActivityController.php"
-			],
-			[
-				"_unit",
-				"resources/assets/sass/modules/_unit.scss"
-			],
-			[
-				"image",
-				"resources/assets/js/image-upload.js"
-			],
-			[
-				"ga",
-				"app/Http/Controllers/GalleryController.php"
-			],
-			[
-				"rout",
-				"app/Http/routes.php"
-			],
-			[
-				"_sett",
-				"resources/assets/sass/vendor/components/_settings.scss"
-			],
-			[
-				"gulp",
-				"gulpfile.js"
+				"geo",
+				"wp-content/themes/olympos/parts/geoip.php"
 			],
 			[
 				"style.sc",
-				"resources/assets/sass/style.scss"
+				"wp-content/themes/olympos/sass/style.scss"
 			],
 			[
-				"_icon",
-				"resources/assets/sass/_icons.scss"
+				"main",
+				"wp-content/themes/olympos/lib/main.js"
 			],
 			[
-				"_uni",
-				"resources/assets/sass/modules/_unit.scss"
+				"timetable",
+				"wp-content/themes/olympos/parts/single-venue/timetables.php"
 			],
 			[
-				"unit.bla",
-				"resources/views/accommodation/partials/units.blade.php"
+				"_fo",
+				"wp-content/themes/olympos/sass/_fonts.scss"
 			],
 			[
-				"acco",
-				"app/Http/Controllers/AccommodationController.php"
+				"_vau",
+				"wp-content/themes/olympos/sass/_vaucher-landing.scss"
 			],
 			[
-				"routes",
-				"app/Http/routes.php"
+				"vau",
+				"wp-content/themes/olympos/vaucher-landing.php"
 			],
 			[
-				"ro",
-				"app/Http/routes.php"
-			],
-			[
-				"mess",
-				"resources/lang/en/messages.php"
-			],
-			[
-				"uni",
-				"app/Unit.php"
-			],
-			[
-				"units",
-				"resources/views/accommodation/partials/units.blade.php"
-			],
-			[
-				"index",
-				"resources/views/activity/index.blade.php"
-			],
-			[
-				"im",
-				"resources/assets/js/image-upload.js"
-			],
-			[
-				"activi",
-				"app/Http/Controllers/ActivityController.php"
-			],
-			[
-				"_hom",
-				"resources/assets/sass/layouts/_homepage.scss"
-			],
-			[
-				"fron",
-				"resources/views/frontpage.blade.php"
-			],
-			[
-				"header",
-				"resources/views/partials/header.blade.php"
+				"_lockeroo",
+				"wp-content/themes/olympos/sass/_lockeroom-single.scss"
 			],
 			[
 				"_glo",
-				"resources/assets/sass/_globals.scss"
-			],
-			[
-				"acti",
-				"app/Http/Controllers/ActivityController.php"
-			],
-			[
-				"",
-				"resources/views/accommodation/my-accommodations.blade.php"
-			],
-			[
-				"ac",
-				"app/Http/Controllers/AccommodationController.php"
-			],
-			[
-				"my",
-				"resources/views/accommodation/my-accommodations.blade.php"
-			],
-			[
-				"_ico",
-				"resources/assets/sass/_icons.scss"
-			],
-			[
-				"_var",
-				"resources/assets/sass/_variables.scss"
-			],
-			[
-				"_bu",
-				"resources/assets/sass/modules/_buttons.scss"
-			],
-			[
-				"_tab",
-				"resources/assets/sass/modules/_table.scss"
-			],
-			[
-				"all",
-				"resources/views/activity/all-activities.blade.php"
-			],
-			[
-				"_home",
-				"resources/assets/sass/layouts/_homepage.scss"
-			],
-			[
-				"inde",
-				"resources/views/accommodation/index.blade.php"
-			],
-			[
-				"front",
-				"resources/views/frontpage.blade.php"
-			],
-			[
-				"home",
-				"app/Http/Controllers/HomeController.php"
-			],
-			[
-				"helpers.php",
-				"app/helpers.php"
-			],
-			[
-				"_typ",
-				"resources/assets/sass/_typography.scss"
-			],
-			[
-				"app.js",
-				"resources/assets/js/app.js"
-			],
-			[
-				"fro",
-				"resources/views/frontpage.blade.php"
-			],
-			[
-				"_acti",
-				"resources/assets/sass/layouts/_activities.scss"
-			],
-			[
-				"_act",
-				"resources/assets/sass/layouts/_activities.scss"
-			],
-			[
-				"brick",
-				"resources/assets/sass/modules/_bricks.scss"
-			],
-			[
-				"vue",
-				"public/js/vue.js"
-			],
-			[
-				"sho",
-				"resources/views/accommodation/show.blade.php"
-			],
-			[
-				"_butt",
-				"resources/assets/sass/modules/_buttons.scss"
-			],
-			[
-				"_paginat",
-				"resources/assets/sass/modules/_pagination.scss"
-			],
-			[
-				"activiy",
-				"app/Http/Controllers/ActivityController.php"
-			],
-			[
-				"_mod",
-				"resources/assets/sass/modules/_modal.scss"
-			],
-			[
-				"_lo",
-				"resources/assets/sass/modules/_loader.scss"
-			],
-			[
-				"_bri",
-				"resources/assets/sass/modules/_bricks.scss"
-			],
-			[
-				"app.",
-				"resources/assets/js/app.js"
-			],
-			[
-				"_ac",
-				"resources/assets/sass/layouts/_activities.scss"
-			],
-			[
-				"_sin",
-				"resources/assets/sass/modules/_single-activity.scss"
-			],
-			[
-				"activit",
-				"_assets_/activity-list.blade"
-			],
-			[
-				"sub",
-				"resources/assets/js/submit-review.js"
-			],
-			[
-				"fo",
-				"resources/views/unit/form.blade.php"
-			],
-			[
-				"revi",
-				"public/js/submit-review.js"
-			],
-			[
-				"messa",
-				"resources/lang/en/messages.php"
-			],
-			[
-				"gall",
-				"app/Http/Controllers/GalleryController.php"
-			],
-			[
-				"user-",
-				"public/js/user-register.js"
-			],
-			[
-				"brea",
-				"app/Http/breadcrumbs.php"
-			],
-			[
-				"heade",
-				"resources/views/partials/header.blade.php"
-			],
-			[
-				"all-",
-				"resources/views/activity/all-activities.blade.php"
-			],
-			[
-				"unit",
-				"app/Http/Controllers/UnitController.php"
-			],
-			[
-				"user",
-				"app/User.php"
-			],
-			[
-				"helpe",
-				"app/helpers.php"
-			],
-			[
-				"_use",
-				"resources/assets/sass/modules/_user-menu.scss"
-			],
-			[
-				"hea",
-				"resources/views/partials/header.blade.php"
-			],
-			[
-				"un",
-				"app/Unit.php"
-			],
-			[
-				"create_ac",
-				"database/migrations/2016_06_21_093639_create_activities_table.php"
-			],
-			[
-				"_user",
-				"resources/assets/sass/modules/_user-menu.scss"
-			],
-			[
-				"_head",
-				"resources/assets/sass/_header.scss"
-			],
-			[
-				"guest",
-				"resources/views/accommodation/partials/guest-reviews.blade.php"
-			],
-			[
-				"more",
-				"resources/views/accommodation/partials/more-details.blade.php"
-			],
-			[
-				"_secti",
-				"resources/assets/sass/modules/_section-title.scss"
-			],
-			[
-				"_filter",
-				"resources/assets/sass/modules/_checkbox-filter.scss"
-			],
-			[
-				"accom",
-				"app/Http/Controllers/AccommodationController.php"
-			],
-			[
-				"_logi",
-				"resources/assets/sass/layouts/_login.scss"
-			],
-			[
-				"gues",
-				"resources/views/accommodation/partials/guest-reviews.blade.php"
-			],
-			[
-				"regi",
-				"resources/views/auth/register.blade.php"
-			],
-			[
-				"_ty",
-				"resources/assets/sass/_typography.scss"
-			],
-			[
-				"logi",
-				"resources/views/auth/login.blade.php"
-			],
-			[
-				"_lay",
-				"resources/assets/sass/_layout.scss"
-			],
-			[
-				"_ta",
-				"resources/assets/sass/modules/_table.scss"
-			],
-			[
-				"_form",
-				"resources/assets/sass/modules/_forms.scss"
-			],
-			[
-				"_fomr",
-				"resources/assets/sass/modules/_forms.scss"
+				"wp-content/themes/olympos/sass/_globals.scss"
 			],
 			[
 				"gul",
 				"gulpfile.js"
 			],
 			[
-				"lay",
-				"resources/views/layout.blade.php"
+				"foo",
+				"wp-content/themes/olympos/footer.php"
 			],
 			[
-				"_modal",
-				"resources/assets/sass/modules/_modal.scss"
-			],
-			[
-				"imag",
-				"resources/assets/js/image-upload.js"
-			],
-			[
-				"la",
-				"resources/views/layout.blade.php"
-			],
-			[
-				"_a",
-				"resources/assets/sass/layouts/_accommodation.scss"
-			],
-			[
-				"_che",
-				"resources/assets/sass/vendor/_checkbox.scss"
-			],
-			[
-				"me",
-				"resources/lang/en/messages.php"
-			],
-			[
-				"_us",
-				"resources/assets/sass/modules/_user-menu.scss"
-			],
-			[
-				"compos",
-				"composer.json"
-			],
-			[
-				"_rating",
-				"resources/assets/sass/vendor/_rating.scss"
-			],
-			[
-				"_revi",
-				"resources/assets/sass/modules/_reviews.scss"
-			],
-			[
-				"_ratin",
-				"resources/assets/sass/vendor/_rating.scss"
-			],
-			[
-				"glu",
-				"gulpfile.js"
-			],
-			[
-				"_g",
-				"resources/assets/sass/_globals.scss"
-			],
-			[
-				"rev",
-				"app/Review.php"
-			],
-			[
-				"cre",
-				"resources/views/unit/create.blade.php"
-			],
-			[
-				"route",
-				"app/Http/routes.php"
+				"heade",
+				"wp-content/themes/olympos/header.php"
 			],
 			[
 				"map.",
-				"resources/views/accommodation/partials/map.blade.php"
+				"wp-content/themes/olympos/parts/single-activity/map.php"
 			],
 			[
-				"form.bla",
-				"resources/views/accommodation/form.blade.php"
+				"single",
+				"wp-content/themes/olympos/single-activities.php"
 			],
 			[
-				"login",
-				"resources/views/auth/login.blade.php"
+				"wp-login",
+				"wp-login.php"
 			],
 			[
-				"authco",
-				"app/Http/Controllers/Auth/AuthController.php"
+				"func",
+				"wp-content/themes/olympos/functions.php"
+			],
+			[
+				"gu",
+				"gulpfile.js"
+			],
+			[
+				"_head",
+				"wp-content/themes/olympos/sass/landing/_header.scss"
+			],
+			[
+				"_land",
+				"wp-content/themes/olympos/sass/_landing.scss"
+			],
+			[
+				"sing",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"_mixi",
+				"wp-content/themes/olympos/sass/_mixins.scss"
+			],
+			[
+				"_gol",
+				"wp-content/themes/olympos/sass/landing/_globals.scss"
+			],
+			[
+				"subpa",
+				"wp-content/themes/olympos/parts/single-venue/subpage-timetable.php"
+			],
+			[
+				"_header",
+				"wp-content/themes/olympos/sass/landing/_header.scss"
+			],
+			[
+				"butt",
+				"wp-content/themes/olympos/landing/button.php"
+			],
+			[
+				"vide",
+				"wp-content/themes/olympos/landing/video.php"
+			],
+			[
+				"tit",
+				"wp-content/themes/olympos/landing/title.php"
+			],
+			[
+				"_butt",
+				"wp-content/themes/olympos/sass/modules/_buttons.scss"
+			],
+			[
+				"title",
+				"wp-content/themes/olympos/landing/title.php"
+			],
+			[
+				"video",
+				"wp-content/themes/olympos/landing/video.php"
+			],
+			[
+				"_font",
+				"wp-content/themes/olympos/sass/_fonts.scss"
+			],
+			[
+				"header",
+				"wp-content/themes/olympos/header-landing.php"
+			],
+			[
+				"sty",
+				"wp-content/themes/olympos/sass/style.scss"
+			],
+			[
+				"land",
+				"wp-content/themes/olympos/landing.php"
+			],
+			[
+				"",
+				"wp-content/themes/olympos/sass/landing/_header.scss"
+			],
+			[
+				"landi",
+				"wp-content/themes/olympos/header-landing.php"
+			],
+			[
+				"style",
+				"wp-content/themes/olympos/sass/style.scss"
+			],
+			[
+				"fun",
+				"wp-content/themes/olympos/functions.php"
+			],
+			[
+				"glo",
+				"wp-content/themes/olympos/sass/_globals.scss"
+			],
+			[
+				"time",
+				"wp-content/themes/olympos/js/timetables.js"
+			],
+			[
+				"_heda",
+				"wp-content/themes/olympos/sass/_header.scss"
+			],
+			[
+				"_page",
+				"wp-content/themes/olympos/sass/_page.scss"
+			],
+			[
+				"venue",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"fee",
+				"wp-content/themes/olympos/parts/feeling-social.php"
+			],
+			[
+				"singl",
+				"wp-content/themes/olympos/single-venues.php"
+			],
+			[
+				"get",
+				"wp-content/themes/olympos/parts/single-venue/get-in-touch-form.php"
+			],
+			[
+				"timere",
+				"wp-content/themes/olympos/parts/single-venue/timetable-response.php"
+			],
+			[
+				"pool",
+				"wp-content/themes/olympos/parts/single-venue/pooltable-response.php"
+			],
+			[
+				"timetabe",
+				"wp-content/themes/olympos/parts/single-venue/timetables.php"
+			],
+			[
+				"_moda",
+				"wp-content/themes/olympos/sass/modules/_modal.scss"
+			],
+			[
+				"fo",
+				"wp-content/themes/olympos/footer.php"
+			],
+			[
+				"_modal",
+				"wp-content/themes/olympos/sass/modules/_modal.scss"
+			],
+			[
+				"_single",
+				"wp-content/themes/olympos/sass/_single-venue.scss"
+			],
+			[
+				"get-",
+				"wp-content/themes/olympos/parts/single-venue/get-in-touch-form.php"
+			],
+			[
+				"_ve",
+				"wp-content/themes/olympos/sass/_single-venue.scss"
+			],
+			[
+				"timetab",
+				"wp-content/themes/olympos/parts/single-activity/timetables-activity.php"
+			],
+			[
+				"_sin",
+				"wp-content/themes/olympos/sass/_single-venue.scss"
+			],
+			[
+				"_venu",
+				"wp-content/themes/olympos/sass/_list-venues.scss"
+			],
+			[
+				"top-ba",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"single-",
+				"wp-content/themes/olympos/parts/single-activity/single-activity-slider.php"
+			],
+			[
+				"_sing",
+				"wp-content/themes/olympos/sass/_single-activity.scss"
+			],
+			[
+				"_foo",
+				"wp-content/themes/olympos/sass/_footer.scss"
+			],
+			[
+				"sli",
+				"wp-content/themes/olympos/parts/goldenticket/slide-02.php"
+			],
+			[
+				"slide-01",
+				"wp-content/themes/olympos/parts/goldenticket/slide-01.php"
+			],
+			[
+				"slide03",
+				"wp-content/themes/olympos/parts/goldenticket/slide-03.php"
+			],
+			[
+				"mix",
+				"wp-content/themes/olympos/sass/_mixins.scss"
+			],
+			[
+				"_lo",
+				"wp-content/themes/olympos/sass/_lockeroom-index.scss"
+			],
+			[
+				"_ho",
+				"wp-content/themes/olympos/sass/_homepage.scss"
+			],
+			[
+				"pri",
+				"wp-content/themes/olympos/parts/single-activity/prices.php"
+			],
+			[
+				"_si",
+				"wp-content/themes/olympos/sass/_single-activity.scss"
+			],
+			[
+				"sin",
+				"wp-content/themes/olympos/single-activities.php"
+			],
+			[
+				"sl",
+				"wp-content/themes/olympos/parts/goldenticket/slide-03.php"
+			],
+			[
+				"golden",
+				"wp-content/themes/olympos/goldenticket.php"
+			],
+			[
+				"mai",
+				"wp-content/themes/olympos/lib/main.js"
+			],
+			[
+				"slid",
+				"wp-content/themes/olympos/parts/goldenticket/slide-01.php"
+			],
+			[
+				"_mixin",
+				"wp-content/themes/olympos/sass/_mixins.scss"
+			],
+			[
+				"_fon",
+				"wp-content/themes/olympos/sass/_fonts.scss"
+			],
+			[
+				"timetable-",
+				"wp-content/themes/olympos/parts/single-venue/timetable-response.php"
+			],
+			[
+				"aler",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"activi",
+				"wp-content/themes/olympos/parts/activity-slider.php"
+			],
+			[
+				"head",
+				"wp-content/themes/olympos/header.php"
+			],
+			[
+				"main.js",
+				"wp-content/themes/olympos/lib/main.js"
+			],
+			[
+				"feeling",
+				"wp-content/themes/olympos/parts/feeling-social.php"
+			],
+			[
+				"_singl",
+				"wp-content/themes/olympos/sass/_single-venue.scss"
+			],
+			[
+				"_locke",
+				"wp-content/themes/olympos/sass/_lockeroom-single.scss"
+			],
+			[
+				"_lock",
+				"wp-content/themes/olympos/sass/modules/_lockeroom-article.scss"
+			],
+			[
+				"404.php",
+				"wp-content/themes/olympos/404.php"
+			],
+			[
+				"_new",
+				"wp-content/themes/olympos/sass/modules/_news-box.scss"
+			],
+			[
+				"price",
+				"wp-content/themes/olympos/parts/single-activity/prices.php"
+			],
+			[
+				"_modu",
+				"wp-content/themes/olympos/sass/_modules.scss"
+			],
+			[
+				"_aler",
+				"wp-content/themes/olympos/sass/modules/_alert-bar.scss"
+			],
+			[
+				"alert",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"_al",
+				"wp-content/themes/olympos/sass/modules/_alert-bar.scss"
+			],
+			[
+				"_lis",
+				"wp-content/themes/olympos/sass/_list-activities.scss"
+			],
+			[
+				"alret",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"venu",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"home",
+				"wp-content/themes/olympos/homepage.php"
+			],
+			[
+				"ge",
+				"wp-content/themes/olympos/parts/geoip.php"
+			],
+			[
+				"functi",
+				"wp-content/themes/olympos/functions.php"
+			],
+			[
+				"_locker",
+				"wp-content/themes/olympos/sass/_lockeroom-single.scss"
+			],
+			[
+				"issu",
+				"wp-content/themes/olympos/parts/lockeroom/issue-list.php"
+			],
+			[
+				"feature",
+				"wp-content/themes/olympos/parts/lockeroom/featured-article.php"
+			],
+			[
+				"_type",
+				"wp-content/themes/olympos/sass/modules/_typeahead.scss"
+			],
+			[
+				"_",
+				"wp-content/themes/olympos/sass/_list-activities.scss"
+			],
+			[
+				"archi",
+				"wp-content/themes/olympos/archive-activities.php"
+			],
+			[
+				"parts/fee",
+				"wp-content/themes/olympos/parts/feeling-social.php"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"arch",
+				"wp-content/themes/olympos/archive-activities.php"
+			],
+			[
+				"map",
+				"wp-content/themes/olympos/parts/map-everything.php"
+			],
+			[
+				"ven",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"archive",
+				"wp-content/themes/olympos/archive-activities.php"
+			],
+			[
+				"moda",
+				"wp-content/themes/olympos/parts/ask-for-region-modal.php"
+			],
+			[
+				"gulpfi",
+				"gulpfile.js"
+			],
+			[
+				"_activi",
+				"wp-content/themes/olympos/sass/modules/_activities-slider.scss"
+			],
+			[
+				"_mod",
+				"wp-content/themes/olympos/sass/_modules.scss"
+			],
+			[
+				"arci",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"single-act",
+				"wp-content/themes/olympos/parts/single-activity/single-activity-slider.php"
+			],
+			[
+				"single-ven",
+				"wp-content/themes/olympos/parts/single-venue/single-venue-slider.php"
+			],
+			[
+				"button",
+				"wp-content/themes/olympos/sass/modules/_buttons.scss"
+			],
+			[
+				"alre",
+				"wp-content/themes/olympos/parts/alert-bar.php"
+			],
+			[
+				"arvh",
+				"wp-content/themes/olympos/archive-venues.php"
+			],
+			[
+				"footer",
+				"wp-content/themes/olympos/footer.php"
+			],
+			[
+				"geoi",
+				"wp-content/themes/olympos/parts/geoip.php"
+			],
+			[
+				".gitig",
+				".gitignore"
 			]
 		],
 		"width": 0.0
@@ -1792,55 +1470,15 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "spri",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"spri",
-				"~/Development/public/springfall/springfall.sublime-project"
+				"vrsar",
+				"~/Development/public/tzvrsar/tzvrsar.sublime-project"
 			],
 			[
 				"gau",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
-			],
-			[
-				"watc",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
-			],
-			[
-				"",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
-			],
-			[
-				"wat",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
-			],
-			[
-				"gaus",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
-			],
-			[
-				"oc",
-				"~/Development/public/octobermovies/octobermovies.sublime-project"
-			],
-			[
-				"octo",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
-			],
-			[
-				"ocoto",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
-			],
-			[
-				"gauss",
-				"~/Development/public/gaussocto/gaussocto.sublime-project"
-			],
-			[
-				"watch",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
-			],
-			[
-				"g",
 				"~/Development/public/gaussdev/gaussdev.sublime-project"
 			],
 			[
@@ -1848,8 +1486,36 @@
 				"~/Development/public/springfall/springfall.sublime-project"
 			],
 			[
-				"wi",
-				"~/Development/public/wineapp/wineapp.sublime-project"
+				"ir",
+				"~/Development/public/ireputation/ireputation.sublime-project"
+			],
+			[
+				"ire",
+				"~/Development/public/ireputation/ireputation.sublime-project"
+			],
+			[
+				"umo",
+				"~/Development/public/umobility/umobility.sublime-project"
+			],
+			[
+				"",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"gaus",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"gauss",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"watch",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"sp",
+				"~/Development/public/springfall/springfall.sublime-project"
 			],
 			[
 				"wine",
@@ -1857,87 +1523,35 @@
 			],
 			[
 				"hgk",
-				"~/Development/public/hgk/hgk.sublime-project"
+				"~/Development/public/hgk/hgk.sublime-workspace"
 			],
 			[
-				"rep",
-				"~/Development/public/reportgorilla/report.sublime-project"
-			],
-			[
-				"umo",
-				"~/Development/public/umobility/umobility.sublime-project"
-			],
-			[
-				"wp",
-				"~/Development/public/wprest/wprest.sublime-project"
-			],
-			[
-				"wprest",
-				"~/Development/public/wprest/wprest.sublime-project"
+				"spriing",
+				"~/Development/public/springfall/springfall.sublime-project"
 			],
 			[
 				"um",
 				"~/Development/public/umobility/umobility.sublime-project"
 			],
 			[
-				"acti",
-				"~/Development/public/activenation/activenation.sublime-project"
-			],
-			[
 				"re",
 				"~/Development/public/reportgorilla/report.sublime-project"
 			],
 			[
-				"wpres",
+				"gaussd",
+				"~/Development/public/gaussdev/gaussdev.sublime-project"
+			],
+			[
+				"wpre",
 				"~/Development/public/wprest/wprest.sublime-project"
-			],
-			[
-				"umobi",
-				"~/Development/public/umobility/umobility.sublime-project"
-			],
-			[
-				"tz",
-				"~/Development/public/tzvrsar/tzvrsar.sublime-project"
-			],
-			[
-				"w",
-				"~/Development/public/wineapp/wineapp.sublime-project"
-			],
-			[
-				"win",
-				"~/Development/public/wineapp/wineapp.sublime-project"
-			],
-			[
-				"u",
-				"~/Development/public/umobility/umobility.sublime-project"
-			],
-			[
-				"winr",
-				"~/Development/public/wineapp/wineapp.sublime-project"
-			],
-			[
-				"won",
-				"~/Development/public/wineapp/wineapp.sublime-project"
-			],
-			[
-				"activ",
-				"~/Development/public/activenation/activenation.sublime-project"
-			],
-			[
-				"ivan",
-				"~/Development/public/ivandoric/ivandoric.sublime-project"
-			],
-			[
-				"wl",
-				"~/Development/public/wlgrav/wlgrav.sublime-project"
-			],
-			[
-				"active",
-				"~/Development/public/activenation/activenation.sublime-project"
 			],
 			[
 				"hg",
 				"~/Development/public/hgk/hgk.sublime-project"
+			],
+			[
+				"wpres",
+				"~/Development/public/wprest/wprest.sublime-project"
 			],
 			[
 				"movi",
@@ -1952,8 +1566,16 @@
 				"~/Development/public/query/query.sublime-project"
 			],
 			[
+				"tz",
+				"~/Development/public/tzvrsar/tzvrsar.sublime-project"
+			],
+			[
 				"que",
 				"~/Development/public/query/query.sublime-project"
+			],
+			[
+				"wat",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"act",
@@ -1962,6 +1584,10 @@
 			[
 				"puha",
 				"~/Sites/Projects/puhalek.sublime-project"
+			],
+			[
+				"active",
+				"~/Sites/Projects/ActiveNation.sublime-project"
 			],
 			[
 				"ga",
@@ -2062,6 +1688,10 @@
 			[
 				"ne",
 				"~/Sites/Projects/nextis.sublime-project"
+			],
+			[
+				"ivan",
+				"~/Sites/Projects/ivandoric.sublime-project"
 			],
 			[
 				"odo",
@@ -2166,6 +1796,10 @@
 			[
 				"j",
 				"/Users/ivan/Projects/jquery.sublime-project"
+			],
+			[
+				"watc",
+				"/Users/ivan/Projects/watchlearn.sublime-project"
 			],
 			[
 				"ipo",
@@ -2306,6 +1940,14 @@
 			[
 				"urba",
 				"/Users/ivan/Projects/UrbanSailor.sublime-project"
+			],
+			[
+				"por",
+				"/Users/ivan/Projects/PorecPort.sublime-project"
+			],
+			[
+				"Gleda",
+				"/Users/ivan/Projects/GledajUci.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -2327,7 +1969,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 331.0,
+	"side_bar_width": 329.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
