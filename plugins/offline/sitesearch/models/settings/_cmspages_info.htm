@@ -1,0 +1,12 @@
+<p><strong>Important information</strong></p>
+<p>You have to specifically add the component `siteSearchInclude` to every CMS page you want to be searched.</p>
+<p>Pages <strong>without</strong> this component will <strong>not</strong> be searched.</p>
+
+<p>Components on CMS pages will <strong>not</strong> be rendered. Use this provider only for simple html pages. All Twig syntax will be stripped out to prevent the leaking of source code to the search results.</p>
+
+<p>CMS pages with dynamic URLs (like <code>/page/:slug</code>) won't be linked correctly from the search results listing
+    .</p>
+
+<p>If you have CMS pages with dynamic contents consider writing your own search provider (see
+<code>Add support for custom plugin contents</code>) in <a target="_blank"
+                             href="http://octobercms.com/plugin/offline-sitesearch#documentation">the documentation</a>.</p>

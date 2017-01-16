@@ -1,0 +1,66 @@
+<?php return [
+    'plugin'            => [
+        'name'                       => 'SiteSearch',
+        'description'                => 'Pesquisa global para o seu frontend',
+        'author'                     => 'OFFLINE LLC',
+        'manage_settings'            => 'Gerenciar configurações do SiteSearch',
+        'manage_settings_permission' => 'Pode gerenciar as configurações do SiteSearch',
+    ],
+    'settings'          => [
+        'mark_results'               => 'Marcar correspondências nos resultados de pesquisa',
+        'mark_results_comment'       => 'Envolver o termo de pesquisa em tags <mark>',
+        'excerpt_length'             => 'Comprimento do trecho',
+        'excerpt_length_comment'     => 'Comprimento do trecho mostrado na lista de resultados da pesquisa.',
+        'use_this_provider'          => 'Utilize este provedor',
+        'use_this_provider_comment'  => 'Ativar para exibir resultados para esse provedor',
+        'provider_badge'             => 'Distintivo do provedor',
+        'provider_badge_comment'     => 'Texto a ser exibido em um distitivo no resultado de pesquisa',
+        'blog_posturl'               => 'URL da página de postagem do blog',
+        'blog_posturl_comment'       => 'Apenas especifique a parte fixa do URL sem parâmetros dinâmicos',
+        'blog_page'                  => 'Página de postagem do blog',
+        'blog_page_comment'          => 'Selecione uma página usada para exibir uma única postagem no blog. Necessário para formar URL para postagens.',
+        'news_page'                  => 'Página de publicação de notícias',
+        'news_page_comment'          => 'Selecione uma página usada para exibir uma única postagem de notícias. Necessário para formar URL para a notícia.',
+        'portfolio_itemurl'          => 'URL da página de detalhes do portfólio',
+        'portfolio_itemurl_comment'  => 'Apenas especifique a parte fixa do URL sem parâmetros dinâmicos',
+        'brands_itemurl'             => 'URL da página de detalhes da marca',
+        'brands_itemurl_comment'     => 'Apenas especifique a parte fixa do URL sem parâmetros dinâmicos',
+        'showcase_itemurl'           => 'URL da página de detalhes do showcase',
+        'showcase_itemurl_comment'   => 'Apenas especifique a parte fixa do URL sem parâmetros dinâmicos',
+        'octoshop_itemurl'           => 'URL da página de detalhes do produto',
+        'octoshop_itemurl_comment'   => 'Apenas especifique a parte fixa do URL sem parâmetros dinâmicos',
+        'octoshop_itemurl_badge'     => 'Produto',
+        'snipcartshop_itemurl_badge' => 'Produto',
+        'jkshop_itemurl'             => 'URL da página de detalhes do produto',
+        'jkshop_itemurl_comment'     => 'Apenas especifique a parte fixa do URL sem parâmetros dinâmicos',
+        'jkshop_itemurl_badge'       => 'Produto',
+        'experimental'               => 'Recurso experimental:',
+        'experimental_refer_to_docs' => 'Este provedor é experimental! Por favor, consulte <a target="_blank"
+href="http://octobercms.com/plugin/offline-sitesearch#documentation">the documentation</a> antes de usá-lo.',
+    ],
+    'searchResults'     => [
+        'title'       => 'Resultados da pesquisa',
+        'description' => 'Exibe uma lista de resultados de pesquisa',
+        'properties'  => [
+            'no_results'       => [
+                'title'       => 'Nenhuma mensagem de resultados',
+                'description' => 'O que exibir, se não houver resultados retornados',
+            ],
+            'provider_badge'   => [
+                'title'       => 'Mostrar o distintivo do provedor',
+                'description' => 'Exibir o nome do provedor de pesquisa para cada resultado',
+            ],
+            'results_per_page' => [
+                'title' => 'Resultados por página',
+            ],
+            'visit_page'       => [
+                'title'       => 'Etiqueta da página de Visita',
+                'description' => 'Este texto do link é colocado abaixo de cada resultado',
+            ],
+        ],
+    ],
+    'siteSearchInclude' => [
+        'title'       => 'Incluir no SiteSearch',
+        'description' => 'Adicionar a uma página do CMS para incluí-la nos resultados da pesquisa',
+    ],
+];

@@ -1,0 +1,77 @@
+1.0.1: 'First version of SiteSearch'
+1.0.2: 'Added experimental CMS pages results provider'
+1.0.3: 'Added missing component'
+1.0.4:
+    - 'Added support for RadiantWeb.ProBlog'
+1.0.5:
+    - 'Moved configuration to the backend'
+1.0.6:
+    - 'Fixed hardcoded url in pagination'
+1.0.7:
+    - 'Add function for getting last page number (Thanks to vojtasvoboda)'
+1.0.8:
+    - 'Add cs_CZ locale (Thanks to vojtasvoboda)'
+1.0.9:
+    - 'Added support for ArrizalAmin.Portfolio plugin'
+1.0.10:
+    - 'Removed unused component'
+1.1.0:
+    - Added support for translated contents in RainLab.Pages, ArrizalAmin.Portfolio and RadiantWeb.ProBlog
+    - Fixed bug where RainLab.Pages results were displayed twice
+    - Honor disabled plugins setting
+    - Generate absolute URLs in search results by default
+1.1.1:
+    - Added optimized siteSearchInclude component for cms pages search
+1.1.2:
+    - Fixed backend permissions
+1.1.3:
+    - Added ru_RU locale (Thanks to mokeev1995)
+1.2.1:
+    - 'Added support for Feegleweb.Octoshop (Thanks to billyzduke)'
+    - Refactored search providers and results page
+1.2.2:
+    - 'Minor bugfix in Feegleweb.Octoshop settings page translation'
+1.2.3:
+    - 'Fixed bug where the search results sometimes broke the page layout'
+1.2.4:
+    - 'Fixed bug where unavailable thumbnails lead to an error'
+1.2.5:
+    - 'Fixed bug where the provider badge is not displayed for custom search providers'
+1.2.6:
+    - 'Added support for Responsiv.Showcase (Thanks to MichiReich)'
+1.2.7:
+    - 'Fixed bug where custom url settings were ignored in search results for some providers'
+1.2.8:
+    - 'Added support for viewBag properties in RainLab.Pages'
+1.2.9:
+    - 'Added support for static page component hosts'
+1.2.10:
+    - 'Added support for multiple variables in Rainlab.Blog urls (Thanks to graker)'
+1.2.11:
+    - 'Optimized handling of multibyte strings'
+1.2.12:
+    - 'Added support for Jiri.Jkshop'
+1.2.13:
+    - 'Minor bugfixes for marked queries in search results and Rainlab.Blog provider (Thanks to graker)'
+1.2.14:
+    - 'Fixed bug in Jiri.JKShop provider'
+1.2.15:
+    - 'Added a new meta property for search results (thanks to cracki)'
+1.2.16:
+    - 'Added Persian (Farsi) translations (thanks to cracki)'
+1.2.17:
+    - 'Added support for Indikator.News (thanks to gergo85)'
+1.2.18:
+    - 'Fixed bug where titles of static pages where not searched (thanks to beenen445)'
+1.2.19:
+    - 'Added support for OFFLINE.SnipcartShop'
+1.2.20:
+    - 'Added support for VojtaSvoboda.Brands (thanks to vojtasvoboda)'
+1.2.21:
+    - 'Added Portuguese translations (thanks to ribsousa)'
+1.2.22:
+    - 'Fixed Portuguese translations'
+1.2.23:
+    - 'Fixed support for translated Rainlab.Blog contents'
+1.2.24:
+    - 'Added composer.json to allow loading plugin as dependency (thanks to adduc)'

@@ -1,0 +1,19 @@
+<h4 class="ss-result__title">
+    <a href="{{ result.url }}">{{ result.title | raw }}</a>
+    {% if __SELF__.showProviderBadge %}
+        <span class="ss-result__badge">
+            {{ result.provider }}
+        </span>
+    {% endif %}
+
+    {# Some results contain meta information.    #}
+    {# You can access it using {{ result.meta }} #}
+</h4>
+
+<p class="ss-result__text">
+    {{ result.excerpt | raw }}
+</p>
+
+<p class="ss-result__url">
+    <a href="{{ result.url }}" class="ss-result__link">{{ __SELF__.visitPageMessage }} &rarr;</a>
+</p>

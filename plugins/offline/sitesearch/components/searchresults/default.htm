@@ -1,0 +1,11 @@
+{% set results = __SELF__.results %}
+
+{% for result in results %}
+    {# Display all results #}
+    {% partial __SELF__ ~ '::searchresult.htm' result = result %}
+{% else %}
+    {# No results found #}
+    {% partial __SELF__ ~ '::no-results.htm' %}
+{% endfor %}
+
+{% partial __SELF__ ~ '::pagination.htm' results = results %}

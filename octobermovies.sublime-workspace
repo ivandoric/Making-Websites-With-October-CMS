@@ -335,6 +335,24 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "plugins/watchlearn/movies/updates/version.yaml",
+			"settings":
+			{
+				"buffer_size": 1162,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "plugins/watchlearn/movies/updates/seed.php",
+			"settings":
+			{
+				"buffer_size": 652,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -553,10 +571,15 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/idoric/Development/public/octobermovies"
+		"/Users/idoric/Development/public/octobermovies",
+		"/Users/idoric/Development/public/octobermovies/plugins",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/updates"
 	],
 	"file_history":
 	[
+		"/Users/idoric/Development/public/octobermovies/CONTRIBUTING.md",
 		"/Users/idoric/Development/public/starterkit/scss/components/_header.scss",
 		"/Users/idoric/Development/public/starterkit/package.json",
 		"/Users/idoric/Development/public/activenation/wp-content/themes/olympos/js/subpage-timetable.js",
@@ -683,8 +706,7 @@
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/modules/_typeahead.scss",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/issue-list.php",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/featured-article.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/olympos.min.js",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/vendor/autoload.php"
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/js/olympos.min.js"
 	],
 	"find":
 	{
@@ -895,8 +917,72 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "plugins/watchlearn/movies/updates/version.yaml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1162,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1126,
+								1126
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/YAML/YAML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 825.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "plugins/watchlearn/movies/updates/seed.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								383,
+								383
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 205.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

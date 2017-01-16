@@ -1,0 +1,251 @@
+fields:
+    mark_results:
+        span: left
+        type: switch
+        label: offline.sitesearch::lang.settings.mark_results
+        comment: offline.sitesearch::lang.settings.mark_results_comment
+        default: true
+    excerpt_length:
+        span: right
+        type: text
+        label: offline.sitesearch::lang.settings.excerpt_length
+        comment: offline.sitesearch::lang.settings.excerpt_length_comment
+        default: 250
+
+tabs:
+    fields:
+        rainlab_blog_enabled:
+            type: switch
+            tab: RainLab.Blog
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        rainlab_blog_label:
+            type: text
+            tab: RainLab.Blog
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Blog
+
+        rainlab_blog_page:
+            type: dropdown
+            options: blogPageOptions
+            tab: RainLab.Blog
+            label: offline.sitesearch::lang.settings.blog_page
+            comment: offline.sitesearch::lang.settings.blog_page_comment
+            span: auto
+
+        rainlab_pages_enabled:
+            type: switch
+            tab: RainLab.Pages
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        rainlab_pages_label:
+            type: text
+            tab: RainLab.Pages
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Page
+
+        indikator_news_enabled:
+            type: switch
+            tab: Indikator.News
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        indikator_news_label:
+            type: text
+            tab: Indikator.News
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: News
+
+        indikator_news_posturl:
+            type: text
+            tab: Indikator.News
+            label: offline.sitesearch::lang.settings.news_page
+            comment: offline.sitesearch::lang.settings.news_page_comment
+            default: /news
+            span: auto
+
+        octoshop_products_enabled:
+            type: switch
+            tab: Feegleweb.Octoshop
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        octoshop_products_label:
+            type: text
+            tab: Feegleweb.Octoshop
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+
+        octoshop_products_itemurl:
+            type: text
+            tab: Feegleweb.Octoshop
+            label: offline.sitesearch::lang.settings.octoshop_itemurl
+            comment: offline.sitesearch::lang.settings.octoshop_itemurl_comment
+            span: auto
+            default: /product
+
+        snipcartshop_products_enabled:
+            type: switch
+            tab: OFFLINE.SnipcartShop
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        snipcartshop_products_label:
+            type: text
+            tab: OFFLINE.SnipcartShop
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+
+        jiri_jkshop_enabled:
+            type: switch
+            tab: Jiri.JKShop
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        jiri_jkshop_label:
+            type: text
+            tab: Jiri.JKShop
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+
+        jiri_jkshop_itemurl:
+            type: text
+            tab: Jiri.JKShop
+            label: offline.sitesearch::lang.settings.jkshop_itemurl
+            comment: offline.sitesearch::lang.settings.jkshop_itemurl_comment
+            span: auto
+            default: /product
+
+        radiantweb_problog_enabled:
+            type: switch
+            tab: RadiantWeb.ProBlog
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        radiantweb_problog_label:
+            type: text
+            tab: RadiantWeb.ProBlog
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Blog
+
+        radiantweb_problog_posturl:
+            type: text
+            tab: RadiantWeb.ProBlog
+            label: offline.sitesearch::lang.settings.blog_posturl
+            comment: offline.sitesearch::lang.settings.blog_posturl_comment
+            span: auto
+            default: /blog
+
+        arrizalamin_portfolio_enabled:
+            type: switch
+            tab: ArrizalAmin.Portfolio
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        arrizalamin_portfolio_label:
+            type: text
+            tab: ArrizalAmin.Portfolio
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Portfolio
+
+        arrizalamin_portfolio_url:
+            type: text
+            tab: ArrizalAmin.Portfolio
+            label: offline.sitesearch::lang.settings.portfolio_itemurl
+            comment: offline.sitesearch::lang.settings.portfolio_itemurl_comment
+            span: auto
+            default: /portfolio/project
+
+        vojtasvoboda_brands_enabled:
+            type: switch
+            tab: VojtaSvoboda.Brands
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        vojtasvoboda_brands_label:
+            type: text
+            tab: VojtaSvoboda.Brands
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Brands
+
+        vojtasvoboda_brands_url:
+            type: text
+            tab: VojtaSvoboda.Brands
+            label: offline.sitesearch::lang.settings.brands_itemurl
+            comment: offline.sitesearch::lang.settings.brands_itemurl_comment
+            span: auto
+            default: /brand
+
+        responsiv_showcase_enabled:
+            type: switch
+            tab: Responsiv.Showcase
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        responsiv_showcase_label:
+            type: text
+            tab: Responsiv.Showcase
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Showcase
+
+        responsiv_showcase_url:
+            type: text
+            tab: Responsiv.Showcase
+            label: offline.sitesearch::lang.settings.showcase_itemurl
+            comment: offline.sitesearch::lang.settings.showcase_itemurl_comment
+            span: auto
+            default: /showcase/project
+
+        cms_pages_warning:
+            type: partial
+            path: $/offline/sitesearch/models/settings/_experimental.htm
+            tab: CMS pages
+
+        cms_pages_hint:
+            type: hint
+            path: $/offline/sitesearch/models/settings/_cmspages_info.htm
+            tab: CMS pages
+
+        cms_pages_enabled:
+            type: switch
+            tab: CMS pages
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: false
+
+        cms_pages_label:
+            type: text
+            tab: CMS pages
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: Page
