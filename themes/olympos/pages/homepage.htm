@@ -9,11 +9,36 @@ sortOrder = "name desc"
 
 [siteSearchInclude]
 ==
+<?
+    use WatchLearn\Movies\Models\Movie;
+    function onStart(){
+        $this['movies'] = Movie::take(4)->get();
+    }
+
+?>
+
+==
 <form action="{{ 'search' | page }}" method="get">
     <input name="q" type="text" placeholder="What are you looking for?" autocomplete="off">
     <button type="submit">Search</button>
 </form>
 
+<ul class="movie-list">
+    {% for movie in movies %}
+        <li>
+            {# Use spaceless tag to remove spaces inside the A tag. #}
+            <h3>
+                <a href="/movies/movie/{{movie.slug}}">
+                    {{ movie.name }} - {{movie.year}}
+                </a>
+            </h3>
+
+            {{ html_limit(movie.description, 150)|raw }}
+        </li>
+    {% else %}
+        <li class="no-data">No Movies found</li>
+    {% endfor %}
+</ul>
 
 
 <h2>This is our homepage! Yay!</h2>
