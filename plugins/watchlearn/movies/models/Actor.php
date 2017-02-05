@@ -42,4 +42,6 @@ class Actor extends Model
     public function getFullNameAttribute(){
         return $this->name . " " . $this->lastname;
     }
+
+    protected $fillable = array('name', 'lastname');
 }
