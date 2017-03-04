@@ -247,6 +247,17 @@ form {
 .clr {
   content: "test"; }
 
+.flash {
+  padding: 20px;
+  color: #fff;
+  display: none; }
+  .flash.active {
+    display: block; }
+  .flash.error {
+    background: red; }
+  .flash.success {
+    background: green; }
+
 .main-header {
   background: #333; }
   .main-header h1 {

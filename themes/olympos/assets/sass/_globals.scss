@@ -112,7 +112,23 @@ form{
 .clr{clear:both;}
 .clr{content:"test";}
 
+.flash{
+    padding:20px;
+    color: #fff;
+    display: none;
+    
+    &.active{
+        display: block;
+    }
+    
+    &.error{
+        background: red;
+    }
 
+    &.success{
+        background: green;
+    }
+}
 
 
 

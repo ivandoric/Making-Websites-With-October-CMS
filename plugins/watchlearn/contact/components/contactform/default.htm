@@ -1,4 +1,4 @@
-<form data-request="contactform::onSend" data-request-validate data-request-flash>
+<form data-request="contactform::onSend" class="contact-form" data-request-validate data-request-flash>
     <label>Your name</label>
     <input type="text" name="name">
     <span data-validate-for="name">Hey! How about inputing your name.</span>
@@ -14,6 +14,14 @@
     <button type="submit" data-attach-loading>Send</button>
 
     <div class="alert alert-danger" data-validate-error>
-            <p data-message></p>
-        </div>
+        <p data-message></p>
+    </div>
+
+    <div class="flash error">
+        Ooops. Something went wrong please check the requiered fields.
+    </div>
+
+    <div class="flash success">
+        Your message has been sent. Thank you.
+    </div>
 </form>
