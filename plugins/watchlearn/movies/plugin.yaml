@@ -9,12 +9,26 @@ navigation:
         label: Movies
         url: watchlearn/movies/movies
         icon: icon-video-camera
+        permissions:
+            - manage_movies
         sideMenu:
             side-menu-item:
                 label: Genres
                 url: watchlearn/movies/genres
                 icon: icon-tag
+                permissions:
+                    - manage_genres
             side-menu-item2:
                 label: Actors
                 url: watchlearn/movies/actors
                 icon: icon-user
+permissions:
+    manage_movies:
+        tab: Movies
+        label: 'Manage movies'
+    manage_genres:
+        tab: Movies
+        label: 'Manage genres'
+    delete_movies:
+        tab: Movies
+        label: 'Delete movies'
