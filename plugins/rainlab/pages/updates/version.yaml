@@ -1,0 +1,40 @@
+1.0.1: Implemented the static pages management and the Static Page component.
+1.0.2: Fixed the page preview URL.
+1.0.3: Implemented menus.
+1.0.4: Implemented the content block management and placeholder support.
+1.0.5: Added support for the Sitemap plugin.
+1.0.6: Minor updates to the internal API.
+1.0.7: Added the Snippets feature.
+1.0.8: Minor improvements to the code.
+1.0.9: Fixes issue where Snippet tab is missing from the Partials form.
+1.0.10: Add translations for various locales.
+1.0.11: Fixes issue where placeholders tabs were missing from Page form.
+1.0.12: Implement Media Manager support.
+1.1.0:
+  - Adds meta title and description to pages. Adds |staticPage filter.
+  - snippets_rename_viewbag_properties.php
+1.1.1: Add support for Syntax Fields.
+1.1.2: Static Breadcrumbs component now respects the hide from navigation setting.
+1.1.3: Minor back-end styling fix.
+1.1.4: Minor fix to the StaticPage component API.
+1.1.5: Fixes bug when using syntax fields.
+1.1.6: Minor styling fix to the back-end UI.
+1.1.7: Improved menu item form to include CSS class, open in a new window and hidden flag.
+1.1.8: Improved the output of snippet partials when saved.
+1.1.9: Minor update to snippet inspector internal API.
+1.1.10: Fixes a bug where selecting a layout causes permanent unsaved changes.
+1.1.11: Add support for repeater syntax field.
+1.2.0: Added support for translations, UI updates.
+1.2.1: Use nice titles when listing the content files.
+1.2.2: Minor styling update.
+1.2.3: Snippets can now be moved by dragging them.
+1.2.4: Fixes a bug where the cursor is misplaced when editing text files.
+1.2.5: Fixes a bug where the parent page is lost upon changing a page layout.
+1.2.6: Shared view variables are now passed to static pages.
+1.2.7: Fixes issue with duplicating properties when adding multiple snippets on the same page.
+1.2.8: Fixes a bug where creating a content block without extension doesn't save the contents to file.
+1.2.9: Add conditional support for translating page URLs.
+1.2.10: Streamline generation of URLs to use the new Cms::url helper.
+1.2.11: Implements repeater usage with translate plugin.
+1.2.12: Fixes minor issue when using snippets and switching the application locale.
+1.2.13: Fixes bug when AJAX is used on a page that does not yet exist.

@@ -1,0 +1,37 @@
+<div class="layout-row min-size">
+    <div class="control-toolbar toolbar-padded separator">
+
+        <!-- Control Panel -->
+        <div class="toolbar-item" data-calculate-width>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default oc-icon-plus last"
+                    data-control="create-object"
+                    ><?= e(trans('rainlab.pages::lang.sidebar.add')) ?></button>
+                <button type="button" class="btn btn-default empty oc-icon-trash-o hide"
+                    id="<?= $this->getId('delete-button') ?>"
+                    data-control="delete-object"
+                    data-confirmation="<?= e(trans($this->deleteConfirmation)) ?>"
+                    data-trigger-action="show"
+                    data-trigger="<?= '#'.$this->getId('page-list') ?> input[type=checkbox]"
+                    data-trigger-condition="checked"></button>
+            </div>
+        </div>
+
+        <!-- Page Search -->
+        <div class="relative toolbar-item loading-indicator-container size-input-text">
+            <input
+                type="text"
+                name="search"
+                value="<?= e($this->getSearchTerm()) ?>"
+                class="form-control icon search" autocomplete="off"
+                placeholder="<?= e(trans('rainlab.pages::lang.sidebar.search')) ?>"
+                data-track-input
+                data-load-indicator
+                data-load-indicator-opaque
+                data-request-success="$('<?= '#'.$this->getId('delete-button') ?>').trigger('oc.triggerOn.update')"
+                data-request="<?= $this->getEventHandler('onSearch') ?>"
+            />
+        </div>
+
+    </div>
+</div>

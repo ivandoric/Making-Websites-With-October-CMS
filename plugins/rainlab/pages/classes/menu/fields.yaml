@@ -1,0 +1,32 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    name:
+        span: left
+        label: rainlab.pages::lang.menu.name
+        placeholder: rainlab.pages::lang.menu.new_name
+        attributes:
+            default-focus: 1
+
+    code:
+        span: right
+        placeholder: rainlab.pages::lang.menu.new_code
+        label: rainlab.pages::lang.menu.code
+        preset:
+            field: name
+            type: file
+
+    toolbar:
+        type: partial
+        path: menu_toolbar
+        cssClass: collapse-visible
+
+tabs:
+    stretch: true
+    fields:
+        items:
+            stretch: true
+            tab: rainlab.pages::lang.menu.items
+            type: RainLab\Pages\FormWidgets\MenuItems

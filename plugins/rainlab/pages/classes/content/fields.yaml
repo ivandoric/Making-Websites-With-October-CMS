@@ -1,0 +1,38 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    fileName:
+        label: cms::lang.editor.filename
+        attributes:
+            default-focus: 1
+
+    toolbar:
+        type: partial
+        path: content_toolbar
+        cssClass: collapse-visible
+
+    components: Cms\FormWidgets\Components
+
+secondaryTabs:
+    stretch: true
+    fields:
+        markup:
+            tab: cms::lang.editor.content
+            stretch: true
+            type: codeeditor
+            language: html
+            theme: chrome
+            showGutter: false
+            highlightActiveLine: false
+            fontSize: 13
+            cssClass: pagesTextEditor
+            margin: 20
+
+        markup_html:
+            tab: cms::lang.editor.content
+            stretch: true
+            type: richeditor
+            size: huge
+            valueFrom: markup

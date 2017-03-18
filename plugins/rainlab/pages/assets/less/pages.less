@@ -1,0 +1,193 @@
+@import "../../../../../modules/backend/assets/less/core/boot.less";
+    
+.control-filelist.menu-list {
+    li {
+        > a {
+            position: relative;
+
+            &:before {
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                left: 17px;
+                top: 18px;
+
+                content: ' ';
+
+                background-image: url(../images/menu-icons.png);
+                background-position: 0 0;
+                background-repeat: no-repeat;
+                background-size: 36px auto;
+            }
+
+            &:hover {
+                &:before {
+                    background-position: 0 -60px;
+                }
+            }
+        }
+    }
+}
+
+.control-filelist.content {
+    li > a {
+        position: relative;
+
+        &:before {
+            position: absolute;
+            width: 18px;
+            height: 22px;
+            left: 18px;
+            top: 10px;
+
+            content: ' ';
+
+            background-image: url(../images/content-icons.png);
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: 34px auto;
+        }
+
+        &:hover {
+            &:before {
+                background-position: 0 -27px;
+            }
+        }
+    }
+
+    li.group ul li > a:before {
+        left: 34px;
+    }
+}
+
+.page-snippet-icon() {
+    position: absolute;
+    width: 17px;
+    height: 19px;
+    left: 18px;
+    top: 13px;
+
+    content: ' ';
+
+    background-image: url(../images/snippet-icons.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 34px auto;
+}
+
+.control-filelist.snippet-list {
+    li > a {
+        position: relative;
+        color: #808c8d;
+
+        &:before {
+            .page-snippet-icon();
+
+            left: 18px;
+            top: 17px;
+        }
+
+        &:hover {
+            &:before {
+                background-position: 0 -21px;
+            }
+        }
+    }
+
+    li.group ul li > a:before {
+        left: 34px;
+    }
+}
+
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+    .control-filelist.menu-list {
+        li {
+            > a {
+                &:before {
+                    background-position: 0px -11px;
+                    background-size: 18px auto;
+                }
+
+                &:hover {
+                    &:before {
+                        background-position: 0px -40px;
+                    }
+                }
+            }
+        }
+    }
+
+    .control-filelist.content {
+        li {
+            a {
+                &:before {
+                    background-position: 0px -27px;
+                    background-size: 17px auto;
+                }
+
+                &:hover {
+                    &:before {
+                        background-position: 0px -52px;
+                    }
+                }
+            }
+        }
+    }
+
+    .control-filelist.snippet-list {
+        li {
+            a {
+                &:before {
+                    background-position: 0px -21px;
+                    background-size: 17px auto;
+                }
+
+                &:hover {
+                    &:before {
+                        background-position: 0px -41px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fancy-layout {
+    .pagesTextEditor {
+        border-left: 1px solid @color-form-field-border!important;
+    }
+}
+
+.control-richeditor {
+    [data-snippet] {
+        &:before {
+            content: attr(data-name);
+        }
+
+        &:after {
+            .page-snippet-icon();
+
+            left: 11px;
+            top: 12px;
+        }
+
+        &.loading:after {
+            background-image:url(../../../../../modules/system/assets/ui/images/loader-transparent.svg);
+            background-size: 15px 15px;
+            background-position: 50% 50%;
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 13px;
+            content: ' ';
+            .animation(spin 1s linear infinite);
+        }
+    }
+}
+
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+    .control-richeditor [data-snippet]:after {
+        background-position: 0px -21px;
+        background-size: 17px auto;
+    }
+}

@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="popup">&times;</button>
+    <h4 class="modal-title"><?= e(trans('rainlab.pages::lang.menuitem.editor_title')) ?></h4>
+</div>
+<div class="modal-body form-container">
+    <form
+        data-message-title-required="<?= e(trans($this->titleRequiredMessage)) ?>"
+        data-message-reference-required="<?= e(trans($this->referenceRequiredMessage)) ?>"
+        data-message-url-required="<?= e(trans($this->urlRequiredMessage)) ?>"
+        data-message-cmsPage-required="<?= e(trans($this->cmsPageRequiredMessage)) ?>"
+    >
+        <?= $itemFormWidget->render() ?>
+    <form>
+</div>
+<div class="modal-footer">
+    <button
+        type="button"
+        class="btn btn-primary"
+        data-control="apply-btn">
+        <?= e(trans('backend::lang.form.apply')) ?>
+    </button>
+    <button
+        type="button"
+        class="btn btn-default"
+        data-dismiss="popup">
+        <?= e(trans('backend::lang.form.cancel')) ?>
+    </button>
+</div>

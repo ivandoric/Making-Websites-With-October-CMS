@@ -1,0 +1,20 @@
+<div class="layout-row min-size">
+    <div class="control-toolbar toolbar-padded separator">
+
+        <!-- Snippet Search -->
+        <div class="relative toolbar-item loading-indicator-container size-input-text">
+            <input
+                type="text"
+                name="search"
+                value="<?= e($this->getSearchTerm()) ?>" 
+                class="form-control icon search" autocomplete="off"
+                placeholder="<?= e(trans('rainlab.pages::lang.sidebar.search')) ?>"
+                data-track-input
+                data-load-indicator
+                data-load-indicator-opaque
+                data-request="<?= $this->getEventHandler('onSearch') ?>"
+            />
+        </div>
+
+    </div>
+</div>

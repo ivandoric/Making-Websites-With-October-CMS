@@ -1,0 +1,25 @@
+<?= Form::open([
+    'class' => 'layout',
+    'data-change-monitor' => 'true',
+    'data-window-close-confirm' => e(trans('backend::lang.form.confirm_tab_close')),
+    'data-object-type' => e($objectType)
+]) ?>
+    <?= $form->render() ?>
+
+    <input type="hidden" value="<?= e($form->alias) ?>" name="formWidgetAlias" />
+    <input type="hidden" value="<?= e($objectType) ?>" name="objectType" />
+    <input type="hidden" value="<?= e($objectPath) ?>" name="objectPath" />
+    <input type="hidden" value="<?= e($objectTheme) ?>" name="theme" />
+    <input type="hidden" value="<?= e($objectMtime) ?>" name="objectMtime" />
+
+    <?php if (isset($objectParent)): ?>
+        <input type="hidden" value="<?= e($objectParent) ?>" name="parentFileName" />
+    <?php endif ?>
+
+    <?php if (isset($parentPage)): ?>
+        <input type="hidden" data-parent-url value="<?= e($parentPage->getViewBag()->property('url')) ?>" />
+    <?php endif ?>
+
+    <input type="hidden" value="0" name="objectForceSave" />
+
+<?= Form::close() ?>

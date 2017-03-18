@@ -1,0 +1,79 @@
+description = "Static Layout"
+
+[session]
+security = "all"
+
+[staticPage]
+
+[staticMenu]
+code = "headermenu"
+
+[staticMenu staticMenu2]
+code = "footermenu"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>OctoberCMS - {{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="OctoberCMS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="OctoberCMS">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}" />
+        {% styles %}
+        <link href="{{ 'assets/compiled/css/style.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+       
+        <header class="main-header">
+            <div class="container clearfix">
+                <h1 class="logo">October Movies</h1>
+
+                <nav class="main-nav">
+                    {% component 'staticMenu' %}
+                </nav>
+            </div>
+
+        </header>
+
+        <!-- Content -->
+        <section id="layout-content" class="container clearfix">
+            <h1>{{this.page.title}}</h1>  
+            {% page %}
+        </section>
+
+        <footer class="main-footer">
+            <div class="container">
+            <nav class="footer-menu">
+                {% component 'staticMenu2' %}
+            </nav>
+
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/compiled/js/all.js'|theme }}"></script>
+
+        <script type="text/javascript">
+
+        jQuery(document).ready(function($){
+            $('.contact-form').on('ajaxError', function(event, message){
+                $('.flash').removeClass('active');
+                $('.flash.error').addClass('active');
+            });
+
+            $('.contact-form').on('ajaxSuccess', function(event, message){
+                $('.flash').removeClass('active');
+                $('.flash.success').addClass('active');
+            });
+        });
+
+        </script>
+
+        {% framework extras %}
+        {% scripts %}
+
+    </body>
+</html>

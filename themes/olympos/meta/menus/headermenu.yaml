@@ -1,0 +1,11 @@
+name: 'Header menu'
+items:
+    -
+        title: 'All pages'
+        type: all-static-pages
+        code: ''
+        replace: '1'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

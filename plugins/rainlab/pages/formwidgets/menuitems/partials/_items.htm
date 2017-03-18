@@ -1,0 +1,11 @@
+<ol>
+    <?= $this->makePartial('itemlist', ['items' => $items]) ?>
+</ol>
+
+<a href="javascript:;"
+    data-hotkey="ctrl+i, cmd+i"
+    data-control="add-item"
+    class="menu-control"
+    >
+    <i class="icon-plus"></i><?= trans('rainlab.pages::lang.menuitem.add_item') ?>
+</a>

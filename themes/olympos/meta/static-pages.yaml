@@ -1,0 +1,5 @@
+static-pages:
+    about:
+        about-about-us: {  }
+        about-about-them: {  }
+    contact-page: {  }

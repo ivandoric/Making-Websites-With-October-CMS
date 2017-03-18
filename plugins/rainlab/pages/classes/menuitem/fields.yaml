@@ -1,0 +1,66 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    title:
+        span: left
+        label: rainlab.pages::lang.menuitem.title
+
+    type:
+        span: right
+        label: rainlab.pages::lang.menuitem.type
+        type: dropdown
+
+    url:
+        label: rainlab.pages::lang.menuitem.url
+
+    reference:
+        label: rainlab.pages::lang.menuitem.reference
+        type: dropdown
+        cssClass: input-sidebar-control
+
+    cmsPage:
+        label: rainlab.pages::lang.menuitem.cms_page
+        comment: rainlab.pages::lang.menuitem.cms_page_comment
+        type: dropdown
+        cssClass: input-sidebar-control
+
+    nesting:
+        label: rainlab.pages::lang.menuitem.allow_nested_items
+        comment: rainlab.pages::lang.menuitem.allow_nested_items_comment
+        type: checkbox
+        default: true
+
+    replace:
+        label: rainlab.pages::lang.menuitem.replace
+        comment: rainlab.pages::lang.menuitem.replace_comment
+        type: checkbox
+        default: true
+
+tabs:
+    fields:
+        viewBag[isHidden]:
+            label: Hidden
+            comment: Hide this menu item from appearing on the front-end.
+            type: checkbox
+            tab: Display
+
+        code:
+            label: rainlab.pages::lang.menuitem.code
+            comment: rainlab.pages::lang.menuitem.code_comment
+            tab: Attributes
+            span: auto
+
+        viewBag[cssClass]:
+            label: CSS Class
+            comment: Enter a CSS class name to give this menu item a custom appearance.
+            tab: Attributes
+            span: auto
+
+        viewBag[isExternal]:
+            label: External link
+            comment: Open links for this menu item in a new window.
+            type: checkbox
+            tab: Attributes

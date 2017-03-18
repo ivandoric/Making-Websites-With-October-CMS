@@ -1,0 +1,21 @@
+<div class="layout control-scrollpanel" id="pages-side-panel">
+    <div class="layout-cell">
+        <div class="layout-relative fix-button-container">
+            <form class="layout" data-content-id="pages" data-object-type="page" data-type-icon="oc-icon-files-o" onsubmit="return false">
+                <?= $this->widget->pageList->render() ?>
+            </form>
+
+            <form class="layout hide" data-content-id="menus" data-object-type="menu" data-type-icon="oc-icon-sitemap" onsubmit="return false">
+                <?= $this->widget->menuList->render() ?>
+            </form>
+
+            <form class="layout hide" data-content-id="content" data-object-type="content" data-type-icon="oc-icon-file-text-o" onsubmit="return false">
+                <?= $this->widget->contentList->render() ?>
+            </form>
+
+            <form class="layout hide" data-content-id="snippet" data-object-type="snippet" data-type-icon="icon-newspaper-o" onsubmit="return false">
+                <?= $this->widget->snippetList->render() ?>
+            </form>
+        </div>
+    </div>
+</div>

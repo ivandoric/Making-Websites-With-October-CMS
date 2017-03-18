@@ -1,0 +1,39 @@
+<?php if ($items): ?>
+    <ul>
+        <?php foreach ($items as $item): ?>
+            <?php
+                $fileName = $item->getBaseFileName();
+                $dataId = 'menu-'.$this->theme->getDirName().'-'.$fileName;
+                $cbId = 'cb'.md5($item->getBaseFileName());
+            ?>
+            <li class="item" data-item-path="<?= e($fileName) ?>" data-item-theme="<?= e($this->theme->getDirName()) ?>" data-id="<?= e($dataId) ?>">
+                <a href="#">
+                    <span class="title"><?= e($item->name) ?></span>
+                    <span class="description">
+                        <?= e($item->code) ?>
+                    </span>
+                    <span class="borders"></span>
+                </a>
+
+                <input type="hidden" name="template[<?= e($item->getBaseFileName()) ?>]" value="0" />
+
+                <div class="checkbox custom-checkbox nolabel">
+                    <input
+                        id="<?= $cbId ?>"
+                        type="checkbox"
+                        name="object[<?= e($item->getBaseFileName()) ?>]"
+                        <?= $this->isItemSelected($dataId) ? 'checked' : null ?>
+                        data-request="<?= $this->getEventHandler('onSelect') ?>"
+                        value="1" />
+                    <label for="<?= $cbId ?>">Select</label>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php else: ?>
+    <p class="no-data"><?= e(trans($this->noRecordsMessage)) ?></p>
+<?php endif ?>
+
+<?php if (!isset($nested)): ?>
+    <input type="hidden" name="theme" value="<?= e($this->theme->getDirName()) ?>">
+<?php endif ?>

@@ -1,23 +1,16 @@
+[staticMenu]
+code = "headermenu"
+
+[viewBag]
+==
 <header class="main-header">
     <div class="container clearfix">
         <h1 class="logo">October Movies</h1>
 
         <nav class="main-nav">
-            <ul>
-                <li class="{% if this.page.id == 'homepage' %} active {% endif %}"><a href="{{ 'homepage'|page }}">Home</a></li>
-                <li class="{% if this.page.id == 'movies' %} active {% endif %}"><a href="{{ 'movies'|page }}">Movies</a></li>
-                <li class="{% if this.page.id == 'add-actors' %} active {% endif %}"><a href="{{ 'add-actors'|page }}">Add actors</a></li>
-                <li class="{% if this.page.id == 'login' %} active {% endif %}"><a href="{{ 'login'|page }}">
-                    {% if not user  %}
-                        Login
-                    {% else %}
-                        My profile
-                    {% endif %}
-                </a></li>
-                {% if user %}
-                    <li><a data-request="onLogout" data-request-data="redirect: '/'">Sign out</a></li>
-                {% endif %}
-            </ul>
+         
+            {% component 'staticMenu' %}
+            
         </nav>
     </div>
 
