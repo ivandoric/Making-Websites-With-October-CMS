@@ -1,0 +1,15 @@
+scopes:
+  genres:
+    label: Genre
+    modelClass: Watchlearn\Movies\Models\Genre
+    conditions: id in (select movie_id from watchlearn_movies_movies_genres where genre_id in (:filtered))
+    nameFrom: genre_title
+  created_at:
+    label: 'Date range'
+    type: daterange
+    conditions: created_at >= ':after' AND created_at <= ':before'
+  published:
+    label: Show published
+    type: checkbox
+    conditions: published = true
+

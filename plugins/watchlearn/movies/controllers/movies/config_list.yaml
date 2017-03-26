@@ -5,6 +5,7 @@ recordUrl: 'watchlearn/movies/movies/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
 showCheckboxes: true
+filter: config_filter.yaml
 toolbar:
     buttons: list_toolbar
     search:
