@@ -336,19 +336,37 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/movies/controllers/movies/config_list.yaml",
+			"file": "plugins/watchlearn/movies/controllers/Movies.php",
 			"settings":
 			{
-				"buffer_size": 370,
+				"buffer_size": 657,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/movies/controllers/movies/config_filter.yaml",
+			"file": "plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
 			"settings":
 			{
-				"buffer_size": 432,
+				"buffer_size": 346,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "plugins/watchlearn/movies/models/movie/fields.yaml",
+			"settings":
+			{
+				"buffer_size": 1389,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "plugins/watchlearn/movies/controllers/movies/update.htm",
+			"settings":
+			{
+				"buffer_size": 2357,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -581,11 +599,16 @@
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/actor",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/movie"
 	],
 	"file_history":
 	[
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/_field_genre.htm",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/_field_actor.htm",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_list.yaml",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_filter.yaml",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/movie/columns.yaml",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/movie/_poster_column.htm",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/actor/columns.yaml",
@@ -708,12 +731,7 @@
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/activity-slider.php",
 		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/newsletter-subscribe.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/notes.php",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/gt-activities.php",
-		"/Users/ivan/Library/Caches/com.binarynights.ForkLift2/#0/document-box.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/404.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_404.scss"
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/notes.php"
 	],
 	"find":
 	{
@@ -931,19 +949,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/movies/controllers/movies/config_list.yaml",
+					"file": "plugins/watchlearn/movies/controllers/Movies.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 370,
+						"buffer_size": 657,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								271,
-								271
+								505,
+								505
 							]
 						],
 						"settings":
@@ -951,8 +969,8 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/YAML/YAML.sublime-syntax",
-							"tabs_extra_last_activated": 1490520884.63,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tabs_extra_last_activated": 1491030985.8,
 							"tabs_extra_last_activated_sheet_index": 0,
 							"tabs_extra_spawned": true
 						},
@@ -960,24 +978,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "plugins/watchlearn/movies/controllers/movies/config_filter.yaml",
+					"file": "plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 432,
+						"buffer_size": 346,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								81,
-								81
+								346,
+								346
 							]
 						],
 						"settings":
@@ -987,7 +1005,7 @@
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/YAML/YAML.sublime-syntax",
-							"tabs_extra_last_activated": 1490523860.1,
+							"tabs_extra_last_activated": 1491035496.02,
 							"tabs_extra_last_activated_sheet_index": 1,
 							"tabs_extra_spawned": true
 						},
@@ -996,6 +1014,74 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "plugins/watchlearn/movies/models/movie/fields.yaml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1389,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1386,
+								1386
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tabs_extra_last_activated": 1491033427.55,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1992.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "plugins/watchlearn/movies/controllers/movies/update.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								361,
+								361
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tabs_extra_last_activated": 1491032893.51,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 194.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1571,19 +1657,19 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "wat",
+		"last_filter": "watch",
 		"selected_items":
 		[
+			[
+				"watch",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
 			[
 				"wat",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"wa",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
-			],
-			[
-				"watch",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[

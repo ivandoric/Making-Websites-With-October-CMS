@@ -53,10 +53,12 @@ fields:
         oc.commentPosition: ''
         nameFrom: genre_title
         descriptionFrom: description
-        type: relation
+        type: partial
+        path: field_genre
     actors:
       label: Actors
       span: left
-      type: actorbox
+      type: partial
+      path: field_actor
 
 
