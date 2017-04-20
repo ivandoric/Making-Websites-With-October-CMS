@@ -17,6 +17,6 @@ elixir(function(mix){
         'themes/olympos/assets/compiled/css/style.css',
         'themes/olympos/**/*.htm',
         'themes/olympos/assets/compiled/js/*.js'
-    ])
+    ]);
 
-})
+});

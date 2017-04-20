@@ -7,7 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
+    "watch": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,7 @@
   "homepage": "https://github.com/ivandoric/Making-Websites-With-October-CMS#readme",
   "devDependencies": {
     "laravel-elixir": "^5.0.0",
-    "laravel-elixir-livereload": "^1.1.6"
+    "laravel-elixir-livereload": "^1.1.6",
+    "laravel-mix": "^0.10.0"
   }
 }

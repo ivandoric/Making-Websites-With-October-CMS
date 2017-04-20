@@ -336,37 +336,63 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/movies/controllers/Movies.php",
+			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 657,
+				"buffer_size": 1041,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
+			"file": "webpack.mix.js",
 			"settings":
 			{
-				"buffer_size": 346,
+				"buffer_size": 2294,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/movies/models/movie/fields.yaml",
+			"file": "themes/olympos/layouts/default.htm",
 			"settings":
 			{
-				"buffer_size": 1389,
+				"buffer_size": 1676,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/movies/controllers/movies/update.htm",
+			"file": "themes/olympos/assets/sass/_globals.scss",
 			"settings":
 			{
-				"buffer_size": 2357,
+				"buffer_size": 2196,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/js/app.js",
+			"settings":
+			{
+				"buffer_size": 169,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/dist/js/app.js",
+			"settings":
+			{
+				"buffer_size": 3704,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/assets/js/sayhi.js",
+			"settings":
+			{
+				"buffer_size": 117,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -594,19 +620,32 @@
 	"expanded_folders":
 	[
 		"/Users/idoric/Development/public/octobermovies",
-		"/Users/idoric/Development/public/octobermovies/plugins",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/movie"
+		"/Users/idoric/Development/public/octobermovies/public",
+		"/Users/idoric/Development/public/octobermovies/public/dist",
+		"/Users/idoric/Development/public/octobermovies/themes",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/dist",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/dist/css",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/dist/js",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/js",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/sass",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/layouts"
 	],
 	"file_history":
 	[
+		"/Users/idoric/Development/public/octobermovies/package.json",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/js/app.js",
+		"/Users/idoric/Development/public/octobermovies/gulpfile.js",
+		"/Users/idoric/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-build",
+		"/Users/idoric/Development/public/octobermovies/webpack.mix.js",
+		"/Users/idoric/Development/public/octobermovies/npm-debug.log",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/Movies.php",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/movie/fields.yaml",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/update.htm",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/_field_genre.htm",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/_field_actor.htm",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_list.yaml",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/config_filter.yaml",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/movie/columns.yaml",
@@ -615,8 +654,6 @@
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/layouts/static-layout.htm",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/layouts/default.htm",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/_list_toolbar.htm",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/controllers/movies/update.htm",
-		"/Users/idoric/Development/public/octobermovies/gulpfile.js",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/sass/_globals.scss",
 		"/Users/idoric/Development/public/octobermovies/config/mail.php",
@@ -724,22 +761,15 @@
 		"/Users/ivan/Development/public/activenation/Assets/krave/index.html",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/goldenticket.php",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_golden-ticket.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-02.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_homepage.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/lockeroom/lockeroom-footer.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_lockeroom-index.scss",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/activity-slider.php",
-		"/Users/ivan/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/newsletter-subscribe.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/notes.php"
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-02.php"
 	],
 	"find":
 	{
-		"height": 41.0
+		"height": 83.0
 	},
 	"find_in_files":
 	{
-		"height": 173.0,
+		"height": 197.0,
 		"where_history":
 		[
 			"<current file>",
@@ -949,19 +979,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/movies/controllers/Movies.php",
+					"file": "package.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 657,
+						"buffer_size": 1041,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								505,
-								505
+								492,
+								492
 							]
 						],
 						"settings":
@@ -969,48 +999,47 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tabs_extra_last_activated": 1491030985.8,
+							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (NPM).sublime-syntax",
+							"tabs_extra_last_activated": 1492622727.92,
 							"tabs_extra_last_activated_sheet_index": 0,
 							"tabs_extra_spawned": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 170.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "plugins/watchlearn/movies/controllers/movies/config_relation.yaml",
+					"file": "webpack.mix.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 346,
+						"buffer_size": 2294,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								346,
-								346
+								835,
+								835
 							]
 						],
 						"settings":
 						{
-							"_anf_new": "",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/YAML/YAML.sublime-syntax",
-							"tabs_extra_last_activated": 1491035496.02,
+							"syntax": "Packages/Seti_UI/icons/Langs/Laravel Mix (JS).tmLanguage",
+							"tabs_extra_last_activated": 1492673968.67,
 							"tabs_extra_last_activated_sheet_index": 1,
 							"tabs_extra_spawned": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 805.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1018,53 +1047,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "plugins/watchlearn/movies/models/movie/fields.yaml",
+					"file": "themes/olympos/layouts/default.htm",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1389,
+						"buffer_size": 1676,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1386,
-								1386
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/YAML/YAML.sublime-syntax",
-							"tabs_extra_last_activated": 1491033427.55,
-							"tabs_extra_last_activated_sheet_index": 2,
-							"tabs_extra_spawned": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1992.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "plugins/watchlearn/movies/controllers/movies/update.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2357,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								361,
-								361
+								1086,
+								1086
 							]
 						],
 						"settings":
@@ -1073,15 +1068,152 @@
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"tabs_extra_last_activated": 1491032893.51,
+							"tabs_extra_last_activated": 1492623643.56,
 							"tabs_extra_last_activated_sheet_index": 2,
 							"tabs_extra_spawned": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 194.0,
+						"translation.y": 1081.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "themes/olympos/assets/sass/_globals.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								285,
+								285
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Syntax Highlighting for Sass/Syntaxes/SCSS.tmLanguage",
+							"tabs_extra_last_activated": 1492624636.72,
+							"tabs_extra_last_activated_sheet_index": 3,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 171.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "themes/olympos/assets/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								169,
+								169
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tabs_extra_last_activated": 1492625597.72,
+							"tabs_extra_last_activated_sheet_index": 4,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "themes/olympos/assets/dist/js/app.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 3704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3138,
+								3138
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tabs_extra_last_activated": 1492626084.44,
+							"tabs_extra_last_activated_sheet_index": 5,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3342.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "themes/olympos/assets/js/sayhi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tabs_extra_last_activated": 1492625492.0,
+							"tabs_extra_last_activated_sheet_index": 5,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1089,11 +1221,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 41.0
+		"height": 45.0
 	},
 	"input":
 	{
-		"height": 75.0
+		"height": 83.0
 	},
 	"layout":
 	{
@@ -1118,6 +1250,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 288.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1130,7 +1266,7 @@
 	"project": "octobermovies.sublime-project",
 	"replace":
 	{
-		"height": 78.0
+		"height": 98.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1657,28 +1793,48 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "watch",
+		"last_filter": "kon",
 		"selected_items":
 		[
 			[
-				"watch",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
+				"kon",
+				"~/Development/public/iwmndev_vipnet-company-web1/konfigurator.sublime-project"
 			],
 			[
-				"wat",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
+				"october",
+				"~/Development/public/october/october.sublime-project"
 			],
 			[
-				"wa",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
+				"",
+				"~/Development/public/iwmndev_vipnet-company-web1/konfigurator.sublime-project"
+			],
+			[
+				"to",
+				"~/Development/public/todoapi/todoapi.sublime-project"
+			],
+			[
+				"todo",
+				"~/Development/public/todoapi/todoapi.sublime-project"
+			],
+			[
+				"octobe",
+				"~/Development/public/todoapi/todoapi.sublime-project"
 			],
 			[
 				"vip",
 				"~/Burza/vip-templates/vip-templates.sublime-project"
 			],
 			[
-				"",
-				"~/Burza/patternlab/patternlab.sublime-project"
+				"wat",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"watch",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"wa",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"vrsar",
@@ -2110,10 +2266,6 @@
 			],
 			[
 				"tota",
-				"/Users/ivan/Projects/TotalTubs.sublime-project"
-			],
-			[
-				"to",
 				"/Users/ivan/Projects/TotalTubs.sublime-project"
 			],
 			[
