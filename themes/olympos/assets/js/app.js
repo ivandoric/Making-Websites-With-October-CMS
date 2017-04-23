@@ -9,4 +9,4 @@ class HelloWorld{
     }
 }
 
-new HelloWorld;
+//new HelloWorld;

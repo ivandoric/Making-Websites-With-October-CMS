@@ -1,0 +1,12 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    {% for movie in movies %}
+        <url>
+            <loc>{{ url('/movies/movie/') ~ movie.slug }}</loc>
+            <lastmod>{{ movie.created_at|date('c') }}</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+        </url>
+    {% endfor %}
+
+</urlset>
