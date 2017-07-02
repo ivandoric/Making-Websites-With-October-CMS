@@ -336,21 +336,29 @@
 	"buffers":
 	[
 		{
-			"file": "plugins/watchlearn/movies/routes.php",
+			"file": "plugins/watchlearn/movies/components/filtermovies/default.htm",
 			"settings":
 			{
-				"buffer_size": 1098,
+				"buffer_size": 1375,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plugins/watchlearn/movies/views/sitemap.htm",
+			"file": "plugins/watchlearn/movies/components/FilterMovies.php",
 			"settings":
 			{
-				"buffer_size": 532,
+				"buffer_size": 1508,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/pages/movies.htm",
+			"settings":
+			{
+				"buffer_size": 888,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -361,10 +369,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 262.0,
-		"last_filter": "dup",
+		"height": 354.0,
+		"last_filter": "renam",
 		"selected_items":
 		[
+			[
+				"renam",
+				"File: Rename"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
 			[
 				"dup",
 				"File: Duplicate"
@@ -554,7 +570,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 480.0
 	},
 	"console":
 	{
@@ -579,10 +595,18 @@
 		"/Users/idoric/Development/public/octobermovies/plugins",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/views"
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/components",
+		"/Users/idoric/Development/public/octobermovies/themes",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos",
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages"
 	],
 	"file_history":
 	[
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/filtermovies.htm",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/Plugin.php",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/components/filtermovies/default.htm",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/views/sitemap.htm",
+		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/routes.php",
 		"/Users/idoric/Development/public/octobermovies/package.json",
 		"/Users/idoric/Development/public/octobermovies/webpack.mix.js",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/layouts/default.htm",
@@ -609,11 +633,9 @@
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/contact/components/contactform/default.htm",
 		"/Users/idoric/Development/public/octobermovies/config/mail.php",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/homepage.htm",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/routes.php",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/models/Actor.php",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/movie-single.htm",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/movies.htm",
-		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/Plugin.php",
 		"/Users/idoric/Development/public/octobermovies/document.md",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/updates/version.yaml",
 		"/Users/idoric/Development/public/octobermovies/plugins/watchlearn/movies/updates/seed.php",
@@ -707,14 +729,11 @@
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_footer.scss",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/homepage/community-social.php",
 		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-03.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-01.php",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/sass/_goldenticket-animations.scss",
-		"/Users/ivan/Development/public/activenation/Assets/krave/index.html",
-		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/goldenticket.php"
+		"/Users/ivan/Development/public/activenation/wp-content/themes/olympos/parts/goldenticket/slide-01.php"
 	],
 	"find":
 	{
-		"height": 83.0
+		"height": 46.0
 	},
 	"find_in_files":
 	{
@@ -928,33 +947,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "plugins/watchlearn/movies/routes.php",
+					"file": "plugins/watchlearn/movies/components/filtermovies/default.htm",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1098,
+						"buffer_size": 1375,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1092,
-								1092
+								319,
+								319
 							]
 						],
 						"settings":
 						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tabs_extra_last_activated": 1492937998.66,
-							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true
+							"_anf_new": "",
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1247.0,
+						"translation.y": 119.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -962,37 +976,59 @@
 				},
 				{
 					"buffer": 1,
-					"file": "plugins/watchlearn/movies/views/sitemap.htm",
+					"file": "plugins/watchlearn/movies/components/FilterMovies.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 532,
+						"buffer_size": 1508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								408,
-								408
+								1161,
+								1161
 							]
 						],
 						"settings":
 						{
-							"incomplete_sync": null,
-							"open_with_edit": true,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"tabs_extra_last_activated": 1492940236.52,
-							"tabs_extra_last_activated_sheet_index": 1,
-							"tabs_extra_spawned": true
+							"_anf_new": "",
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1454.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "themes/olympos/pages/movies.htm",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								846,
+								384
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 753.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1000,11 +1036,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 45.0
+		"height": 46.0
 	},
 	"input":
 	{
-		"height": 83.0
+		"height": 84.0
 	},
 	"layout":
 	{
@@ -1045,7 +1081,7 @@
 	"project": "octobermovies.sublime-project",
 	"replace":
 	{
-		"height": 98.0
+		"height": 88.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1572,9 +1608,21 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "wat",
+		"last_filter": "watch",
 		"selected_items":
 		[
+			[
+				"watch",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"",
+				"~/Development/public/vip-company/vip-company.sublime-project"
+			],
+			[
+				"vip",
+				"~/Burza/vip-templates/vip-templates.sublime-project"
+			],
 			[
 				"wat",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1582,10 +1630,6 @@
 			[
 				"octob",
 				"~/Development/public/october/october.sublime-project"
-			],
-			[
-				"",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"kon",
@@ -1606,14 +1650,6 @@
 			[
 				"octobe",
 				"~/Development/public/todoapi/todoapi.sublime-project"
-			],
-			[
-				"vip",
-				"~/Burza/vip-templates/vip-templates.sublime-project"
-			],
-			[
-				"watch",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
 			],
 			[
 				"wa",

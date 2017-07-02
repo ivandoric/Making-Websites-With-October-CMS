@@ -8,7 +8,8 @@ class Plugin extends PluginBase
     {
         return [
             'Watchlearn\Movies\Components\Actors' => 'actors',
-            'Watchlearn\Movies\Components\ActorForm' => 'actorform'
+            'Watchlearn\Movies\Components\ActorForm' => 'actorform',
+            'Watchlearn\Movies\Components\FilterMovies' => 'filtermovies'
         ];
     }
 
