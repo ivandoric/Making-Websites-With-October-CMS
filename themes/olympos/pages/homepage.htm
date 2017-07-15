@@ -25,7 +25,7 @@ sortOrder = "name desc"
 
 <ul class="movie-list">
     {% for movie in movies %}
-        <li>
+        <li class="ui segment stacked">
             {# Use spaceless tag to remove spaces inside the A tag. #}
             <h3>
                 <a href="/movies/movie/{{movie.slug}}">

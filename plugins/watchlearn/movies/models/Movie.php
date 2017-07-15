@@ -50,4 +50,35 @@ class Movie extends Model
     public $attachMany = [
         'movie_gallery' => 'System\Models\File'
     ];
+
+    public function scopeListFrontEnd($query, $options = []){
+
+        extract(array_merge([
+            'page' => 1,
+            'perPage' => 10,
+            'sort' => 'created_at desc',
+            'genres' => null,
+            'year' => ''
+        ], $options));
+
+        if($genres !== null) {
+
+            if(!is_array($genres)){
+                $genres = [$genres];
+            }
+
+            foreach ($genres as $genre){
+                $query->whereHas('genres', function($q) use ($genre){
+                    $q->where('id', '=', $genre);
+                });
+            }
+
+        }
+
+        if($year){
+            $query->where('year', '=', $year);
+        }
+
+        return $query->paginate($perPage, $page);
+    }
 }

@@ -1,0 +1,26 @@
+{% if movies|length %}
+
+    {% for movie in movies %}
+        <div class="ui segment vertical">
+            <h3 class="ui header">{{movie.name}}</h3>
+            <div class="ui">{{ movie.year }}</div>
+
+            <div class="ui segment">
+                <ul class="ui list bulleted horizontal">
+                    {% for genre in movie.genres %}
+                        <li class="item">{{ genre.genre_title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+{% else %}
+
+    <div class="ui message text-center">
+        <p>
+            There are no movies that match the criteria.
+        </p>
+    </div>
+
+{% endif %}

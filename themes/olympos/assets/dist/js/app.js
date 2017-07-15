@@ -86,7 +86,13 @@ var HelloWorld = function HelloWorld() {
     alert('Hello World');
 };
 
-//new HelloWorld;
+(function ($) {
+
+    $('#MoviesFilter').on('change', 'input, select', function () {
+        var $form = $(this).closest('form');
+        $form.request();
+    });
+})(jQuery);
 
 /***/ }),
 /* 1 */
