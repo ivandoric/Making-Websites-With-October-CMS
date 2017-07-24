@@ -51,6 +51,13 @@ class Movie extends Model
         'movie_gallery' => 'System\Models\File'
     ];
 
+    public static $allowedSortingOptions = array (
+        'name desc' => 'Name - desc',
+        'name asc' => 'Name - asc',
+        'year desc' => 'Year - desc',
+        'year asc' => 'Year - asc'
+    );
+
     public function scopeListFrontEnd($query, $options = []){
 
         extract(array_merge([
@@ -60,6 +67,24 @@ class Movie extends Model
             'genres' => null,
             'year' => ''
         ], $options));
+
+        if(!is_array($sort)){
+            $sort = [$sort];
+        }
+
+        foreach ($sort as $_sort){
+            if(in_array($_sort, array_keys(self::$allowedSortingOptions))){
+                $parts = explode(' ', $_sort);
+
+                if(count($parts) < 2){
+                    array_push($parts, 'desc');
+                }
+
+                list($sortField, $sortDirection) = $parts;
+
+                $query->orderBy($sortField, $sortDirection);
+            }
+        }
 
         if($genres !== null) {
 
