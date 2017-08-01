@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"par",
+				"partialPaginate"
+			],
+			[
 				"sor",
 				"sortDirection"
 			],
@@ -355,7 +359,7 @@
 			"file": "plugins/watchlearn/movies/models/Movie.php",
 			"settings":
 			{
-				"buffer_size": 2499,
+				"buffer_size": 2632,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -364,16 +368,25 @@
 			"file": "themes/olympos/pages/movie-filter-ajax.htm",
 			"settings":
 			{
-				"buffer_size": 2715,
+				"buffer_size": 3009,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "themes/olympos/assets/js/app.js",
+			"file": "themes/olympos/partials/movies/movies.htm",
 			"settings":
 			{
-				"buffer_size": 325,
+				"buffer_size": 683,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "themes/olympos/partials/movies/paginate.htm",
+			"settings":
+			{
+				"buffer_size": 313,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -630,9 +643,9 @@
 	],
 	"file_history":
 	[
+		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/js/app.js",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/partials/movies/movies.htm",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/movie-filter-ajax.htm",
-		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/js/app.js",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/filtermovies.htm",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/pages/homepage.htm",
 		"/Users/idoric/Development/public/octobermovies/themes/olympos/assets/sass/style.scss",
@@ -761,7 +774,7 @@
 	],
 	"find":
 	{
-		"height": 85.0
+		"height": 47.0
 	},
 	"find_in_files":
 	{
@@ -979,15 +992,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2499,
+						"buffer_size": 2632,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1872,
-								1872
+								1436,
+								1436
 							]
 						],
 						"settings":
@@ -995,7 +1008,7 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3172.0,
+						"translation.y": 2312.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1007,15 +1020,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2715,
+						"buffer_size": 3009,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2297,
-								2297
+								651,
+								651
 							]
 						],
 						"settings":
@@ -1023,38 +1036,67 @@
 							"syntax": "Packages/October Twig Highlighter/october-twig.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2476.0,
+						"translation.y": 625.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "themes/olympos/assets/js/app.js",
-					"semi_transient": false,
+					"file": "themes/olympos/partials/movies/movies.htm",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 325,
+						"buffer_size": 683,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								303,
-								303
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 144.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "themes/olympos/partials/movies/paginate.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								262,
+								262
+							]
+						],
+						"settings":
+						{
+							"_anf_new": "",
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1634,9 +1676,17 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "watc",
+		"last_filter": "wat",
 		"selected_items":
 		[
+			[
+				"wat",
+				"~/Development/public/watchlearn/watchlearn.sublime-project"
+			],
+			[
+				"october",
+				"~/Development/public/october/october.sublime-project"
+			],
 			[
 				"watc",
 				"~/Development/public/watchlearn/watchlearn.sublime-project"
@@ -1662,16 +1712,8 @@
 				"~/Burza/vip-templates/vip-templates.sublime-project"
 			],
 			[
-				"wat",
-				"~/Development/public/watchlearn/watchlearn.sublime-project"
-			],
-			[
 				"kon",
 				"~/Development/public/iwmndev_vipnet-company-web1/konfigurator.sublime-project"
-			],
-			[
-				"october",
-				"~/Development/public/october/october.sublime-project"
 			],
 			[
 				"to",

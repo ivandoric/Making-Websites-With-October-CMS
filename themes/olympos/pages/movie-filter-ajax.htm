@@ -21,6 +21,8 @@ is_hidden = 0
         $this['movies'] = Movie::listFrontEnd($options);
         $this['genres'] = Genre::all();
         $this['sortOptions'] = Movie::$allowedSortingOptions;
+        $this['pages'] = $this['movies']->lastPage();
+        $this['page'] = $this['movies']->currentPage();
     }
 
     function prepareYears() {
@@ -43,7 +45,7 @@ is_hidden = 0
 <div class="ui grid">
     
     <div class="five wide column">
-        {{ form_ajax('onFilterMovies', { update: { 'movies/movies': '#partialMovies' } }) }}
+        {{ form_ajax('onFilterMovies', { update: { 'movies/movies': '#partialMovies', 'movies/paginate': '#partialPaginate' } }) }}
             <div id="MoviesFilter" class="movies-filter ui form">
                 <div class="ui segment vertical">
                     <label>Genres</label>
@@ -73,6 +75,10 @@ is_hidden = 0
                                 <option value="{{code}}">{{ option }}</option>
                             {% endfor %}
                         </select>
+                    </div>
+
+                    <div class="field" id="partialPaginate">
+                        {% partial 'movies/paginate' %}
                     </div>
                 </div>
             </div>

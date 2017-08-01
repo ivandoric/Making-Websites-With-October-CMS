@@ -100,6 +100,12 @@ class Movie extends Model
 
         }
 
+        $lastPage = $query->paginate($perPage, $page)->lastPage();
+
+        if($lastPage < $page){
+            $page = 1;
+        }
+
         if($year){
             $query->where('year', '=', $year);
         }
