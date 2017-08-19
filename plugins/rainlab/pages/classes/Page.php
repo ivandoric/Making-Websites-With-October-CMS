@@ -290,6 +290,35 @@ class Page extends ContentBase
 
         return Cms::url($url);
     }
+    
+    /**
+     * Determine the default layout for a new page
+     * @param \RainLab\Pages\Classes\Page $parentPage
+     */
+    public function setDefaultLayout($parentPage)
+    {
+        // Check parent page for a defined child layout
+        if ($parentPage) {
+            $layout = Layout::load($this->theme, $parentPage->layout);
+            $component = $layout ? $layout->getComponent('staticPage') : null;
+            $childLayoutName = $component ? $component->property('childLayout', null) : null;
+            if ($childLayoutName) {
+                $this->getViewBag()->setProperty('layout', $childLayoutName);
+                $this->fillViewBagArray();
+                return;
+            }
+        }
+        
+        // Check theme layouts for one marked as the default
+        foreach (Layout::listInTheme($this->theme) as $layout) {
+            $component = $layout->getComponent('staticPage');
+            if ($component && $component->property('default', false)) {
+                $this->getViewBag()->setProperty('layout', $layout->getBaseFileName());
+                $this->fillViewBagArray();
+                return;
+            }
+        }
+    }
 
     //
     // Getters

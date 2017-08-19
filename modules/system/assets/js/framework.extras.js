@@ -12,24 +12,20 @@
     // @todo Provide an interface for configuration
     // - Custom loader CSS class
     // - Custom stripe loader color
+    // - Flash message interval
 
     var LOADER_CLASS = 'oc-loading';
 
     // FLASH HANDLING
     // ============================
 
-    $(document).on('ajaxError', '[data-request][data-request-flash]', function(event, context, message) {
-        if (!event.isDefaultPrevented() && message) {
+    $(document).on('ajaxSetup', '[data-request][data-request-flash]', function(event, context) {
+        context.options.handleErrorMessage = function(message) {
             $.oc.flashMsg({ text: message, class: 'error' })
-            event.preventDefault()
         }
-    })
 
-    $(document).on('ajaxBeforeUpdate', '[data-request][data-request-flash]', function(event, context, data) {
-        if (data['X_OCTOBER_FLASH_MESSAGES']) {
-            $.each(data['X_OCTOBER_FLASH_MESSAGES'], function(type, message) {
-                $.oc.flashMsg({ text: message, class: type })
-            })
+        context.options.handleFlashMessage = function(message, type) {
+            $.oc.flashMsg({ text: message, class: type })
         }
     })
 
@@ -43,7 +39,7 @@
             $field
 
         $.each(fields, function(fieldName, fieldMessages) {
-            $field = $('[data-validate-for='+fieldName+']', $this)
+            $field = $('[data-validate-for="'+fieldName+'"]', $this)
             messages = $.merge(messages, fieldMessages)
             if (!!$field.length) {
                 if (!$field.text().length || $field.data('emptyMode') == true) {
@@ -54,6 +50,10 @@
                 $field.addClass('visible')
             }
         })
+
+        if (!!$container.length) {
+            $container = $('[data-validate-error]', $this)
+        }
 
         if (!!$container.length) {
             var $oldMessages = $('[data-message]', $container)
@@ -236,7 +236,7 @@
     FlashMessage.DEFAULTS = {
         class: 'success',
         text: 'Default text',
-        interval: 2
+        interval: 5
     }
 
     if ($.oc === undefined)

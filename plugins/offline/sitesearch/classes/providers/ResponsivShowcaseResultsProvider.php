@@ -33,6 +33,7 @@ class ResponsivShowcaseResultsProvider extends ResultsProvider
             $result->title = $item->title;
             $result->text  = $item->description;
             $result->url   = $this->getUrl($item);
+            $result->model = $item;
 
             $this->addResult($result);
         }

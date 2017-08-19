@@ -25,6 +25,7 @@ fields:
 
 tabs:
     stretch: true
+    cssClass: master-area
     fields:
         items:
             stretch: true

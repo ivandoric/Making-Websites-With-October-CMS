@@ -39,6 +39,7 @@ return [
         'restore' => 'Herstellen',
         'login_placeholder' => 'Gebruikersnaam',
         'password_placeholder' => 'Wachtwoord',
+        'remember_me' => 'Blijf ingelogd',
         'forgot_password' => 'Wachtwoord vergeten?',
         'enter_email' => 'Vul e-mailadres in',
         'enter_login' => 'Vul gebruikersnaam in',
@@ -78,6 +79,8 @@ return [
         'make_default' => 'Als standaard instellen',
         'make_default_confirm' => 'Huidige layout als standaard instellen?',
         'make_default_success' => 'Huidige layout is nu als standaard ingesteld.',
+        'collapse_all' => 'Alles inklappen',
+        'expand_all' => 'Alles uitklappen',
         'status' => [
             'widget_title_default' => 'Systeemstatus',
             'update_available' => '{0} updates beschikbaar!|{1} update beschikbaar!|[2,Inf] updates beschikbaar!',
@@ -165,6 +168,8 @@ return [
         'behavior_not_ready' => 'Behavior van de lijst is niet geladen. Controleer of makeLists() in de controller is aangeroepen.',
         'invalid_column_datetime' => "De waarde van kolom ':column' is geen DateTime object, mist er een \$dates referentie in het Model?",
         'pagination' => 'Getoonde resultaten: :from-:to van :total',
+        'first_page' => 'Eerste pagina',
+        'last_page' => 'Laatste pagina',
         'prev_page' => 'Vorige pagina',
         'next_page' => 'Volgende pagina',
         'refresh' => 'Vernieuwen',
@@ -238,6 +243,7 @@ return [
         'confirm_tab_close' => 'Weet je zeker dat je dit tabblad wilt sluiten? Niet opgeslagen wijzigingen gaan verloren.',
         'behavior_not_ready' => 'Gedrag (behavior) van het formulier is niet geladen. Controleer of initForm() in de controller is aangeroepen.',
         'preview_no_files_message' => 'Bestanden zijn niet geüpload.',
+        'preview_no_media_message' => 'Er zijn geen media geselecteerd.',
         'preview_no_record_message' => 'Er zijn geen records geselecteerd.',
         'select' => 'Selecteer',
         'select_all' => 'alles',
@@ -252,6 +258,11 @@ return [
     ],
     'recordfinder' => [
         'find_record' => 'Zoek record',
+        'cancel' => 'Annuleren',
+    ],
+    'pagelist' => [
+        'page_link' => 'Pagina link',
+        'select_page' => 'Selecteer een pagina...'
     ],
     'relation' => [
         'missing_config' => "Het gedrag (behavior) van deze relatie bevat geen instellingen voor ':config'.",
@@ -304,6 +315,7 @@ return [
         'tips_description' => 'Er zijn problemen gevonden waar je aandacht aan moet besteden om uw systeem goed te configureren.',
         'permissions' => 'De map :name of de submappen zijn niet schrijfbaar voor PHP. Zet de bijhorende rechten voor de webserver in deze map.',
         'extension' => 'De PHP extensie :name is niet geïnstalleerd. Installeer deze bibliotheek en activeer de extensie.',
+        'plugin_missing' => 'De plugin :name is een afhankelijkheid maar is niet geïnstalleerd. Installeer deze plugin a.u.b.',
     ],
     'editor' => [
         'menu_label' => 'Editor instellingen',
@@ -350,6 +362,8 @@ return [
         'no_wrap_comment' => 'Een lijst van tags die niet worden afgebroken.',
         'remove_tags' => 'Te verwijderen HTML-tags',
         'remove_tags_comment' => 'Een lijst van HTML-tags die samen met hun inhoud worden verwijderd.',
+        'toolbar_buttons' => 'Toolbar knoppen',
+        'toolbar_buttons_comment' => 'De toolbar knoppen die standaard getoond worden door de Rich Editor. [fullscreen, bold, italic, underline, strikeThrough, subscript, superscript, fontFamily, fontSize, |, color, emoticons, inlineStyle, paragraphStyle, |, paragraphFormat, align, formatOL, formatUL, outdent, indent, quote, insertHR, -, insertLink, insertImage, insertVideo, insertAudio, insertFile, insertTable, undo, redo, clearFormatting, selectAll, html]',
     ],
     'tooltips' => [
         'preview_website' => 'Voorvertoning website',
@@ -480,7 +494,7 @@ return [
             'iso_8859_14' => 'ISO-8859-14 (Latin-8, Celtic)',
             'iso_8859_15' => 'ISO-8859-15 (Latin-9, Western European revision with euro sign)',
             'windows_1251' => 'Windows-1251 (CP1251)',
-            'windows_1252' => 'Windows-1252 (CP1252)',
-        ],
-    ],
+            'windows_1252' => 'Windows-1252 (CP1252)'
+        ]
+    ]
 ];

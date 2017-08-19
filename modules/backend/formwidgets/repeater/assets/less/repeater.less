@@ -1,7 +1,6 @@
 @import "../../../../assets/less/core/boot.less";
 
 .field-repeater {
-
     padding-top: 5px;
 
     ul.field-repeater-items,
@@ -23,6 +22,10 @@
 
             .repeater-item-remove {
                 opacity: 0;
+            }
+
+            .repeater-item-collapsed-title {
+                top: 5px;
             }
         }
 
@@ -48,6 +51,7 @@
         margin-left: 5px;
         padding-left: 15px;
         border-left: 1px solid #dbdee0;
+        min-height: 30px;
 
         &:before {
             color: #bdc3c7;
@@ -56,6 +60,29 @@
             position: absolute;
             left: -4px;
             top: -2px;
+        }
+
+        &.collapsed {
+            .field-repeater-form {
+                display:none;
+            }
+
+            .repeater-item-collapse {
+                .repeater-item-collapse-one {
+                    .transform(scale(1,-1));
+                }
+            }
+
+            .repeater-item-collapsed-title {
+                display: block;
+            }
+        }
+
+        .repeater-item-collapsed-title {
+            display: none;
+            top: -5px;
+            position: absolute;
+            font-size: 13px;
         }
 
         .field-repeater-form {
@@ -79,6 +106,27 @@
             }
         }
 
+        .repeater-item-collapse {
+            position: absolute;
+            top: -9px;
+            right: 22px;
+            z-index: 90;
+
+            a, button {
+                .transition(~'transform 0.3s');
+                color: #bdc3c7;
+                line-height: 20px;
+                display: block;
+                font-size: 12px;
+
+                &:hover,
+                &:focus {
+                    color: #999;
+                    text-decoration: none;
+                }
+            }
+        }
+
         .repeater-item-remove {
             position: absolute;
             top: -10px;
@@ -86,6 +134,7 @@
             z-index: 90;
         }
 
+        .repeater-item-collapse,
         .repeater-item-handle,
         .repeater-item-remove {
             width: 20px;
@@ -94,6 +143,7 @@
         }
 
         &:hover, &:active {
+            .repeater-item-collapse,
             .repeater-item-handle,
             .repeater-item-remove {
                 opacity: 1;
@@ -106,6 +156,7 @@
         margin-top: 10px;
         margin-left: 20px;
         border: 2px dotted #e0e0e0;
+        border-radius: 5px;
 
         &:before {
             color: #bdc3c7;
@@ -121,17 +172,36 @@
             text-align: center;
             display: block;
             text-decoration: none;
-            padding: 20px 10px;
+            padding: 13px 15px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: @font-size-base - 2;
         }
 
-        &:hover {
-            border: 2px dotted rgba(0,0,0,.1);
+        &:hover, &:focus {
+            background-color: @highlight-hover-bg;
+            border-color: transparent;
+
             &:before {
                 color: #999;
             }
 
-            > a { color: #bdc3c7;}
+            > a {
+                color: @highlight-hover-text;
+            }
+        }
+
+        &:active {
+            background: @highlight-active-bg;
+            border-color: transparent;
+            > a {
+                color: @highlight-active-text;
+            }
+        }
+
+        &.in-progress {
+            border-color: #e0e0e0 !important;
+            background: transparent !important;
         }
     }
-
 }

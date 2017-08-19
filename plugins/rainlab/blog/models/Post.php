@@ -54,7 +54,7 @@ class Post extends Model
      * The attributes on which the post list can be ordered
      * @var array
      */
-    public static $allowedSortingOptions = array(
+    public static $allowedSortingOptions = [
         'title asc' => 'Title (ascending)',
         'title desc' => 'Title (descending)',
         'created_at asc' => 'Created (ascending)',
@@ -64,7 +64,7 @@ class Post extends Model
         'published_at asc' => 'Published (ascending)',
         'published_at desc' => 'Published (descending)',
         'random' => 'Random'
-    );
+    ];
 
     /*
      * Relations
@@ -95,6 +95,10 @@ class Post extends Model
 
     /**
      * Limit visibility of the published-button
+     *
+     * @param      $fields
+     * @param null $context
+     *
      * @return void
      */
     public function filterFields($fields, $context = null)
@@ -137,7 +141,7 @@ class Post extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id' => $this->id,
+            'id'   => $this->id,
             'slug' => $this->slug,
         ];
 
@@ -195,8 +199,11 @@ class Post extends Model
 
     /**
      * Lists posts for the front end
+     *
+     * @param        $query
      * @param  array $options Display options
-     * @return self
+     *
+     * @return Post
      */
     public function scopeListFrontEnd($query, $options)
     {
@@ -339,7 +346,68 @@ class Post extends Model
             return array_get($parts, 0);
         }
 
-        return Str::limit(Html::strip($this->content_html), 600);
+        return Html::limit($this->content_html, 600);
+    }
+
+    //
+    // Next / Previous
+    //
+
+    /**
+     * Apply a constraint to the query to find the nearest sibling
+     *
+     *     // Get the next post
+     *     Post::applySibling()->first();
+     *
+     *     // Get the previous post
+     *     Post::applySibling(-1)->first();
+     *
+     *     // Get the previous post, ordered by the ID attribute instead
+     *     Post::applySibling(['direction' => -1, 'attribute' => 'id'])->first();
+     *
+     * @param       $query
+     * @param array $options
+     *
+     * @return
+     */
+    public function scopeApplySibling($query, $options = [])
+    {
+        if (!is_array($options)) {
+            $options = ['direction' => $options];
+        }
+
+        extract(array_merge([
+            'direction' => 'next',
+            'attribute' => 'published_at',
+        ], $options));
+
+        $isPrevious = in_array($direction, ['previous', -1]);
+        $directionOrder = $isPrevious ? 'asc' : 'desc';
+        $directionOperator = $isPrevious ? '>' : '<';
+
+        return $query
+            ->where('id', '<>', $this->id)
+            ->whereDate($attribute, $directionOperator, $this->$attribute)
+            ->orderBy($attribute, $directionOrder)
+        ;
+    }
+
+    /**
+     * Returns the next post, if available.
+     * @return self
+     */
+    public function nextPost()
+    {
+        return self::isPublished()->applySibling()->first();
+    }
+
+    /**
+     * Returns the previous post, if available.
+     * @return self
+     */
+    public function previousPost()
+    {
+        return self::isPublished()->applySibling(-1)->first();
     }
 
     //
@@ -393,17 +461,20 @@ class Post extends Model
 
             $pages = CmsPage::listInTheme($theme, true);
             $cmsPages = [];
+
             foreach ($pages as $page) {
-                if (!$page->hasComponent('blogPost'))
+                if (!$page->hasComponent('blogPost')) {
                     continue;
+                }
 
                 /*
                  * Component must use a categoryPage filter with a routing parameter and post slug
                  * eg: categoryPage = "{{ :somevalue }}", slug = "{{ :somevalue }}"
                  */
                 $properties = $page->getComponentProperties('blogPost');
-                if (!isset($properties['categoryPage']) || !preg_match('/{{\s*:/', $properties['slug']))
+                if (!isset($properties['categoryPage']) || !preg_match('/{{\s*:/', $properties['slug'])) {
                     continue;
+                }
 
                 $cmsPages[] = $page;
             }
@@ -459,7 +530,10 @@ class Post extends Model
                 'items' => []
             ];
 
-            $posts = self::orderBy('title')->get();
+            $posts = self::isPublished()
+            ->orderBy('title')
+            ->get();
+
             foreach ($posts as $post) {
                 $postItem = [
                     'title' => $post->title,
@@ -478,6 +552,10 @@ class Post extends Model
 
     /**
      * Returns URL of a post page.
+     *
+     * @param $pageCode
+     * @param $category
+     * @param $theme
      */
     protected static function getPostPageUrl($pageCode, $category, $theme)
     {

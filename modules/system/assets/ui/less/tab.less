@@ -15,7 +15,7 @@
 @color-scroll-indicator:                     #bbbbbb;
 
 @color-tab-border:                           #e0e0e0;
-@color-tab-inactive-text:                    rgba(0,0,0,.4);
+@color-tab-inactive-text:                    #bbbbbb;
 @color-tab-active-text:                      @color-text-title;
 @color-tab-active-border:                    #d0d0d0;
 @color-tab-bg:                               #ffffff;
@@ -48,7 +48,6 @@
 
 .control-tabs {
     position: relative;
-
     margin-bottom: 20px;
 
     &:last-child {
@@ -85,12 +84,11 @@
             }
 
             a {
-                border-left: none!important;
-                border-top: none!important;
-                border-right: none!important;
+                border-left: none !important;
+                border-top: none !important;
+                border-right: none !important;
                 padding: 0 0 10px 0;
                 color: @color-tab-inactive-text;
-                background: @body-bg;
                 font-weight: 400;
 
                 overflow: hidden;
@@ -429,6 +427,7 @@
                     border: none;
                     text-transform: uppercase;
                     background: transparent;
+                    font-weight: 500;
 
                     span.title {
                         span {

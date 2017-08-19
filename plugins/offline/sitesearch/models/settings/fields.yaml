@@ -225,6 +225,37 @@ tabs:
             span: auto
             default: /showcase/project
 
+        graker_photoalbums_enabled:
+            type: switch
+            tab: Graker.PhotoAlbums
+            label: offline.sitesearch::lang.settings.use_this_provider
+            comment: offline.sitesearch::lang.settings.use_this_provider_comment
+            default: true
+
+        graker_photoalbums_label:
+            type: text
+            tab: Graker.PhotoAlbums
+            label: offline.sitesearch::lang.settings.provider_badge
+            comment: offline.sitesearch::lang.settings.provider_badge_comment
+            span: auto
+            default: PhotoAlbums
+
+        graker_photoalbums_album_page:
+            type: dropdown
+            options: blogPageOptions
+            tab: Graker.PhotoAlbums
+            label: offline.sitesearch::lang.settings.album_page
+            comment: offline.sitesearch::lang.settings.album_page_comment
+            span: auto
+
+        graker_photoalbums_photo_page:
+            type: dropdown
+            options: blogPageOptions
+            tab: Graker.PhotoAlbums
+            label: offline.sitesearch::lang.settings.photo_page
+            comment: offline.sitesearch::lang.settings.photo_page_comment
+            span: auto
+
         cms_pages_warning:
             type: partial
             path: $/offline/sitesearch/models/settings/_experimental.htm

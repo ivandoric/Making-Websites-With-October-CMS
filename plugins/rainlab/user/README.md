@@ -40,7 +40,7 @@ By default a User will sign in to the site using their email address as a unique
 
 If a user experiences too many failed sign in attempts, their account will be temporarily suspended for a period of time. This feature is enabled by default and will suspend an account for 15 minutes after 5 failed sign in attempts, for a given IP address. You may disable this feature by switching **Throttle attempts** to the OFF setting.
 
-As a security precaution, you may restrict users from having sessions across multiple devices at the same time. Enable the **Prevent concurrent sessions** to use this feature. When a user signs in to their account, it will automatically sign out the user for all other sessions.
+As a security precaution, you may restrict users from having sessions across multiple devices at the same time. Enable the **Prevent concurrent sessions** setting to use this feature. When a user signs in to their account, it will automatically sign out the user for all other sessions.
 
 #### Notifications
 
@@ -170,7 +170,7 @@ The User plugin displays AJAX error messages in a simple ``alert()``-box by defa
 
 ### Checking if a login name is already taken
 
-Here is a simple example of how you can quickly check if an email address / username is available in your registration forms. First create an AJAX handler to check the login name, here we are using the email address:
+Here is a simple example of how you can quickly check if an email address / username is available in your registration forms. First, inside the page code, define the following AJAX handler to check the login name, here we are using the email address:
 
     public function onCheckEmail()
     {
@@ -295,11 +295,14 @@ To disable the notification and password reset, pass the first argument as false
 
 This plugin will fire some global events that can be useful for interacting with other plugins.
 
+- **rainlab.user.beforeRegister**: Before the user's registration is processed. Passed the `$data` variable by reference to enable direct modifications to the `$data` provided to the `Auth::register()` method.
+- **rainlab.user.register**: The user has successfully registered. Passed the `$user` object and the submitted `$data` variable.
 - **rainlab.user.beforeAuthenticate**: Before the user is attempting to authenticate using the Account component.
 - **rainlab.user.login**: The user has successfully signed in.
 - **rainlab.user.logout**: The user has successfully signed out.
 - **rainlab.user.deactivate**: The user has opted-out of the site by deactivating their account. This should be used to disable any content the user may want removed.
 - **rainlab.user.reactivate**: The user has reactivated their own account by signing back in. This should revive the users content on the site.
+- **rainlab.user.getNotificationVars**: Fires when sending a user notification to enable passing more variables to the email templates. Passes the `$user` model the template will be for.
 
 Here is an example of hooking an event:
 

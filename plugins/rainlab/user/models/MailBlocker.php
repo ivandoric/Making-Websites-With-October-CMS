@@ -7,13 +7,12 @@ use Exception;
 
 /**
  * Mail Blocker
- * 
+ *
  * A utility model that allows a user to block specific
  * mail views/templates from being sent to their address.
  */
 class MailBlocker extends Model
 {
-
     /**
      * @var string The database table used by the model.
      */
@@ -28,7 +27,7 @@ class MailBlocker extends Model
      * @var array Relations
      */
     public $belongsTo = [
-        'user' => ['RainLab\User\Models\User']
+        'user' => User::class
     ];
 
     /**
@@ -52,7 +51,7 @@ class MailBlocker extends Model
      * - fillable: An array of expected templates, undefined templates are ignored.
      * - verify: Only allow mail templates that are registered in the system.
      *
-     * @param  array $templates Template name as key and boolean as value. If false, template is blocked. 
+     * @param  array $templates Template name as key and boolean as value. If false, template is blocked.
      * @param  RainLab\User\Models\User $user
      * @param  array $options
      * @return void
@@ -66,9 +65,9 @@ class MailBlocker extends Model
         }
 
         extract(array_merge([
-            'aliases' => [],
+            'aliases'  => [],
             'fillable' => [],
-            'verify' => false,
+            'verify'   => false,
         ], $options));
 
         if ($aliases) {
@@ -110,7 +109,7 @@ class MailBlocker extends Model
     {
         $blocker = static::where([
             'template' => $template,
-            'user_id' => $user->id
+            'user_id'  => $user->id
         ])->first();
 
         if ($blocker && $blocker->email == $user->email) {
@@ -139,10 +138,10 @@ class MailBlocker extends Model
     {
         $blocker = static::where([
             'template' => $template,
-            'user_id' => $user->id
+            'user_id'  => $user->id
         ])->orWhere([
             'template' => $template,
-            'email' => $user->email
+            'email'    => $user->email
         ])->get();
 
         if (!$blocker->count()) {
@@ -241,13 +240,14 @@ class MailBlocker extends Model
      * If no recipients remain, false is returned. Returns null if mailing
      * should proceed.
      * @param  string $template
-     * @param  Illuminate\Mail\Message $message 
+     * @param  Illuminate\Mail\Message $message
      * @return bool|null
      */
     public static function filterMessage($template, $message)
     {
         $recipients = $message->getTo();
         $blockedAddresses = static::checkForEmail($template, $recipients);
+
         if (!count($blockedAddresses)) {
             return null;
         }
@@ -261,5 +261,4 @@ class MailBlocker extends Model
         $message->setTo($recipients);
         return count($recipients) ? null : false;
     }
-
 }

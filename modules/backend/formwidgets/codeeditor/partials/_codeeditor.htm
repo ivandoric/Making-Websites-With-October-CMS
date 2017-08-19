@@ -1,5 +1,7 @@
 <?php if ($this->previewMode): ?>
-    <div class="form-control"><?= e($value) ?></div>
+    <div class="form-control">
+        <pre><?= e($value) ?></pre>
+    </div>
 <?php else: ?>
     <div
         id="<?= $this->getId() ?>"
@@ -22,7 +24,7 @@
         data-read-only="<?= $readOnly ? 'true' : 'false' ?>"
         data-language="<?= $language ?>"
         data-margin="<?= $margin ?>"
-        data-vendor-path="<?= URL::asset('/modules/backend/formwidgets/codeeditor/assets/vendor/ace') ?>">
+        data-vendor-path="<?= Url::asset('/modules/backend/formwidgets/codeeditor/assets/vendor/ace') ?>">
         <div class="editor-toolbar">
             <ul>
                 <li class="searchbox-enable">

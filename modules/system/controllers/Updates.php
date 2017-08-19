@@ -31,12 +31,29 @@ use Exception;
  */
 class Updates extends Controller
 {
-    public $implement = ['Backend.Behaviors.ListController'];
+    /**
+     * @var array Extensions implemented by this controller.
+     */
+    public $implement = [
+        \Backend\Behaviors\ListController::class
+    ];
 
+    /**
+     * @var array `ListController` configuration.
+     */
+    public $listConfig = [
+        'list' => 'config_list.yaml',
+        'manage' => 'config_manage_list.yaml'
+    ];
+
+    /**
+     * @var array Permissions required to view this page.
+     */
     public $requiredPermissions = ['system.manage_updates'];
 
-    public $listConfig = ['list' => 'config_list.yaml', 'manage' => 'config_manage_list.yaml'];
-
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -138,7 +155,7 @@ class Updates extends Controller
                 $this->vars['pluginHomepage'] = array_get($details, 'homepage');
             }
             else {
-                throw new ApplicationException('Plugin not found');
+                throw new ApplicationException(Lang::get('system::lang.updates.plugin_not_found'));
             }
 
             /*
@@ -200,7 +217,17 @@ class Updates extends Controller
     }
 
     /**
-     * {@inheritDoc}
+     * Override for ListController behavior.
+     * Modifies the CSS class for each row in the list to
+     *
+     * - hidden - Disabled by configuration
+     * - safe disabled - Orphaned or disabled
+     * - negative - Disabled by system
+     * - frozen - Frozen by the user
+     * - positive - Default CSS class
+     *
+     * @see Backend\Behaviors\ListController
+     * @return string
      */
     public function listInjectRowClass($record, $definition = null)
     {
@@ -322,6 +349,28 @@ class Updates extends Controller
     protected function processImportantUpdates($result)
     {
         $hasImportantUpdates = false;
+
+        /*
+         * Core
+         */
+        if (isset($result['core'])) {
+            $coreImportant = false;
+
+            foreach (array_get($result, 'core.updates', []) as $build => $description) {
+                if (strpos($description, '!!!') === false) continue;
+
+                $detailsUrl = '//octobercms.com/support/articles/release-notes';
+                $description = str_replace('!!!', '', $description);
+                $result['core']['updates'][$build] = [$description, $detailsUrl];
+                $coreImportant = $hasImportantUpdates = true;
+            }
+
+            $result['core']['isImportant'] = $coreImportant ? '1' : '0';
+        }
+
+        /*
+         * Plugins
+         */
         foreach (array_get($result, 'plugins', []) as $code => $plugin) {
             $isImportant = false;
 
@@ -338,6 +387,7 @@ class Updates extends Controller
         }
 
         $result['hasImportantUpdates'] = $hasImportantUpdates;
+
         return $result;
     }
 
@@ -651,6 +701,7 @@ class Updates extends Controller
             $name = $result['code'];
             $hash = $result['hash'];
             $plugins = [$name => $hash];
+            $plugins = $this->appendRequiredPlugins($plugins, $result);
 
             /*
              * Update steps
@@ -807,17 +858,7 @@ class Updates extends Controller
             $name = $result['code'];
             $hash = $result['hash'];
             $themes = [$name => $hash];
-            $plugins = [];
-
-            foreach ((array) array_get($result, 'require') as $plugin) {
-                if (
-                    ($name = array_get($plugin, 'code')) &&
-                    ($hash = array_get($plugin, 'hash')) &&
-                    !PluginManager::instance()->hasPlugin($name)
-                ) {
-                    $plugins[$name] = $hash;
-                }
-            }
+            $plugins = $this->appendRequiredPlugins([], $result);
 
             /*
              * Update steps
@@ -951,5 +992,26 @@ class Updates extends Controller
     protected function decodeCode($code)
     {
         return str_replace(':', '.', $code);
+    }
+
+    /**
+     * Adds require plugin codes to the collection based on a result.
+     * @param array $plugins
+     * @param array $result
+     * @return array
+     */
+    protected function appendRequiredPlugins(array $plugins, array $result)
+    {
+        foreach ((array) array_get($result, 'require') as $plugin) {
+            if (
+                ($name = array_get($plugin, 'code')) &&
+                ($hash = array_get($plugin, 'hash')) &&
+                !PluginManager::instance()->hasPlugin($name)
+            ) {
+                $plugins[$name] = $hash;
+            }
+        }
+
+        return $plugins;
     }
 }

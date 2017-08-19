@@ -34,6 +34,7 @@ class IndikatorNewsResultsProvider extends ResultsProvider
             $result->text  = $post->introductory;
             $result->url   = $this->getUrl($post);
             $result->meta  = $post->published_at;
+            $result->model = $post;
 
             $this->addResult($result);
         }

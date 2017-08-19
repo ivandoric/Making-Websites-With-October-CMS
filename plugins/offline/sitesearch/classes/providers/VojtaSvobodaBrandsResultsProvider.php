@@ -32,6 +32,7 @@ class VojtaSvobodaBrandsResultsProvider extends ResultsProvider
             $result->text  = $item->description;
             $result->url   = $this->getUrl($item);
             $result->thumb = $this->getThumb($item->logo);
+            $result->model = $item;
 
             $this->addResult($result);
         }

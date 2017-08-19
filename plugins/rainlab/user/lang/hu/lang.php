@@ -39,6 +39,10 @@ return [
         'delete_selected_confirm' => 'Valóban törölni akarja a kiválasztott felhasználókat?',
         'delete_selected_empty' => 'Nincs kiválasztva felhasználó a törléshez.',
         'delete_selected_success' => 'A kiválasztott felhasználók sikeresen törölve lettek.',
+        'activate_selected' => 'Aktiválás',
+        'activate_selected_confirm' => 'Valóban aktiválni akarja a kiválasztott felhasználókat?',
+        'activate_selected_empty' => 'Nincs kiválasztva felhasználó az aktiváláshoz.',
+        'activate_selected_success' => 'A kiválasztott felhasználók sikeresen aktiválva lettek.',
         'deactivate_selected' => 'Deaktiválás',
         'deactivate_selected_confirm' => 'Valóban deaktiválni akarja a kiválasztott felhasználókat?',
         'deactivate_selected_empty' => 'Nincs kiválasztva felhasználó a deaktiváláshoz.',
@@ -74,16 +78,14 @@ return [
         'activate_mode_user_comment' => 'A felhasználó levéllel aktiválja a saját fiókját.',
         'activate_mode_admin' => 'Adminisztrátor',
         'activate_mode_admin_comment' => 'Csak adminisztrátor aktiválhat felhasználót.',
-        'welcome_template' => 'Üdvözlő sablon',
-        'welcome_template_comment' => 'A felhasználónak első aktiváláskor küldendő levél sablonja.',
         'require_activation' => 'A bejelentkezéshez aktiválás szükséges',
         'require_activation_comment' => 'A felhasználóknak aktivált fiókkal kell rendelkezniük a bejelentkezéshez.',
         'use_throttle' => 'Kísérletek késleltetése',
         'use_throttle_comment' => 'Az ismétlődő sikertelen bejelentkezések ideiglenesen felfüggesztik a felhasználót.',
+        'block_persistence' => 'Egyidejű munkamenet',
+        'block_persistence_comment' => 'Engedélyezés esetén a felhasználók nem tudnak bejelentkezni egyszerre több eszközről.',
         'login_attribute' => 'Bejelentkezési azonosító',
         'login_attribute_comment' => 'Válassza ki, hogy milyen felhasználói adatot kell használni a bejelentkezéshez.',
-        'no_mail_template' => 'Nincs értesítés küldése',
-        'hint_templates' => 'A sablonok kinézetét a Beállítások menüben a Levelezés > Sablonok oldalon módosíthatja.'
     ],
     'user' => [
         'label' => 'Felhasználó',
@@ -176,7 +178,7 @@ return [
         'reset_password' => 'Új jelszó megadása',
         'reset_password_desc' => 'Elfelejtett jelszó űrlap.',
         'code_param' => 'Visszaállító kód',
-        'code_param_desc' => 'A visszaállító kódhoz használt oldal webcíme.'
+        'code_param_desc' => 'A visszaállító kódhoz használt lap webcíme.'
     ],
     'session' => [
         'session' => 'Munkamenet',
@@ -186,8 +188,10 @@ return [
         'all' => 'Mindenki',
         'users' => 'Felhasználók',
         'guests' => 'Vendégek',
+        'allowed_groups_title' => 'Csoportok engedélyezése',
+        'allowed_groups_description' => 'Válassza ki az engedélyezni kívánt csoportokat vagy egyiket sem az összes elfogadásához.',
         'redirect_title' => 'Átirányítás',
-        'redirect_desc' => 'Az átirányítandó oldal neve, ha a hozzáférés megtagadva.',
+        'redirect_desc' => 'Az átirányítandó lap neve, ha a hozzáférés meg van tagadva.',
         'logout' => 'Sikeresen kijelentkezett!'
     ]
 ];

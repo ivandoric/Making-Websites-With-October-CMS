@@ -19,6 +19,10 @@
         'blog_posturl_comment'       => 'Only specify the fixed part of the URL without any dynamic parameters',
         'blog_page'                  => 'Blog post page',
         'blog_page_comment'          => 'Select a page used to display a single blog post. Needed to form URL for posts.',
+        'album_page'                 => 'Album page',
+        'album_page_comment'         => 'Select a page used to display a photo album. Needed to form URL for albums.',
+        'photo_page'                 => 'Photo page',
+        'photo_page_comment'         => 'Select a page used to display a single photo. Needed to form URL for photos.',
         'news_page'                  => 'News post page',
         'news_page_comment'          => 'Select a page used to display a single news post. Needed to form URL for news.',
         'portfolio_itemurl'          => 'Url of portfolio detail page',
@@ -56,6 +60,23 @@ href="http://octobercms.com/plugin/offline-sitesearch#documentation">the documen
             'visit_page'       => [
                 'title'       => 'Visit page label',
                 'description' => 'This link text is placed below each result',
+            ],
+        ],
+    ],
+    'searchInput'     => [
+        'title'       => 'Search input',
+        'description' => 'Displays a search input',
+        'properties'  => [
+            'use_auto_complete' => [
+                'title' => 'Search while typing',
+            ],
+            'auto_complete_result_count' => [
+                'title' => 'Max. autocomplete results',
+            ],
+            'search_page' => [
+                'title' => 'Page for search results',
+                'description' => 'Your search query will be sent to this page.',
+                'null_value' => '-- Don\'t display a link',
             ],
         ],
     ],

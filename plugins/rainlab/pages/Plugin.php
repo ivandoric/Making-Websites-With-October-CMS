@@ -68,7 +68,7 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-files-o',
                 'iconSvg'     => 'plugins/rainlab/pages/assets/images/pages-icon.svg',
                 'permissions' => ['rainlab.pages.*'],
-                'order'       => 20,
+                'order'       => 200,
 
                 'sideMenu' => [
                     'pages' => [

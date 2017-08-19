@@ -8,6 +8,7 @@ use Config;
 use Request;
 use Response;
 use BackendMenu;
+use Cms\Classes\Layout;
 use Cms\Classes\Theme;
 use Cms\Classes\CmsCompoundObject;
 use Cms\Widgets\TemplateList;
@@ -149,8 +150,12 @@ class Index extends Controller
         $parent = Request::input('parent');
         $parentPage = null;
 
-        if ($type == 'page' && strlen($parent)) {
-            $parentPage = StaticPage::load($this->theme, $parent);
+        if ($type == 'page') {
+            if (strlen($parent)) {
+                $parentPage = StaticPage::load($this->theme, $parent);
+            }
+
+            $object->setDefaultLayout($parentPage);
         }
 
         $widget = $this->makeObjectFormWidget($type, $object);
@@ -310,6 +315,19 @@ class Index extends Controller
         ];
     }
 
+    public function onMenuItemReferenceSearch()
+    {
+        $alias = Request::input('alias');
+
+        $widget = $this->makeFormWidget(
+            'Rainlab\Pages\FormWidgets\MenuItemSearch',
+            [],
+            ['alias' => $alias]
+        );
+
+        return $widget->onSearch();
+    }
+
     //
     // Methods for the internal use
     //
@@ -383,12 +401,25 @@ class Index extends Controller
 
         if ($type == 'page') {
             $widget->bindEvent('form.extendFieldsBefore', function() use ($widget, $object) {
+                $this->checkContentField($widget, $object);
                 $this->addPagePlaceholders($widget, $object);
                 $this->addPageSyntaxFields($widget, $object);
             });
         }
 
         return $widget;
+    }
+
+    protected function checkContentField($formWidget, $page)
+    {
+        if (!($layout = $page->getLayoutObject())) {
+            return;
+        }
+
+        $component = $layout->getComponent('staticPage');
+        if (!$component->property('useContent', true)) {
+            unset($formWidget->secondaryTabs['fields']['markup']);
+        }
     }
 
     protected function addPageSyntaxFields($formWidget, $page)
@@ -403,7 +434,21 @@ class Index extends Controller
                 unset($fieldConfig['fields']);
             }
 
-            $formWidget->tabs['fields']['viewBag[' . $fieldCode . ']'] = $fieldConfig;
+            /*
+            * Custom fields placement
+            */
+            $placement = (!empty($fieldConfig['placement']) ? $fieldConfig['placement'] : NULL);
+
+            switch ($placement) {
+                case "primary":
+                    $formWidget->tabs['fields']['viewBag[' . $fieldCode . ']'] = $fieldConfig;
+                    break;
+
+                default:
+                    $fieldConfig['cssClass'] = 'secondary-tab ' . array_get($fieldConfig, 'cssClass', '');
+                    $formWidget->secondaryTabs['fields']['viewBag[' . $fieldCode . ']'] = $fieldConfig;
+                    break;
+            }
 
             /*
              * Translation support

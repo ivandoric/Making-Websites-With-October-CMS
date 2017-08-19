@@ -24,6 +24,7 @@ You can translate all contents into your own language.
 * [Arrizalamin.Portfolio](https://octobercms.com/plugin/arrizalamin-portfolio)
 * [Responsiv.Showcase](https://octobercms.com/plugin/responsiv-showcase)
 * [VojtaSvoboda.Brands](https://octobercms.com/plugin/vojtasvoboda-brands)
+* [Graker.PhotoAlbums](https://octobercms.com/plugin/graker-photoalbums)
 * Native CMS pages (experimental)
 
 **Multilingual contents via RainLab.Translate are supported.**
@@ -62,6 +63,9 @@ Create a search form that sends a query to your search page:
 ```
 
 **Important**: Use the `q` parameter to send the user's query.
+
+Alternatively you can also use the `searchInput` component described below to generate this form
+for you.
 
 ##### Search results
 
@@ -136,14 +140,85 @@ This message is shown if there are no results returned.
 
 A link is placed below each search result. Use this property to change that link's text.
 
+### searchInput
+
+Place this component anywhere you want to display a simple search input with "search as you type" capabilities.
+
+#### Usage example
+
+Add the `searchInput` component to any layout, partial or page.
+
+```html
+title = "Home"
+url = "/"
+...
+
+[searchInput]
+useAutoComplete = 1
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "search.htm"
+==
+{% component 'searchInput' %}
+```
+
+##### Example css to style the component
+
+```css
+.ss-search-form {
+    position: relative;
+}
+.ss-search-form__results {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    width: 100%;
+    background: #fff;
+    padding: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+.ss-search-form__results--visible {
+    display: block;
+}
+```
+
+#### Properties
+
+The following properties are available to change the component's behaviour.
+
+##### useAutoComplete
+
+If this property is enabled, a search query will be executed as soon as the user begins to type.
+
+##### autoCompleteResultCount
+
+This many results will be displayed to the user below the input field. There will be a 
+"Show all results" link the user can click that takes her to a full search results page if one has
+been specified via the `searchPage` property.
+
+##### showProviderBadge
+
+The search works by querying multiple providers (Pages, Blog, or other). If this option is enabled
+each search result is marked with a badge to show which provider returned the result.
+
+This is useful if your site has many different entities (ex. teams, employees, pages, blog entries).
+
+##### searchPage
+
+The filename of the page where you have placed a `searchResults` component. If a user clicks on the "Show all 
+results" link it will take him to this page where a full search is run using the `searchResults` component.
+
 ## Add support for custom plugin contents
+
+### Simple method
 
 To return search results for you own custom plugin, register an event listener for the `offline.sitesearch.query`
 event in your plugin's boot method.
 
 Return an array containing a `provider` string and `results` array. Each result must provide at least a `title` key.  
 
-### Example to search for custom `documents`
+#### Example to search for custom `documents`
 
 ```php
 public function boot()
@@ -170,6 +245,7 @@ public function boot()
                                            // position in the results listing
                 // 'meta' => 'data',       // optional, any other information you want
                                            // to associate with this result
+                // 'model' => $item,       // optional, pass along the original model
             ];
         });
 
@@ -182,6 +258,76 @@ public function boot()
 ```
 
 That's it!
+
+### Advanced method
+
+If you need a bit more flexibility you can also create your own `ResultsProvider` class. Simply extend SiteSearch's 
+`ResultProvider` and implement the needed methods. Have a look at the existing providers shipped by this plugin to get
+an idea of all the possibilities.
+
+When your own `ResultsProvider` class is ready, register an event listener for the `offline.sitesearch.extend`
+event in your plugin's boot method. There you can return one `ResultsProvider` (or multiple in an array) which will
+be included every time a user runs a search on your website.  
+
+#### Advanced example to search for custom `documents`
+
+```php
+public function boot()
+{
+    Event::listen('offline.sitesearch.extend', function () {
+        return new DocumentsSearchProvider();
+        
+        // or
+        // return [new DocumentsSearchProvider(), new FilesSearchProvider()]; 
+    });
+}
+```
+
+```php
+<?php
+use OFFLINE\SiteSearch\Classes\Providers\ResultsProvider;
+
+class DocumentsSearchProvider extends ResultsProvider
+{
+    public function search()
+    {
+        // Get your matching models
+        $matching = YourCustomDocumentModel::where('title', 'like', "%{$this->query}%")
+                                           ->orWhere('content', 'like', "%{$this->query}%")
+                                           ->get();
+
+        // Create a new Result for every match
+        foreach ($matching as $match) {
+            $result            = $this->newResult();
+
+            $result->relevance = 1;
+            $result->title     = $match->title;
+            $result->text      = $match->description;
+            $result->url       = $match->url;
+            $result->thumb     = $match->image;
+            $result->model     = $match;
+            $result->meta      = [
+                'some_data' => $match->some_other_property,
+            ];
+
+            // Add the results to the results collection
+            $this->addResult($result);
+        }
+
+        return $this;
+    }
+
+    public function displayName()
+    {
+        return 'My Result';
+    }
+
+    public function identifier()
+    {
+        return 'VendorName.PluginName';
+    }
+}
+```
 
 ## Settings
 

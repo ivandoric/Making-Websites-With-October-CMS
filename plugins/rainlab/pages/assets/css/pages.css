@@ -120,3 +120,7 @@
     background-size: 17px auto;
   }
 }
+.form-group.secondary-tab {
+    padding: 10px 20px;
+    background: #fff;
+}

@@ -1,0 +1,8 @@
+<h4 class="ss-autocomplete-result__title">
+    <a href="{{ result.url }}">{{ result.title | raw }}</a>
+    {% if __SELF__.showProviderBadge %}
+        <span class="ss-autocomplete-result__badge">
+            {{ result.provider }}
+        </span>
+    {% endif %}
+</h4>

@@ -65,16 +65,12 @@ return [
         'activate_mode_user_comment' => 'El usuario activa su propia cuenta a través del e-mail.',
         'activate_mode_admin' => 'Administrador',
         'activate_mode_admin_comment' => 'Solo los administradores pueden activar usuarios.',
-        'welcome_template' => 'Plantilla de mail para bienvenida',
-        'welcome_template_comment' => 'Ésta plantilla es enviada a un usuario cuando se activa por primera vez.',
         'require_activation' => 'El ingreso requiere activación',
         'require_activation_comment' => 'Los usuarios necesitarán una cuenta activa para ingresar.',
         'use_throttle' => 'Regular intentos fallidos',
         'use_throttle_comment' => 'Repetidos intentos fallidos de ingreso suspenderán temporalmente al usuario.',
         'login_attribute' => 'Atributo para ingreso',
         'login_attribute_comment' => 'Seleccione que atributo sera utilizado para el ingreso.',
-        'no_mail_template' => 'No enviar notifiación',
-        'hint_templates' => 'Usted puede modificar las plantillas de mail seleccionando Correo > Plantillas de Correo desde el menú.'
     ],
     'user' => [
         'label' => 'Usuario',

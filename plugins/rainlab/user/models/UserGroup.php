@@ -28,8 +28,8 @@ class UserGroup extends GroupBase
      * @var array Relations
      */
     public $belongsToMany = [
-        'users'       => ['RainLab\User\Models\User', 'table' => 'users_groups'],
-        'users_count' => ['RainLab\User\Models\User', 'table' => 'users_groups', 'count' => true]
+        'users'       => [User::class, 'table' => 'users_groups'],
+        'users_count' => [User::class, 'table' => 'users_groups', 'count' => true]
     ];
 
     /**

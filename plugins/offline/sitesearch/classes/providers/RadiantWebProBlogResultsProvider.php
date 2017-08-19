@@ -36,6 +36,7 @@ class RadiantWebProBlogResultsProvider extends ResultsProvider
             $result->text  = $this->getSummary($post);
             $result->url   = $this->getUrl($post);
             $result->thumb = $this->getThumb($post->featured_images);
+            $result->model = $post;
 
             $this->addResult($result);
         }

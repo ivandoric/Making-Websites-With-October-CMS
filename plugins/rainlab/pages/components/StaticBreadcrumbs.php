@@ -37,7 +37,7 @@ class StaticBreadcrumbs extends ComponentBase
             $url = '/';
         }
 
-        $theme =Theme::getActiveTheme();
+        $theme = Theme::getActiveTheme();
         $router = new Router($theme);
         $page = $router->findByUrl($url);
 
@@ -61,7 +61,7 @@ class StaticBreadcrumbs extends ComponentBase
 
                 $reference = new MenuItemReference();
                 $reference->title = $pageInfo['title'];
-                $reference->url = Url::to($pageInfo['url']);
+                $reference->url = StaticPageClass::url($code);
                 $reference->isActive = $code == $startCode;
 
                 $breadcrumbs[] = $reference;

@@ -34,6 +34,7 @@ class FeeglewebOctoshopProductsResultsProvider extends ResultsProvider
             $result->text  = $product->intro;
             $result->url   = $this->getUrl($product);
             $result->thumb = $this->getThumb($product->images);
+            $result->model = $product;
 
             $this->addResult($result);
         }

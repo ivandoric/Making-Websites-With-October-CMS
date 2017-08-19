@@ -55,6 +55,8 @@ class GenericResultsProvider extends ResultsProvider
                 $result->{$key} = $value;
             }
 
+            $result->identifier = $provider;
+
             $this->addResult($result, $provider);
         }
     }
@@ -97,6 +99,6 @@ class GenericResultsProvider extends ResultsProvider
      */
     public function identifier()
     {
-        return '';
+        return 'Generic';
     }
 }

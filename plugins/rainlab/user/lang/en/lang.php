@@ -7,7 +7,8 @@ return [
         'tab' => 'Users',
         'access_users' => 'Manage Users',
         'access_groups' => 'Manage User Groups',
-        'access_settings' => 'Manage User Settings'
+        'access_settings' => 'Manage User Settings',
+        'impersonate_user' => 'Impersonate Users'
     ],
     'users' => [
         'menu_label' => 'Users',
@@ -28,6 +29,9 @@ return [
         'convert_guest_confirm' => 'Convert this guest to a user?',
         'convert_guest_manually' => 'Convert to registered user',
         'convert_guest_success' => 'User has been converted to a registered account',
+        'impersonate_user' => 'Impersonate user',
+        'impersonate_confirm' => 'Impersonate this user? You can revert to your original state by logging out.',
+        'impersonate_success' => 'You are now impersonating this user',
         'delete_confirm' => 'Do you really want to delete this user?',
         'unban_user' => 'Unban this user',
         'unban_confirm' => 'Do you really want to unban this user?',
@@ -39,6 +43,10 @@ return [
         'delete_selected_confirm' => 'Delete the selected users?',
         'delete_selected_empty' => 'There are no selected users to delete.',
         'delete_selected_success' => 'Successfully deleted the selected users.',
+        'activate_selected' => 'Activate selected',
+        'activate_selected_confirm' => 'Activate the selected users?',
+        'activate_selected_empty' => 'There are no selected users to activate.',
+        'activate_selected_success' => 'Successfully activated the selected users.',
         'deactivate_selected' => 'Deactivate selected',
         'deactivate_selected_confirm' => 'Deactivate the selected users?',
         'deactivate_selected_empty' => 'There are no selected users to deactivate.',
@@ -74,16 +82,14 @@ return [
         'activate_mode_user_comment' => 'The user activates their own account using mail.',
         'activate_mode_admin' => 'Administrator',
         'activate_mode_admin_comment' => 'Only an Administrator can activate a user.',
-        'welcome_template' => 'Welcome mail template',
-        'welcome_template_comment' => 'This mail template is sent to a user when they are first activated.',
         'require_activation' => 'Sign in requires activation',
         'require_activation_comment' => 'Users must have an activated account to sign in.',
         'use_throttle' => 'Throttle attempts',
         'use_throttle_comment' => 'Repeat failed sign in attempts will temporarily suspend the user.',
+        'block_persistence' => 'Prevent concurrent sessions',
+        'block_persistence_comment' => 'When enabled users cannot sign in to multiple devices at the same time.',
         'login_attribute' => 'Login attribute',
         'login_attribute_comment' => 'Select what primary user detail should be used for signing in.',
-        'no_mail_template' => 'Do not send a notification',
-        'hint_templates' => 'You can customize mail templates by selecting Mail > Mail Templates from the settings menu.'
     ],
     'user' => [
         'label' => 'User',
@@ -153,6 +159,8 @@ return [
         'redirect_to_desc' => 'Page name to redirect to after update, sign in or registration.',
         'code_param' => 'Activation Code Param',
         'code_param_desc' => 'The page URL parameter used for the registration activation code',
+        'force_secure' => 'Force secure protocol',
+        'force_secure_desc' => 'Always redirect the URL with the HTTPS schema.',
         'invalid_user' => 'A user was not found with the given credentials.',
         'invalid_activation_code' => 'Invalid activation code supplied.',
         'invalid_deactivation_pass' => 'The password you entered was invalid.',
@@ -186,8 +194,11 @@ return [
         'all' => 'All',
         'users' => 'Users',
         'guests' => 'Guests',
+        'allowed_groups_title' => 'Allow groups',
+        'allowed_groups_description' => 'Choose allowed groups or none to allow all groups',
         'redirect_title' => 'Redirect to',
         'redirect_desc' => 'Page name to redirect if access is denied.',
-        'logout' => 'You have been successfully logged out!'
+        'logout' => 'You have been successfully logged out!',
+        'stop_impersonate_success' => 'You are no longer impersonating a user.',
     ]
 ];

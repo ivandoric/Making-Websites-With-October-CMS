@@ -670,7 +670,7 @@ return false})
 this.wrapper.click(function(){if(self.body.hasClass(self.options.bodyMenuOpenClass)){closeMenu()
 return false}})
 $(window).resize(function(){if(self.body.hasClass(self.options.bodyMenuOpenClass)){if($(window).width()>self.breakpoint){hideMenu()}}})
-this.menuElement.dragScroll({vertical:true,start:function(){self.menuElement.addClass('drag')},stop:function(){self.menuElement.removeClass('drag')},scrollClassContainer:self.menuPanel,scrollMarkerContainer:self.menuContainer})
+this.menuElement.dragScroll({vertical:true,useNative:true,start:function(){self.menuElement.addClass('drag')},stop:function(){self.menuElement.removeClass('drag')},scrollClassContainer:self.menuPanel,scrollMarkerContainer:self.menuContainer})
 this.menuElement.on('click',function(){if(self.menuElement.hasClass('drag'))
 return false})
 function hideMenu(){self.body.removeClass(self.options.bodyMenuOpenClass)
@@ -691,9 +691,9 @@ if(typeof option=='string')data[option].call($this)})}
 $.fn.verticalMenu.Constructor=VerticalMenu
 $.fn.verticalMenu.noConflict=function(){$.fn.verticalMenu=old
 return this}}(window.jQuery);(function($){$(window).load(function(){$('nav.navbar').each(function(){var
-navbar=$(this),nav=$('ul.nav',navbar),collapseMode=navbar.hasClass('navbar-mode-collapse')
+navbar=$(this),nav=$('ul.nav',navbar),collapseMode=navbar.hasClass('navbar-mode-collapse'),isMobile=$('html').hasClass('mobile')
 nav.verticalMenu($('a.menu-toggle',navbar),{breakpoint:collapseMode?Infinity:769})
-$('li.with-tooltip:not(.active) > a',navbar).tooltip({container:'body',placement:'bottom',template:'<div class="tooltip mainmenu-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'})
+$('li.with-tooltip:not(.active) > a',navbar).tooltip({container:'body',placement:'bottom',template:'<div class="tooltip mainmenu-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'}).on('show.bs.tooltip',function(e){if(isMobile)e.preventDefault()})
 $('[data-calculate-width]',navbar).one('oc.widthFixed',function(){var dragScroll=$('[data-control=toolbar]',navbar).data('oc.dragScroll')
 if(dragScroll){dragScroll.goToElement($('ul.nav > li.active',navbar),undefined,{'duration':0})}})})})})(jQuery);+function($){"use strict";if($.oc===undefined)
 $.oc={}
@@ -703,9 +703,9 @@ this.$list=$('ul',this.$el)
 this.$items=$('li',this.$list)
 this.init();}
 SideNav.DEFAULTS={activeClass:'active'}
-SideNav.prototype.init=function(){var self=this;this.$list.dragScroll({vertical:true,start:function(){self.$list.addClass('drag')},stop:function(){self.$list.removeClass('drag')},scrollClassContainer:self.$el,scrollMarkerContainer:self.$el})
-this.$list.on('click',function(){if(self.$list.hasClass('drag'))
-return false})}
+SideNav.prototype.init=function(){var self=this
+this.$list.dragScroll({vertical:true,useNative:true,start:function(){self.$list.addClass('drag')},stop:function(){self.$list.removeClass('drag')},scrollClassContainer:self.$el,scrollMarkerContainer:self.$el})
+this.$list.on('click',function(){if(self.$list.hasClass('drag')){return false}})}
 SideNav.prototype.unsetActiveItem=function(itemId){this.$items.removeClass(this.options.activeClass)}
 SideNav.prototype.setActiveItem=function(itemId){if(!itemId){return}
 this.$items.removeClass(this.options.activeClass).filter('[data-menu-item='+itemId+']').addClass(this.options.activeClass)}
@@ -740,9 +740,10 @@ $.fn.sideNav.noConflict=function(){$.fn.sideNav=old
 return this}
 $(document).ready(function(){$('[data-control="sidenav"]').sideNav()})}(window.jQuery);+function($){"use strict";var Base=$.oc.foundation.base,BaseProto=Base.prototype
 var Scrollbar=function(element,options){var
-$el=this.$el=$(element),el=$el.get(0),self=this,options=this.options=options||{},sizeName=this.sizeName=options.vertical?'height':'width',isTouch=this.isTouch=Modernizr.touch,isScrollable=this.isScrollable=false,isLocked=this.isLocked=false,eventElementName=options.vertical?'pageY':'pageX',dragStart=0,startOffset=0;$.oc.foundation.controlUtils.markDisposable(element)
+$el=this.$el=$(element),el=$el.get(0),self=this,options=this.options=options||{},sizeName=this.sizeName=options.vertical?'height':'width',isNative=$('html').hasClass('mobile'),isTouch=this.isTouch=Modernizr.touch,isScrollable=this.isScrollable=false,isLocked=this.isLocked=false,eventElementName=options.vertical?'pageY':'pageX',dragStart=0,startOffset=0;$.oc.foundation.controlUtils.markDisposable(element)
 Base.call(this)
 this.$el.one('dispose-control',this.proxy(this.dispose))
+if(isNative){return}
 this.$scrollbar=$('<div />').addClass('scrollbar-scrollbar')
 this.$track=$('<div />').addClass('scrollbar-track').appendTo(this.$scrollbar)
 this.$thumb=$('<div />').addClass('scrollbar-thumb').appendTo(this.$track)
@@ -907,7 +908,7 @@ if(this.pageTitleTemplate===undefined)
 this.pageTitleTemplate=$title.data('titleTemplate')
 $title.text(this.pageTitleTemplate.replace('%s',title))}
 OctoberLayout.prototype.updateLayout=function(title){var $children,$el,fixedWidth,margin
-$('.layout-cell.width-fix, [data-calculate-width]').each(function(){$children=$(this).children()
+$('[data-calculate-width]').each(function(){$children=$(this).children()
 if($children.length>0){fixedWidth=0
 $children.each(function(){$el=$(this)
 margin=$el.data('oc.layoutMargin')
@@ -917,6 +918,7 @@ fixedWidth+=$el.get(0).offsetWidth+margin})
 $(this).width(fixedWidth)
 $(this).trigger('oc.widthFixed')}})}
 OctoberLayout.prototype.toggleAccountMenu=function(el){var self=this,$el=$(el),$parent=$(el).parent(),$menu=$el.next()
+$el.tooltip('hide')
 if($menu.hasClass('active')){self.$accountMenuOverlay.remove()
 $parent.removeClass('highlight')
 $menu.removeClass('active')}
@@ -1071,109 +1073,9 @@ return result?result:this}
 $.fn.treeListWidget.Constructor=TreeListWidget
 $.fn.treeListWidget.noConflict=function(){$.fn.treeListWidget=old
 return this}
-$(document).render(function(){$('[data-control="treelist"]').treeListWidget();})}(window.jQuery);!function($){"use strict";var Autocomplete=function(element,options){this.$element=$(element)
-this.options=$.extend({},$.fn.autocomplete.defaults,options)
-this.matcher=this.options.matcher||this.matcher
-this.sorter=this.options.sorter||this.sorter
-this.highlighter=this.options.highlighter||this.highlighter
-this.updater=this.options.updater||this.updater
-this.source=this.options.source
-this.$menu=$(this.options.menu)
-this.shown=false
-this.listen()}
-Autocomplete.prototype={constructor:Autocomplete,select:function(){var val=this.$menu.find('.active').attr('data-value')
-this.$element.val(this.updater(val)).change()
-return this.hide()},updater:function(item){return item},show:function(){var offset=this.options.bodyContainer?this.$element.offset():this.$element.position(),pos=$.extend({},offset,{height:this.$element[0].offsetHeight}),cssOptions={top:pos.top+pos.height,left:pos.left}
-if(this.options.matchWidth){cssOptions.width=this.$element[0].offsetWidth}
-this.$menu.css(cssOptions)
-if(this.options.bodyContainer){$(document.body).append(this.$menu)}
-else{this.$menu.insertAfter(this.$element)}
-this.$menu.show()
-this.shown=true
-return this},hide:function(){this.$menu.hide()
-this.shown=false
-return this},lookup:function(event){var items
-this.query=this.$element.val()
-if(!this.query||this.query.length<this.options.minLength){return this.shown?this.hide():this}
-items=$.isFunction(this.source)?this.source(this.query,$.proxy(this.process,this)):this.source
-return items?this.process(items):this},itemValue:function(item){if(typeof item==='object')
-return item.value;return item;},itemLabel:function(item){if(typeof item==='object')
-return item.label;return item;},itemsToArray:function(items){var newArray=[]
-$.each(items,function(value,label){newArray.push({label:label,value:value})})
-return newArray},process:function(items){var that=this
-if(typeof items=='object')
-items=this.itemsToArray(items)
-items=$.grep(items,function(item){return that.matcher(item)})
-items=this.sorter(items)
-if(!items.length){return this.shown?this.hide():this}
-return this.render(items.slice(0,this.options.items)).show()},matcher:function(item){return~this.itemValue(item).toLowerCase().indexOf(this.query.toLowerCase())},sorter:function(items){var beginswith=[],caseSensitive=[],caseInsensitive=[],item,itemValue
-while(item=items.shift()){itemValue=this.itemValue(item)
-if(!itemValue.toLowerCase().indexOf(this.query.toLowerCase()))beginswith.push(item)
-else if(~itemValue.indexOf(this.query))caseSensitive.push(item)
-else caseInsensitive.push(item)}
-return beginswith.concat(caseSensitive,caseInsensitive)},highlighter:function(item){var query=this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,'\\$&')
-return item.replace(new RegExp('('+query+')','ig'),function($1,match){return'<strong>'+match+'</strong>'})},render:function(items){var that=this
-items=$(items).map(function(i,item){i=$(that.options.item).attr('data-value',that.itemValue(item))
-i.find('a').html(that.highlighter(that.itemLabel(item)))
-return i[0]})
-items.first().addClass('active')
-this.$menu.html(items)
-return this},next:function(event){var active=this.$menu.find('.active').removeClass('active'),next=active.next()
-if(!next.length){next=$(this.$menu.find('li')[0])}
-next.addClass('active')},prev:function(event){var active=this.$menu.find('.active').removeClass('active'),prev=active.prev()
-if(!prev.length){prev=this.$menu.find('li').last()}
-prev.addClass('active')},listen:function(){this.$element.on('focus.autocomplete',$.proxy(this.focus,this)).on('blur.autocomplete',$.proxy(this.blur,this)).on('keypress.autocomplete',$.proxy(this.keypress,this)).on('keyup.autocomplete',$.proxy(this.keyup,this))
-if(this.eventSupported('keydown')){this.$element.on('keydown.autocomplete',$.proxy(this.keydown,this))}
-this.$menu.on('click.autocomplete',$.proxy(this.click,this)).on('mouseenter.autocomplete','li',$.proxy(this.mouseenter,this)).on('mouseleave.autocomplete','li',$.proxy(this.mouseleave,this))},eventSupported:function(eventName){var isSupported=eventName in this.$element
-if(!isSupported){this.$element.setAttribute(eventName,'return;')
-isSupported=typeof this.$element[eventName]==='function'}
-return isSupported},move:function(e){if(!this.shown)return
-switch(e.keyCode){case 9:case 13:case 27:e.preventDefault()
-break
-case 38:e.preventDefault()
-this.prev()
-break
-case 40:e.preventDefault()
-this.next()
-break}
-e.stopPropagation()},keydown:function(e){this.suppressKeyPressRepeat=~$.inArray(e.keyCode,[40,38,9,13,27])
-this.move(e)},keypress:function(e){if(this.suppressKeyPressRepeat)return
-this.move(e)},keyup:function(e){switch(e.keyCode){case 40:case 38:case 16:case 17:case 18:break
-case 9:case 13:if(!this.shown)return
-this.select()
-break
-case 27:if(!this.shown)return
-this.hide()
-break
-default:this.lookup()}
-e.stopPropagation()
-e.preventDefault()},focus:function(e){this.focused=true},blur:function(e){this.focused=false
-if(!this.mousedover&&this.shown)this.hide()},click:function(e){e.stopPropagation()
-e.preventDefault()
-this.select()
-this.$element.focus()},mouseenter:function(e){this.mousedover=true
-this.$menu.find('.active').removeClass('active')
-$(e.currentTarget).addClass('active')},mouseleave:function(e){this.mousedover=false
-if(!this.focused&&this.shown)this.hide()},destroy:function(){this.hide()
-this.$element.removeData('autocomplete')
-this.$menu.remove()
-this.$element.off('.autocomplete')
-this.$menu.off('.autocomplete')
-this.$element=null
-this.$menu=null}}
-var old=$.fn.autocomplete
-$.fn.autocomplete=function(option){return this.each(function(){var $this=$(this),data=$this.data('autocomplete'),options=typeof option=='object'&&option
-if(!data)$this.data('autocomplete',(data=new Autocomplete(this,options)))
-if(typeof option=='string')data[option]()})}
-$.fn.autocomplete.defaults={source:[],items:8,menu:'<ul class="autocomplete dropdown-menu"></ul>',item:'<li><a href="#"></a></li>',minLength:1,bodyContainer:false}
-$.fn.autocomplete.Constructor=Autocomplete
-$.fn.autocomplete.noConflict=function(){$.fn.autocomplete=old
-return this}
-$(document).on('focus.autocomplete.data-api','[data-control="autocomplete"]',function(e){var $this=$(this)
-if($this.data('autocomplete'))return
-$this.autocomplete($this.data())})}(window.jQuery);+function($){"use strict";var SidenavTree=function(element,options){this.options=options
+$(document).render(function(){$('[data-control="treelist"]').treeListWidget();})}(window.jQuery);+function($){"use strict";var SidenavTree=function(element,options){this.options=options
 this.$el=$(element)
-this.init();}
+this.init()}
 SidenavTree.DEFAULTS={treeName:'sidenav_tree'}
 SidenavTree.prototype.init=function(){var self=this
 $(document.body).addClass('has-sidenav-tree')
@@ -1181,17 +1083,18 @@ this.statusCookieName=this.options.treeName+'groupStatus'
 this.searchCookieName=this.options.treeName+'search'
 this.$searchInput=$(this.options.searchInput)
 this.$el.on('click','li > div.group',function(){self.toggleGroup($(this).closest('li'))
-return false;});this.$searchInput.on('keyup',function(){self.handleSearchChange()})
+return false})
+this.$searchInput.on('keyup',function(){self.handleSearchChange()})
 var searchTerm=$.cookie(this.searchCookieName)
 if(searchTerm!==undefined&&searchTerm.length>0){this.$searchInput.val(searchTerm)
 this.applySearch()}
 var scrollbar=$('[data-control=scrollbar]',this.$el).data('oc.scrollbar'),active=$('li.active',this.$el)
-if(active.length>0)
-scrollbar.gotoElement(active)}
+if(active.length>0){scrollbar.gotoElement(active)}}
 SidenavTree.prototype.toggleGroup=function(group){var $group=$(group),status=$group.attr('data-status')
 status===undefined||status=='expanded'?this.collapseGroup($group):this.expandGroup($group)}
 SidenavTree.prototype.collapseGroup=function(group){var
-$list=$('> ul',group),self=this;$list.css('overflow','hidden')
+$list=$('> ul',group),self=this
+$list.css('overflow','hidden')
 $list.animate({'height':0},{duration:100,queue:false,complete:function(){$list.css({'overflow':'visible','display':'none'})
 $(group).attr('data-status','collapsed')
 $(window).trigger('oc.updateUi')
@@ -1199,32 +1102,30 @@ self.saveGroupStatus($(group).data('group-code'),true)}})}
 SidenavTree.prototype.expandGroup=function(group,duration){var
 $list=$('> ul',group),self=this
 duration=duration===undefined?100:duration
-$list.css({'overflow':'hidden','display':'block','height':0})
+$list.css({'overflow':'hidden','display':'','height':0})
 $list.animate({'height':$list[0].scrollHeight},{duration:duration,queue:false,complete:function(){$list.css({'overflow':'visible','height':'auto'})
 $(group).attr('data-status','expanded')
 $(window).trigger('oc.updateUi')
 self.saveGroupStatus($(group).data('group-code'),false)}})}
 SidenavTree.prototype.saveGroupStatus=function(groupCode,collapsed){var collapsedGroups=$.cookie(this.statusCookieName),updatedGroups=[]
-if(collapsedGroups===undefined)
-collapsedGroups=''
+if(collapsedGroups===undefined){collapsedGroups=''}
 collapsedGroups=collapsedGroups.split('|')
 $.each(collapsedGroups,function(){if(groupCode!=this)
 updatedGroups.push(this)})
-if(collapsed)
-updatedGroups.push(groupCode)
+if(collapsed){updatedGroups.push(groupCode)}
 $.cookie(this.statusCookieName,updatedGroups.join('|'),{expires:30,path:'/'})}
-SidenavTree.prototype.handleSearchChange=function(){var lastValue=this.$searchInput.data('oc.lastvalue');if(lastValue!==undefined&&lastValue==this.$searchInput.val())
-return
+SidenavTree.prototype.handleSearchChange=function(){var lastValue=this.$searchInput.data('oc.lastvalue');if(lastValue!==undefined&&lastValue==this.$searchInput.val()){return}
 this.$searchInput.data('oc.lastvalue',this.$searchInput.val())
-if(this.dataTrackInputTimer!==undefined)
-window.clearTimeout(this.dataTrackInputTimer);var self=this
+if(this.dataTrackInputTimer!==undefined){window.clearTimeout(this.dataTrackInputTimer)}
+var self=this
 this.dataTrackInputTimer=window.setTimeout(function(){self.applySearch()},300);$.cookie(this.searchCookieName,$.trim(this.$searchInput.val()),{expires:30,path:'/'})}
 SidenavTree.prototype.applySearch=function(){var query=$.trim(this.$searchInput.val()),words=query.toLowerCase().split(' '),visibleGroups=[],visibleItems=[],self=this
 if(query.length==0){$('li',this.$el).removeClass('hidden')
 return}
 $('ul.top-level > li',this.$el).each(function(){var $li=$(this)
 if(self.textContainsWords($('div.group h3',$li).text(),words)){visibleGroups.push($li.get(0))
-$('ul li',$li).each(function(){visibleItems.push(this)})}else{$('ul li',$li).each(function(){if(self.textContainsWords($(this).text(),words)||self.textContainsWords($(this).data('keywords'),words)){visibleGroups.push($li.get(0))
+$('ul li',$li).each(function(){visibleItems.push(this)})}
+else{$('ul li',$li).each(function(){if(self.textContainsWords($(this).text(),words)||self.textContainsWords($(this).data('keywords'),words)){visibleGroups.push($li.get(0))
 visibleItems.push(this)}})}})
 $('ul.top-level > li',this.$el).each(function(){var $li=$(this),groupIsVisible=$.inArray(this,visibleGroups)!==-1
 $li.toggleClass('hidden',!groupIsVisible)
@@ -1343,3 +1244,8 @@ img.src=source})}};return o;};assetManager=new AssetManager();if($.oc===undefine
 $.oc={}
 $.oc.escapeHtmlString=function(string){var htmlEscapes={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#x27;','/':'&#x2F;'},htmlEscaper=/[&<>"'\/]/g
 return(''+string).replace(htmlEscaper,function(match){return htmlEscapes[match];})}
+if(!!window.MSInputMethodContext&&!!document.documentMode){$(window).on('resize',function(){fixMediaManager()
+fixSidebar()})
+function fixMediaManager(){var $el=$('div[data-control="media-manager"] .control-scrollpad')
+$el.height($el.parent().height())}
+function fixSidebar(){$('#layout-sidenav').height(Math.max($('#layout-body').innerHeight(),$(window).height()-$('#layout-mainmenu').height()))}}

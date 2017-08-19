@@ -4,6 +4,7 @@ use Lang;
 use BackendAuth;
 use System\Models\Parameter;
 use System\Classes\UpdateManager;
+use System\Classes\PluginManager;
 use Backend\Classes\ReportWidgetBase;
 use System\Models\EventLog;
 use System\Models\RequestLog;
@@ -60,7 +61,7 @@ class Status extends ReportWidgetBase
         $this->vars['coreBuild'] = Parameter::get('system::core.build');
         $this->vars['eventLog'] = EventLog::count();
         $this->vars['requestLog'] = RequestLog::count();
-        $this->vars['appBirthday'] = PluginVersion::orderBy('created_at')->pluck('created_at');
+        $this->vars['appBirthday'] = PluginVersion::orderBy('created_at')->value('created_at');
     }
 
     public function onLoadWarningsForm()
@@ -72,6 +73,8 @@ class Status extends ReportWidgetBase
     protected function getSystemWarnings()
     {
         $warnings = [];
+
+        $missingPlugins = PluginManager::instance()->findMissingDependencies();
 
         $writablePaths = [
             temp_path(),
@@ -85,6 +88,7 @@ class Status extends ReportWidgetBase
             storage_path('cms/twig'),
             storage_path('cms/combiner'),
         ];
+
         $requiredExtensions = [
             'GD' => extension_loaded('gd'),
             'fileinfo' => extension_loaded('fileinfo'),
@@ -98,10 +102,15 @@ class Status extends ReportWidgetBase
                 $warnings[] = Lang::get('backend::lang.warnings.permissions', ['name' => '<strong>'.$path.'</strong>']);
             }
         }
+
         foreach ($requiredExtensions as $extension => $installed) {
             if (!$installed) {
                 $warnings[] = Lang::get('backend::lang.warnings.extension', ['name' => '<strong>'.$extension.'</strong>']);
             }
+        }
+
+        foreach ($missingPlugins as $pluginCode) {
+            $warnings[] = Lang::get('backend::lang.warnings.plugin_missing', ['name' => '<strong>'.$pluginCode.'</strong>']);
         }
 
         return $warnings;

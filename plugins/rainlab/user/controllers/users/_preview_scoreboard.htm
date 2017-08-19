@@ -1,13 +1,13 @@
 <div class="scoreboard-item title-value">
     <h4><?= e(trans('rainlab.user::lang.user.label')) ?></h4>
     <?php if ($formModel->name): ?>
-        <p><?= $formModel->name ?></p>
+        <p><?= e($formModel->name) ?></p>
     <?php else: ?>
         <p><em><?= e(trans('rainlab.user::lang.user.name_empty')) ?></em></p>
     <?php endif ?>
     <p class="description">
         <a href="mailto:<?= e($formModel->email) ?>">
-            <?= $formModel->email ?>
+            <?= e($formModel->email) ?>
         </a>
     </p>
 </div>

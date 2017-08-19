@@ -37,6 +37,7 @@ class OfflineSnipcartShopResultsProvider extends ResultsProvider
             $result->text  = $description;
             $result->url   = $this->getUrl($product);
             $result->thumb = $product->image;
+            $result->model = $product;
             $result->meta  = [
                 'price' => $product->price,
             ];

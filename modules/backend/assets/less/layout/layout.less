@@ -2,7 +2,7 @@
 // Common layout elements
 // --------------------------------------------------
 
-body.drag * {
+html:not(.mobile) body.drag * {
     cursor: drag !important;
     cursor: -webkit-grab !important;
     cursor: -moz-grab !important;
@@ -19,7 +19,7 @@ body.loading, body.loading * {
 
 body.no-select {
     .user-select(none);
-    cursor: default!important;
+    cursor: default !important;
 }
 
 //
@@ -84,15 +84,6 @@ body {
         display: table-cell;
         vertical-align: top;
         height: 100%;
-
-        // @deprecated Remove if year >= 2017 (7 lines below)
-        &.width-100 { width: 100px; }
-        &.width-120 { width: 120px; }
-        &.width-130 { width: 130px; }
-        &.width-140 { width: 140px; }
-        &.width-200 { width: 200px; }
-        &.width-300 { width: 300px; }
-        &.width-350 { width: 350px; }
 
         &.layout-container, .layout-container, &.padded-container, .padded-container {
             padding: @padding-standard @padding-standard 0 @padding-standard;
@@ -171,7 +162,7 @@ body {
 // Calculated fixed width
 //
 
-.layout-cell.width-fix, [data-calculate-width] {
+[data-calculate-width] {
     > form, > div {
         display: inline-block;
     }

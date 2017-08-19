@@ -2,95 +2,120 @@
  * OctoberCMS: front-end JavaScript framework
  * http://octobercms.com
  * ========================================================================
- * Copyright 2016 Alexey Bobkov, Samuel Georges
+ * Copyright 2017 Alexey Bobkov, Samuel Georges
  * ======================================================================== */
 
-if (window.jQuery === undefined)
+if (window.jQuery === undefined) {
     throw new Error('The jQuery library is not loaded. The OctoberCMS framework cannot be initialized.');
+}
+if (window.jQuery.request !== undefined) {
+    throw new Error('The OctoberCMS framework is already loaded.');
+}
 
 +function ($) { "use strict";
 
     var Request = function (element, handler, options) {
         var $el = this.$el = $(element);
         this.options = options || {};
+
         /*
          * Validate handler name
          */
-
-        if (handler == undefined)
+        if (handler === undefined) {
             throw new Error('The request handler name is not specified.')
-
-        if (!handler.match(/^(?:\w+\:{2})?on*/))
-            throw new Error('Invalid handler name. The correct handler name format is: "onEvent".')
-
-        /*
-         * Custom function, requests confirmation from the user
-         */
-
-        function handleConfirmMessage(message) {
-            var _event = jQuery.Event('ajaxConfirmMessage')
-
-            _event.promise = $.Deferred()
-            if ($(window).triggerHandler(_event, [message]) !== undefined) {
-                _event.promise.done(function() {
-                    options.confirm = null
-                    new Request(element, handler, options)
-                })
-                return false
-            }
-
-            if (_event.isDefaultPrevented()) return
-            if (message) return confirm(message)
         }
 
-        /*
-         * Initiate request
-         */
-
-        if (options.confirm && !handleConfirmMessage(options.confirm))
-            return
+        if (!handler.match(/^(?:\w+\:{2})?on*/)) {
+            throw new Error('Invalid handler name. The correct handler name format is: "onEvent".')
+        }
 
         /*
          * Prepare the options and execute the request
          */
-
-        var
-            $form = $el.closest('form'),
+        var $form = options.form ? $(options.form) : $el.closest('form'),
             $triggerEl = !!$form.length ? $form : $el,
-            context = { handler: handler, options: options },
-            loading = options.loading !== undefined && options.loading.length ? $(options.loading) : null,
-            isRedirect = options.redirect !== undefined && options.redirect.length
+            context = { handler: handler, options: options }
 
+        $el.trigger('ajaxSetup', [context])
         var _event = jQuery.Event('oc.beforeRequest')
         $triggerEl.trigger(_event, context)
         if (_event.isDefaultPrevented()) return
 
-        var data = [$form.serialize()]
+        var loading = options.loading !== undefined ? options.loading : null,
+            isRedirect = options.redirect !== undefined && options.redirect.length,
+            useFlash = options.flash !== undefined,
+            useFiles = options.files !== undefined
 
-        $.each($el.parents('[data-request-data]').toArray().reverse(), function extendRequest() {
-            data.push($.param(paramToObj('data-request-data', $(this).data('request-data'))))
-        })
-
-        if ($el.is(':input') && !$form.length) {
-            var inputName = $el.attr('name')
-            if (inputName !== undefined && options.data[inputName] === undefined)
-                options.data[inputName] = $el.val()
+        if (useFiles && typeof FormData === 'undefined') {
+            console.warn('This browser does not support file uploads via FormData')
+            useFiles = false
         }
 
-        if (options.data !== undefined && !$.isEmptyObject(options.data))
-            data.push($.param(options.data))
+        if ($.type(loading) == 'string') {
+            loading = $(loading)
+        }
 
+        /*
+         * Request headers
+         */
         var requestHeaders = {
             'X-OCTOBER-REQUEST-HANDLER': handler,
             'X-OCTOBER-REQUEST-PARTIALS': this.extractPartials(options.update)
         }
 
-        if (options.flash !== undefined) {
+        if (useFlash) {
             requestHeaders['X-OCTOBER-REQUEST-FLASH'] = 1
         }
 
+        /*
+         * Request data
+         */
+        var requestData,
+            inputName,
+            data = {}
+
+        $.each($el.parents('[data-request-data]').toArray().reverse(), function extendRequest() {
+            $.extend(data, paramToObj('data-request-data', $(this).data('request-data')))
+        })
+
+        if (options.data !== undefined && !$.isEmptyObject(options.data)) {
+            $.extend(data, options.data)
+        }
+
+        if ($el.is(':input') && !$form.length) {
+            inputName = $el.attr('name')
+            if (inputName !== undefined && options.data[inputName] === undefined) {
+                data[inputName] = $el.val()
+            }
+        }
+
+        if (useFiles) {
+            requestData = new FormData($form.length ? $form.get(0) : null)
+
+            if ($el.is(':file') && inputName) {
+                $.each($el.prop('files'), function() {
+                    requestData.append(inputName, this)
+                })
+
+                delete data[inputName]
+            }
+
+            $.each(data, function(key) {
+                requestData.append(key, this)
+            })
+        }
+        else {
+            requestData = $form.serialize()
+            if (requestData) requestData = requestData + '&'
+            if (!$.isEmptyObject(data)) requestData += $.param(data)
+        }
+
+        /*
+         * Request options
+         */
         var requestOptions = {
             url: window.location.href,
+            crossDomain: false,
             context: context,
             headers: requestHeaders,
             success: function(data, textStatus, jqXHR) {
@@ -106,6 +131,12 @@ if (window.jQuery === undefined)
                 var _event = jQuery.Event('ajaxBeforeUpdate')
                 $triggerEl.trigger(_event, [context, data, textStatus, jqXHR])
                 if (_event.isDefaultPrevented()) return
+
+                if (useFlash && data['X_OCTOBER_FLASH_MESSAGES']) {
+                    $.each(data['X_OCTOBER_FLASH_MESSAGES'], function(type, message) {
+                        requestOptions.handleFlashMessage(message, type)
+                    })
+                }
 
                 /*
                  * Proceed with the update process
@@ -175,6 +206,25 @@ if (window.jQuery === undefined)
             },
 
             /*
+             * Custom function, requests confirmation from the user
+             */
+            handleConfirmMessage: function(message) {
+                var _event = jQuery.Event('ajaxConfirmMessage')
+
+                _event.promise = $.Deferred()
+                if ($(window).triggerHandler(_event, [message]) !== undefined) {
+                    _event.promise.done(function() {
+                        options.confirm = null
+                        new Request(element, handler, options)
+                    })
+                    return false
+                }
+
+                if (_event.isDefaultPrevented()) return
+                if (message) return confirm(message)
+            },
+
+            /*
              * Custom function, display an error message to the user
              */
             handleErrorMessage: function(message) {
@@ -182,6 +232,40 @@ if (window.jQuery === undefined)
                 $(window).trigger(_event, [message])
                 if (_event.isDefaultPrevented()) return
                 if (message) alert(message)
+            },
+
+            /*
+             * Custom function, focus fields with errors
+             */
+            handleValidationMessage: function(message, fields) {
+                $triggerEl.trigger('ajaxValidation', [context, message, fields])
+
+                var isFirstInvalidField = true
+                $.each(fields, function focusErrorField(fieldName, fieldMessages) {
+                    var fieldElement = $form.find('[name="'+fieldName+'"], [name="'+fieldName+'[]"], [name$="['+fieldName+']"], [name$="['+fieldName+'][]"]').filter(':enabled').first()
+                    if (fieldElement.length > 0) {
+
+                        var _event = jQuery.Event('ajaxInvalidField')
+                        $(window).trigger(_event, [fieldElement.get(0), fieldName, fieldMessages, isFirstInvalidField])
+
+                        if (isFirstInvalidField) {
+                            if (!_event.isDefaultPrevented()) fieldElement.focus()
+                            isFirstInvalidField = false
+                        }
+                    }
+                })
+            },
+
+            /*
+             * Custom function, display a flash message to the user
+             */
+            handleFlashMessage: function(message, type) {},
+
+            /*
+             * Custom function, redirect the browser to another location
+             */
+            handleRedirectResponse: function(url) {
+                window.location.href = url
             },
 
             /*
@@ -200,11 +284,13 @@ if (window.jQuery === undefined)
                          * it's selector and use that. If not, we assume it is an explicit selector reference.
                          */
                         var selector = (options.update[partial]) ? options.update[partial] : partial
-                        if (jQuery.type(selector) == 'string' && selector.charAt(0) == '@') {
+                        if ($.type(selector) == 'string' && selector.charAt(0) == '@') {
                             $(selector.substring(1)).append(data[partial]).trigger('ajaxUpdate', [context, data, textStatus, jqXHR])
-                        } else if (jQuery.type(selector) == 'string' && selector.charAt(0) == '^') {
+                        }
+                        else if ($.type(selector) == 'string' && selector.charAt(0) == '^') {
                             $(selector.substring(1)).prepend(data[partial]).trigger('ajaxUpdate', [context, data, textStatus, jqXHR])
-                        } else {
+                        }
+                        else {
                             $(selector).trigger('ajaxBeforeReplace')
                             $(selector).html(data[partial]).trigger('ajaxUpdate', [context, data, textStatus, jqXHR])
                         }
@@ -228,29 +314,15 @@ if (window.jQuery === undefined)
                     isRedirect = true
                 }
 
-                if (isRedirect)
-                    window.location.href = options.redirect
+                if (isRedirect) {
+                    requestOptions.handleRedirectResponse(options.redirect)
+                }
 
                 /*
-                 * Focus fields with errors
+                 * Handle validation
                  */
                 if (data['X_OCTOBER_ERROR_FIELDS']) {
-                    $triggerEl.trigger('ajaxValidation', [context, data['X_OCTOBER_ERROR_MESSAGE'], data['X_OCTOBER_ERROR_FIELDS']])
-
-                    var isFirstInvalidField = true
-                    $.each(data['X_OCTOBER_ERROR_FIELDS'], function focusErrorField(fieldName, fieldMessages) {
-                        var fieldElement = $form.find('[name="'+fieldName+'"], [name="'+fieldName+'[]"], [name$="['+fieldName+']"], [name$="['+fieldName+'][]"]').filter(':enabled').first()
-                        if (fieldElement.length > 0) {
-
-                            var _event = jQuery.Event('ajaxInvalidField')
-                            $(window).trigger(_event, [fieldElement.get(0), fieldName, fieldMessages, isFirstInvalidField])
-
-                            if (isFirstInvalidField) {
-                                if (!_event.isDefaultPrevented()) fieldElement.focus()
-                                isFirstInvalidField = false
-                            }
-                        }
-                    })
+                    requestOptions.handleValidationMessage(data['X_OCTOBER_ERROR_MESSAGE'], data['X_OCTOBER_ERROR_FIELDS'])
                 }
 
                 /*
@@ -267,6 +339,10 @@ if (window.jQuery === undefined)
             }
         }
 
+        if (useFiles) {
+            requestOptions.processData = requestOptions.contentType = false
+        }
+
         /*
          * Allow default business logic to be called from user functions
          */
@@ -274,25 +350,31 @@ if (window.jQuery === undefined)
         context.error = requestOptions.error
         context.complete = requestOptions.complete
         requestOptions = $.extend(requestOptions, options)
+        requestOptions.data = requestData
 
-        requestOptions.data = data.join('&')
+        /*
+         * Initiate request
+         */
+        if (options.confirm && !requestOptions.handleConfirmMessage(options.confirm)) {
+            return
+        }
 
         if (loading) loading.show()
-
         $(window).trigger('ajaxBeforeSend', [context])
         $el.trigger('ajaxPromise', [context])
+
         return $.ajax(requestOptions)
             .fail(function(jqXHR, textStatus, errorThrown) {
                 if (!isRedirect) {
                     $el.trigger('ajaxFail', [context, textStatus, jqXHR])
-                    if (loading) loading.hide()
                 }
+                if (loading) loading.hide()
             })
             .done(function(data, textStatus, jqXHR) {
                 if (!isRedirect) {
                     $el.trigger('ajaxDone', [context, data, textStatus, jqXHR])
-                    if (loading) loading.hide()
                 }
+                if (loading) loading.hide()
             })
             .always(function(dataOrXhr, textStatus, xhrOrError) {
                 $el.trigger('ajaxAlways', [context, dataOrXhr, textStatus, xhrOrError])
@@ -306,7 +388,7 @@ if (window.jQuery === undefined)
         evalBeforeUpdate: null,
         evalSuccess: null,
         evalError: null,
-        evalComplete: null,
+        evalComplete: null
     }
 
     /*
@@ -339,6 +421,8 @@ if (window.jQuery === undefined)
             redirect: $this.data('request-redirect'),
             loading: $this.data('request-loading'),
             flash: $this.data('request-flash'),
+            files: $this.data('request-files'),
+            form: $this.data('request-form'),
             update: paramToObj('data-request-update', $this.data('request-update')),
             data: paramToObj('data-request-data', $this.data('request-data'))
         }
@@ -350,7 +434,7 @@ if (window.jQuery === undefined)
     $.fn.request.Constructor = Request
 
     $.request = function(handler, option) {
-        return $('<form />').request(handler, option)
+        return $(document).request(handler, option)
     }
 
     // REQUEST NO CONFLICT
@@ -376,7 +460,7 @@ if (window.jQuery === undefined)
         }
     }
 
-    $(document).on('change', 'select[data-request], input[type=radio][data-request], input[type=checkbox][data-request]', function documentOnChange() {
+    $(document).on('change', 'select[data-request], input[type=radio][data-request], input[type=checkbox][data-request], input[type=file][data-request]', function documentOnChange() {
         $(this).request()
     })
 

@@ -68,16 +68,12 @@ return [
         'activate_mode_user_comment' => 'El usuario activa su perfil usando su e-mail.',
         'activate_mode_admin' => 'Administrador',
         'activate_mode_admin_comment' => 'Sólo un administrador puede activar un usuario.',
-        'welcome_template' => 'Plantilla del e-mail de bienvenida',
-        'welcome_template_comment' => 'Esta plantilla es enviada a un usuario cuando es activado por primera vez.',
         'require_activation' => 'Inicio de sesión requiere activación.',
         'require_activation_comment' => 'Usuarios deben tener una perfil activado para poder iniciar sesión.',
         'use_throttle' => 'Límite de intentos',
         'use_throttle_comment' => 'Intentos de inicios de sesión seguidos que provocaran la suspensión temporal del perfil de usuario.',
         'login_attribute' => 'Atributo de inicio de sesión',
         'login_attribute_comment' => 'Seleccione que dato de usuario debería ser utilizado para el inicio de sesión.',
-        'no_mail_template' => 'No enviar notificación',
-        'hint_templates' => 'Puede personalizar plantillas de e-mail seleccionando Correo > Plantillas de correo en el menú configuración.'
     ],
     'user' => [
         'label' => 'Usuario',

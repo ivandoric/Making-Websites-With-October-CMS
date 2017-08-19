@@ -86,7 +86,7 @@ class RecordFinder extends FormWidgetBase
     //
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $defaultAlias = 'recordfinder';
 
@@ -106,7 +106,7 @@ class RecordFinder extends FormWidgetBase
     protected $searchWidget;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function init()
     {
@@ -143,7 +143,7 @@ class RecordFinder extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function render()
     {
@@ -154,7 +154,16 @@ class RecordFinder extends FormWidgetBase
     public function onRefresh()
     {
         list($model, $attribute) = $this->resolveModelAttribute($this->valueFrom);
-        $model->{$attribute} = post($this->formField->getName());
+        $model->{$attribute} = post($this->getFieldName());
+
+        $this->prepareVars();
+        return ['#'.$this->getId('container') => $this->makePartial('recordfinder')];
+    }
+
+    public function onClearRecord()
+    {
+        list($model, $attribute) = $this->resolveModelAttribute($this->valueFrom);
+        $model->{$attribute} = null;
 
         $this->prepareVars();
         return ['#'.$this->getId('container') => $this->makePartial('recordfinder')];
@@ -167,6 +176,10 @@ class RecordFinder extends FormWidgetBase
     {
         $this->relationModel = $this->getLoadValue();
 
+        if ($this->formField->disabled) {
+            $this->previewMode = true;
+        }
+
         $this->vars['value'] = $this->getKeyValue();
         $this->vars['field'] = $this->formField;
         $this->vars['nameValue'] = $this->getNameValue();
@@ -178,7 +191,7 @@ class RecordFinder extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected function loadAssets()
     {
@@ -186,7 +199,7 @@ class RecordFinder extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSaveValue($value)
     {
@@ -194,7 +207,7 @@ class RecordFinder extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getLoadValue()
     {
@@ -266,17 +279,17 @@ class RecordFinder extends FormWidgetBase
         ]);
 
         if ($sqlConditions = $this->conditions) {
-            $widget->bindEvent('list.extendQueryBefore', function($query) use ($sqlConditions) {
+            $widget->bindEvent('list.extendQueryBefore', function ($query) use ($sqlConditions) {
                 $query->whereRaw($sqlConditions);
             });
         }
         elseif ($scopeMethod = $this->scope) {
-            $widget->bindEvent('list.extendQueryBefore', function($query) use ($scopeMethod) {
+            $widget->bindEvent('list.extendQueryBefore', function ($query) use ($scopeMethod) {
                 $query->$scopeMethod($this->model);
             });
         }
         else {
-            $widget->bindEvent('list.extendQueryBefore', function($query) {
+            $widget->bindEvent('list.extendQueryBefore', function ($query) {
                 $this->getRelationObject()->addDefinedConstraintsToQuery($query);
             });
         }

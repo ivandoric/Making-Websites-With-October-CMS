@@ -16,8 +16,19 @@ use SplTempFileObject;
 use Exception;
 
 /**
- * Import/Export Controller Behavior
  * Adds features for importing and exporting data.
+ *
+ * This behavior is implemented in the controller like so:
+ *
+ *     public $implement = [
+ *         'Backend.Behaviors.ImportExportController',
+ *     ];
+ *
+ *     public $importExportConfig = 'config_import_export.yaml';
+ *
+ * The `$importExportConfig` property makes reference to the configuration
+ * values as either a YAML file, located in the controller view directory,
+ * or directly as a PHP array.
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -26,7 +37,7 @@ class ImportExportController extends ControllerBehavior
 {
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $requiredProperties = ['importExportConfig'];
 
@@ -307,7 +318,7 @@ class ImportExportController extends ControllerBehavior
         $firstRow = $reader->fetchOne(0);
 
         if (!post('first_row_titles')) {
-            array_walk($firstRow, function(&$value, $key) {
+            array_walk($firstRow, function (&$value, $key) {
                 $value = 'Column #'.($key + 1);
             });
         }
@@ -334,7 +345,7 @@ class ImportExportController extends ControllerBehavior
 
         $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
 
-        $widget->bindEvent('form.beforeRefresh', function($holder) {
+        $widget->bindEvent('form.beforeRefresh', function ($holder) {
             $holder->data = [];
         });
 
@@ -492,7 +503,7 @@ class ImportExportController extends ControllerBehavior
 
         $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
 
-        $widget->bindEvent('form.beforeRefresh', function($holder) {
+        $widget->bindEvent('form.beforeRefresh', function ($holder) {
             $holder->data = [];
         });
 
@@ -721,8 +732,10 @@ class ImportExportController extends ControllerBehavior
 
     protected function getRedirectUrlForType($type)
     {
-        if ($redirect = $this->getConfig($type.'[redirect]')) {
-            return Backend::url($redirect);
+        $redirect = $this->getConfig($type.'[redirect]');
+
+        if ($redirect !== null) {
+            return $redirect ? Backend::url($redirect) : 'javascript:;';
         }
 
         return $this->controller->actionUrl($type);

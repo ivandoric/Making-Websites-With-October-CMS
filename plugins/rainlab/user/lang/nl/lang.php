@@ -43,16 +43,12 @@ return [
         'activate_mode_user_comment' => 'De gebruiker activeert het account d.m.v. e-mail.',
         'activate_mode_admin' => 'Beheerder',
         'activate_mode_admin_comment' => 'Alleen de beheerder kan het gebruikersaccount activeren.',
-        'welcome_template' => 'Welkom sjabloon',
-        'welcome_template_comment' => 'Het e-mailsjabloon dat wordt verzonden na registratie.',
         'require_activation' => 'Inloggen vereist activatie',
         'require_activation_comment' => 'Gebruikers moeten een geactiveerd account hebben.',
         'use_throttle' => 'Beperk inlogpogingen',
         'use_throttle_comment' => 'Meerdere mislukte inlog pogingen resulteren in een tijdelijk uitgeschakeld gebruikersaccount.',
         'login_attribute' => 'Inlog attribuut',
         'login_attribute_comment' => 'Selecteer het attribuut wat moet worden gebruikt om in te loggen.',
-        'no_mail_template' => 'Verstuur <strong>geen</strong> notificatie',
-        'hint_templates' => 'E-mail sjablonen kunnen beheerd worden via Instellingen > E-mail > E-mail templates'
     ],
     'user' => [
         'label' => 'Gebruiker',

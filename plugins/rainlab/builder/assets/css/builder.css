@@ -112,6 +112,7 @@
   display: none;
 }
 .builder-building-area ul.builder-control-list > li.control:not(.placeholder):not(.loading-control):not(.updating-control):hover > div.remove-control {
+  font-family: sans-serif;
   display: block;
   position: absolute;
   right: 0;
@@ -1034,7 +1035,14 @@ table.data td.active .localization-input-container .localization-trigger {
   display: block;
   outline: none;
   border: none;
-  padding: 5px 10px;
+  padding: 6px 10px 6px;
+}
+html.chrome .control-table td[data-column-type=builderLocalization] input[type=text] {
+  padding: 6px 10px 7px!important;
+}
+html.safari .control-table td[data-column-type=builderLocalization] input[type=text],
+html.gecko .control-table td[data-column-type=builderLocalization] input[type=text] {
+  padding: 5px 10px 5px;
 }
 .autocomplete.dropdown-menu.table-widget-autocomplete.localization li a {
   white-space: normal;
@@ -1113,11 +1121,20 @@ form[data-entity=database] div.field-datatable div[data-control=table] div.table
   height: 100%;
 }
 form[data-entity=database] div.field-datatable div[data-control=table] div.table-container div.control-scrollbar {
-  top: 74px;
+  top: 70px;
   bottom: 0;
   position: absolute;
   max-height: none!important;
   height: auto!important;
+}
+div.control-table .toolbar a.builder-custom-table-button:before {
+  line-height: 17px;
+  font-size: 21px;
+  color: #323e50;
+  margin-right: 5px;
+  top: 3px;
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 .control-tabs.auxiliary-tabs {
   background: white;

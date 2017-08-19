@@ -6,15 +6,13 @@ use Twig_TokenParser;
 use Twig_Error_Syntax;
 
 /**
- * Parser for the {% content %} Twig tag.
+ * Parser for the `{% content %}` Twig tag.
  *
- * <pre>
- *  {% content "intro.htm" %}
+ *     {% content "intro.htm" %}
  *
- *  {% content "intro.md" name='John' %}
+ *     {% content "intro.md" name='John' %}
  *
- *  {% content "intro/txt" name='John', year=2013 %}
- * </pre>
+ *     {% content "intro/txt" name='John', year=2013 %}
  *
  * @package october\cms
  * @author Alexey Bobkov, Samuel Georges
@@ -25,8 +23,7 @@ class ContentTokenParser extends Twig_TokenParser
      * Parses a token and returns a node.
      *
      * @param Twig_Token $token A Twig_Token instance
-     *
-     * @return Twig_NodeInterface A Twig_NodeInterface instance
+     * @return Twig_Node A Twig_Node instance
      */
     public function parse(Twig_Token $token)
     {
@@ -56,7 +53,7 @@ class ContentTokenParser extends Twig_TokenParser
                     throw new Twig_Error_Syntax(
                         sprintf('Invalid syntax in the content tag. Line %s', $lineno),
                         $stream->getCurrent()->getLine(),
-                        $stream->getFilename()
+                        $stream->getSourceContext()
                     );
                     break;
             }

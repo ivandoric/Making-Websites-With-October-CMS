@@ -8,8 +8,19 @@ use ApplicationException;
 use Backend\Classes\ControllerBehavior;
 
 /**
- * List Controller Behavior
  * Adds features for working with backend lists.
+ *
+ * This behavior is implemented in the controller like so:
+ *
+ *     public $implement = [
+ *         'Backend.Behaviors.ListController',
+ *     ];
+ *
+ *     public $listConfig = 'config_list.yaml';
+ *
+ * The `$listConfig` property makes reference to the list configuration
+ * values as either a YAML file, located in the controller view directory,
+ * or directly as a PHP array.
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -47,7 +58,7 @@ class ListController extends ControllerBehavior
     protected $filterWidgets = [];
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $requiredProperties = ['listConfig'];
 
@@ -163,6 +174,10 @@ class ListController extends ControllerBehavior
             $this->controller->listExtendQuery($query, $definition);
         });
 
+        $widget->bindEvent('list.extendRecords', function ($records) use ($definition) {
+            $this->controller->listExtendRecords($records, $definition);
+        });
+
         $widget->bindEvent('list.injectRowClass', function ($record) use ($definition) {
             return $this->controller->listInjectRowClass($record, $definition);
         });
@@ -227,9 +242,16 @@ class ListController extends ControllerBehavior
             });
 
             /*
+             * Filter Widget with extensibility
+             */
+            $filterWidget->bindEvent('filter.extendScopes', function () use ($filterWidget) {
+                $this->controller->listFilterExtendScopes($filterWidget);
+            });
+
+            /*
              * Extend the query of the list of options
              */
-            $filterWidget->bindEvent('filter.extendQuery', function($query, $scope) {
+            $filterWidget->bindEvent('filter.extendQuery', function ($query, $scope) {
                 $this->controller->listFilterExtendQuery($query, $scope);
             });
 
@@ -427,20 +449,20 @@ class ListController extends ControllerBehavior
     //
 
     /**
-     * Called before the list columns are defined.
-     * @param Backend\Widgets\List $host The hosting list widget
-     * @return void
-     */
-    // public function listExtendColumnsBefore($host)
-    // {
-    // }
-
-    /**
      * Called after the list columns are defined.
      * @param \Backend\Widgets\List $host The hosting list widget
      * @return void
      */
     public function listExtendColumns($host)
+    {
+    }
+    
+    /**
+     * Called after the filter scopes are defined.
+     * @param \Backend\Widgets\Filter $host The hosting filter widget
+     * @return void
+     */
+    public function listFilterExtendScopes($host)
     {
     }
 
@@ -473,7 +495,16 @@ class ListController extends ControllerBehavior
     }
 
     /**
-     * Controller override: Extend the query used for populating the filter 
+     * Controller override: Extend the records used for populating the list
+     * after the query is processed.
+     * @param Illuminate\Contracts\Pagination\LengthAwarePaginator|Illuminate\Database\Eloquent\Collection $records
+     */
+    public function listExtendRecords($records, $definition = null)
+    {
+    }
+
+    /**
+     * Controller override: Extend the query used for populating the filter
      * options before the default query is processed.
      * @param \October\Rain\Database\Builder $query
      * @param array $scope
@@ -486,7 +517,7 @@ class ListController extends ControllerBehavior
      * Returns a CSS class name for a list row (<tr class="...">).
      * @param  Model $record The populated model used for the column
      * @param  string $definition List definition (optional)
-     * @return string HTML view
+     * @return string CSS class name
      */
     public function listInjectRowClass($record, $definition = null)
     {
@@ -526,6 +557,22 @@ class ListController extends ControllerBehavior
                 return;
             }
             call_user_func_array($callback, [$widget, $widget->model]);
+        });
+    }
+    
+     /**
+     * Static helper for extending filter scopes.
+     * @param  callable $callback
+     * @return void
+     */
+    public static function extendListFilterScopes($callback)
+    {
+        $calledClass = self::getCalledExtensionClass();
+        Event::listen('backend.filter.extendScopes', function ($widget) use ($calledClass, $callback) {
+            if (!is_a($widget->getController(), $calledClass)) {
+                return;
+            }
+            call_user_func_array($callback, [$widget]);
         });
     }
 }

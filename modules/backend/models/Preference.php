@@ -21,17 +21,35 @@ class Preference extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    public $implement = ['Backend.Behaviors.UserPreferencesModel'];
-    public $settingsCode = 'backend::backend.preferences';
-    public $settingsFields = 'fields.yaml';
-
     const DEFAULT_THEME = 'twilight';
 
     /**
-     * Validation rules
+     * @var array Behaviors implemented by this model.
+     */
+    public $implement = [
+        \Backend\Behaviors\UserPreferencesModel::class
+    ];
+
+    /**
+     * @var string Unique code
+     */
+    public $settingsCode = 'backend::backend.preferences';
+
+    /**
+     * @var mixed Settings form field defitions
+     */
+    public $settingsFields = 'fields.yaml';
+
+    /**
+     * @var array Validation rules
      */
     public $rules = [];
 
+    /**
+     * Initialize the seed data for this model. This only executes when the
+     * model is first created or reset to default.
+     * @return void
+     */
     public function initSettingsData()
     {
         $config = App::make('config');
@@ -55,6 +73,10 @@ class Preference extends Model
         $this->editor_show_print_margin = $config->get('editor.show_print_margin', false);
     }
 
+    /**
+     * Set the application's locale based on the user preference.
+     * @return void
+     */
     public static function setAppLocale()
     {
         if (Session::has('locale')) {
@@ -69,6 +91,10 @@ class Preference extends Model
         }
     }
 
+    /**
+     * Same as setAppLocale except for the fallback definition.
+     * @return void
+     */
     public static function setAppFallbackLocale()
     {
         if (Session::has('fallback_locale')) {
@@ -83,6 +109,10 @@ class Preference extends Model
         }
     }
 
+    //
+    // Events
+    //
+
     public function beforeValidate()
     {
         $this->fallback_locale = $this->getFallbackLocale($this->locale);
@@ -94,6 +124,14 @@ class Preference extends Model
         Session::put('fallback_locale', $this->fallback_locale);
     }
 
+    //
+    // Utils
+    //
+
+    /**
+     * Called when this model is reset to default by the user.
+     * @return void
+     */
     public function resetDefault()
     {
         parent::resetDefault();
@@ -101,12 +139,20 @@ class Preference extends Model
         Session::forget('fallback_locale');
     }
 
+    /**
+     * Overrides the config with the user's preference.
+     * @return void
+     */
     public static function applyConfigValues()
     {
         $settings = self::instance();
         Config::set('app.locale', $settings->locale);
         Config::set('app.fallback_locale', $settings->fallback_locale);
     }
+
+    //
+    // Getters
+    //
 
     /**
      * Attempt to extract the language from the locale,
@@ -132,13 +178,15 @@ class Preference extends Model
      */
     public function getLocaleOptions()
     {
-        $locales = Config::get('app.localeOptions', [
+        $localeOptions = [
+            'be' => [Lang::get('system::lang.locale.be'), 'flag-by'],
             'cs' => [Lang::get('system::lang.locale.cs'), 'flag-cz'],
             'da' => [Lang::get('system::lang.locale.da'), 'flag-dk'],
             'en' => [Lang::get('system::lang.locale.en'), 'flag-us'],
             'en-au' => [Lang::get('system::lang.locale.en-au'), 'flag-au'],
             'en-ca' => [Lang::get('system::lang.locale.en-ca'), 'flag-ca'],
             'en-gb' => [Lang::get('system::lang.locale.en-gb'), 'flag-gb'],
+            'et' => [Lang::get('system::lang.locale.et'), 'flag-ee'],
             'de' => [Lang::get('system::lang.locale.de'), 'flag-de'],
             'es' => [Lang::get('system::lang.locale.es'), 'flag-es'],
             'es-ar' => [Lang::get('system::lang.locale.es-ar'), 'flag-ar'],
@@ -149,20 +197,25 @@ class Preference extends Model
             'id' => [Lang::get('system::lang.locale.id'), 'flag-id'],
             'it' => [Lang::get('system::lang.locale.it'), 'flag-it'],
             'ja' => [Lang::get('system::lang.locale.ja'), 'flag-jp'],
+            'lt' => [Lang::get('system::lang.locale.lt'), 'flag-lt'],
             'lv' => [Lang::get('system::lang.locale.lv'), 'flag-lv'],
             'nl' => [Lang::get('system::lang.locale.nl'), 'flag-nl'],
             'pt-br' => [Lang::get('system::lang.locale.pt-br'), 'flag-br'],
+            'pt-pt' => [Lang::get('system::lang.locale.pt-pt'), 'flag-pt'],
             'ro' => [Lang::get('system::lang.locale.ro'), 'flag-ro'],
             'ru' => [Lang::get('system::lang.locale.ru'), 'flag-ru'],
             'sv' => [Lang::get('system::lang.locale.sv'), 'flag-se'],
             'tr' => [Lang::get('system::lang.locale.tr'), 'flag-tr'],
+            'uk' => [Lang::get('system::lang.locale.uk'), 'flag-ua'],
             'pl' => [Lang::get('system::lang.locale.pl'), 'flag-pl'],
             'sk' => [Lang::get('system::lang.locale.sk'), 'flag-sk'],
             'zh-cn' => [Lang::get('system::lang.locale.zh-cn'), 'flag-cn'],
             'zh-tw' => [Lang::get('system::lang.locale.zh-tw'), 'flag-tw'],
             'nb-no' => [Lang::get('system::lang.locale.nb-no'), 'flag-no'],
             'el' => [Lang::get('system::lang.locale.el'), 'flag-gr'],
-        ]);
+        ];
+
+        $locales = Config::get('app.localeOptions', $localeOptions);
 
         // Sort locales alphabetically
         asort($locales);
@@ -170,6 +223,10 @@ class Preference extends Model
         return $locales;
     }
 
+    /**
+     * Returns all available timezone options.
+     * @return array
+     */
     public function getTimezoneOptions()
     {
         $timezoneIdentifiers = DateTimeZone::listIdentifiers();
@@ -186,7 +243,7 @@ class Preference extends Model
         }
 
         // Sort the array by offset, identifier ascending
-        usort($tempTimezones, function($a, $b) {
+        usort($tempTimezones, function ($a, $b) {
             return $a['offset'] === $b['offset']
                 ? strcmp($a['identifier'], $b['identifier'])
                 : $a['offset'] - $b['offset'];
@@ -202,6 +259,10 @@ class Preference extends Model
         return $timezoneList;
     }
 
+    /**
+     * Returns the theme options for the backend editor.
+     * @return array
+     */
     public function getEditorThemeOptions()
     {
         $themeDir = new DirectoryIterator("modules/backend/formwidgets/codeeditor/assets/vendor/ace/");

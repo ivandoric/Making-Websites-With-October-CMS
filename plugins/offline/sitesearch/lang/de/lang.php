@@ -19,6 +19,10 @@
         'blog_posturl_comment'       => 'Gib nur den statischen Teil der URL ein, keine dynamischen Parameter',
         'blog_page'                  => 'Blog-Post Seite',
         'blog_page_comment'          => 'Wähle die Seite aus, auf der dein Blog-Post angezeigt wird.',
+        'album_page'                 => 'Album-Seite',
+        'album_page_comment'         => 'Wähle die Seite aus, auf der dein Album angezeigt wird.',
+        'photo_page'                 => 'Photo-Seite',
+        'photo_page_comment'         => 'Wähle die Seite aus, auf der dein Photo angezeigt wird.',
         'portfolio_itemurl'          => 'URL der Portfolio Detail-Seite',
         'portfolio_itemurl_comment'  => 'Gib nur den statischen Teil der URL ein, keine dynamischen Parameter',
         'brands_itemurl'             => 'URL der Brands Detail-Seite',
@@ -54,6 +58,23 @@ href="http://octobercms.com/plugin/offline-sitesearch#documentation">die Dokumen
             'visit_page'       => [
                 'title'       => '«Treffer anzeigen» Text',
                 'description' => 'Dieser Text wird unterhalb jedes Suchresultates angezeigt',
+            ],
+        ],
+    ],
+    'searchInput'       => [
+        'title'       => 'Suchfeld',
+        'description' => 'Zeigt ein Suchfeld an',
+        'properties'  => [
+            'use_auto_complete' => [
+                'title' => 'Suche während der Eingabe',
+            ],
+            'auto_complete_result_count' => [
+                'title' => 'Max. Anzahl Sofort-Resultate',
+            ],
+            'search_page' => [
+                'title' => 'Seite für Suchresultate',
+                'description' => 'Die Suchanfrage wird an diese Seite versendet.',
+                'null_value' => '-- Nicht verlinkt',
             ],
         ],
     ],

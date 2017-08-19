@@ -1,5 +1,6 @@
 <?php namespace RainLab\Pages\Classes;
 
+use Lang;
 use Cache;
 use Config;
 use Cms\Classes\Theme;
@@ -148,7 +149,7 @@ class Router
      */
     protected function getCacheKey($keyName)
     {
-        return crc32($this->theme->getPath()).$keyName;
+        return crc32($this->theme->getPath()).$keyName.Lang::getLocale();
     }
 
     /**

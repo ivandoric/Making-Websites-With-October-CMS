@@ -4,6 +4,9 @@
 
 fields:
 
+    search:
+        type: Rainlab\Pages\FormWidgets\MenuItemSearch
+
     title:
         span: left
         label: rainlab.pages::lang.menuitem.title

@@ -6,7 +6,7 @@
 abstract class DataSourceBase
 {
     /**
-     * @var string Specifies a name of record's key column 
+     * @var string Specifies a name of record's key column
      */
     protected $keyColumn;
 
@@ -52,6 +52,14 @@ abstract class DataSourceBase
      * If there are no more records, returns an empty array.
      */
     abstract public function getRecords($offset, $count);
+
+    /**
+     * Identical to getRecords except provided with a search query.
+     */
+    public function searchRecords($query, $offset, $count)
+    {
+        return $this->getRecords($offset, $count);
+    }
 
     /**
      * Rewinds the the data source to the first record.

@@ -1,4 +1,4 @@
-<form method="POST" action="{{ url('add-actors') }}" accept-charset="UTF8" enctype="multipart/form-data">
+<form data-request="onSubmit" data-request-files data-request-flash>
 
     <input type="hidden" name="_handler" value="onSave">
     {{ form_token() }}
@@ -11,11 +11,9 @@
     <input type="text" name="lastname">
 
     <label>Actor image</label>
-    <input type="file" name="actorimage">
+    <input type="file" name="actorimage" accept="image/*" data-request="onImageUpload" data-request-files data-request-flash>
 
+    <div id="imageResult">No image to preview!</div>
+    <br><br>
     <button type="submit">Save actor</button>
-
-    {% flash success %}
-        <p>{{ message }}</p>
-    {% endflash %}
 </form>

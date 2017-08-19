@@ -22,7 +22,7 @@ class Category extends Model
     public $rules = [
         'name' => 'required',
         'slug' => 'required|between:3,64|unique:rainlab_blog_categories',
-        'code' => 'unique:rainlab_blog_categories',
+        'code' => 'nullable|unique:rainlab_blog_categories',
     ];
 
     /**
@@ -47,8 +47,9 @@ class Category extends Model
     public function beforeValidate()
     {
         // Generate a URL slug for this model
-        if (!$this->exists && !$this->slug)
+        if (!$this->exists && !$this->slug) {
             $this->slug = Str::slug($this->name);
+        }
     }
 
     public function afterDelete()
@@ -69,7 +70,7 @@ class Category extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id' => $this->id,
+            'id'   => $this->id,
             'slug' => $this->slug,
         ];
 
@@ -88,7 +89,7 @@ class Category extends Model
      *   false if omitted.
      * - dynamicItems - Boolean value indicating whether the item type could generate new menu items.
      *   Optional, false if omitted.
-     * - cmsPages - a list of CMS pages (objects of the Cms\Classes\Page class), if the item type requires a CMS page reference to 
+     * - cmsPages - a list of CMS pages (objects of the Cms\Classes\Page class), if the item type requires a CMS page reference to
      *   resolve the item URL.
      * @param string $type Specifies the menu item type
      * @return array Returns an array
@@ -171,9 +172,9 @@ class Category extends Model
      * - url - the menu item URL. Not required for menu item types that return all available records.
      *   The URL should be returned relative to the website root and include the subdirectory, if any.
      *   Use the URL::to() helper to generate the URLs.
-     * - isActive - determines whether the menu item is active. Not required for menu item types that 
+     * - isActive - determines whether the menu item is active. Not required for menu item types that
      *   return all available records.
-     * - items - an array of arrays with the same keys (url, isActive, items) + the title key. 
+     * - items - an array of arrays with the same keys (url, isActive, items) + the title key.
      *   The items array should be added only if the $item's $nesting property value is TRUE.
      * @param \RainLab\Pages\Classes\MenuItem $item Specifies the menu item.
      * @param \Cms\Classes\Theme $theme Specifies the current theme.
@@ -186,16 +187,19 @@ class Category extends Model
         $result = null;
 
         if ($item->type == 'blog-category') {
-            if (!$item->reference || !$item->cmsPage)
+            if (!$item->reference || !$item->cmsPage) {
                 return;
+            }
 
             $category = self::find($item->reference);
-            if (!$category)
+            if (!$category) {
                 return;
+            }
 
             $pageUrl = self::getCategoryPageUrl($item->cmsPage, $category, $theme);
-            if (!$pageUrl)
+            if (!$pageUrl) {
                 return;
+            }
 
             $pageUrl = URL::to($pageUrl);
 
@@ -254,11 +258,17 @@ class Category extends Model
 
     /**
      * Returns URL of a category page.
+     *
+     * @param $pageCode
+     * @param $category
+     * @param $theme
      */
     protected static function getCategoryPageUrl($pageCode, $category, $theme)
     {
         $page = CmsPage::loadCached($theme, $pageCode);
-        if (!$page) return;
+        if (!$page) {
+            return;
+        }
 
         $properties = $page->getComponentProperties('blogPosts');
         if (!isset($properties['categoryFilter'])) {

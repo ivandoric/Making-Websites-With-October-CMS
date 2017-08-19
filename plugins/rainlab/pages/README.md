@@ -116,9 +116,26 @@ Include the Static Page [component](http://octobercms.com/docs/cms/components) t
 * `title` - specifies the static page title.
 * `content` - the static page content.
 
+If your layout does not need static page content entry, that section can be removed from the page form using the Inspector or manually with the `useContent` component property.
+
+###### Default page layout
+
+If adding a new subpage, the parent page's layout is checked for a `childLayout` property, and the new subpage's layout will default to that property value. Otherwise, the theme layouts will be searched for the `default` component property and that layout will be selected by default.
+
+Example:
+```
+# /themes/mytheme/layouts/layout1.htm
+[staticPage]
+default = true
+childLayout = "child"
+
+# /themes/mytheme/layouts/child.htm
+[staticPage]
+```
+
 ##### Static menus
 
-Add the staticMenu component to the static page layout to output a menu. The static menu component has the `code` property that should refer a code of a static menu the component should display. In the Inspector the `code` field is displayed as Menu. 
+Add the staticMenu component to the static page layout to output a menu. The static menu component has the `code` property that should refer a code of a static menu the component should display. In the Inspector the `code` field is displayed as Menu.
 
 The static menu component injects the `menuItems` page variable. The default component partial outputs a simple nested unordered list for menus:
 
@@ -142,7 +159,7 @@ You might want to render the menus with your own code. The `menuItems` variable 
 * `url` - specifies the absolute menu item URL.
 * `isActive` - indicates whether the item corresponds to a page currently being viewed.
 * `isChildActive` - indicates whether the item contains an active subitem.
-* `items` - an array of the menu item subitems, if any. If there are no subitems, the array is empty 
+* `items` - an array of the menu item subitems, if any. If there are no subitems, the array is empty
 
 The static menu component also has the `menuItems` property that you can access in the Twig code using the component's alias, for example:
 
@@ -188,7 +205,7 @@ If you want to link to the static page by its URL, simply use the `|app` filter:
 
 ### Placeholders
 
-[Placeholders](http://octobercms.com/docs/cms/layouts#placeholders) defined in the layout are automatically detected by the Static Pages plugin. The Edit Static Page form displays a tab for each placeholder defined in the layout used by the page. Placeholders are defined in the layout in the usual way: 
+[Placeholders](http://octobercms.com/docs/cms/layouts#placeholders) defined in the layout are automatically detected by the Static Pages plugin. The Edit Static Page form displays a tab for each placeholder defined in the layout used by the page. Placeholders are defined in the layout in the usual way:
 
     {% placeholder ordering %}
 
@@ -284,7 +301,7 @@ The `references` element is a list objects the menu item could refer to. For exa
 
     ['item-key' => 'Item title']
 
-The format for references with subitems is 
+The format for references with subitems is
 
     ['item-key' => ['title'=>'Item title', 'items'=>[...]]]
 
@@ -345,7 +362,7 @@ The event handler should return an array. The array keys depend on whether the m
         )
     )
 
-The `url` and `isActive` elements are required for menu items that point to a specific page, but it's not always the case. For example, the **All blog categories** menu item type doesn't have a specific page to point to. It generates multiple menu items. In this case the items should be listed in the `items` element. The `items` element should only be provided if the menu item's `nesting` property is `true`. 
+The `url` and `isActive` elements are required for menu items that point to a specific page, but it's not always the case. For example, the **All blog categories** menu item type doesn't have a specific page to point to. It generates multiple menu items. In this case the items should be listed in the `items` element. The `items` element should only be provided if the menu item's `nesting` property is `true`.
 
 As the resolving process occurs every time when the front-end page is rendered, it's a good idea to cache all the information required for resolving menu items, if that's possible.
 
@@ -387,19 +404,19 @@ Snippets can be created from partials or programmatically in plugins. Conceptual
 
 Partial-based snippets provide simpler functionality and usually are just containers for HTML markup (or markup generated with Twig in a snippet).
 
-To create snippet from a partial just enter the snippet code and snippet name in the partial form. 
+To create snippet from a partial just enter the snippet code and snippet name in the partial form.
 
 ![image](https://raw.githubusercontent.com/rainlab/pages-plugin/master/docs/images/snippets-partial.png)
 
 The snippet properties are optional and can be defined with the grid control on the partial settings form. The table has the following columns:
 
-* Property title - specifies the property title. The property title will be visible to the end user in the snippet inspector popup window. 
+* Property title - specifies the property title. The property title will be visible to the end user in the snippet inspector popup window.
 * Property code - specifies the property code. The property code is used for accessing the property values in the partial markup. See the example below. The property code should start with a Latin letter and can contain Latin letters and digits.
 * Type - the property type. Available types are String, Dropdown and Checkbox.
 * Default - the default property value. For Checkbox properties use 0 and 1 values.
 * Options - the option list for the drop-down properties. The option list should have the following format: `key:Value | key2:Value`. The keys represent the internal option value, and values represent the string that users see in the drop-down list. The pipe character separates individual options. Example: `us:US | ca:Canada`. The key is optional, if it's omitted (`US | Canada`), the internal option value will be zero-based integer (0, 1, ...). It's recommended to always use explicit option keys. The keys can contain only Latin letters, digits and characters - and _.
 
-Any property defined in the property list can be accessed within the partial markdown as a usual variable, for example: 
+Any property defined in the property list can be accessed within the partial markdown as a usual variable, for example:
 
     The country name is {{ country }}
 
@@ -429,6 +446,10 @@ These act just like regular form field definitions. Accessing the variables insi
 
     <h1>{{ tagline }}</h1>
     <img src="{{ banner|media }}" alt="" />
+
+All custom fields are placed in the Secondary tabs container (next to Content field). If you need to place them in the Primary tabs container, use *placement="primary"* attribute.
+
+	{variable name="tagline" label="Tagline" tab="Header" type="text" placement="primary"}{/variable}
 
 Alternatively you may use the field type as the tag name, here we use the `{text}` tag to directly render the `tagline` variable:
 

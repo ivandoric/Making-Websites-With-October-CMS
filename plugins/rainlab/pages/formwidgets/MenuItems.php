@@ -31,6 +31,8 @@ class MenuItems extends FormWidgetBase
     public $urlRequiredMessage = 'rainlab.pages::lang.menuitem.url_required';
 
     public $cmsPageRequiredMessage = 'rainlab.pages::lang.menuitem.cms_page_required';
+    
+    public $newItemTitle = 'rainlab.pages::lang.menuitem.new_item';
 
     /**
      * {@inheritDoc}
@@ -60,7 +62,7 @@ class MenuItems extends FormWidgetBase
         $this->vars['items'] = $this->model->items;
 
         $emptyItem = new MenuItem;
-        $emptyItem->title = trans('rainlab.pages::lang.menuitem.new_item');
+        $emptyItem->title = trans($this->newItemTitle);
         $emptyItem->type = 'url';
         $emptyItem->url = '/';
 

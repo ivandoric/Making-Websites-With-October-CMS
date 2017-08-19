@@ -6,17 +6,15 @@ use Twig_TokenParser;
 use Twig_Error_Syntax;
 
 /**
- * Parser for the {% placeholder %} Twig tag.
+ * Parser for the `{% placeholder %}` Twig tag.
  *
- * <pre>
- *  {% placeholder head %}
+ *     {% placeholder head %}
  *
- *  or - use default placeholder content
+ * or - use default placeholder content
  *
- *  {% placeholder head %}
- *    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
- *  {% endshowblock %}
- * </pre>
+ *     {% placeholder head %}
+ *         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+ *     {% endshowblock %}
  *
  * @package october\cms
  * @author Alexey Bobkov, Samuel Georges
@@ -27,8 +25,7 @@ class PlaceholderTokenParser extends Twig_TokenParser
      * Parses a token and returns a node.
      *
      * @param Twig_Token $token A Twig_Token instance
-     *
-     * @return Twig_NodeInterface A Twig_NodeInterface instance
+     * @return Twig_Node A Twig_Node instance
      */
     public function parse(Twig_Token $token)
     {
@@ -78,9 +75,9 @@ class PlaceholderTokenParser extends Twig_TokenParser
 
                 default:
                     throw new Twig_Error_Syntax(
-                        sprintf('Invalid syntax in the placeholder tag. Line %s', $lineno),
+                        sprintf('Invalid syntax in the placeholder tag. Line %s', $stream->getCurrent()->getLine()),
                         $stream->getCurrent()->getLine(),
-                        $stream->getFilename()
+                        $stream->getSourceContext()
                     );
                     break;
             }

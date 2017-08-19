@@ -1,0 +1,9 @@
+<div class="ss-autocomplete-result">
+    {% if result.thumb %}
+        {% partial __SELF__ ~ '::thumbnail' result = result %}
+    {% endif %}
+    <div class="ss-autocomplete-result__content">
+        {% partial __SELF__ ~ '::content' result = result %}
+    </div>
+    <hr/>
+</div>

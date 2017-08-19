@@ -187,7 +187,7 @@
     /*
      * Handles AJAX errors in the master tab forms. Processes the mtime mismatch condition (concurrency).
      */
-    PagesPage.prototype.onAjaxError = function(event, context, data, jqXHR) {
+    PagesPage.prototype.onAjaxError = function(event, context, message, data, jqXHR) {
         if (context.handler != 'onSave')
             return
 
@@ -469,10 +469,7 @@
                 return false
             })
 
-            var $primaryCollapseIcon = $('<a href="javascript:;" class="tab-collapse-icon primary"><i class="icon-chevron-down"></i></a>'),
-                $primaryTabContainer = $('.nav-tabs', $primaryPanel)
-
-            $primaryTabContainer.addClass('master-area')
+            var $primaryCollapseIcon = $('<a href="javascript:;" class="tab-collapse-icon primary"><i class="icon-chevron-down"></i></a>')
 
             if ($primaryPanel.length > 0) {
                 $secondaryPanel.append($primaryCollapseIcon)

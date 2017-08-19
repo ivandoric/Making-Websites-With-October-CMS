@@ -5,11 +5,19 @@ use Auth;
 use Event;
 use Flash;
 use Request;
+use Response;
 use Redirect;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
+use RainLab\User\Models\UserGroup;
 use ValidationException;
 
+/**
+ * User session
+ *
+ * This will inject the user object to every page and provide the ability for
+ * the user to sign out. This can also be used to restrict access to pages.
+ */
 class Session extends ComponentBase
 {
     const ALLOW_ALL = 'all';
@@ -38,6 +46,13 @@ class Session extends ComponentBase
                     'guest' => 'rainlab.user::lang.session.guests'
                 ]
             ],
+            'allowedUserGroups' => [
+                'title'       => 'rainlab.user::lang.session.allowed_groups_title',
+                'description' => 'rainlab.user::lang.session.allowed_groups_description',
+                'placeholder' => '*',
+                'type'        => 'set',
+                'default'     => []
+            ],
             'redirect' => [
                 'title'       => 'rainlab.user::lang.session.redirect_title',
                 'description' => 'rainlab.user::lang.session.redirect_desc',
@@ -52,23 +67,56 @@ class Session extends ComponentBase
         return [''=>'- none -'] + Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function getAllowedUserGroupsOptions()
+    {
+        return UserGroup::lists('name','code');
+    }
+
+    /**
+     * Component is initialized.
+     */
+    public function init()
+    {
+        if (Request::ajax() && !$this->checkUserSecurity()) {
+            return Response::make('Access denied', 403);
+        }
+    }
+
     /**
      * Executed when this component is bound to a page or layout.
      */
     public function onRun()
     {
-        $redirectUrl = $this->controller->pageUrl($this->property('redirect'));
-        $allowedGroup = $this->property('security', self::ALLOW_ALL);
-        $isAuthenticated = Auth::check();
-
-        if (!$isAuthenticated && $allowedGroup == self::ALLOW_USER) {
-            return Redirect::guest($redirectUrl);
-        }
-        elseif ($isAuthenticated && $allowedGroup == self::ALLOW_GUEST) {
+        if (!$this->checkUserSecurity()) {
+            $redirectUrl = $this->controller->pageUrl($this->property('redirect'));
             return Redirect::guest($redirectUrl);
         }
 
         $this->page['user'] = $this->user();
+    }
+
+    /**
+     * Returns the logged in user, if available, and touches
+     * the last seen timestamp.
+     * @return RainLab\User\Models\User
+     */
+    public function user()
+    {
+        if (!$user = Auth::getUser()) {
+            return null;
+        }
+
+        $user->touchLastSeen();
+
+        return $user;
+    }
+
+    /**
+     * Returns the previously signed in user when impersonating.
+     */
+    public function impersonator()
+    {
+        return Auth::getImpersonator();
     }
 
     /**
@@ -92,24 +140,59 @@ class Session extends ComponentBase
         }
 
         $url = post('redirect', Request::fullUrl());
+
         Flash::success(Lang::get('rainlab.user::lang.session.logout'));
 
         return Redirect::to($url);
     }
 
     /**
-     * Returns the logged in user, if available, and touches
-     * the last seen timestamp.
-     * @return RainLab\User\Models\User
+     * If impersonating, revert back to the previously signed in user.
+     * @return Redirect
      */
-    public function user()
+    public function onStopImpersonating()
     {
-        if (!$user = Auth::getUser()) {
-            return null;
+        if (!Auth::isImpersonator()) {
+            return $this->onLogout();
         }
 
-        $user->touchLastSeen();
+        Auth::stopImpersonate();
 
-        return $user;
+        $url = post('redirect', Request::fullUrl());
+
+        Flash::success(Lang::get('rainlab.user::lang.session.stop_impersonate_success'));
+
+        return Redirect::to($url);
+    }
+
+    /**
+     * Checks if the user can access this page based on the security rules
+     * @return bool
+     */
+    protected function checkUserSecurity()
+    {
+        $allowedGroup = $this->property('security', self::ALLOW_ALL);
+        $allowedUserGroups = $this->property('allowedUserGroups', []);
+        $isAuthenticated = Auth::check();
+
+        if ($isAuthenticated) {
+            if ($allowedGroup == self::ALLOW_GUEST) {
+                return false;
+            }
+
+            if (!empty($allowedUserGroups)) {
+                $userGroups = Auth::getUser()->groups->lists('code');
+                if (!count(array_intersect($allowedUserGroups, $userGroups))) {
+                    return false;
+                }
+            }
+        }
+        else {
+            if ($allowedGroup == self::ALLOW_USER) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

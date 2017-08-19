@@ -39,6 +39,7 @@ class CmsPagesResultsProvider extends ResultsProvider
             $result->title = $page->settings['title'];
             $result->text  = $contents;
             $result->url   = $page->settings['url'];
+            $result->model = $page;
 
             $this->addResult($result);
         }
@@ -121,6 +122,6 @@ class CmsPagesResultsProvider extends ResultsProvider
      */
     public function identifier()
     {
-        return '';
+        return 'CMS.Page';
     }
 }

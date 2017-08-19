@@ -1,0 +1,10 @@
+<select
+    name="referenceSearch"
+    class="form-control custom-select"
+    autocomplete="off"
+    data-placeholder="<?= e(trans($this->searchPlaceholderMessage)) ?>"
+    data-handler="onMenuItemReferenceSearch"
+    data-minimum-input-length="2"
+    data-ajax--delay="300"
+    data-request-data="alias: '<?= e($this->alias) ?>'"
+></select>

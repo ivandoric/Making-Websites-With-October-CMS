@@ -6,13 +6,16 @@ use Event;
 use Backend;
 use BackendMenu;
 use BackendAuth;
+use Backend\Models\UserRole;
 use Backend\Classes\WidgetManager;
 use October\Rain\Support\ModuleServiceProvider;
 use System\Classes\SettingsManager;
 use System\Classes\CombineAssets;
 use Cms\Classes\ComponentManager;
 use Cms\Classes\Page as CmsPage;
+use Cms\Classes\CmsObject;
 use Cms\Models\ThemeData;
+use Cms\Models\ThemeLog;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -26,6 +29,7 @@ class ServiceProvider extends ModuleServiceProvider
         parent::register('cms');
 
         $this->registerComponents();
+        $this->registerThemeLogging();
         $this->registerAssetBundles();
         $this->registerCombinerEvents();
 
@@ -55,24 +59,35 @@ class ServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Register components
+     * Register components.
      */
     protected function registerComponents()
     {
         ComponentManager::instance()->registerComponents(function ($manager) {
-            $manager->registerComponent('Cms\Classes\ViewBag', 'viewBag');
+            $manager->registerComponent(\Cms\Components\ViewBag::class, 'viewBag');
+            $manager->registerComponent(\Cms\Components\Resources::class, 'resources');
         });
     }
 
     /**
-     * Register asset bundles
+     * Registers theme logging on templates.
+     */
+    protected function registerThemeLogging()
+    {
+        CmsObject::extend(function ($model) {
+            ThemeLog::bindEventsToModel($model);
+        });
+    }
+
+    /**
+     * Register asset bundles.
      */
     protected function registerAssetBundles()
     {
         /*
          * Register asset bundles
          */
-        CombineAssets::registerCallback(function($combiner) {
+        CombineAssets::registerCallback(function ($combiner) {
             $combiner->registerBundle('~/modules/cms/widgets/mediamanager/assets/js/mediamanager-browser.js');
             $combiner->registerBundle('~/modules/cms/widgets/mediamanager/assets/less/mediamanager.less');
         });
@@ -109,6 +124,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'icon'        => 'icon-magic',
                     'iconSvg'     => 'modules/cms/assets/images/cms-icon.svg',
                     'url'         => Backend::url('cms'),
+                    'order'       => 100,
                     'permissions' => [
                         'cms.manage_content',
                         'cms.manage_assets',
@@ -116,7 +132,6 @@ class ServiceProvider extends ModuleServiceProvider
                         'cms.manage_layouts',
                         'cms.manage_partials'
                     ],
-                    'order'       => 10,
                     'sideMenu' => [
                         'pages' => [
                             'label'        => 'cms::lang.page.menu_label',
@@ -173,7 +188,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'iconSvg'     => 'modules/cms/assets/images/media-icon.svg',
                     'url'         => Backend::url('cms/media'),
                     'permissions' => ['media.*'],
-                    'order'       => 20
+                    'order'       => 200
                 ]
             ]);
         });
@@ -185,7 +200,7 @@ class ServiceProvider extends ModuleServiceProvider
     protected function registerBackendReportWidgets()
     {
         WidgetManager::instance()->registerReportWidgets(function ($manager) {
-            $manager->registerReportWidget('Cms\ReportWidgets\ActiveTheme', [
+            $manager->registerReportWidget(\Cms\ReportWidgets\ActiveTheme::class, [
                 'label'   => 'cms::lang.dashboard.active_theme.widget_title_default',
                 'context' => 'dashboard'
             ]);
@@ -202,30 +217,41 @@ class ServiceProvider extends ModuleServiceProvider
                 'cms.manage_content' => [
                     'label' => 'cms::lang.permissions.manage_content',
                     'tab' => 'cms::lang.permissions.name',
+                    'roles' => UserRole::CODE_DEVELOPER,
                     'order' => 100
                 ],
                 'cms.manage_assets' => [
                     'label' => 'cms::lang.permissions.manage_assets',
                     'tab' => 'cms::lang.permissions.name',
+                    'roles' => UserRole::CODE_DEVELOPER,
                     'order' => 100
                 ],
                 'cms.manage_pages' => [
                     'label' => 'cms::lang.permissions.manage_pages',
                     'tab' => 'cms::lang.permissions.name',
+                    'roles' => UserRole::CODE_DEVELOPER,
                     'order' => 100
                 ],
                 'cms.manage_layouts' => [
                     'label' => 'cms::lang.permissions.manage_layouts',
                     'tab' => 'cms::lang.permissions.name',
+                    'roles' => UserRole::CODE_DEVELOPER,
                     'order' => 100
                 ],
                 'cms.manage_partials' => [
                     'label' => 'cms::lang.permissions.manage_partials',
                     'tab' => 'cms::lang.permissions.name',
+                    'roles' => UserRole::CODE_DEVELOPER,
                     'order' => 100
                 ],
                 'cms.manage_themes' => [
                     'label' => 'cms::lang.permissions.manage_themes',
+                    'tab' => 'cms::lang.permissions.name',
+                    'roles' => UserRole::CODE_DEVELOPER,
+                    'order' => 100
+                ],
+                'cms.manage_theme_options' => [
+                    'label' => 'cms::lang.permissions.manage_theme_options',
                     'tab' => 'cms::lang.permissions.name',
                     'order' => 100
                 ],
@@ -261,8 +287,8 @@ class ServiceProvider extends ModuleServiceProvider
                     'description' => 'cms::lang.theme.settings_menu_description',
                     'category'    => SettingsManager::CATEGORY_CMS,
                     'icon'        => 'icon-picture-o',
-                    'url'         => Backend::URL('cms/themes'),
-                    'permissions' => ['cms.manage_themes'],
+                    'url'         => Backend::url('cms/themes'),
+                    'permissions' => ['cms.manage_themes', 'cms.manage_theme_options'],
                     'order'       => 200
                 ],
                 'maintenance_settings' => [
@@ -274,6 +300,16 @@ class ServiceProvider extends ModuleServiceProvider
                     'permissions' => ['cms.manage_themes'],
                     'order'       => 300
                 ],
+                'theme_logs' => [
+                    'label'       => 'cms::lang.theme_log.menu_label',
+                    'description' => 'cms::lang.theme_log.menu_description',
+                    'category'    => SettingsManager::CATEGORY_LOGS,
+                    'icon'        => 'icon-magic',
+                    'url'         => Backend::url('cms/themelogs'),
+                    'permissions' => ['system.access_logs'],
+                    'order'       => 910,
+                    'keywords'    => 'theme change log'
+                ]
             ]);
         });
     }

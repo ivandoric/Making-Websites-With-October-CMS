@@ -35,6 +35,7 @@ class JiriJKShopResultsProvider extends ResultsProvider
             $result->text  = $product->short_description;
             $result->url   = $this->getUrl($product);
             $result->meta  = $product->getFinalPriceFormated();
+            $result->model = $product;
 
             if (count($product->images) > 0) {
                 $image = $product->images->first();

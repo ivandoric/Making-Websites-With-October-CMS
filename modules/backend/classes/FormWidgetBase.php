@@ -86,6 +86,16 @@ abstract class FormWidgetBase extends WidgetBase
     }
 
     /**
+     * Returns the HTML element field name for this widget, used for capturing
+     * user input, passed back to the getSaveValue method when saving.
+     * @return string HTML element name
+     */
+    public function getFieldName()
+    {
+        return $this->formField->getName();
+    }
+
+    /**
      * Returns a unique ID for this widget. Useful in creating HTML markup.
      */
     public function getId($suffix = null)
@@ -113,6 +123,10 @@ abstract class FormWidgetBase extends WidgetBase
      */
     public function getLoadValue()
     {
+        if ($this->formField->value !== null) {
+            return $this->formField->value;
+        }
+
         $defaultValue = !$this->model->exists
             ? $this->formField->getDefaultFromData($this->data ?: $this->model)
             : null;

@@ -39,6 +39,7 @@ return [
         'restore' => 'Restore',
         'login_placeholder' => 'login',
         'password_placeholder' => 'password',
+        'remember_me' => 'Stay logged in',
         'forgot_password' => 'Forgot your password?',
         'enter_email' => 'Enter your email',
         'enter_login' => 'Enter your login',
@@ -78,6 +79,8 @@ return [
         'make_default' => 'Make default',
         'make_default_confirm' => 'Set the current layout as the default?',
         'make_default_success' => 'Current layout is now the default',
+        'collapse_all' => 'Collapse all',
+        'expand_all' => 'Expand all',
         'status' => [
             'widget_title_default' => 'System status',
             'update_available' => '{0} updates available!|{1} update available!|[2,Inf] updates available!',
@@ -113,8 +116,10 @@ return [
         'last_name' => 'Last Name',
         'full_name' => 'Full Name',
         'email' => 'Email',
+        'role_field' => 'Role',
+        'role_comment' => 'Roles define user permissions, which can be overriden on the user level, on the Permissions tab.',
         'groups' => 'Groups',
-        'groups_comment' => 'Specify which groups the account should belong to. Groups define user permissions, which can be overriden on the user level, on the Permissions tab.',
+        'groups_comment' => 'Specify which groups this account should belong to.',
         'avatar' => 'Avatar',
         'password' => 'Password',
         'password_confirmation' => 'Confirm Password',
@@ -135,8 +140,8 @@ return [
         'updated_at' => 'Updated at',
         'group' => [
             'name' => 'Group',
-            'name_comment' => 'The name is displayed in the group list on the Create/Edit Administrator form.',
             'name_field' => 'Name',
+            'name_comment' => 'The name is displayed in the group list on the Administrator form.',
             'description_field' => 'Description',
             'is_new_user_default_field_label' => 'Default group',
             'is_new_user_default_field_comment' => 'Add new administrators to this group by default',
@@ -147,6 +152,20 @@ return [
             'new' => 'New Group',
             'delete_confirm' => 'Delete this administrator group?',
             'return' => 'Return to group list',
+            'users_count' => 'Users'
+        ],
+        'role' => [
+            'name' => 'Role',
+            'name_field' => 'Name',
+            'name_comment' => 'The name is displayed in the role list on the Administrator form.',
+            'description_field' => 'Description',
+            'code_field' => 'Code',
+            'code_comment' => 'Enter a unique code if you want to access the role object with the API.',
+            'menu_label' => 'Manage Roles',
+            'list_title' => 'Manage Roles',
+            'new' => 'New Role',
+            'delete_confirm' => 'Delete this administrator role?',
+            'return' => 'Return to role list',
             'users_count' => 'Users'
         ],
         'preferences' => [
@@ -165,6 +184,8 @@ return [
         'behavior_not_ready' => 'List behavior has not been initialized, check that you have called makeLists() in your controller.',
         'invalid_column_datetime' => "Column value ':column' is not a DateTime object, are you missing a \$dates reference in the Model?",
         'pagination' => 'Displayed records: :from-:to of :total',
+        'first_page' => 'First page',
+        'last_page' => 'Last page',
         'prev_page' => 'Previous page',
         'next_page' => 'Next page',
         'refresh' => 'Refresh',
@@ -238,6 +259,7 @@ return [
         'confirm_tab_close' => 'Close the tab? Unsaved changes will be lost.',
         'behavior_not_ready' => 'Form behavior has not been initialized, check that you have called initForm() in your controller.',
         'preview_no_files_message' => 'There are no files uploaded.',
+        'preview_no_media_message' => 'There is no media selected.',
         'preview_no_record_message' => 'There is no record selected.',
         'select' => 'Select',
         'select_all' => 'all',
@@ -251,7 +273,8 @@ return [
         'return_to_list' => 'Return to the list'
     ],
     'recordfinder' => [
-        'find_record' => 'Find Record'
+        'find_record' => 'Find Record',
+        'cancel' => 'Cancel',
     ],
     'pagelist' => [
         'page_link' => 'Page link',
@@ -307,7 +330,8 @@ return [
         'tips' => 'System configuration tips',
         'tips_description' => 'There are issues you need to pay attention to in order to configure the system properly.',
         'permissions'  => 'Directory :name or its subdirectories is not writable for PHP. Please set corresponding permissions for the webserver on this directory.',
-        'extension' => 'The PHP extension :name is not installed. Please install this library and activate the extension.'
+        'extension' => 'The PHP extension :name is not installed. Please install this library and activate the extension.',
+        'plugin_missing' => 'The plugin :name is a dependency but is not installed. Please install this plugin.',
     ],
     'editor' => [
         'menu_label' => 'Editor settings',
@@ -353,7 +377,9 @@ return [
         'no_wrap' => 'Do not wrap tags',
         'no_wrap_comment' => 'The list of tags that should not be wrapped inside block tags.',
         'remove_tags' => 'Remove tags',
-        'remove_tags_comment' => 'The list of tags that are removed together with their content.'
+        'remove_tags_comment' => 'The list of tags that are removed together with their content.',
+        'toolbar_buttons' => 'Toolbar Buttons',
+        'toolbar_buttons_comment' => 'The Toolbar Buttons to be displayed in the Rich Editor by default. [fullscreen, bold, italic, underline, strikeThrough, subscript, superscript, fontFamily, fontSize, |, color, emoticons, inlineStyle, paragraphStyle, |, paragraphFormat, align, formatOL, formatUL, outdent, indent, quote, insertHR, -, insertLink, insertImage, insertVideo, insertAudio, insertFile, insertTable, undo, redo, clearFormatting, selectAll, html]',
     ],
     'tooltips' => [
         'preview_website' => 'Preview the website'

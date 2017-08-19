@@ -8,6 +8,14 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Exception;
 
+/**
+ * Console command to install a new theme.
+ *
+ * This adds a new theme by requesting it from the October marketplace.
+ *
+ * @package october\system
+ * @author Alexey Bobkov, Samuel Georges
+ */
 class ThemeInstall extends Command
 {
     /**
@@ -35,7 +43,7 @@ class ThemeInstall extends Command
      * Execute the console command.
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $themeName = $this->argument('name');
         $argDirName = $this->argument('dirName');

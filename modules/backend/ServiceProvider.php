@@ -5,7 +5,7 @@ use Backend;
 use BackendMenu;
 use BackendAuth;
 use Backend\Classes\WidgetManager;
-use System\Models\MailTemplate;
+use System\Classes\MailManager;
 use System\Classes\CombineAssets;
 use System\Classes\SettingsManager;
 use October\Rain\Support\ModuleServiceProvider;
@@ -51,10 +51,10 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerMailer()
     {
-        MailTemplate::registerCallback(function ($template) {
-            $template->registerMailTemplates([
-                'backend::mail.invite'  => 'Invitation for newly created administrators.',
-                'backend::mail.restore' => 'Password reset instructions for backend-end administrators.',
+        MailManager::instance()->registerCallback(function ($manager) {
+            $manager->registerMailTemplates([
+                'backend::mail.invite',
+                'backend::mail.restore',
             ]);
         });
     }
@@ -64,7 +64,7 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerAssetBundles()
     {
-        CombineAssets::registerCallback(function($combiner) {
+        CombineAssets::registerCallback(function ($combiner) {
             $combiner->registerBundle('~/modules/backend/assets/less/october.less');
             $combiner->registerBundle('~/modules/backend/assets/js/october.js');
             $combiner->registerBundle('~/modules/backend/widgets/table/assets/js/build.js');
@@ -95,7 +95,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'iconSvg'     => 'modules/backend/assets/images/dashboard-icon.svg',
                     'url'         => Backend::url('backend'),
                     'permissions' => ['backend.access_dashboard'],
-                    'order'       => 1
+                    'order'       => 10
                 ]
             ]);
         });
@@ -107,7 +107,7 @@ class ServiceProvider extends ModuleServiceProvider
     protected function registerBackendReportWidgets()
     {
         WidgetManager::instance()->registerReportWidgets(function ($manager) {
-            $manager->registerReportWidget('Backend\ReportWidgets\Welcome', [
+            $manager->registerReportWidget(\Backend\ReportWidgets\Welcome::class, [
                 'label'   => 'backend::lang.dashboard.welcome.widget_title_default',
                 'context' => 'dashboard'
             ]);
@@ -198,7 +198,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'description' => 'backend::lang.myaccount.menu_description',
                     'category'    => SettingsManager::CATEGORY_MYSETTINGS,
                     'icon'        => 'icon-user',
-                    'url'         => Backend::URL('backend/users/myaccount'),
+                    'url'         => Backend::url('backend/users/myaccount'),
                     'order'       => 500,
                     'context'     => 'mysettings',
                     'keywords'    => 'backend::lang.myaccount.menu_keywords'
@@ -208,7 +208,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'description' => 'backend::lang.backend_preferences.menu_description',
                     'category'    => SettingsManager::CATEGORY_MYSETTINGS,
                     'icon'        => 'icon-laptop',
-                    'url'         => Backend::URL('backend/preferences'),
+                    'url'         => Backend::url('backend/preferences'),
                     'permissions' => ['backend.manage_preferences'],
                     'order'       => 510,
                     'context'     => 'mysettings'

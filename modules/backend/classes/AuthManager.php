@@ -31,6 +31,7 @@ class AuthManager extends RainAuthManager
         'code'    => null,
         'label'   => null,
         'comment' => null,
+        'roles'   => null,
         'order'   => 500
     ];
 
@@ -45,6 +46,11 @@ class AuthManager extends RainAuthManager
     protected $permissions = [];
 
     /**
+     * @var array List of registered permission roles.
+     */
+    protected $permissionRoles = false;
+
+    /**
      * @var array Cache of registered permissions.
      */
     protected $permissionCache = false;
@@ -54,11 +60,11 @@ class AuthManager extends RainAuthManager
      * The callback function should register permissions by calling the manager's
      * registerPermissions() function. The manager instance is passed to the
      * callback function as an argument. Usage:
-     * <pre>
-     *   BackendAuth::registerCallback(function($manager){
-     *       $manager->registerPermissions([...]);
-     *   });
-     * </pre>
+     *
+     *     BackendAuth::registerCallback(function($manager){
+     *         $manager->registerPermissions([...]);
+     *     });
+     *
      * @param callable $callback A callable function.
      */
     public function registerCallback(callable $callback)
@@ -68,8 +74,8 @@ class AuthManager extends RainAuthManager
 
     /**
      * Registers the back-end permission items.
-     * The argument is an array of the permissions. The array keys represent the 
-     * permission codes, specific for the plugin/module. Each element in the 
+     * The argument is an array of the permissions. The array keys represent the
+     * permission codes, specific for the plugin/module. Each element in the
      * array should be an associative array with the following keys:
      * - label - specifies the menu label localization string key, required.
      * - order - a position of the item in the menu, optional.
@@ -92,7 +98,7 @@ class AuthManager extends RainAuthManager
 
     /**
      * Returns a list of the registered permissions items.
-     * @return array 
+     * @return array
      */
     public function listPermissions()
     {
@@ -156,5 +162,41 @@ class AuthManager extends RainAuthManager
         }
 
         return $tabs;
+    }
+
+    /**
+     * Returns an array of registered permissions belonging to a given role code
+     * @param string $role
+     * @return array
+     */
+    public function listPermissionsForRole($role, $includeOrphans = true)
+    {
+        if ($this->permissionRoles === false) {
+            $this->permissionRoles = [];
+
+            foreach ($this->listPermissions() as $permission) {
+                if ($permission->roles) {
+                    foreach ((array) $permission->roles as $_role) {
+                        $this->permissionRoles[$_role][$permission->code] = 1;
+                    }
+                }
+                else {
+                    $this->permissionRoles['*'][$permission->code] = 1;
+                }
+            }
+        }
+
+        $result = $this->permissionRoles[$role] ?? [];
+
+        if ($includeOrphans) {
+            $result += $this->permissionRoles['*'] ?? [];
+        }
+
+        return $result;
+    }
+
+    public function hasPermissionsForRole($role)
+    {
+        return !!$this->listPermissionsForRole($role, false);
     }
 }

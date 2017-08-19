@@ -47,12 +47,12 @@ class TagList extends FormWidgetBase
     //
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $defaultAlias = 'taglist';
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function init()
     {
@@ -66,7 +66,7 @@ class TagList extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function render()
     {
@@ -86,7 +86,7 @@ class TagList extends FormWidgetBase
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSaveValue($value)
     {
@@ -122,14 +122,14 @@ class TagList extends FormWidgetBase
 
         foreach ($newTags as $newTag) {
             $newModel = $relationModel::create([$this->nameFrom => $newTag]);
-            $existingTags[$newModel->id] = $newTag;
+            $existingTags[$newModel->getKey()] = $newTag;
         }
 
         return array_keys($existingTags);
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getLoadValue()
     {

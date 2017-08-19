@@ -204,6 +204,15 @@ class Menu extends CmsObject
     }
 
     /**
+     * Compile the content for this CMS object, used by the theme logger.
+     * @return string
+     */
+    public function toCompiled()
+    {
+        return $this->renderContent();
+    }
+
+    /**
      * Renders the menu data as a content string in YAML format.
      * @return string
      */

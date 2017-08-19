@@ -10,8 +10,19 @@ use October\Rain\Database\Model;
 use ApplicationException;
 
 /**
- * Relation Controller Behavior
  * Uses a combination of lists and forms for managing Model relations.
+ *
+ * This behavior is implemented in the controller like so:
+ *
+ *     public $implement = [
+ *         'Backend.Behaviors.RelationController',
+ *     ];
+ *
+ *     public $relationConfig = 'config_relation.yaml';
+ *
+ * The `$relationConfig` property makes reference to the configuration
+ * values as either a YAML file, located in the controller view directory,
+ * or directly as a PHP array.
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -36,12 +47,12 @@ class RelationController extends ControllerBehavior
     const PARAM_EXTRA_CONFIG = '_relation_extra_config';
 
     /**
-     * @var Backend\Classes\WidgetBase Reference to the search widget object.
+     * @var Backend\Widgets\Search Reference to the search widget object.
      */
     protected $searchWidget;
 
     /**
-     * @var Backend\Classes\WidgetBase Reference to the toolbar widget object.
+     * @var Backend\Widgets\Toolbar Reference to the toolbar widget object.
      */
     protected $toolbarWidget;
 
@@ -61,7 +72,7 @@ class RelationController extends ControllerBehavior
     protected $pivotWidget;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected $requiredProperties = ['relationConfig'];
 
@@ -326,14 +337,14 @@ class RelationController extends ControllerBehavior
         $this->relationObject = $this->model->{$field}();
         $this->relationModel = $this->relationObject->getRelated();
 
+        $this->manageId = post('manage_id');
+        $this->foreignId = post('foreign_id');
         $this->readOnly = $this->getConfig('readOnly');
         $this->deferredBinding = $this->getConfig('deferredBinding') || !$this->model->exists;
         $this->toolbarButtons = $this->evalToolbarButtons();
         $this->viewMode = $this->evalViewMode();
         $this->manageMode = $this->evalManageMode();
         $this->manageTitle = $this->evalManageTitle();
-        $this->manageId = post('manage_id');
-        $this->foreignId = post('foreign_id');
 
         /*
          * Toolbar widget
@@ -639,17 +650,17 @@ class RelationController extends ControllerBehavior
              * Apply defined constraints
              */
             if ($sqlConditions = $this->getConfig('view[conditions]')) {
-                $widget->bindEvent('list.extendQueryBefore', function($query) use ($sqlConditions) {
+                $widget->bindEvent('list.extendQueryBefore', function ($query) use ($sqlConditions) {
                     $query->whereRaw($sqlConditions);
                 });
             }
             elseif ($scopeMethod = $this->getConfig('view[scope]')) {
-                $widget->bindEvent('list.extendQueryBefore', function($query) use ($scopeMethod) {
-                    $query->$scopeMethod();
+                $widget->bindEvent('list.extendQueryBefore', function ($query) use ($scopeMethod) {
+                    $query->$scopeMethod($this->model);
                 });
             }
             else {
-                $widget->bindEvent('list.extendQueryBefore', function($query) {
+                $widget->bindEvent('list.extendQueryBefore', function ($query) {
                     $this->relationObject->addDefinedConstraintsToQuery($query);
                 });
             }
@@ -769,17 +780,17 @@ class RelationController extends ControllerBehavior
              * Apply defined constraints
              */
             if ($sqlConditions = $this->getConfig('manage[conditions]')) {
-                $widget->bindEvent('list.extendQueryBefore', function($query) use ($sqlConditions) {
+                $widget->bindEvent('list.extendQueryBefore', function ($query) use ($sqlConditions) {
                     $query->whereRaw($sqlConditions);
                 });
             }
             elseif ($scopeMethod = $this->getConfig('manage[scope]')) {
-                $widget->bindEvent('list.extendQueryBefore', function($query) use ($scopeMethod) {
-                    $query->$scopeMethod();
+                $widget->bindEvent('list.extendQueryBefore', function ($query) use ($scopeMethod) {
+                    $query->$scopeMethod($this->model);
                 });
             }
             else {
-                $widget->bindEvent('list.extendQueryBefore', function($query) {
+                $widget->bindEvent('list.extendQueryBefore', function ($query) {
                     $this->relationObject->addDefinedConstraintsToQuery($query);
                 });
             }
@@ -1000,7 +1011,7 @@ class RelationController extends ControllerBehavior
              */
             if (in_array($this->relationType, ['hasOne', 'hasMany'])) {
                 $newModel->setAttribute(
-                    $this->relationObject->getPlainForeignKey(),
+                    $this->relationObject->getForeignKeyName(),
                     $this->relationObject->getParentKey()
                 );
             }
@@ -1058,10 +1069,10 @@ class RelationController extends ControllerBehavior
         }
         elseif ($this->viewMode == 'single') {
             $this->viewWidget->setFormValues($saveData);
-            $this->viewModel->save();
+            $this->viewModel->save(null, $this->manageWidget->getSessionKey());
         }
 
-        return ['#'.$this->relationGetId('view') => $this->relationRenderView()];
+        return $this->relationRefresh();
     }
 
     /**
@@ -1243,10 +1254,10 @@ class RelationController extends ControllerBehavior
              * Save data to models
              */
             $foreignKeyName = $this->relationModel->getQualifiedKeyName();
-            $hyrdatedModels = $this->relationObject->whereIn($foreignKeyName, $foreignIds)->get();
+            $hydratedModels = $this->relationObject->whereIn($foreignKeyName, $foreignIds)->get();
             $saveData = $this->pivotWidget->getSaveData();
 
-            foreach ($hyrdatedModels as $hydratedModel) {
+            foreach ($hydratedModels as $hydratedModel) {
                 $modelsToSave = $this->prepareModelsToSave($hydratedModel, $saveData);
                 foreach ($modelsToSave as $modelToSave) {
                     $modelToSave->save(null, $this->pivotWidget->getSessionKey());
@@ -1435,8 +1446,11 @@ class RelationController extends ControllerBehavior
                 if ($this->readOnly) {
                     return 'backend::lang.relation.preview_name';
                 }
-                else {
+                elseif ($this->manageId) {
                     return 'backend::lang.relation.update_name';
+                }
+                else {
+                    return 'backend::lang.relation.create_name';
                 }
                 break;
         }

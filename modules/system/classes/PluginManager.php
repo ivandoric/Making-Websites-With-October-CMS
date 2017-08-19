@@ -74,7 +74,10 @@ class PluginManager
         $this->metaFile = storage_path('cms/disabled.json');
         $this->loadDisabled();
         $this->loadPlugins();
-        $this->loadDependencies();
+
+        if ($this->app->runningInBackend()) {
+            $this->loadDependencies();
+        }
     }
 
     /**
@@ -146,9 +149,9 @@ class PluginManager
      * Runs the register() method on all plugins. Can only be called once.
      * @return void
      */
-    public function registerAll()
+    public function registerAll($force = false)
     {
-        if ($this->registered) {
+        if ($this->registered && !$force) {
             return;
         }
 
@@ -238,9 +241,9 @@ class PluginManager
     /**
      * Runs the boot() method on all plugins. Can only be called once.
      */
-    public function bootAll()
+    public function bootAll($force = false)
     {
-        if ($this->booted) {
+        if ($this->booted && !$force) {
             return;
         }
 
@@ -311,6 +314,7 @@ class PluginManager
         }
 
         $classId = $this->getIdentifier($namespace);
+
         return $this->plugins[$classId];
     }
 
@@ -336,6 +340,7 @@ class PluginManager
     public function hasPlugin($namespace)
     {
         $classId = $this->getIdentifier($namespace);
+
         return isset($this->plugins[$classId]);
     }
 
@@ -390,7 +395,7 @@ class PluginManager
     }
 
     /**
-     * Returns a plugin identifier from a Plugin class name or object
+     * Resolves a plugin identifier from a plugin class name or object.
      * @param mixed Plugin class name or object
      * @return string Identifier in format of Vendor.Plugin
      */
@@ -488,9 +493,11 @@ class PluginManager
     public function isDisabled($id)
     {
         $code = $this->getIdentifier($id);
+
         if (array_key_exists($code, $this->disabledPlugins)) {
             return true;
         }
+
         return false;
     }
 
@@ -499,8 +506,7 @@ class PluginManager
      */
     protected function writeDisabled()
     {
-        $path = $this->metaFile;
-        File::put($path, json_encode($this->disabledPlugins));
+        File::put($this->metaFile, json_encode($this->disabledPlugins));
     }
 
     /**
@@ -559,8 +565,12 @@ class PluginManager
     //
 
     /**
-     * Scans the system plugins to locate any dependencies
-     * that are not currently installed.
+     * Scans the system plugins to locate any dependencies that are not currently
+     * installed. Returns an array of plugin codes that are needed.
+     *
+     *     PluginManager::instance()->findMissingDependencies();
+     *
+     * @return array
      */
     public function findMissingDependencies()
     {
@@ -586,6 +596,7 @@ class PluginManager
     /**
      * Cross checks all plugins and their dependancies, if not met plugins
      * are disabled and vice versa.
+     * @return void
      */
     protected function loadDependencies()
     {
@@ -595,11 +606,12 @@ class PluginManager
             }
 
             $disable = false;
+
             foreach ($required as $require) {
-                if (!$this->hasPlugin($require)) {
+                if (!$pluginObj = $this->findByIdentifier($require)) {
                     $disable = true;
                 }
-                elseif (($pluginObj = $this->findByIdentifier($require)) && $pluginObj->disabled) {
+                elseif ($pluginObj->disabled) {
                     $disable = true;
                 }
             }

@@ -7,6 +7,14 @@ use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Console\Command;
 use Exception;
 
+/**
+ * Console command to remove a theme.
+ *
+ * This completely deletes an existing theme, including all files and directories.
+ *
+ * @package october\system
+ * @author Alexey Bobkov, Samuel Georges
+ */
 class ThemeRemove extends Command
 {
 
@@ -37,7 +45,7 @@ class ThemeRemove extends Command
      * Execute the console command.
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $themeManager = ThemeManager::instance();
         $themeName = $this->argument('name');
