@@ -21,16 +21,8 @@ class FilterMovies extends ComponentBase
     }
 
     public function filterYears() {
-        $query = Movie::all();
-        $years = [];
-
-        foreach($query as $movie){
-            $years[] = $movie->year;
-        }
-
-        $years = array_unique($years);
-        return $years;
-    }
+        $years = Movie::pluck('year');
+        return array_unique($years);    }
 
     protected function filterMovies() {
         $year = Input::get('year');
