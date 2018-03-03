@@ -26,16 +26,9 @@ is_hidden = 0
     }
 
     function prepareYears() {
-        $movies = Movie::all();
-        $years = [];
-
-        foreach($movies as $movie){
-            $years[] = $movie->year;
-        }
-
-        $years = array_unique($years);
-
-        $this['years'] = $years;
+        $years = Movie->pluck('year');
+        
+        $this['years'] = array_unique($years);
     }
 
 ?>
