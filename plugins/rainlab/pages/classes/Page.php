@@ -4,6 +4,7 @@ use Cms;
 use File;
 use Lang;
 use Cache;
+use Event;
 use Route;
 use Config;
 use Validator;
@@ -670,7 +671,17 @@ class Page extends ContentBase
      */
     protected static function getMenuCacheKey($theme)
     {
-        return crc32($theme->getPath()).'static-page-menu-'.Lang::getLocale();
+        $key = crc32($theme->getPath()).'static-page-menu';
+        Event::fire('pages.page.getMenuCacheKey', [&$key]);
+        return $key;
+    }
+
+    /**
+     * Returns whether the specified URLs are equal.
+     */
+    protected static function urlsAreEqual($url, $other)
+    {
+        return rawurldecode($url) === rawurldecode($other);
     }
 
     /**
@@ -747,7 +758,7 @@ class Page extends ContentBase
             $pageInfo = $tree[$item->reference];
             $result['url'] = Cms::url($pageInfo['url']);
             $result['mtime'] = $pageInfo['mtime'];
-            $result['isActive'] = $result['url'] == $url;
+            $result['isActive'] = self::urlsAreEqual($result['url'], $url);
         }
 
         if ($item->nesting || $item->type == 'all-static-pages') {
@@ -767,7 +778,7 @@ class Page extends ContentBase
 
                     $branchItem = [];
                     $branchItem['url'] = Cms::url($itemInfo['url']);
-                    $branchItem['isActive'] = $branchItem['url'] == $url;
+                    $branchItem['isActive'] = self::urlsAreEqual($branchItem['url'], $url);
                     $branchItem['title'] = $itemInfo['title'];
                     $branchItem['mtime'] = $itemInfo['mtime'];
 

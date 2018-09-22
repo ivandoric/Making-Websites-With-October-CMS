@@ -2740,7 +2740,7 @@ var opts=$this.data()
 if(opts.source){opts.source=paramToObj('data-source',opts.source)}
 $this.autocomplete(opts)})}(window.jQuery);(function($){$(document).on('keydown','div.custom-checkbox',function(e){if(e.keyCode==32)
 e.preventDefault()})
-$(document).on('keyup','div.custom-checkbox',function(e){if(e.keyCode==32){var $cb=$('input',this)
+$(document).on('input','div.custom-checkbox',function(e){if(e.keyCode==32){var $cb=$('input',this)
 if($cb.data('oc-space-timestamp')==e.timeStamp)
 return
 $cb.get(0).checked=!$cb.get(0).checked
@@ -2861,6 +2861,7 @@ this.$datePicker=$('[data-datepicker]',this.$el)
 this.$timePicker=$('[data-timepicker]',this.$el)
 this.hasDate=!!this.$datePicker.length
 this.hasTime=!!this.$timePicker.length
+this.ignoreTimezone=this.$el.get(0).hasAttribute('data-ignore-timezone')
 this.initRegion()
 if(this.hasDate){this.initDatePicker()}
 if(this.hasTime){this.initTimePicker()}
@@ -2877,7 +2878,7 @@ this.$el=null
 this.options=null
 BaseProto.dispose.call(this)}
 DatePicker.prototype.initDatePicker=function(){var self=this,dateFormat=this.getDateFormat(),now=moment().tz(this.timezone).format(dateFormat)
-var pikadayOptions={yearRange:this.options.yearRange,firstDay:this.options.firstDay,format:dateFormat,setDefaultDate:now,onOpen:function(){var $field=$(this._o.trigger)
+var pikadayOptions={yearRange:this.options.yearRange,firstDay:this.options.firstDay,showWeekNumber:this.options.showWeekNumber,format:dateFormat,setDefaultDate:now,onOpen:function(){var $field=$(this._o.trigger)
 $(this.el).css({left:'auto',right:$(window).width()-$field.offset().left-$field.outerWidth()})},onSelect:function(){self.onSelectDatePicker.call(self,this.getMoment())}}
 var lang=this.getLang('datepicker',false)
 if(lang){pikadayOptions.i18n=lang}
@@ -2923,10 +2924,12 @@ DatePicker.prototype.initRegion=function(){this.locale=$('meta[name="backend-loc
 this.timezone=$('meta[name="backend-timezone"]').attr('content')
 this.appTimezone=$('meta[name="app-timezone"]').attr('content')
 if(!this.appTimezone){this.appTimezone='UTC'}
-if(!this.timezone){this.timezone='UTC'}}
+if(!this.timezone){this.timezone='UTC'}
+if(this.ignoreTimezone){this.appTimezone='UTC'
+this.timezone='UTC'}}
 DatePicker.prototype.getLang=function(name,defaultValue){if($.oc===undefined||$.oc.lang===undefined){return defaultValue}
 return $.oc.lang.get(name,defaultValue)}
-DatePicker.DEFAULTS={minDate:null,maxDate:null,format:null,yearRange:10,firstDay:0}
+DatePicker.DEFAULTS={minDate:null,maxDate:null,format:null,yearRange:10,firstDay:0,showWeekNumber:false}
 var old=$.fn.datePicker
 $.fn.datePicker=function(option){var args=Array.prototype.slice.call(arguments,1),items,result
 items=this.each(function(){var $this=$(this)
@@ -2989,7 +2992,7 @@ FilterWidget.prototype.getPopoverTemplate=function(){return'                    
                                 type="text"                                                             \
                                 name="search"                                                           \
                                 autocomplete="off"                                                      \
-                                class="filter-search-input form-control icon search"                    \
+                                class="filter-search-input form-control icon search popup-allow-focus"  \
                                 data-request="{{ optionsHandler }}"                                     \
                                 data-load-indicator-opaque                                              \
                                 data-load-indicator                                                     \
@@ -3159,7 +3162,7 @@ self.filterByDate(true)})}
 FilterWidget.prototype.getPopoverDateTemplate=function(){return'                                                                                                        \
                 <form>                                                                                                  \
                     <input type="hidden" name="scopeName" value="{{ scopeName }}" />                                    \
-                    <div id="controlFilterPopover" class="control-filter-popover control-filter-date-popover">          \
+                    <div id="controlFilterPopover" class="control-filter-popover control-filter-box-popover">           \
                         <div class="filter-search loading-indicator-container size-input-text">                         \
                             <div class="field-datepicker">                                                              \
                                 <div class="input-with-icon right-align">                                               \
@@ -3168,7 +3171,7 @@ FilterWidget.prototype.getPopoverDateTemplate=function(){return'                
                                         type="text"                                                                     \
                                         name="date"                                                                     \
                                         value="{{ date }}"                                                              \
-                                        class="form-control align-right"                                                \
+                                        class="form-control align-right popup-allow-focus"                              \
                                         autocomplete="off"                                                              \
                                         placeholder="{{ date_placeholder }}" />                                         \
                                 </div>                                                                                  \
@@ -3185,7 +3188,7 @@ FilterWidget.prototype.getPopoverDateTemplate=function(){return'                
 FilterWidget.prototype.getPopoverRangeTemplate=function(){return'                                                                                                        \
                 <form>                                                                                                  \
                     <input type="hidden" name="scopeName" value="{{ scopeName }}" />                                    \
-                    <div id="controlFilterPopover" class="control-filter-popover control-filter-date-popover --range">  \
+                    <div id="controlFilterPopover" class="control-filter-popover control-filter-box-popover --range">   \
                         <div class="filter-search loading-indicator-container size-input-text">                         \
                             <div class="field-datepicker">                                                              \
                                 <div class="input-with-icon right-align">                                               \
@@ -3194,7 +3197,7 @@ FilterWidget.prototype.getPopoverRangeTemplate=function(){return'               
                                         type="text"                                                                     \
                                         name="date"                                                                     \
                                         value="{{ date }}"                                                              \
-                                        class="form-control align-right"                                                \
+                                        class="form-control align-right popup-allow-focus"                              \
                                         autocomplete="off"                                                              \
                                         placeholder="{{ after_placeholder }}" />                                        \
                                 </div>                                                                                  \
@@ -3235,7 +3238,7 @@ $scope.data('oc.popover',null)
 $scope.ocPopover({content:Mustache.render(this.getPopoverRangeTemplate(),data),modal:false,highlightModalTarget:true,closeOnPageClick:true,placement:'bottom',onCheckDocumentClickTarget:function(target){return self.onCheckDocumentClickTargetDatePicker(target)}})}
 FilterWidget.prototype.initDatePickers=function(isRange){var self=this,scopeData=this.$activeScope.data('scope-data'),$inputs=$('.field-datepicker input','#controlFilterPopover'),data=this.scopeValues[this.activeScopeName]
 if(!data){data={dates:isRange?(scopeData.dates?scopeData.dates:[]):(scopeData.date?[scopeData.date]:[])}}
-$inputs.each(function(index,datepicker){var defaultValue='',$datepicker=$(datepicker),defaults={minDate:new Date(scopeData.minDate),maxDate:new Date(scopeData.maxDate),yearRange:10,setDefaultDate:''!==defaultValue?defaultValue.toDate():'',format:self.getDateFormat(),i18n:self.getLang('datepicker')}
+$inputs.each(function(index,datepicker){var defaultValue='',$datepicker=$(datepicker),defaults={minDate:new Date(scopeData.minDate),maxDate:new Date(scopeData.maxDate),firstDay:scopeData.firstDay,yearRange:scopeData.yearRange,setDefaultDate:''!==defaultValue?defaultValue.toDate():'',format:self.getDateFormat(),i18n:self.getLang('datepicker')}
 if(0<=index&&index<data.dates.length){defaultValue=data.dates[index]?moment.tz(data.dates[index],self.appTimezone).tz(self.timezone):''}
 if(!isRange){defaults.onSelect=function(){self.filterByDate()}}
 datepicker.value=''!==defaultValue?defaultValue.format(self.getDateFormat()):'';$datepicker.pikaday(defaults)})}
@@ -3266,7 +3269,125 @@ FilterWidget.prototype.initRegion=function(){this.locale=$('meta[name="backend-l
 this.timezone=$('meta[name="backend-timezone"]').attr('content')
 this.appTimezone=$('meta[name="app-timezone"]').attr('content')
 if(!this.appTimezone){this.appTimezone='UTC'}
-if(!this.timezone){this.timezone='UTC'}}}(window.jQuery);(function($){$(document).render(function(){var formatSelectOption=function(state){if(!state.id)
+if(!this.timezone){this.timezone='UTC'}}}(window.jQuery);+function($){"use strict";var FilterWidget=$.fn.filterWidget.Constructor;var overloaded_init=FilterWidget.prototype.init;FilterWidget.prototype.init=function(){overloaded_init.apply(this)
+this.initFilterNumber()}
+FilterWidget.prototype.initFilterNumber=function(){var self=this
+this.$el.on('show.oc.popover','a.filter-scope-number',function(){self.initNumberInputs($(this).hasClass('range'))})
+this.$el.on('hide.oc.popover','a.filter-scope-number',function(){var $scope=$(this)
+self.pushOptions(self.activeScopeName)
+self.activeScopeName=null
+self.$activeScope=null
+setTimeout(function(){$scope.removeClass('filter-scope-open')},200)})
+this.$el.on('click','a.filter-scope-number',function(){var $scope=$(this),scopeName=$scope.data('scope-name')
+if($scope.hasClass('filter-scope-open'))return
+if(null!==self.activeScopeName)return
+self.$activeScope=$scope
+self.activeScopeName=scopeName
+self.isActiveScopeDirty=false
+if($scope.hasClass('range')){self.displayPopoverNumberRange($scope)}
+else{self.displayPopoverNumber($scope)}
+$scope.addClass('filter-scope-open')})
+$(document).on('click','#controlFilterPopoverNum [data-trigger="filter"]',function(e){e.preventDefault()
+e.stopPropagation()
+self.filterByNumber()})
+$(document).on('click','#controlFilterPopoverNum [data-trigger="clear"]',function(e){e.preventDefault()
+e.stopPropagation()
+self.filterByNumber(true)})}
+FilterWidget.prototype.getPopoverNumberTemplate=function(){return'                                                                                                        \
+                <form>                                                                                                  \
+                    <input type="hidden" name="scopeName" value="{{ scopeName }}" />                                    \
+                    <div id="controlFilterPopoverNum" class="control-filter-popover control-filter-box-popover --range">\
+                        <div class="filter-search loading-indicator-container size-input-text">                         \
+                            <div class="field-number">                                                                  \
+                                <input                                                                                  \
+                                    type="number"                                                                       \
+                                    name="number"                                                                       \
+                                    value="{{ number }}"                                                                \
+                                    class="form-control align-right"                                                    \
+                                    autocomplete="off"                                                                  \
+                                    placeholder="{{ number_placeholder }}" />                                           \
+                            </div>                                                                                      \
+                            <div class="filter-buttons">                                                                \
+                                <button class="btn btn-block btn-primary" data-trigger="filter">                        \
+                                    {{ filter_button_text }}                                                            \
+                                </button>                                                                               \
+                                <button class="btn btn-block btn-secondary" data-trigger="clear">                       \
+                                    {{ reset_button_text }}                                                             \
+                                </button>                                                                               \
+                            </div>                                                                                      \
+                        </div>                                                                                          \
+                    </div>                                                                                              \
+                </form>                                                                                                 \
+            '}
+FilterWidget.prototype.getPopoverNumberRangeTemplate=function(){return'                                                                                                            \
+                <form>                                                                                                      \
+                    <input type="hidden" name="scopeName" value="{{ scopeName }}" />                                        \
+                    <div id="controlFilterPopoverNum" class="control-filter-popover control-filter-box-popover --range">    \
+                        <div class="filter-search loading-indicator-container size-input-text">                             \
+                            <div class="field-number">                                                                      \
+                                <div class="right-align">                                                                   \
+                                    <input                                                                                  \
+                                        type="number"                                                                       \
+                                        name="number"                                                                       \
+                                        value="{{ number }}"                                                                \
+                                        class="form-control align-right"                                                    \
+                                        autocomplete="off"                                                                  \
+                                        placeholder="{{ min_placeholder }}" />                                              \
+                                </div>                                                                                      \
+                            </div>                                                                                          \
+                            <div class="field-number">                                                                      \
+                                <div class="right-align">                                                                   \
+                                    <input                                                                                  \
+                                        type="number"                                                                       \
+                                        {{ maxNumber }}                                                                     \
+                                        name="number"                                                                       \
+                                        value="{{ number }}"                                                                \
+                                        class="form-control align-right"                                                    \
+                                        autocomplete="off"                                                                  \
+                                        placeholder="{{ max_placeholder }}" />                                              \
+                                </div>                                                                                      \
+                            </div>                                                                                          \
+                            <div class="filter-buttons">                                                                    \
+                                <button class="btn btn-block btn-primary" data-trigger="filter">                            \
+                                    {{ filter_button_text }}                                                                \
+                                </button>                                                                                   \
+                                <button class="btn btn-block btn-secondary" data-trigger="clear">                           \
+                                    {{ reset_button_text }}                                                                 \
+                                </button>                                                                                   \
+                            </div>                                                                                          \
+                        </div>                                                                                              \
+                    </div>                                                                                                  \
+                </form>                                                                                                     \
+            '}
+FilterWidget.prototype.displayPopoverNumber=function($scope){var self=this,scopeName=$scope.data('scope-name'),data=this.scopeValues[scopeName]
+data=$.extend({},data,{filter_button_text:this.getLang('filter.numbers.filter_button_text'),reset_button_text:this.getLang('filter.numbers.reset_button_text'),number_placeholder:this.getLang('filter.numbers.number_placeholder','Number')})
+data.scopeName=scopeName
+$scope.data('oc.popover',null)
+$scope.ocPopover({content:Mustache.render(this.getPopoverNumberTemplate(),data),modal:false,highlightModalTarget:true,closeOnPageClick:true,placement:'bottom',})}
+FilterWidget.prototype.displayPopoverNumberRange=function($scope){var self=this,scopeName=$scope.data('scope-name'),data=this.scopeValues[scopeName]
+data=$.extend({},data,{filter_button_text:this.getLang('filter.numbers.filter_button_text'),reset_button_text:this.getLang('filter.numbers.reset_button_text'),min_placeholder:this.getLang('filter.numbers.min_placeholder','Min'),max_placeholder:this.getLang('filter.numbers.max_placeholder','Max')})
+data.scopeName=scopeName
+$scope.data('oc.popover',null)
+$scope.ocPopover({content:Mustache.render(this.getPopoverNumberRangeTemplate(),data),modal:false,highlightModalTarget:true,closeOnPageClick:true,placement:'bottom',})}
+FilterWidget.prototype.initNumberInputs=function(isRange){var self=this,scopeData=this.$activeScope.data('scope-data'),$inputs=$('.field-number input','#controlFilterPopoverNum'),data=this.scopeValues[this.activeScopeName]
+if(!data){data={numbers:isRange?(scopeData.numbers?scopeData.numbers:[]):(scopeData.number?[scopeData.number]:[])}}
+$inputs.each(function(index,numberinput){var defaultValue=''
+if(0<=index&&index<data.numbers.length){defaultValue=data.numbers[index]?data.numbers[index]:''}
+numberinput.value=''!==defaultValue?defaultValue:'';})}
+FilterWidget.prototype.updateScopeNumberSetting=function($scope,numbers){var $setting=$scope.find('.filter-setting'),numberRegex=/\d*/,reset=false
+if(numbers&&numbers.length){numbers[0]=numbers[0]&&numbers[0].match(numberRegex)?numbers[0]:null
+if(numbers.length>1){numbers[1]=numbers[1]&&numbers[1].match(numberRegex)?numbers[1]:null
+if(numbers[0]||numbers[1]){var min=numbers[0]?numbers[0]:'',max=numbers[1]?numbers[1]:'∞'
+$setting.text(min+' → '+max)}else{reset=true}}
+else if(numbers[0]){$setting.text(numbers[0])}else{reset=true}}
+else{reset=true}
+if(reset){$setting.text(this.getLang('filter.numbers.all','all'));$scope.removeClass('active')}else{$scope.addClass('active')}}
+FilterWidget.prototype.filterByNumber=function(isReset){var self=this,numbers=[]
+if(!isReset){var numberinputs=$('.field-number input','#controlFilterPopoverNum')
+numberinputs.each(function(index,numberinput){var number=$(numberinput).val()
+numbers.push(number)})}
+this.updateScopeNumberSetting(this.$activeScope,numbers);this.scopeValues[this.activeScopeName]={numbers:numbers}
+this.isActiveScopeDirty=true;this.$activeScope.data('oc.popover').hide()}}(window.jQuery);(function($){$(document).render(function(){var formatSelectOption=function(state){if(!state.id)
 return state.text;var $option=$(state.element),iconClass=state.icon?state.icon:$option.data('icon'),imageSrc=state.image?state.image:$option.data('image')
 if(iconClass)
 return'<i class="select-icon '+iconClass+'"></i> '+state.text
@@ -3310,6 +3431,8 @@ var indicator=$('<div class="loading-indicator"></div>')
 indicator.append($('<div></div>').text(this.options.text))
 indicator.append($('<span></span>'))
 if(this.options.opaque!==undefined){indicator.addClass('is-opaque')}
+if(this.options.centered!==undefined){indicator.addClass('indicator-center')}
+if(this.options.size==='small'){indicator.addClass('size-small')}
 this.$el.prepend(indicator)
 this.$el.addClass('in-progress')
 this.tally++}
@@ -3329,7 +3452,7 @@ $.fn.loadIndicator.Constructor=LoadIndicator
 $.fn.loadIndicator.noConflict=function(){$.fn.loadIndicator=old
 return this}
 $(document).on('ajaxPromise','[data-load-indicator]',function(){var
-indicatorContainer=$(this).closest('.loading-indicator-container'),loadingText=$(this).data('load-indicator'),options={opaque:$(this).data('load-indicator-opaque')}
+indicatorContainer=$(this).closest('.loading-indicator-container'),loadingText=$(this).data('load-indicator'),options={opaque:$(this).data('load-indicator-opaque'),centered:$(this).data('load-indicator-centered'),size:$(this).data('load-indicator-size')}
 if(loadingText)
 options.text=loadingText
 indicatorContainer.loadIndicator(options)}).on('ajaxFail ajaxDone','[data-load-indicator]',function(){$(this).closest('.loading-indicator-container').loadIndicator('hide')})}(window.jQuery);+function($){"use strict";if($.oc===undefined)
@@ -3968,7 +4091,7 @@ if(typeof option=='string')data[option].apply(data,args)})}
 $.fn.hotKey.Constructor=HotKey
 $.fn.hotKey.noConflict=function(){$.fn.hotKey=old
 return this}
-$(document).render(function(){$('[data-hotkey]').hotKey()})}(window.jQuery);+function($){"use strict";var VIETNAMESE_MAP={'Á':'A','À':'A','Ã':'A','Ả':'A','Ạ':'A','Ắ':'A','Ằ':'A','Ẵ':'A','Ẳ':'A','Ặ':'A','Ấ':'A','Ầ':'A','Ẫ':'A','Ẩ':'A','Ậ':'A','Đ':'D','É':'E','È':'E','Ẽ':'E','Ẻ':'E','Ẹ':'E','Ế':'E','Ề':'E','Ễ':'E','Ể':'E','Ệ':'E','Ó':'O','Ò':'O','Ỏ':'O','Õ':'O','Ọ':'O','Ố':'O','Ồ':'O','Ổ':'O','Ỗ':'O','Ộ':'O','Ớ':'O','Ờ':'O','Ở':'O','Ỡ':'O','Ợ':'O','Í':'I','Ì':'I','Ỉ':'I','Ĩ':'I','Ị':'I','Ú':'U','Ù':'U','Ủ':'U','Ũ':'U','Ụ':'U','Ứ':'U','Ừ':'U','Ử':'U','Ữ':'U','Ự':'U','Ý':'Y','Ỳ':'Y','Ỷ':'Y','Ỹ':'Y','Ỵ':'Y','á':'a','à':'a','ã':'a','ả':'a','ạ':'a','ắ':'a','ằ':'a','ẵ':'a','ẳ':'a','ặ':'a','ấ':'a','ầ':'a','ẫ':'a','ẩ':'a','ậ':'a','đ':'d','é':'e','è':'e','ẽ':'e','ẻ':'e','ẹ':'e','ế':'e','ề':'e','ễ':'e','ể':'e','ệ':'e','ó':'o','ò':'o','ỏ':'o','õ':'o','ọ':'o','ố':'o','ồ':'o','ổ':'o','ỗ':'o','ộ':'o','ớ':'o','ờ':'o','ở':'o','ỡ':'o','ợ':'o','í':'i','ì':'i','ỉ':'i','ĩ':'i','ị':'i','ú':'u','ù':'u','ủ':'u','ũ':'u','ụ':'u','ứ':'u','ừ':'u','ử':'u','ữ':'u','ự':'u','ý':'y','ỳ':'y','ỷ':'y','ỹ':'y','ỵ':'y'},LATIN_MAP={'À':'A','Á':'A','Â':'A','Ã':'A','Ä':'A','Å':'A','Æ':'AE','Ç':'C','È':'E','É':'E','Ê':'E','Ë':'E','Ì':'I','Í':'I','Î':'I','Ï':'I','Ð':'D','Ñ':'N','Ò':'O','Ó':'O','Ô':'O','Õ':'O','Ö':'O','Ő':'O','Ø':'O','Ù':'U','Ú':'U','Û':'U','Ü':'U','Ű':'U','Ý':'Y','Þ':'TH','Ÿ':'Y','ß':'ss','à':'a','á':'a','â':'a','ã':'a','ä':'a','å':'a','æ':'ae','ç':'c','è':'e','é':'e','ê':'e','ë':'e','ì':'i','í':'i','î':'i','ï':'i','ð':'d','ñ':'n','ò':'o','ó':'o','ô':'o','õ':'o','ö':'o','ő':'o','ø':'o','ō':'o','œ':'oe','ù':'u','ú':'u','û':'u','ü':'u','ű':'u','ý':'y','þ':'th','ÿ':'y'},LATIN_SYMBOLS_MAP={'©':'(c)'},GREEK_MAP={'α':'a','β':'b','γ':'g','δ':'d','ε':'e','ζ':'z','η':'h','θ':'8','ι':'i','κ':'k','λ':'l','μ':'m','ν':'n','ξ':'3','ο':'o','π':'p','ρ':'r','σ':'s','τ':'t','υ':'y','φ':'f','χ':'x','ψ':'ps','ω':'w','ά':'a','έ':'e','ί':'i','ό':'o','ύ':'y','ή':'h','ώ':'w','ς':'s','ϊ':'i','ΰ':'y','ϋ':'y','ΐ':'i','Α':'A','Β':'B','Γ':'G','Δ':'D','Ε':'E','Ζ':'Z','Η':'H','Θ':'8','Ι':'I','Κ':'K','Λ':'L','Μ':'M','Ν':'N','Ξ':'3','Ο':'O','Π':'P','Ρ':'R','Σ':'S','Τ':'T','Υ':'Y','Φ':'F','Χ':'X','Ψ':'PS','Ω':'W','Ά':'A','Έ':'E','Ί':'I','Ό':'O','Ύ':'Y','Ή':'H','Ώ':'W','Ϊ':'I','Ϋ':'Y'},TURKISH_MAP={'ş':'s','Ş':'S','ı':'i','İ':'I','ç':'c','Ç':'C','ü':'u','Ü':'U','ö':'o','Ö':'O','ğ':'g','Ğ':'G'},RUSSIAN_MAP={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'j','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'sh','ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya','А':'A','Б':'B','В':'V','Г':'G','Д':'D','Е':'E','Ё':'Yo','Ж':'Zh','З':'Z','И':'I','Й':'J','К':'K','Л':'L','М':'M','Н':'N','О':'O','П':'P','Р':'R','С':'S','Т':'T','У':'U','Ф':'F','Х':'H','Ц':'C','Ч':'Ch','Ш':'Sh','Щ':'Sh','Ъ':'','Ы':'Y','Ь':'','Э':'E','Ю':'Yu','Я':'Ya'},UKRAINIAN_MAP={'Є':'Ye','І':'I','Ї':'Yi','Ґ':'G','є':'ye','і':'i','ї':'yi','ґ':'g'},CZECH_MAP={'č':'c','ď':'d','ě':'e','ň':'n','ř':'r','š':'s','ť':'t','ů':'u','ž':'z','Č':'C','Ď':'D','Ě':'E','Ň':'N','Ř':'R','Š':'S','Ť':'T','Ů':'U','Ž':'Z'},POLISH_MAP={'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ź':'z','ż':'z','Ą':'A','Ć':'C','Ę':'E','Ł':'L','Ń':'N','Ó':'O','Ś':'S','Ź':'Z','Ż':'Z'},LATVIAN_MAP={'ā':'a','č':'c','ē':'e','ģ':'g','ī':'i','ķ':'k','ļ':'l','ņ':'n','š':'s','ū':'u','ž':'z','Ā':'A','Č':'C','Ē':'E','Ģ':'G','Ī':'I','Ķ':'K','Ļ':'L','Ņ':'N','Š':'S','Ū':'U','Ž':'Z'},ARABIC_MAP={'أ':'a','ب':'b','ت':'t','ث':'th','ج':'g','ح':'h','خ':'kh','د':'d','ذ':'th','ر':'r','ز':'z','س':'s','ش':'sh','ص':'s','ض':'d','ط':'t','ظ':'th','ع':'aa','غ':'gh','ف':'f','ق':'k','ك':'k','ل':'l','م':'m','ن':'n','ه':'h','و':'o','ي':'y'},PERSIAN_MAP={'آ':'a','ا':'a','پ':'p','چ':'ch','ژ':'zh','ک':'k','گ':'gh','ی':'y'},LITHUANIAN_MAP={'ą':'a','č':'c','ę':'e','ė':'e','į':'i','š':'s','ų':'u','ū':'u','ž':'z','Ą':'A','Č':'C','Ę':'E','Ė':'E','Į':'I','Š':'S','Ų':'U','Ū':'U','Ž':'Z'},SERBIAN_MAP={'ђ':'dj','ј':'j','љ':'lj','њ':'nj','ћ':'c','џ':'dz','đ':'dj','Ђ':'Dj','Ј':'j','Љ':'Lj','Њ':'Nj','Ћ':'C','Џ':'Dz','Đ':'Dj'},AZERBAIJANI_MAP={'ç':'c','ə':'e','ğ':'g','ı':'i','ö':'o','ş':'s','ü':'u','Ç':'C','Ə':'E','Ğ':'G','İ':'I','Ö':'O','Ş':'S','Ü':'U'},ROMANIAN_MAP={'ă':'a','â':'a','î':'i','ș':'s','ț':'t','Ă':'A','Â':'A','Î':'I','Ș':'S','Ț':'T'},SPECIFIC_MAPS={'de':{'Ä':'AE','Ö':'OE','Ü':'UE','ä':'ae','ö':'oe','ü':'ue'}},ALL_MAPS=[VIETNAMESE_MAP,LATIN_MAP,LATIN_SYMBOLS_MAP,GREEK_MAP,TURKISH_MAP,RUSSIAN_MAP,UKRAINIAN_MAP,CZECH_MAP,POLISH_MAP,LATVIAN_MAP,ARABIC_MAP,PERSIAN_MAP,LITHUANIAN_MAP,SERBIAN_MAP,AZERBAIJANI_MAP,ROMANIAN_MAP]
+$(document).render(function(){$('[data-hotkey]').hotKey()})}(window.jQuery);+function($){"use strict";var VIETNAMESE_MAP={'Á':'A','À':'A','Ã':'A','Ả':'A','Ạ':'A','Ắ':'A','Ằ':'A','Ẵ':'A','Ẳ':'A','Ặ':'A','Ấ':'A','Ầ':'A','Ẫ':'A','Ẩ':'A','Ậ':'A','Đ':'D','É':'E','È':'E','Ẽ':'E','Ẻ':'E','Ẹ':'E','Ế':'E','Ề':'E','Ễ':'E','Ể':'E','Ệ':'E','Ó':'O','Ò':'O','Ỏ':'O','Õ':'O','Ọ':'O','Ố':'O','Ồ':'O','Ổ':'O','Ỗ':'O','Ộ':'O','Ớ':'O','Ờ':'O','Ở':'O','Ỡ':'O','Ợ':'O','Í':'I','Ì':'I','Ỉ':'I','Ĩ':'I','Ị':'I','Ú':'U','Ù':'U','Ủ':'U','Ũ':'U','Ụ':'U','Ứ':'U','Ừ':'U','Ử':'U','Ữ':'U','Ự':'U','Ý':'Y','Ỳ':'Y','Ỷ':'Y','Ỹ':'Y','Ỵ':'Y','á':'a','à':'a','ã':'a','ả':'a','ạ':'a','ắ':'a','ằ':'a','ẵ':'a','ẳ':'a','ặ':'a','ấ':'a','ầ':'a','ẫ':'a','ẩ':'a','ậ':'a','đ':'d','é':'e','è':'e','ẽ':'e','ẻ':'e','ẹ':'e','ế':'e','ề':'e','ễ':'e','ể':'e','ệ':'e','ó':'o','ò':'o','ỏ':'o','õ':'o','ọ':'o','ố':'o','ồ':'o','ổ':'o','ỗ':'o','ộ':'o','ớ':'o','ờ':'o','ở':'o','ỡ':'o','ợ':'o','í':'i','ì':'i','ỉ':'i','ĩ':'i','ị':'i','ú':'u','ù':'u','ủ':'u','ũ':'u','ụ':'u','ứ':'u','ừ':'u','ử':'u','ữ':'u','ự':'u','ý':'y','ỳ':'y','ỷ':'y','ỹ':'y','ỵ':'y'},LATIN_MAP={'À':'A','Á':'A','Â':'A','Ã':'A','Ä':'A','Å':'A','Æ':'AE','Ç':'C','È':'E','É':'E','Ê':'E','Ë':'E','Ì':'I','Í':'I','Î':'I','Ï':'I','Ð':'D','Ñ':'N','Ò':'O','Ó':'O','Ô':'O','Õ':'O','Ö':'O','Ő':'O','Ø':'O','Ù':'U','Ú':'U','Û':'U','Ü':'U','Ű':'U','Ý':'Y','Þ':'TH','Ÿ':'Y','ß':'ss','à':'a','á':'a','â':'a','ã':'a','ä':'a','å':'a','æ':'ae','ç':'c','è':'e','é':'e','ê':'e','ë':'e','ì':'i','í':'i','î':'i','ï':'i','ð':'d','ñ':'n','ò':'o','ó':'o','ô':'o','õ':'o','ö':'o','ő':'o','ø':'o','ō':'o','œ':'oe','ù':'u','ú':'u','û':'u','ü':'u','ű':'u','ý':'y','þ':'th','ÿ':'y'},LATIN_SYMBOLS_MAP={'©':'(c)'},GREEK_MAP={'α':'a','β':'b','γ':'g','δ':'d','ε':'e','ζ':'z','η':'h','θ':'8','ι':'i','κ':'k','λ':'l','μ':'m','ν':'n','ξ':'3','ο':'o','π':'p','ρ':'r','σ':'s','τ':'t','υ':'y','φ':'f','χ':'x','ψ':'ps','ω':'w','ά':'a','έ':'e','ί':'i','ό':'o','ύ':'y','ή':'h','ώ':'w','ς':'s','ϊ':'i','ΰ':'y','ϋ':'y','ΐ':'i','Α':'A','Β':'B','Γ':'G','Δ':'D','Ε':'E','Ζ':'Z','Η':'H','Θ':'8','Ι':'I','Κ':'K','Λ':'L','Μ':'M','Ν':'N','Ξ':'3','Ο':'O','Π':'P','Ρ':'R','Σ':'S','Τ':'T','Υ':'Y','Φ':'F','Χ':'X','Ψ':'PS','Ω':'W','Ά':'A','Έ':'E','Ί':'I','Ό':'O','Ύ':'Y','Ή':'H','Ώ':'W','Ϊ':'I','Ϋ':'Y'},TURKISH_MAP={'ş':'s','Ş':'S','ı':'i','İ':'I','ç':'c','Ç':'C','ü':'u','Ü':'U','ö':'o','Ö':'O','ğ':'g','Ğ':'G'},RUSSIAN_MAP={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'j','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'shch','ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya','А':'A','Б':'B','В':'V','Г':'G','Д':'D','Е':'E','Ё':'Yo','Ж':'Zh','З':'Z','И':'I','Й':'J','К':'K','Л':'L','М':'M','Н':'N','О':'O','П':'P','Р':'R','С':'S','Т':'T','У':'U','Ф':'F','Х':'H','Ц':'C','Ч':'Ch','Ш':'Sh','Щ':'Shch','Ъ':'','Ы':'Y','Ь':'','Э':'E','Ю':'Yu','Я':'Ya'},UKRAINIAN_MAP={'Є':'Ye','І':'I','Ї':'Yi','Ґ':'G','є':'ye','і':'i','ї':'yi','ґ':'g'},CZECH_MAP={'č':'c','ď':'d','ě':'e','ň':'n','ř':'r','š':'s','ť':'t','ů':'u','ž':'z','Č':'C','Ď':'D','Ě':'E','Ň':'N','Ř':'R','Š':'S','Ť':'T','Ů':'U','Ž':'Z'},POLISH_MAP={'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ź':'z','ż':'z','Ą':'A','Ć':'C','Ę':'E','Ł':'L','Ń':'N','Ó':'O','Ś':'S','Ź':'Z','Ż':'Z'},LATVIAN_MAP={'ā':'a','č':'c','ē':'e','ģ':'g','ī':'i','ķ':'k','ļ':'l','ņ':'n','š':'s','ū':'u','ž':'z','Ā':'A','Č':'C','Ē':'E','Ģ':'G','Ī':'I','Ķ':'K','Ļ':'L','Ņ':'N','Š':'S','Ū':'U','Ž':'Z'},ARABIC_MAP={'أ':'a','ب':'b','ت':'t','ث':'th','ج':'g','ح':'h','خ':'kh','د':'d','ذ':'th','ر':'r','ز':'z','س':'s','ش':'sh','ص':'s','ض':'d','ط':'t','ظ':'th','ع':'aa','غ':'gh','ف':'f','ق':'k','ك':'k','ل':'l','م':'m','ن':'n','ه':'h','و':'o','ي':'y'},PERSIAN_MAP={'آ':'a','ا':'a','پ':'p','چ':'ch','ژ':'zh','ک':'k','گ':'gh','ی':'y'},LITHUANIAN_MAP={'ą':'a','č':'c','ę':'e','ė':'e','į':'i','š':'s','ų':'u','ū':'u','ž':'z','Ą':'A','Č':'C','Ę':'E','Ė':'E','Į':'I','Š':'S','Ų':'U','Ū':'U','Ž':'Z'},SERBIAN_MAP={'ђ':'dj','ј':'j','љ':'lj','њ':'nj','ћ':'c','џ':'dz','đ':'dj','Ђ':'Dj','Ј':'j','Љ':'Lj','Њ':'Nj','Ћ':'C','Џ':'Dz','Đ':'Dj'},AZERBAIJANI_MAP={'ç':'c','ə':'e','ğ':'g','ı':'i','ö':'o','ş':'s','ü':'u','Ç':'C','Ə':'E','Ğ':'G','İ':'I','Ö':'O','Ş':'S','Ü':'U'},ROMANIAN_MAP={'ă':'a','â':'a','î':'i','ș':'s','ț':'t','Ă':'A','Â':'A','Î':'I','Ș':'S','Ț':'T'},BELARUSIAN_MAP={'ў':'w','Ў':'W'},SPECIFIC_MAPS={'de':{'Ä':'AE','Ö':'OE','Ü':'UE','ä':'ae','ö':'oe','ü':'ue'}},ALL_MAPS=[VIETNAMESE_MAP,LATIN_MAP,LATIN_SYMBOLS_MAP,GREEK_MAP,TURKISH_MAP,RUSSIAN_MAP,UKRAINIAN_MAP,CZECH_MAP,POLISH_MAP,LATVIAN_MAP,ARABIC_MAP,PERSIAN_MAP,LITHUANIAN_MAP,SERBIAN_MAP,AZERBAIJANI_MAP,ROMANIAN_MAP,BELARUSIAN_MAP]
 var removeList=["a","an","as","at","before","but","by","for","from","is","in","into","like","of","off","on","onto","per","since","than","the","this","that","to","up","via","with"]
 var locale=$('meta[name="backend-locale"]').attr('content')
 var Downcoder={Initialize:function(){if(Downcoder.map){return;}
@@ -3976,24 +4099,6 @@ Downcoder.map={};Downcoder.chars=[];if(typeof SPECIFIC_MAPS[locale]==='object'){
 for(var i=0;i<ALL_MAPS.length;i++){var lookup=ALL_MAPS[i];for(var c in lookup){if(lookup.hasOwnProperty(c)){Downcoder.map[c]=lookup[c];}}}
 for(var k in Downcoder.map){if(Downcoder.map.hasOwnProperty(k)){Downcoder.chars.push(k);}}
 Downcoder.regex=new RegExp(Downcoder.chars.join('|'),'g');}}
-function toCamel(slug,numChars){Downcoder.Initialize()
-slug=slug.replace(Downcoder.regex,function(m){return Downcoder.map[m]})
-var regex=new RegExp('\\b('+removeList.join('|')+')\\b','gi')
-slug=slug.replace(regex,'')
-slug=slug.toLowerCase()
-slug=slug.replace(/(\b|-)\w/g,function(m){return m.toUpperCase();});slug=slug.replace(/[^-\w\s]/g,'')
-slug=slug.replace(/^\s+|\s+$/g,'')
-slug=slug.replace(/[-\s]+/g,'')
-slug=slug.substr(0,1).toLowerCase()+slug.substr(1);return slug.substring(0,numChars)}
-function slugify(slug,numChars){Downcoder.Initialize()
-slug=slug.replace(Downcoder.regex,function(m){return Downcoder.map[m]})
-var regex=new RegExp('\\b('+removeList.join('|')+')\\b','gi')
-slug=slug.replace(regex,'')
-slug=slug.replace(/[^-\w\s]/g,'')
-slug=slug.replace(/^\s+|\s+$/g,'')
-slug=slug.replace(/[-\s]+/g,'-')
-slug=slug.toLowerCase()
-return slug.substring(0,numChars)}
 var InputPreset=function(element,options){var $el=this.$el=$(element)
 this.options=options||{}
 this.cancelled=false
@@ -4006,22 +4111,39 @@ if($el.val().length&&$el.val()!=prefix)
 return
 $el.val(prefix).trigger('oc.inputPreset.afterUpdate')
 this.$src=$(options.inputPreset,parent)
-this.$src.on('keyup',function(){if(self.cancelled)
+this.$src.on('input',function(){if(self.cancelled)
 return
 $el.val(prefix+self.formatValue()).trigger('oc.inputPreset.afterUpdate')})
 this.$src.on('paste',function(){if(self.cancelled)
 return
 setTimeout(function(){$el.val(prefix+self.formatValue()).trigger('oc.inputPreset.afterUpdate')},100)})
 this.$el.on('change',function(){self.cancelled=true})}
-InputPreset.prototype.formatNamespace=function(){var value=toCamel(this.$src.val())
+InputPreset.prototype.formatNamespace=function(){var value=this.toCamel(this.$src.val())
 return value.substr(0,1).toUpperCase()+value.substr(1)}
 InputPreset.prototype.formatValue=function(){if(this.options.inputPresetType=='exact'){return this.$src.val();}
 else if(this.options.inputPresetType=='namespace'){return this.formatNamespace()}
-if(this.options.inputPresetType=='camel'){var value=toCamel(this.$src.val())}
-else{var value=slugify(this.$src.val())}
+if(this.options.inputPresetType=='camel'){var value=this.toCamel(this.$src.val())}
+else{var value=this.slugify(this.$src.val())}
 if(this.options.inputPresetType=='url'){value='/'+value}
 return value.replace(/\s/gi,"-")}
-InputPreset.DEFAULTS={inputPreset:'',inputPresetType:'slug',inputPresetClosestParent:undefined,inputPresetPrefixInput:undefined}
+InputPreset.prototype.toCamel=function(slug,numChars){Downcoder.Initialize()
+slug=slug.replace(Downcoder.regex,function(m){return Downcoder.map[m]})
+slug=this.removeStopWords(slug);slug=slug.toLowerCase()
+slug=slug.replace(/(\b|-)\w/g,function(m){return m.toUpperCase();});slug=slug.replace(/[^-\w\s]/g,'')
+slug=slug.replace(/^\s+|\s+$/g,'')
+slug=slug.replace(/[-\s]+/g,'')
+slug=slug.substr(0,1).toLowerCase()+slug.substr(1);return slug.substring(0,numChars)}
+InputPreset.prototype.slugify=function(slug,numChars){Downcoder.Initialize()
+slug=slug.replace(Downcoder.regex,function(m){return Downcoder.map[m]})
+slug=this.removeStopWords(slug);slug=slug.replace(/[^-\w\s]/g,'')
+slug=slug.replace(/^\s+|\s+$/g,'')
+slug=slug.replace(/[-\s]+/g,'-')
+slug=slug.toLowerCase()
+return slug.substring(0,numChars)}
+InputPreset.prototype.removeStopWords=function(str){if(this.options.inputPresetRemoveWords){var regex=new RegExp('\\b('+removeList.join('|')+')\\b','gi')
+str=str.replace(regex,'')}
+return str;}
+InputPreset.DEFAULTS={inputPreset:'',inputPresetType:'slug',inputPresetClosestParent:undefined,inputPresetPrefixInput:undefined,inputPresetRemoveWords:true}
 var old=$.fn.inputPreset
 $.fn.inputPreset=function(option){return this.each(function(){var $this=$(this)
 var data=$this.data('oc.inputPreset')
@@ -4318,6 +4440,7 @@ Tab.prototype.init=function(){var self=this;this.options.slidable=this.options.s
 $('> li',this.$tabsContainer).each(function(index){self.initTab(this)})
 this.$el.on('close.oc.tab',function(ev,data){ev.preventDefault()
 var force=(data!==undefined&&data.force!==undefined)?data.force:false;self.closeTab($(ev.target).closest('ul.nav-tabs > li, div.tab-content > div'),force)})
+this.$el.on('mousedown',"li[data-tab-id]",function(ev){if(ev.which===2){$(ev.target).trigger('close.oc.tab');}})
 this.$el.on('toggleCollapse.oc.tab',function(ev,data){ev.preventDefault()
 $(ev.target).closest('div.tab-content > div').toggleClass('collapsed')})
 this.$el.on('modified.oc.tab',function(ev){ev.preventDefault()

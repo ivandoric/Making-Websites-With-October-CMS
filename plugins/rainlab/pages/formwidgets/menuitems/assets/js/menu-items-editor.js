@@ -189,6 +189,51 @@
                     var $input = $('[name="viewBag['+vbProperty+']"]', $popupContainer).not('[type=hidden]')
                     setPropertyOnElement($input, vbVal)
                 })
+
+                /**
+                 * Mediafinder support
+                 */
+                var mediafinderElements = $('[data-control="mediafinder"]');
+                var storageMediaPath = $('[data-storage-media-path]').data('storage-media-path');
+
+                $.each(mediafinderElements, function() {
+
+                      var input = $(this).find('>input');
+                      var propertyName = input.attr('name');
+
+                      if( propertyName.length ) {
+                          var propertyNameSimple = propertyName.substr(8).slice(0,-1);
+                      }
+
+                      var propertyValue = '';
+
+                      $.each(val, function(vbProperty, vbVal) {
+                          if( vbProperty == propertyNameSimple ) {
+                              propertyValue = vbVal;
+                          }
+                      });
+
+                      if( propertyValue != '' ) {
+
+                          $(this).toggleClass('is-populated');
+                          input.attr('value', propertyValue);
+
+                          var image = $(this).find('[data-find-image]');
+
+                          if( image.length ) {
+                              image.attr('src', storageMediaPath + propertyValue );
+                          }
+
+                          var file = $(this).find('[data-find-file-name]');
+
+                          if( file.length ) {
+                              file.text( propertyValue.substr(1) );
+                          }
+
+                      }
+
+                });
+
             }
             else {
                 var $input = $('[name="'+property+'"]', $popupContainer).not('[type=hidden]')

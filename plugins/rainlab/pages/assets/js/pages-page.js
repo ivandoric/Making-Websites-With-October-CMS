@@ -453,7 +453,7 @@
             $panel.append($collapseIcon)
 
             if (!hasSecondaryTabs) {
-                $('.tab-pane', $primaryPanel).addClass('pane-compact')
+                $('.primary-tabs').parent().removeClass('min-size')
             }
 
             $collapseIcon.click(function(){

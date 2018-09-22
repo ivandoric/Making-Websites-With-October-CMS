@@ -78,7 +78,7 @@ class Session extends ComponentBase
     public function init()
     {
         if (Request::ajax() && !$this->checkUserSecurity()) {
-            return Response::make('Access denied', 403);
+            abort(403, 'Access denied');
         }
     }
 
@@ -88,6 +88,10 @@ class Session extends ComponentBase
     public function onRun()
     {
         if (!$this->checkUserSecurity()) {
+            if (empty($this->property('redirect'))) {
+                throw new \InvalidArgumentException('Redirect property is empty');
+            }
+            
             $redirectUrl = $this->controller->pageUrl($this->property('redirect'));
             return Redirect::guest($redirectUrl);
         }
@@ -106,7 +110,9 @@ class Session extends ComponentBase
             return null;
         }
 
-        $user->touchLastSeen();
+        if (!Auth::isImpersonator()) {
+            $user->touchLastSeen();
+        }
 
         return $user;
     }

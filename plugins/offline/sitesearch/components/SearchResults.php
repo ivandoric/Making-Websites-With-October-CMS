@@ -52,6 +52,13 @@ class SearchResults extends BaseComponent
      * @var int
      */
     protected $pageNumber;
+    /**
+     * The developer's forced search query.
+     * This query is used instead of $query if set.
+     *
+     * @var string
+     */
+    protected $forcedQuery;
 
     /**
      * The component's details.
@@ -100,7 +107,7 @@ class SearchResults extends BaseComponent
                 'type'              => 'string',
                 'default'           => 'Visit page',
                 'showExternalParam' => false,
-            ],
+            ]
         ];
     }
 
@@ -116,6 +123,21 @@ class SearchResults extends BaseComponent
         $this->resultCollection = $this->search();
     }
 
+
+    /**
+     * Force a query to be used.
+     *
+     * This can be useful if you want to process the
+     * "q" GET parameter yourself and then use a modified query
+     * for the search.
+     *
+     * @param $query
+     */
+    public function forceQuery($query)
+    {
+        $this->forcedQuery = $query;
+    }
+
     /**
      * Setup all needed variables.
      *
@@ -123,8 +145,10 @@ class SearchResults extends BaseComponent
      */
     protected function prepareVars()
     {
+        $query = $this->forcedQuery ? $this->forcedQuery : Request::get('q', '');
+
         $this->setVar('pageNumber', Request::get('page', 1));
-        $this->setVar('query', Request::get('q', ''));
+        $this->setVar('query', $query);
         $this->setVar('noResultsMessage');
         $this->setVar('visitPageMessage');
         $this->setVar('showProviderBadge');

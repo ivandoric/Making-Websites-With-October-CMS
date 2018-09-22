@@ -4,7 +4,7 @@
             <input name="q" type="text" placeholder="What are you looking for?" autocomplete="off"
                     {% if __SELF__.useAutoComplete %}
                         data-track-input
-                        data-request="onType"
+                        data-request="{{ __SELF__ }}::onType"
                         data-request-before-update="document.getElementById('autocomplete-results').classList.add('ss-search-form__results--visible')"
                         data-request-update="'{{ __SELF__ }}::autocomplete': '#autocomplete-results'"
                     {% endif %}

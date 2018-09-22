@@ -104,6 +104,13 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerFormWidgets()
+    {
+        return [
+            'RainLab\Pages\FormWidgets\PagePicker' => 'staticpagepicker'
+        ];
+    }
+
     public function boot()
     {
         Event::listen('cms.router.beforeRoute', function($url) {

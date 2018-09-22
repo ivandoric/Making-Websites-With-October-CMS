@@ -1,17 +1,17 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
+        "version": "v1.5.0",
+        "version_normalized": "1.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045"
+            "reference": "049797d727261bf27f2690430d935067710049c2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/79ad876c7498c0bbfe7eed065b8651c93bfd6045",
-            "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045",
+            "url": "https://api.github.com/repos/composer/installers/zipball/049797d727261bf27f2690430d935067710049c2",
+            "reference": "049797d727261bf27f2690430d935067710049c2",
             "shasum": ""
         },
         "require": {
@@ -23,9 +23,9 @@
         },
         "require-dev": {
             "composer/composer": "1.0.*@dev",
-            "phpunit/phpunit": "4.1.*"
+            "phpunit/phpunit": "^4.8.36"
         },
-        "time": "2017-04-24 06:37:16",
+        "time": "2017-12-29 09:13:20",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -59,6 +59,7 @@
             "Hurad",
             "ImageCMS",
             "Kanboard",
+            "Lan Management System",
             "MODX Evo",
             "Mautic",
             "Maya",
@@ -82,6 +83,7 @@
             "croogo",
             "dokuwiki",
             "drupal",
+            "eZ Platform",
             "elgg",
             "expressionengine",
             "fuelphp",
@@ -94,14 +96,18 @@
             "lavalite",
             "lithium",
             "magento",
+            "majima",
             "mako",
             "mediawiki",
             "modulework",
+            "modx",
             "moodle",
+            "osclass",
             "phpbb",
             "piwik",
             "ppi",
             "puppet",
+            "pxcms",
             "reindex",
             "roundcube",
             "shopware",

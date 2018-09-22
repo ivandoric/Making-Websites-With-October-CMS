@@ -60,6 +60,36 @@ class Users extends Controller
     }
 
     /**
+     * Extends the list query to hide superusers if the current user is not a superuser themselves
+     */
+    public function listExtendQuery($query)
+    {
+        if (!$this->user->isSuperUser()) {
+            $query->where('is_superuser', false);
+        }
+    }
+    
+    /**
+     * Prevents non-superusers from even seeing the is_superuser filter
+     */
+    public function listFilterExtendScopes($filterWidget)
+    {
+        if (!$this->user->isSuperUser()) {
+            $filterWidget->removeScope('is_superuser');
+        }
+    }
+
+    /**
+     * Extends the form query to prevent non-superusers from accessing superusers at all
+     */
+    public function formExtendQuery($query)
+    {
+        if (!$this->user->isSuperUser()) {
+            $query->where('is_superuser', false);
+        }
+    }
+
+    /**
      * Update controller
      */
     public function update($recordId, $context = null)
@@ -114,7 +144,6 @@ class Users extends Controller
 
         if (!$this->user->isSuperUser()) {
             $form->removeField('is_superuser');
-            $form->removeField('role');
         }
 
         /*

@@ -47,6 +47,7 @@ return [
         'allow_nested_items_comment' => 'Les sous-éléments peuvent être générés dynamiquement par les pages statiques et certains des autres types d’élément',
         'url' => 'URL',
         'reference' => 'Référence',
+        'search_placeholder' => 'Rechercher toutes les références...',
         'title_required' => 'Le Titre est requis',
         'unknown_type' => 'Type d’élément du menu inconnu',
         'unnamed' => 'Élément de menu sans nom',
@@ -113,9 +114,19 @@ return [
         'invalid_option_key' => 'Clé de l’option de la liste déroulante invalide. Les clés des options ne peuvent contenir que des chiffres, des lettres et les symboles _ et -'
     ],
     'component' => [
+        'static_page_name' => 'Page Statique',
         'static_page_description' => 'Affiche une page statique dans une maquette du CMS.',
+        'static_page_use_content_name' => 'Affiche la section de contenu',
+        'static_page_use_content_description' => 'Si cette case n\'est pas cochée, la section de contenu n\'apparaîtra pas lors de la modification de la page statique. Le contenu de la page sera déterminé uniquement à l\'aide d\'espaces réservés et de variables.',
+        'static_page_default_name' => 'Disposition par défault',
+        'static_page_default_description' => 'Définit cette mise en page par défault pour les nouvelles pages',
+        'static_page_child_layout_name' => 'Mise en page de la sous-page',
+        'static_page_child_layout_description' => 'La mise en page à utiliser par défault pour les nouvelles sous-pages',
+        'static_menu_name' => 'Menu Statique',
         'static_menu_description' => 'Affiche un menu dans une maquette du CMS.',
-        'static_menu_menu_code' => 'Spécifiez le code du menu que le composant devrait afficher.',
+        'static_menu_code_name' => 'Menu',
+        'static_menu_code_description' => 'Spécifiez le code du menu que le composant devrait afficher.',
+        'static_breadcrumbs_name' => 'Breadcrumbs statique',
         'static_breadcrumbs_description' => 'Affiche l\' aide à la navigation dans une page statique.',
     ],
 ];

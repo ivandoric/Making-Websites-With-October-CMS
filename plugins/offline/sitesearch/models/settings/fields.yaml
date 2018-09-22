@@ -148,14 +148,6 @@ tabs:
             span: auto
             default: Blog
 
-        radiantweb_problog_posturl:
-            type: text
-            tab: RadiantWeb.ProBlog
-            label: offline.sitesearch::lang.settings.blog_posturl
-            comment: offline.sitesearch::lang.settings.blog_posturl_comment
-            span: auto
-            default: /blog
-
         arrizalamin_portfolio_enabled:
             type: switch
             tab: ArrizalAmin.Portfolio

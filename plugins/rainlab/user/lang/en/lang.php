@@ -155,6 +155,7 @@ return [
     'account' => [
         'account' => 'Account',
         'account_desc' => 'User management form.',
+        'banned' => 'Sorry, this user is currently not activated. Please contact us for further assistance.',
         'redirect_to' => 'Redirect to',
         'redirect_to_desc' => 'Page name to redirect to after update, sign in or registration.',
         'code_param' => 'Activation Code Param',

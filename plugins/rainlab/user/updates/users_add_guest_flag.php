@@ -15,9 +15,11 @@ class UsersAddGuestFlag extends Migration
 
     public function down()
     {
-        Schema::table('users', function($table)
-        {
-            $table->dropColumn('is_guest');
-        });
+        if (Schema::hasColumn('users', 'is_guest')) {
+            Schema::table('users', function($table)
+            {
+                $table->dropColumn('is_guest');
+            });
+        }
     }
 }

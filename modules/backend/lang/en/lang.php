@@ -2,12 +2,14 @@
 
 return [
     'auth' => [
-        'title' => 'Administration Area'
+        'title' => 'Administration Area',
+        'invalid_login' => 'The details you entered did not match our records. Please double-check and try again.'
     ],
     'field' => [
         'invalid_type' => 'Invalid field type used :type.',
         'options_method_invalid_model' => "The attribute ':field' does not resolve to a valid model. Try specifying the options method for model class :model explicitly.",
-        'options_method_not_exists' => "The model class :model must define a method :method() returning options for the ':field' form field."
+        'options_method_not_exists' => "The model class :model must define a method :method() returning options for the ':field' form field.",
+        'colors_method_not_exists' => "The model class :model must define a method :method() returning html color HEX codes for the ':field' form field."
     ],
     'widget' => [
         'not_registered' => "A widget class name ':name' has not been registered",
@@ -33,6 +35,7 @@ return [
         'not_found_name' => "The partial ':name' is not found."
     ],
     'account' => [
+        'signed_in_as' => 'Signed in as :full_name',
         'sign_out' => 'Sign out',
         'login' => 'Login',
         'reset' => 'Reset',
@@ -215,6 +218,10 @@ return [
         'remove_confirm' => 'Are you sure?',
         'remove_file' => 'Remove file'
     ],
+    'repeater' => [
+        'min_items_failed' => ':name requires a minimum of :min items, only :items were provided',
+        'max_items_failed' => ':name only allows up to :max items, :items were provided',
+    ],
     'form' => [
         'create_title' => 'New :name',
         'update_title' => 'Edit :name',
@@ -378,6 +385,8 @@ return [
         'no_wrap_comment' => 'The list of tags that should not be wrapped inside block tags.',
         'remove_tags' => 'Remove tags',
         'remove_tags_comment' => 'The list of tags that are removed together with their content.',
+        'line_breaker_tags' => 'Line breaker tags',
+        'line_breaker_tags_comment' => 'The list of tags that are used to place a line breaker element between.',
         'toolbar_buttons' => 'Toolbar Buttons',
         'toolbar_buttons_comment' => 'The Toolbar Buttons to be displayed in the Rich Editor by default. [fullscreen, bold, italic, underline, strikeThrough, subscript, superscript, fontFamily, fontSize, |, color, emoticons, inlineStyle, paragraphStyle, |, paragraphFormat, align, formatOL, formatUL, outdent, indent, quote, insertHR, -, insertLink, insertImage, insertVideo, insertAudio, insertFile, insertTable, undo, redo, clearFormatting, selectAll, html]',
     ],
@@ -439,11 +448,13 @@ return [
     'filter' => [
         'all' => 'all',
         'options_method_not_exists' => "The model class :model must define a method :method() returning options for the ':filter' filter.",
-        'date_all' => 'all period'
+        'date_all' => 'all periods',
+        'number_all' => 'all numbers',
     ],
     'import_export' => [
         'upload_csv_file' => '1. Upload a CSV file',
         'import_file' => 'Import file',
+        'row' => 'Row :row',
         'first_row_contains_titles' => 'First row contains column titles',
         'first_row_contains_titles_desc' => 'Leave this checked if the first row in the CSV is used as the column titles.',
         'match_columns' => '2. Match the file columns to database fields',
@@ -512,5 +523,75 @@ return [
             'windows_1251' => 'Windows-1251 (CP1251)',
             'windows_1252' => 'Windows-1252 (CP1252)'
         ]
-    ]
+    ],
+    'permissions' => [
+        'manage_media' => 'Upload and manage media contents - images, videos, sounds, documents'
+    ],
+    'mediafinder' => [
+        'label' => 'Media Finder',
+        'default_prompt' => 'Click the %s button to find a media item'
+    ],
+    'media' => [
+        'menu_label' => 'Media',
+        'upload' => 'Upload',
+        'move' => 'Move',
+        'delete' => 'Delete',
+        'add_folder' => 'Add folder',
+        'search' => 'Search',
+        'display' => 'Display',
+        'filter_everything' => 'Everything',
+        'filter_images' => 'Images',
+        'filter_video' => 'Video',
+        'filter_audio' => 'Audio',
+        'filter_documents' => 'Documents',
+        'library' => 'Library',
+        'size' => 'Size',
+        'title' => 'Title',
+        'last_modified' => 'Last modified',
+        'public_url' => 'URL',
+        'click_here' => 'Click here',
+        'thumbnail_error' => 'Error generating thumbnail.',
+        'return_to_parent' => 'Return to the parent folder',
+        'return_to_parent_label' => 'Go up ..',
+        'nothing_selected' => 'Nothing is selected.',
+        'multiple_selected' => 'Multiple items selected.',
+        'uploading_file_num' => 'Uploading :number file(s)...',
+        'uploading_complete' => 'Upload complete',
+        'uploading_error' => 'Upload failed',
+        'type_blocked' => 'The file type used is blocked for security reasons.',
+        'order_by' => 'Order by',
+        'direction' => 'Direction',
+        'direction_asc' => 'Ascending',
+        'direction_desc' => 'Descending',
+        'folder' => 'Folder',
+        'no_files_found' => 'No files found by your request.',
+        'delete_empty' => 'Please select items to delete.',
+        'delete_confirm' => 'Delete the selected item(s)?',
+        'error_renaming_file' => 'Error renaming the item.',
+        'new_folder_title' => 'New folder',
+        'folder_name' => 'Folder name',
+        'error_creating_folder' => 'Error creating folder',
+        'folder_or_file_exist' => 'A folder or file with the specified name already exists.',
+        'move_empty' => 'Please select items to move.',
+        'move_popup_title' => 'Move files or folders',
+        'move_destination' => 'Destination folder',
+        'please_select_move_dest' => 'Please select a destination folder.',
+        'move_dest_src_match' => 'Please select another destination folder.',
+        'empty_library' => 'It looks a bit empty here. Upload files or create folders to get started.',
+        'insert' => 'Insert',
+        'crop_and_insert' => 'Crop & Insert',
+        'select_single_image' => 'Please select a single image.',
+        'selection_not_image' => 'The selected item is not an image.',
+        'restore' => 'Undo all changes',
+        'resize' => 'Resize...',
+        'selection_mode_normal' => 'Normal',
+        'selection_mode_fixed_ratio' => 'Fixed ratio',
+        'selection_mode_fixed_size' => 'Fixed size',
+        'height' => 'Height',
+        'width' => 'Width',
+        'selection_mode' => 'Selection mode',
+        'resize_image' => 'Resize image',
+        'image_size' => 'Image size:',
+        'selected_size' => 'Selected:'
+    ],
 ];

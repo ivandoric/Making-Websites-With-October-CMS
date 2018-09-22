@@ -33,6 +33,7 @@ return [
         'not_found_name' => 'Не удалось найти шаблон (partial) с именем :name.'
     ],
     'account' => [
+        'signed_in_as' => 'Выполнен вход как :full_name',
         'sign_out' => 'Выйти',
         'login' => 'Вход',
         'reset' => 'Сбросить',
@@ -140,8 +141,8 @@ return [
         'updated_at' => 'Обновлен',
         'group' => [
             'name' => 'Группы',
-            'name_comment' => 'Название отображается в списке групп в форме создания/редактирования администраторов.',
             'name_field' => 'Название',
+            'name_comment' => 'Название отображается в списке групп в форме создания/редактирования администраторов.',
             'description_field' => 'Описание',
             'is_new_user_default_field_label' => 'Группа по умолчанию',
             'is_new_user_default_field_comment' => 'Добавлять новых администраторов в эту группу по умолчанию.',
@@ -439,7 +440,8 @@ return [
     'filter' => [
         'all' => 'все',
         'options_method_not_exists' => "Модель класса :model должна определить метод :method() возвращающего варианты для фильтра ':filter'.",
-        'date_all' => 'весь период'
+        'date_all' => 'весь период',
+        'number_all' => 'все номера'
     ],
     'import_export' => [
         'upload_csv_file' => '1. Загрузка CSV-файл',
@@ -512,5 +514,75 @@ return [
             'windows_1251' => 'Windows-1251 (CP1251)',
             'windows_1252' => 'Windows-1252 (CP1252)'
         ]
-    ]
+    ],
+    'permissions' => [
+        'manage_media' => 'Управление медиафайлами'
+    ],
+    'mediafinder' => [
+        'label' => 'Поиск медиа',
+        'default_prompt' => 'Кликните на кнопку %s, чтобы найти медиафайл'
+    ],
+    'media' => [
+        'menu_label' => 'Медиафайлы',
+        'upload' => 'Загрузить',
+        'move' => 'Переместить',
+        'delete' => 'Удалить',
+        'add_folder' => 'Создать папку',
+        'search' => 'Поиск',
+        'display' => 'Отобразить',
+        'filter_everything' => 'Все файлы',
+        'filter_images' => 'Изображения',
+        'filter_video' => 'Видео',
+        'filter_audio' => 'Музыка',
+        'filter_documents' => 'Документы',
+        'library' => 'Библиотека',
+        'size' => 'Размер',
+        'title' => 'Имя',
+        'last_modified' => 'Последнее изменение',
+        'public_url' => 'Публичный адрес',
+        'click_here' => 'Нажмите здесь',
+        'thumbnail_error' => 'Ошибка создания миниатюры.',
+        'return_to_parent' => 'Вернуться в родительскую папку',
+        'return_to_parent_label' => 'Подняться на уровень выше ..',
+        'nothing_selected' => 'Ничего не выбрано.',
+        'multiple_selected' => 'Выбрано несколько объектов.',
+        'uploading_file_num' => 'Загрузка файлов: :number ...',
+        'uploading_complete' => 'Загрузка файлов завершена!',
+        'uploading_error' => 'Ошибка загрузки',
+        'type_blocked' => 'Используемый тип файла блокируется по соображениям безопасности.',
+        'order_by' => 'Сортировать по',
+        'direction' => 'Направление сортировки',
+        'direction_asc' => 'По возрастанию',
+        'direction_desc' => 'По убыванию',
+        'folder' => 'Папка',
+        'no_files_found' => 'Ни один из файлов не удовлетворяет вашему запросу.',
+        'delete_empty' => 'Пожалуйста, выберите объекты для удаления.',
+        'delete_confirm' => 'Вы действительно хотите удалить выбранные объекты?',
+        'error_renaming_file' => 'Ошибка изменения имени файла.',
+        'new_folder_title' => 'Новая папка',
+        'folder_name' => 'Название папки',
+        'error_creating_folder' => 'Ошибка создания папки',
+        'folder_or_file_exist' => 'Папка или файл с таким именем уже существует.',
+        'move_empty' => 'Пожалуйста, выберите объекты для перемещения.',
+        'move_popup_title' => 'Перемещение файлов или папок',
+        'move_destination' => 'Папка назначения',
+        'please_select_move_dest' => 'Пожалуйста, выберите папку назначения для перемещения.',
+        'move_dest_src_match' => 'Пожалуйста, выберите другую папку.',
+        'empty_library' => 'Библиотека медиафайлов пуста. Для начала загрузите файлы или создайте папки.',
+        'insert' => 'Вставить',
+        'crop_and_insert' => 'Обрезать и вставить',
+        'select_single_image' => 'Пожалуйста, выберите одно изображение.',
+        'selection_not_image' => 'Выбранный элемент не является изображением.',
+        'restore' => 'Отменить все изменения',
+        'resize' => 'Изменение размера...',
+        'selection_mode_normal' => 'Нормальный',
+        'selection_mode_fixed_ratio' => 'Фиксированное соотношение',
+        'selection_mode_fixed_size' => 'Фиксированный размер',
+        'height' => 'Высота',
+        'width' => 'Ширина',
+        'selection_mode' => 'Режим выделения',
+        'resize_image' => 'Изменение размера изображения',
+        'image_size' => 'Размер изображения:',
+        'selected_size' => 'Выбрано:'
+    ],
 ];

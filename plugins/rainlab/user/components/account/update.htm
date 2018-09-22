@@ -1,13 +1,13 @@
-{{ form_ajax('onUpdate', { model: user }) }}
+{{ form_ajax('onUpdate') }}
 
     <div class="form-group">
         <label for="accountName">Full Name</label>
-        <input name="name" type="text" class="form-control" id="accountName" value="{{ form_value('name') }}">
+        <input name="name" type="text" class="form-control" id="accountName" value="{{ user.name }}">
     </div>
 
     <div class="form-group">
         <label for="accountEmail">Email</label>
-        <input name="email" type="email" class="form-control" id="accountEmail" value="{{ form_value('email') }}">
+        <input name="email" type="email" class="form-control" id="accountEmail" value="{{ user.email }}">
     </div>
 
     <div class="form-group">

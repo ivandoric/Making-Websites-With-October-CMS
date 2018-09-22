@@ -8,6 +8,7 @@ use October\Rain\Database\Model;
 use OFFLINE\SiteSearch\Models\Settings;
 use Str;
 use System\Models\File;
+use URL;
 
 /**
  * Object to store a result's data.
@@ -94,7 +95,7 @@ class Result
 
         return $this;
     }
-    
+
     /**
      * @param $meta
      *
@@ -167,6 +168,14 @@ class Result
      */
     public function setUrl($url)
     {
+        // If a provider returns the absolute URL to a result
+        // remove the base url to make sure every result can
+        // be linked by using the "app" filter in Twig.
+        $baseUrl = URL::to('/');
+        if (starts_with($url, $baseUrl)) {
+            $url = str_replace($baseUrl, '', $url);
+        }
+
         $this->url = $url;
 
         return $this;

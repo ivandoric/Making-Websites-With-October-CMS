@@ -1,5 +1,34 @@
 # Change Log
 
+## [Unreleased]
+
+## v1.5.0 - 2017-12-29
+### Added
+* Added WordPress dropin support.
+* Added new types supported for Eliasis.
+* Added support for Phoenix CMS.
+* Added MODX installer.
+* Added Majima instaler.
+* Added SiteDirect installer.
+* Added support optional prefix in OctoberCMS installers.
+* Added PHP 7.2 support.
+
+### Changed
+* Changed remove packages, see [#348](https://github.com/composer/installers/pull/348).
+
+### Fixed
+* Fixed code style, removed unused imports.
+
+## v1.4.0 - 2017-08-09
+### Added
+* Installer for eZ Platform.
+* Installer for UserFrosting.
+* Installer for Osclass.
+* Installer for Lan Management System.
+
+### Changed
+* Added vendor name to package path for Lavalite.
+
 ## v1.3.0 - 2017-04-24
 ### Added
 * Kanboard plugins installer.
@@ -13,9 +42,6 @@
 * Vgmcp installer.
 * OntoWiki installer.
 * The requirements for contributing (CONTRIBUTING.md).
-
-### Changed
-* Concrete5: block & theme install location updates.
 
 ## v1.2.0 - 2016-08-13
 ### Added

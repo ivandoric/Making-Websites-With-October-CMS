@@ -1,7 +1,7 @@
 <?php foreach ($items as $pageObj): ?>
     <?php
         $fileName = $pageObj->page->getBaseFileName();
-        $groupStatus = $this->getGroupStatus($fileName);
+        $groupStatus = $this->getCollapseStatus($fileName);
         $dataId = $this->dataIdPrefix.'-'.$fileName;
         $searchMode = strlen($this->getSearchTerm()) > 0;
         $cbId = 'cb'.md5($fileName);

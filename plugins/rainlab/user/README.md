@@ -113,7 +113,7 @@ The reset password component allows a user to reset their password if they have 
     title = "Forgotten your password?"
     url = "/forgot-password/:code?"
 
-    [resetPass]
+    [resetPassword]
     paramCode = "code"
     ==
     {% component 'resetPassword' %}

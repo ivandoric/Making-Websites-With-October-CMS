@@ -15,9 +15,11 @@ class UsersAddSuperuserFlag extends Migration
 
     public function down()
     {
-        Schema::table('users', function($table)
-        {
-            $table->dropColumn('is_superuser');
-        });
+        if (Schema::hasColumn('users', 'is_superuser')) {
+            Schema::table('users', function($table)
+            {
+                $table->dropColumn('is_superuser');
+            });
+        }
     }
 }

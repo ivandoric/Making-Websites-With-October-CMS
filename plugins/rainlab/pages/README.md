@@ -203,6 +203,17 @@ If you want to link to the static page by its URL, simply use the `|app` filter:
 
     <a href="{{ '/chairs'|app }}">Go to Chairs</a>
 
+##### Backend forms
+
+If you need to select from a list of static pages in your own backend forms, you can use the `staticpagepicker` widget:
+
+    fields:
+        field_name:
+            label: Static Page
+            type: staticpagepicker
+
+The field's assigned value will be the static page's file name, which can be used to link to the page as described above.
+
 ### Placeholders
 
 [Placeholders](http://octobercms.com/docs/cms/layouts#placeholders) defined in the layout are automatically detected by the Static Pages plugin. The Edit Static Page form displays a tab for each placeholder defined in the layout used by the page. Placeholders are defined in the layout in the usual way:

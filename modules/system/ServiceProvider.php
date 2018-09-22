@@ -27,6 +27,7 @@ use System\Classes\CombineAssets;
 use Backend\Classes\WidgetManager;
 use October\Rain\Support\ModuleServiceProvider;
 use October\Rain\Router\Helper as RouterHelper;
+use Illuminate\Support\Facades\Schema;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -84,6 +85,11 @@ class ServiceProvider extends ModuleServiceProvider
      */
     public function boot()
     {
+        // Fix UTF8MB4 support for MariaDB < 10.2 and MySQL < 5.7
+        if (Config::get('database.connections.mysql.charset') === 'utf8mb4') {
+            Schema::defaultStringLength(191);
+        }
+
         /*
          * Boot plugins
          */
@@ -256,9 +262,9 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerLogging()
     {
-        Event::listen('illuminate.log', function ($level, $message, $context) {
+        Event::listen(\Illuminate\Log\Events\MessageLogged::class, function ($event) {
             if (EventLog::useLogging()) {
-                EventLog::add($message, $level);
+                EventLog::add($event->message, $event->level);
             }
         });
     }
@@ -322,9 +328,9 @@ class ServiceProvider extends ModuleServiceProvider
         /*
          * Override standard Mailer content with template
          */
-        Event::listen('mailer.beforeAddContent', function ($mailer, $message, $view, $data) {
-            MailManager::instance()->addContentToMailer($message, $view, $data);
-            return false;
+        Event::listen('mailer.beforeAddContent', function ($mailer, $message, $view, $data, $raw) {
+            $method = $raw === null ? 'addContentToMailer' : 'addRawContentToMailer';
+            return !MailManager::instance()->$method($message, $raw ?: $view, $data);
         });
     }
 
@@ -354,6 +360,18 @@ class ServiceProvider extends ModuleServiceProvider
             'system',
             '~/modules/system/partials/_system_sidebar.htm'
         );
+
+        /*
+         * Remove the October.System.system main menu item if there is no subpages to display
+         */
+        Event::listen('backend.menu.extendItems', function ($manager) {
+            $systemSettingItems = SettingsManager::instance()->listItems('system');
+            $systemMenuItems = $manager->listSideMenuItems('October.System', 'system');
+
+            if (empty($systemSettingItems) && empty($systemMenuItems)) {
+                $manager->removeMainMenuItem('October.System', 'system');
+            }
+        }, -9999);
     }
 
     /*
@@ -449,7 +467,7 @@ class ServiceProvider extends ModuleServiceProvider
                     'category'    => SettingsManager::CATEGORY_MAIL,
                     'icon'        => 'icon-paint-brush',
                     'url'         => Backend::url('system/mailbrandsettings'),
-                    'permissions' => ['system.manage_mail_settings'],
+                    'permissions' => ['system.manage_mail_templates'],
                     'order'       => 630
                 ],
                 'event_logs' => [
@@ -497,6 +515,9 @@ class ServiceProvider extends ModuleServiceProvider
             $combiner->registerBundle('~/modules/system/assets/less/styles.less');
             $combiner->registerBundle('~/modules/system/assets/ui/storm.less');
             $combiner->registerBundle('~/modules/system/assets/ui/storm.js');
+            $combiner->registerBundle('~/modules/system/assets/js/framework.js');
+            $combiner->registerBundle('~/modules/system/assets/js/framework.combined.js');
+            $combiner->registerBundle('~/modules/system/assets/css/framework.extras.css');
         });
     }
 

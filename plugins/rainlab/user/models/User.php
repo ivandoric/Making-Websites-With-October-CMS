@@ -6,6 +6,7 @@ use Mail;
 use Event;
 use October\Rain\Auth\Models\User as UserBase;
 use RainLab\User\Models\Settings as UserSettings;
+use October\Rain\Auth\AuthException;
 
 class User extends UserBase
 {
@@ -240,12 +241,28 @@ class User extends UserBase
     }
 
     /**
+     * Before login event
+     * @return void
+     */
+    public function beforeLogin()
+    {
+        if ($this->is_guest) {
+            $login = $this->getLogin();
+            throw new AuthException(sprintf(
+                'Cannot login user "%s" as they are not registered.', $login
+            ));
+        }
+
+        parent::beforeLogin();
+    }
+
+    /**
      * After login event
      * @return void
      */
     public function afterLogin()
     {
-        $this->last_login = $this->last_seen = $this->freshTimestamp();
+        $this->last_login = $this->freshTimestamp();
 
         if ($this->trashed()) {
             $this->restore();

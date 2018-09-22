@@ -88,7 +88,7 @@ class SearchService
     {
         return [
             new OfflineSnipcartShopResultsProvider(),
-            new RadiantWebProBlogResultsProvider(),
+            new RadiantWebProBlogResultsProvider($this->query, $this->controller),
             new FeeglewebOctoshopProductsResultsProvider(),
             new JiriJKShopResultsProvider(),
             new IndikatorNewsResultsProvider(),

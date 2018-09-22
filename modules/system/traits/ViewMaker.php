@@ -8,6 +8,7 @@ use SystemException;
 use Exception;
 use Throwable;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
+use Config;
 
 /**
  * View Maker Trait
@@ -78,7 +79,8 @@ trait ViewMaker
      */
     public function makePartial($partial, $params = [], $throwException = true)
     {
-        if (!File::isPathSymbol($partial) && realpath($partial) === false) {
+        $notRealPath = realpath($partial) === false || is_dir($partial) === true;
+        if (!File::isPathSymbol($partial) && $notRealPath) {
             $folder = strpos($partial, '/') !== false ? dirname($partial) . '/' : '';
             $partial = $folder . '_' . strtolower(basename($partial)).'.htm';
         }
@@ -193,7 +195,9 @@ trait ViewMaker
 
         $fileName = File::symbolizePath($fileName);
 
-        if (File::isLocalPath($fileName) || realpath($fileName) !== false) {
+        if (File::isLocalPath($fileName) ||
+            (!Config::get('cms.restrictBaseDir', true) && realpath($fileName) !== false)
+        ) {
             return $fileName;
         }
 
@@ -220,7 +224,10 @@ trait ViewMaker
      */
     public function makeFileContents($filePath, $extraParams = [])
     {
-        if (!strlen($filePath) || !File::isFile($filePath)) {
+        if (!strlen($filePath) ||
+            !File::isFile($filePath) ||
+            (!File::isLocalPath($filePath) && Config::get('cms.restrictBaseDir', true))
+        ) {
             return '';
         }
 

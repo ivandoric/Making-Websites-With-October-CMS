@@ -1,20 +1,15 @@
 title = "Movie single"
-url = "/movies/movie/:slug"
+url = "/movies/:genre/:slug"
 layout = "default"
 is_hidden = 0
-
 ==
-<?
-    use WatchLearn\Movies\Models\Movie;
+<?php
+use WatchLearn\Movies\Models\Movie;
     function onStart(){
         $this['movie'] = Movie::where('slug', '=', $this->param('slug'))->first();
     }
-
 ?>
-
 ==
-
-
 {% if movie %}
     <h2>{{ movie.name}}</h2>
     <img src="{{ movie.poster.thumb(200,auto) }}">

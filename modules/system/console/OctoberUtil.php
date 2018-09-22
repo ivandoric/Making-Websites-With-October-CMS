@@ -1,5 +1,6 @@
 <?php namespace System\Console;
 
+use App;
 use Lang;
 use File;
 use Config;
@@ -25,6 +26,7 @@ use Exception;
  * - compile less: Compile registered LESS files only.
  * - compile scss: Compile registered SCSS files only.
  * - compile lang: Compile registered Language files only.
+ * - set build: Pull the latest stable build number from the update gateway and set it as the current build number.
  *
  * @package october\system
  * @author Alexey Bobkov, Samuel Georges
@@ -115,6 +117,14 @@ class OctoberUtil extends Command
     {
         $this->comment('-');
 
+        /*
+         * Skip setting the build number if no database is detected to set it within
+         */
+        if (!App::hasDatabase()) {
+            $this->comment('No database detected - skipping setting the build number.');
+            return;
+        }
+
         try {
             $build = UpdateManager::instance()->setBuildNumberManually();
             $this->comment('*** October sets build: '.$build);
@@ -203,6 +213,14 @@ class OctoberUtil extends Command
             $messages = require $fallbackPath;
             if (File::isFile($srcPath) && $fallbackPath != $srcPath) {
                 $messages = array_replace_recursive($messages, require $srcPath);
+            }
+            
+            /*
+             * Load possible replacements from /lang
+             */
+            $overridePath = base_path() . '/lang/'.$locale.'/system/client.php';
+            if (File::isFile($overridePath)) {
+                $messages = array_replace_recursive($messages, require $overridePath);
             }
 
             /*

@@ -1084,7 +1084,7 @@ this.searchCookieName=this.options.treeName+'search'
 this.$searchInput=$(this.options.searchInput)
 this.$el.on('click','li > div.group',function(){self.toggleGroup($(this).closest('li'))
 return false})
-this.$searchInput.on('keyup',function(){self.handleSearchChange()})
+this.$searchInput.on('input',function(){self.handleSearchChange()})
 var searchTerm=$.cookie(this.searchCookieName)
 if(searchTerm!==undefined&&searchTerm.length>0){this.$searchInput.val(searchTerm)
 this.applySearch()}
@@ -1167,6 +1167,8 @@ if(this.options.formatAlias){this.options.format=this.getFormatFromAlias(this.op
 this.appTimezone=$('meta[name="app-timezone"]').attr('content')
 if(!this.appTimezone){this.appTimezone='UTC'}}
 DateTimeConverter.prototype.getDateTimeValue=function(){this.datetime=this.$el.attr('datetime')
+if(this.$el.get(0).hasAttribute('data-ignore-timezone')){this.appTimezone='UTC'
+this.options.timezone='UTC'}
 var momentObj=moment.tz(this.datetime,this.appTimezone),result
 if(this.options.locale){momentObj=momentObj.locale(this.options.locale)}
 if(this.options.timezone){momentObj=momentObj.tz(this.options.timezone)}

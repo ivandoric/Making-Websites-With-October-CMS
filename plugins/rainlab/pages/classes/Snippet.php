@@ -1,5 +1,6 @@
 <?php namespace RainLab\Pages\Classes;
 
+use Event;
 use Lang;
 use Cache;
 use Config;
@@ -470,7 +471,7 @@ class Snippet
         $map = [];
         $matches = [];
 
-        if (preg_match_all('/\<figure\s+[^\>]+\>[^\<]*\<\/figure\>/i', $markup, $matches)) {
+        if (preg_match_all('/\<figure\s+[^\>]+\>.*\<\/figure\>/i', $markup, $matches)) {
             foreach ($matches[0] as $snippetDeclaration) {
                 $nameMatch = [];
 
@@ -549,7 +550,9 @@ class Snippet
      */
     protected static function getMapCacheKey($theme)
     {
-        return crc32($theme->getPath()).'snippet-map-'.Lang::getLocale();
+        $key = crc32($theme->getPath()).'snippet-map';
+        Event::fire('pages.snippet.getMapCacheKey', [&$key]);
+        return $key;
     }
 
     /**

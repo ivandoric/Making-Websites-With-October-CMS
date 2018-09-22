@@ -49,7 +49,7 @@ class StaticBreadcrumbs extends ComponentBase
 
             while ($code) {
                 if (!isset($tree[$code])) {
-                    continue;
+                    break;
                 }
 
                 $pageInfo = $tree[$code];

@@ -15,9 +15,11 @@ class UsersAddSurname extends Migration
 
     public function down()
     {
-        Schema::table('users', function($table)
-        {
-            $table->dropColumn('surname');
-        });
+        if (Schema::hasColumn('users', 'surname')) {
+            Schema::table('users', function($table)
+            {
+                $table->dropColumn('surname');
+            });
+        }
     }
 }

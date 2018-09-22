@@ -16,10 +16,11 @@ class UsersRenameLoginToUsername extends Migration
 
     public function down()
     {
-        Schema::table('users', function($table)
-        {
-            $table->renameColumn('username', 'login');
-        });
+        if (Schema::hasColumn('users', 'login')) {
+            Schema::table('users', function($table)
+            {
+                $table->renameColumn('username', 'login');
+            });
+        }
     }
-
 }

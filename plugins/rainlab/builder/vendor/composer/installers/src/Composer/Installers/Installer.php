@@ -34,29 +34,41 @@ class Installer extends LibraryInstaller
         'decibel'      => 'DecibelInstaller',
         'drupal'       => 'DrupalInstaller',
         'elgg'         => 'ElggInstaller',
+        'eliasis'      => 'EliasisInstaller',
         'ee3'          => 'ExpressionEngineInstaller',
         'ee2'          => 'ExpressionEngineInstaller',
+        'ezplatform'   => 'EzPlatformInstaller',
         'fuel'         => 'FuelInstaller',
         'fuelphp'      => 'FuelphpInstaller',
         'grav'         => 'GravInstaller',
         'hurad'        => 'HuradInstaller',
         'imagecms'     => 'ImageCMSInstaller',
+        'itop'         => 'ItopInstaller',
         'joomla'       => 'JoomlaInstaller',
+        'kanboard'     => 'KanboardInstaller',
         'kirby'        => 'KirbyInstaller',
         'kodicms'      => 'KodiCMSInstaller',
         'kohana'       => 'KohanaInstaller',
+        'lms'      => 'LanManagementSystemInstaller',
         'laravel'      => 'LaravelInstaller',
+        'lavalite'     => 'LavaLiteInstaller',
         'lithium'      => 'LithiumInstaller',
         'magento'      => 'MagentoInstaller',
+        'majima'       => 'MajimaInstaller',
         'mako'         => 'MakoInstaller',
+        'maya'         => 'MayaInstaller',
         'mautic'       => 'MauticInstaller',
         'mediawiki'    => 'MediaWikiInstaller',
         'microweber'   => 'MicroweberInstaller',
         'modulework'   => 'MODULEWorkInstaller',
+        'modx'         => 'ModxInstaller',
         'modxevo'      => 'MODXEvoInstaller',
         'moodle'       => 'MoodleInstaller',
         'october'      => 'OctoberInstaller',
+        'ontowiki'     => 'OntoWikiInstaller',
         'oxid'         => 'OxidInstaller',
+        'osclass'         => 'OsclassInstaller',
+        'pxcms'        => 'PxcmsInstaller',
         'phpbb'        => 'PhpBBInstaller',
         'pimcore'      => 'PimcoreInstaller',
         'piwik'        => 'PiwikInstaller',
@@ -65,17 +77,21 @@ class Installer extends LibraryInstaller
         'puppet'       => 'PuppetInstaller',
         'radphp'       => 'RadPHPInstaller',
         'phifty'       => 'PhiftyInstaller',
+        'porto'        => 'PortoInstaller',
         'redaxo'       => 'RedaxoInstaller',
         'reindex'      => 'ReIndexInstaller',
         'roundcube'    => 'RoundcubeInstaller',
         'shopware'     => 'ShopwareInstaller',
+        'sitedirect'   => 'SiteDirectInstaller',
         'silverstripe' => 'SilverStripeInstaller',
         'smf'          => 'SMFInstaller',
+        'sydes'        => 'SyDESInstaller',
         'symfony1'     => 'Symfony1Installer',
         'thelia'       => 'TheliaInstaller',
         'tusk'         => 'TuskInstaller',
         'typo3-cms'    => 'TYPO3CmsInstaller',
         'typo3-flow'   => 'TYPO3FlowInstaller',
+        'userfrosting' => 'UserFrostingInstaller',
         'vanilla'      => 'VanillaInstaller',
         'whmcs'        => 'WHMCSInstaller',
         'wolfcms'      => 'WolfCMSInstaller',
@@ -108,14 +124,9 @@ class Installer extends LibraryInstaller
 
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
-        if (!$repo->hasPackage($package)) {
-            throw new \InvalidArgumentException('Package is not installed: '.$package);
-        }
-
-        $repo->removePackage($package);
-
-        $installPath = $this->getInstallPath($package);
-        $this->io->write(sprintf('Deleting %s - %s', $installPath, $this->filesystem->removeDirectory($installPath) ? '<comment>deleted</comment>' : '<error>not deleted</error>'));
+        parent::uninstall($repo, $package);
+        $installPath = $this->getPackageBasePath($package);
+        $this->io->write(sprintf('Deleting %s - %s', $installPath, !file_exists($installPath) ? '<comment>deleted</comment>' : '<error>not deleted</error>'));
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
+
 namespace OFFLINE\SiteSearch\Classes\Providers;
 
+use Carbon\Carbon;
 use Cms\Classes\Controller;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
@@ -47,6 +49,10 @@ class RainlabBlogResultsProvider extends ResultsProvider
         foreach ($this->posts() as $post) {
             // Make this result more relevant, if the query is found in the title
             $relevance = mb_stripos($post->title, $this->query) === false ? 1 : 2;
+
+            if ($relevance > 1 && $post->published_at) {
+                $relevance -= $this->getAgePenalty($post->published_at->diffInDays(Carbon::now()));
+            }
 
             $result        = new Result($this->query, $relevance);
             $result->title = $post->title;
@@ -123,9 +129,7 @@ class RainlabBlogResultsProvider extends ResultsProvider
         $ids = collect($results)->pluck('model_id');
 
         // Then return all maching posts via Eloquent.
-        return $this->defaultModelQuery()
-                    ->whereIn('id', $ids)
-                    ->get();
+        return $this->defaultModelQuery()->whereIn('id', $ids)->get();
     }
 
     /**
@@ -134,9 +138,7 @@ class RainlabBlogResultsProvider extends ResultsProvider
      */
     protected function defaultModelQuery()
     {
-        return Post::isPublished()
-                   ->with(['featured_images'])
-                   ->orderBy('published_at', 'desc');
+        return Post::isPublished()->with(['featured_images']);
     }
 
     /**

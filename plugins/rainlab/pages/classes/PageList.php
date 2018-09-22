@@ -126,15 +126,17 @@ class PageList
         $subTree = [];
 
         $iterator = function($configPages) use (&$iterator, &$subTree, $requestedFileName) {
-            foreach ($configPages as $fileName => $subpages) {
-                if ($fileName == $requestedFileName) {
-                    $subTree = $subpages;
+            if (is_array($configPages)) {
+                foreach ($configPages as $fileName => $subpages) {
+                    if ($fileName == $requestedFileName) {
+                        $subTree = $subpages;
 
-                    return true;
-                }
+                        return true;
+                    }
 
-                if ($iterator($subpages) == true) {
-                    return true;
+                    if ($iterator($subpages) === true) {
+                        return true;
+                    }
                 }
             }
         };

@@ -28,10 +28,14 @@ sortOrder = "name desc"
         <li class="ui segment stacked">
             {# Use spaceless tag to remove spaces inside the A tag. #}
             <h3>
-                <a href="/movies/movie/{{movie.slug}}">
+                <a href="{{ 'movie-single'|page({ genre: movie.genres[0].slug, slug: movie.slug }) }}">
                     {{ movie.name }} - {{movie.year}}
                 </a>
             </h3>
+
+            {% for genre in movie.genres %}
+                <a href="/genres/{{ genre.slug }}">{{ genre.genre_title }}</a><br>
+            {% endfor %}
 
             {{ html_limit(movie.description, 150)|raw }}
         </li>

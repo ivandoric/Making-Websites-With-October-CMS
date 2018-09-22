@@ -16,9 +16,11 @@ class UsersAddLastSeen extends Migration
 
     public function down()
     {
-        Schema::table('users', function($table)
-        {
-            $table->dropColumn('last_seen');
-        });
+        if (Schema::hasColumn('users', 'last_seen')) {
+            Schema::table('users', function($table)
+            {
+                $table->dropColumn('last_seen');
+            });
+        }
     }
 }

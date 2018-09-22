@@ -195,4 +195,18 @@ abstract class ResultsProvider
 
         return $image;
     }
+
+    /**
+     * Give old results an age penalty to list them below newer results.
+     *
+     * @param $ageInDays
+     *
+     * @return float
+     */
+    protected function getAgePenalty($ageInDays)
+    {
+        $penalty = $ageInDays * 0.003;
+
+        return $penalty > .9 ? .9 : $penalty;
+    }
 }

@@ -97,3 +97,17 @@
     - 'Added new searchInput component with search-as-you-type feature'
 1.3.2:
     - 'Fixed bug in AutoCompleteComponent'
+1.3.3:
+    - !!! All results are now returned with a relative URL to prevent problems with translated contents. Make sure to pass your result.url throught the "app" filter if you are using your own search result partials
+1.3.4:
+    - Fixed undefined index error when a static page doesn't have a title set
+1.3.5:
+    - Added ability to edit the user's query before searching
+1.3.6:
+    - !!! Using RadiantWeb.ProBlog's internal settings to get the correct parent page for a blog post result. This enables support for multiple blogs on the same website. If your blog search results have wrong URLs after this update make sure to configure your default page for rendering blog posts via the ProBlog backend settings.
+1.3.7:
+    - Added the ability to add age penalties to search results. This can be used to show newer results higher up in your search results.
+1.3.8:
+    - Optimized support for multiple SearchInput components on a single page.
+1.3.9:
+    - Added Chinese language support (thanks to Ckend)

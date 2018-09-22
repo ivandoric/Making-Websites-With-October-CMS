@@ -30,7 +30,7 @@ return [
         'lv' => 'Latviešu',
         'nb-no' => 'Norsk (Bokmål)',
         'nl' => 'Nederlands',
-        'pl' => 'Polskie',
+        'pl' => 'Polski',
         'pt-br' => 'Português (Brasil)',
         'ro' => 'Română',
         'ru' => 'Русский',
@@ -38,7 +38,8 @@ return [
         'sk' => 'Slovenský',
         'tr' => 'Türkçe',
         'zh-cn' => '简体中文',
-        'zh-tw' => '繁體中文'
+        'zh-tw' => '繁體中文',
+        'vn' => 'Tiếng việt'
     ],
     'directory' => [
         'create_fail' => 'Kataloogi :name ei õnnestunud luua'
@@ -363,5 +364,9 @@ return [
         'log_requests_comment' => 'Süsteemi juurdepääsu päringud, mis võiksid vajada tähelepanu (nt 404)',
         'log_theme' => 'Logi teema muudatusi',
         'log_theme_comment' => 'Teema muudatused, mida tehakse haldusliideses.',
-    ]
+    ],
+    'media' => [
+        'invalid_path' => "Invalid file path specified: ':path'.",
+        'folder_size_items' => 'item(s)',
+    ],
 ];

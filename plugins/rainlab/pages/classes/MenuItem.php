@@ -40,7 +40,7 @@ class MenuItem
     /**
      * @var string Specifies the menu item type - URL, static page, etc.
      */
-    public $type;
+    public $type = 'url';
 
     /**
      * @var string Specifies the URL for URL-type items.

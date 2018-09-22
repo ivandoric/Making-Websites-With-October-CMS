@@ -41,8 +41,14 @@ class Post extends Model
         'content',
         'content_html',
         'excerpt',
+        'metadata',
         ['slug', 'index' => true]
     ];
+
+    /**
+     * @var array Attributes to be stored as JSON
+     */
+    protected $jsonable = ['metadata'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -145,9 +151,7 @@ class Post extends Model
             'slug' => $this->slug,
         ];
 
-        if (array_key_exists('categories', $this->getRelations())) {
-            $params['category'] = $this->categories->count() ? $this->categories->first()->slug : null;
-        }
+        $params['category'] = $this->categories->count() ? $this->categories->first()->slug : null;
 
         //expose published year, month and day as URL parameters
         if ($this->published) {
@@ -211,14 +215,15 @@ class Post extends Model
          * Default options
          */
         extract(array_merge([
-            'page'       => 1,
-            'perPage'    => 30,
-            'sort'       => 'created_at',
-            'categories' => null,
-            'category'   => null,
-            'search'     => '',
-            'published'  => true,
-            'exceptPost' => null,
+            'page'             => 1,
+            'perPage'          => 30,
+            'sort'             => 'created_at',
+            'categories'       => null,
+            'exceptCategories' => null,
+            'category'         => null,
+            'search'           => '',
+            'published'        => true,
+            'exceptPost'       => null,
         ], $options));
 
         $searchableFields = ['title', 'slug', 'excerpt', 'content'];
@@ -242,21 +247,16 @@ class Post extends Model
         /*
          * Sorting
          */
-        if (!is_array($sort)) {
-            $sort = [$sort];
-        }
+        if (in_array($sort, array_keys(static::$allowedSortingOptions))) {
+            if ($sort == 'random') {
+                $query->inRandomOrder();
+            } else {
+                @list($sortField, $sortDirection) = explode(' ', $sort);
 
-        foreach ($sort as $_sort) {
+                if (is_null($sortDirection)) {
+                    $sortDirection = "desc";
+                }
 
-            if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
-                $parts = explode(' ', $_sort);
-                if (count($parts) < 2) {
-                    array_push($parts, 'desc');
-                }
-                list($sortField, $sortDirection) = $parts;
-                if ($sortField == 'random') {
-                    $sortField = Db::raw('RAND()');
-                }
                 $query->orderBy($sortField, $sortDirection);
             }
         }
@@ -273,9 +273,19 @@ class Post extends Model
          * Categories
          */
         if ($categories !== null) {
-            if (!is_array($categories)) $categories = [$categories];
+            $categories = is_array($categories) ? $categories : [$categories];
             $query->whereHas('categories', function($q) use ($categories) {
                 $q->whereIn('id', $categories);
+            });
+        }
+
+        /*
+         * Except Categories
+         */
+        if ($exceptCategories !== null) {
+            $exceptCategories = is_array($exceptCategories) ? $exceptCategories : [$exceptCategories];
+            $query->whereDoesntHave('categories', function($q) use ($exceptCategories) {
+                $q->whereIn('slug', $exceptCategories);
             });
         }
 
@@ -385,11 +395,13 @@ class Post extends Model
         $directionOrder = $isPrevious ? 'asc' : 'desc';
         $directionOperator = $isPrevious ? '>' : '<';
 
-        return $query
-            ->where('id', '<>', $this->id)
-            ->whereDate($attribute, $directionOperator, $this->$attribute)
-            ->orderBy($attribute, $directionOrder)
-        ;
+        $query->where('id', '<>', $this->id);
+
+        if (!is_null($this->$attribute)) {
+            $query->where($attribute, $directionOperator, $this->$attribute);
+        }
+
+        return $query->orderBy($attribute, $directionOrder);
     }
 
     /**
@@ -452,6 +464,20 @@ class Post extends Model
 
         if ($type == 'all-blog-posts') {
             $result = [
+                'dynamicItems' => true
+            ];
+        }
+
+        if ($type == 'category-blog-posts') {
+            $references = [];
+
+            $categories = Category::orderBy('name')->get();
+            foreach ($categories as $category) {
+                $references[$category->id] = $category->name;
+            }
+
+            $result = [
+                'references'   => $references,
                 'dynamicItems' => true
             ];
         }
@@ -546,6 +572,40 @@ class Post extends Model
                 $result['items'][] = $postItem;
             }
         }
+        elseif ($item->type == 'category-blog-posts') {
+            if (!$item->reference || !$item->cmsPage)
+                return;
+
+            $category = Category::find($item->reference);
+            if (!$category)
+                return;
+
+            $result = [
+                'items' => []
+            ];
+
+            $query = self::isPublished()
+            ->orderBy('title');
+
+            $categories = $category->getAllChildrenAndSelf()->lists('id');
+            $query->whereHas('categories', function($q) use ($categories) {
+                $q->whereIn('id', $categories);
+            });
+
+            $posts = $query->get();
+
+            foreach ($posts as $post) {
+                $postItem = [
+                    'title' => $post->title,
+                    'url'   => self::getPostPageUrl($item->cmsPage, $post, $theme),
+                    'mtime' => $post->updated_at,
+                ];
+
+                $postItem['isActive'] = $postItem['url'] == $url;
+
+                $result['items'][] = $postItem;
+            }
+        }
 
         return $result;
     }
@@ -576,7 +636,13 @@ class Post extends Model
         }
 
         $paramName = substr(trim($matches[1]), 1);
-        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $category->slug]);
+        $params = [
+            $paramName => $category->slug,
+            'year' => $category->published_at->format('Y'),
+            'month' => $category->published_at->format('m'),
+            'day' => $category->published_at->format('d'),
+        ];
+        $url = CmsPage::url($page->getBaseFileName(), $params);
 
         return $url;
     }

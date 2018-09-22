@@ -49,7 +49,7 @@ return [
         'reference' => 'Reference',
         'search_placeholder' => 'Search all references...',
         'title_required' => 'The Title is required',
-        'unknown_type' => 'Uknown menu item type',
+        'unknown_type' => 'Unknown menu item type',
         'unnamed' => 'Unnamed menu item',
         'add_item' => 'Add <u>I</u>tem',
         'new_item' => 'New menu item',

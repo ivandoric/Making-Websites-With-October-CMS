@@ -1,5 +1,6 @@
 <?php namespace RainLab\Pages\Classes;
 
+use Event;
 use Lang;
 use Cache;
 use Config;
@@ -120,7 +121,9 @@ class SnippetManager
      */
     protected static function getPartialMapCacheKey($theme)
     {
-        return crc32($theme->getPath()).'snippet-partial-map-'.Lang::getLocale();
+        $key = crc32($theme->getPath()).'snippet-partial-map';
+        Event::fire('pages.snippet.getPartialMapCacheKey', [&$key]);
+        return $key;
     }
 
     /**

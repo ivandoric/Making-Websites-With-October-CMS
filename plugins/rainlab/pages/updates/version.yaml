@@ -42,3 +42,5 @@
 1.2.15: Back-end navigation sort order updated.
 1.2.16: Fixes a bug when saving a template that has been modified outside of the CMS (mtime mismatch).
 1.2.17: Changes locations of custom fields to secondary tabs instead of the primary Settings area. New menu search ability on adding menu items
+1.2.18: Fixes cache-invalidation issues when RainLab.Translate is not installed. Added Greek & Simplified Chinese translations. Removed deprecated calls. Allowed saving HTML in snippet properties. Added support for the MediaFinder in menu items.
+1.2.19: Catch exception with corrupted menu file.
