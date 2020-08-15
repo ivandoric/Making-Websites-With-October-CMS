@@ -6,6 +6,7 @@ return [
     ],
     'page' => [
         'menu_label' => '页面',
+        'template_title' => '%s 页面',
         'delete_confirmation' => '你真的要删除所选页面吗？ 如果有子页面，也将被删除。',
         'no_records' => '找不到页面',
         'delete_confirm_single' => '你真的要删除这个页面吗？ 如果有子页面，也将被删除。',

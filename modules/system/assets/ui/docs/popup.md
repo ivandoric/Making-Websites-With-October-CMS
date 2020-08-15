@@ -97,6 +97,37 @@ Using the `data-ajax` attribute you can refer to an external file or URL directl
 </a>
 ```
 
+The partial for your rendered popup should follow this structure:
+
+```html
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="popup">&times;</button>
+    <h4 class="modal-title">
+        <!-- Modal header title goes here -->
+        Send email
+    </h4>
+</div>
+<div class="modal-body">
+    <!-- Any popup content goes here -->
+    <?= $this->customFormWidget->render() ?>
+</div>
+<div class="modal-footer">
+    <!-- Popup action buttons go here -->
+    <button
+        type="submit"
+        class="btn btn-primary oc-icon-send"
+        data-load-indicator="Sending">
+        Send
+    </button>
+    <button
+        type="button"
+        class="btn btn-default"
+        data-dismiss="popup">
+        <?= e(trans('backend::lang.relation.close')) ?>
+    </button>
+</div>
+```
+
 <a name="api-docs"></a>
 ## API documentation
 
@@ -109,7 +140,8 @@ Using the `data-ajax` attribute you can refer to an external file or URL directl
 - data-handler="onLoadContent" - October ajax request name
 - data-keyboard="false" - Allow popup to be closed with the keyboard
 - data-extra-data="file_id: 1" - October ajax request data
-- data-size="large" - Popup size, available sizes: giant, huge, large, small, tiny
+- data-size="large" - Popup size, available sizes: giant, huge, large, small, tiny, adaptive (will scale to fit the window)
+- data-adaptive-height="false" - Allow the popup to fill the height of the screen
 
 ### JavaScript API
 

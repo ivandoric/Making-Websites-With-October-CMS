@@ -1,32 +1,31 @@
 <?php namespace System;
 
+use Db;
 use App;
-use Lang;
 use View;
 use Event;
 use Config;
 use Backend;
 use Request;
-use Validator;
 use BackendMenu;
 use BackendAuth;
-use Twig_Environment;
-use Twig_Loader_String;
+use Twig\Environment as TwigEnvironment;
 use System\Classes\MailManager;
 use System\Classes\ErrorHandler;
 use System\Classes\MarkupManager;
 use System\Classes\PluginManager;
 use System\Classes\SettingsManager;
+use System\Classes\UpdateManager;
 use System\Twig\Engine as TwigEngine;
 use System\Twig\Loader as TwigLoader;
 use System\Twig\Extension as TwigExtension;
 use System\Models\EventLog;
 use System\Models\MailSetting;
-use System\Models\MailTemplate;
 use System\Classes\CombineAssets;
 use Backend\Classes\WidgetManager;
 use October\Rain\Support\ModuleServiceProvider;
 use October\Rain\Router\Helper as RouterHelper;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 
 class ServiceProvider extends ModuleServiceProvider
@@ -86,9 +85,16 @@ class ServiceProvider extends ModuleServiceProvider
     public function boot()
     {
         // Fix UTF8MB4 support for MariaDB < 10.2 and MySQL < 5.7
-        if (Config::get('database.connections.mysql.charset') === 'utf8mb4') {
-            Schema::defaultStringLength(191);
+        $this->applyDatabaseDefaultStringLength();
+
+        // Fix use of Storage::url() for local disks that haven't been configured correctly
+        foreach (Config::get('filesystems.disks') as $key => $config) {
+            if ($config['driver'] === 'local' && ends_with($config['root'], '/storage/app') && empty($config['url'])) {
+                Config::set("filesystems.disks.$key.url", '/storage/app');
+            }
         }
+
+        Paginator::defaultSimpleView('system::pagination.simple-default');
 
         /*
          * Boot plugins
@@ -125,7 +131,7 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerPrivilegedActions()
     {
-        $requests = ['/combine', '@/system/updates', '@/system/install', '@/backend/auth'];
+        $requests = ['/combine/', '@/system/updates', '@/system/install', '@/backend/auth'];
         $commands = ['october:up', 'october:update'];
 
         /*
@@ -146,7 +152,7 @@ class ServiceProvider extends ModuleServiceProvider
         /*
          * CLI
          */
-        if (App::runningInConsole() && count(array_intersect($commands, Request::server('argv'))) > 0) {
+        if (App::runningInConsole() && count(array_intersect($commands, Request::server('argv', []))) > 0) {
             PluginManager::$noInit = true;
         }
     }
@@ -209,6 +215,11 @@ class ServiceProvider extends ModuleServiceProvider
          * Allow plugins to use the scheduler
          */
         Event::listen('console.schedule', function ($schedule) {
+            // Fix initial system migration with plugins that use settings for scheduling - see #3208
+            if (App::hasDatabase() && !Schema::hasTable(UpdateManager::instance()->getMigrationTableName())) {
+                return;
+            }
+
             $plugins = PluginManager::instance()->getPlugins();
             foreach ($plugins as $plugin) {
                 if (method_exists($plugin, 'registerSchedule')) {
@@ -235,15 +246,21 @@ class ServiceProvider extends ModuleServiceProvider
         $this->registerConsoleCommand('october.fresh', 'System\Console\OctoberFresh');
         $this->registerConsoleCommand('october.env', 'System\Console\OctoberEnv');
         $this->registerConsoleCommand('october.install', 'System\Console\OctoberInstall');
+        $this->registerConsoleCommand('october.passwd', 'System\Console\OctoberPasswd');
 
         $this->registerConsoleCommand('plugin.install', 'System\Console\PluginInstall');
         $this->registerConsoleCommand('plugin.remove', 'System\Console\PluginRemove');
+        $this->registerConsoleCommand('plugin.disable', 'System\Console\PluginDisable');
+        $this->registerConsoleCommand('plugin.enable', 'System\Console\PluginEnable');
         $this->registerConsoleCommand('plugin.refresh', 'System\Console\PluginRefresh');
+        $this->registerConsoleCommand('plugin.rollback', 'System\Console\PluginRollback');
+        $this->registerConsoleCommand('plugin.list', 'System\Console\PluginList');
 
         $this->registerConsoleCommand('theme.install', 'System\Console\ThemeInstall');
         $this->registerConsoleCommand('theme.remove', 'System\Console\ThemeRemove');
         $this->registerConsoleCommand('theme.list', 'System\Console\ThemeList');
         $this->registerConsoleCommand('theme.use', 'System\Console\ThemeUse');
+        $this->registerConsoleCommand('theme.sync', 'System\Console\ThemeSync');
     }
 
     /*
@@ -278,7 +295,7 @@ class ServiceProvider extends ModuleServiceProvider
          * Register system Twig environment
          */
         App::singleton('twig.environment', function ($app) {
-            $twig = new Twig_Environment(new TwigLoader, ['auto_reload' => true]);
+            $twig = new TwigEnvironment(new TwigLoader, ['auto_reload' => true]);
             $twig->addExtension(new TwigExtension);
             return $twig;
         });
@@ -328,9 +345,10 @@ class ServiceProvider extends ModuleServiceProvider
         /*
          * Override standard Mailer content with template
          */
-        Event::listen('mailer.beforeAddContent', function ($mailer, $message, $view, $data, $raw) {
+        Event::listen('mailer.beforeAddContent', function ($mailer, $message, $view, $data, $raw, $plain) {
             $method = $raw === null ? 'addContentToMailer' : 'addRawContentToMailer';
-            return !MailManager::instance()->$method($message, $raw ?: $view, $data);
+            $plainOnly = $view === null; // When "plain-text only" email is sent, $view is null, this sets the flag appropriately
+            return !MailManager::instance()->$method($message, $raw ?: $view ?: $plain, $data, $plainOnly);
         });
     }
 
@@ -526,7 +544,7 @@ class ServiceProvider extends ModuleServiceProvider
      */
     protected function registerValidator()
     {
-        $this->app->resolving('validator', function($validator) {
+        $this->app->resolving('validator', function ($validator) {
             /*
              * Allowed file extensions, as opposed to mime types.
              * - extensions: png,jpg,txt
@@ -545,5 +563,25 @@ class ServiceProvider extends ModuleServiceProvider
     protected function registerGlobalViewVars()
     {
         View::share('appName', Config::get('app.name'));
+    }
+
+    /**
+     * Fix UTF8MB4 support for old versions of MariaDB (<10.2) and MySQL (<5.7)
+     */
+    protected function applyDatabaseDefaultStringLength()
+    {
+        if (Db::getDriverName() !== 'mysql') {
+            return;
+        }
+
+        $defaultStrLen = Db::getConfig('varcharmax');
+
+        if ($defaultStrLen === null && Db::getConfig('charset') === 'utf8mb4') {
+            $defaultStrLen = 191;
+        }
+
+        if ($defaultStrLen !== null) {
+            Schema::defaultStringLength((int) $defaultStrLen);
+        }
     }
 }

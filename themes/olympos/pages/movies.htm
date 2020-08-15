@@ -7,12 +7,8 @@ is_hidden = 0
 <?
     use WatchLearn\Movies\Models\Movie;
     function onStart(){
-        //$this['movies'] = Movie::orderBy('year', 'desc')->paginate(20);
-        $this['name'] = Input::get('name');
-        //dd($this['name']);
-        $this['movies'] = Movie::where('name', 'like', $this['name'])->get();
+        $this['movies'] = Movie::orderBy('sort_order', 'asc')->paginate(20);
     }
-
 ?>
 
 ==

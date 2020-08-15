@@ -7,6 +7,7 @@ is_hidden = 0
 use WatchLearn\Movies\Models\Movie;
     function onStart(){
         $this['movie'] = Movie::where('slug', '=', $this->param('slug'))->first();
+        $this['lastImageIndex'] = count($this['movie']['movie_gallery']) - 1;
     }
 ?>
 ==
@@ -31,14 +32,22 @@ use WatchLearn\Movies\Models\Movie;
     <h3>Gallery</h3>
 
     <ul class="gallery clearfix">
-    {% for image in movie.movie_gallery %}
-        <li>
-            <a href="{{ image.path}}">
-                <img src="{{ image.thumb(80,80, {'mode':'crop'}) }}">
-            </a>
-        </li>  
-    {% endfor %}
+        {% for image in movie.movie_gallery %}
+            {% if loop.first %}
+                {# Not showing anything here #}
+            {% else %}
+                <li>
+                    <a href="{{ image.path}}">
+                        <img src="{{ image.thumb(80,80, {'mode':'crop'}) }}">
+                    </a>
+                </li>
+            {% endif %}  
+        {% endfor %}
     </ul>
+
+    <div class="MyPoster">
+        <img src="{{ movie.movie_gallery[lastImageIndex].thumb(80,80, {'mode':'crop'}) }}">
+    </div>
 
     <h3>Genres</h3>
 

@@ -1,25 +1,11 @@
 <?php namespace RainLab\Pages\Classes;
 
 use Url;
-use File;
-use Lang;
-use Yaml;
 use Event;
-use Config;
 use Request;
-use Validator;
-use RainLab\Pages\Classes\MenuItem;
-use RainLab\Pages\Classes\MenuItemReference;
-use Cms\Classes\Theme;
-use Cms\Classes\CmsObject;
-use Cms\Classes\Controller as CmsController;
-use October\Rain\Support\Str;
-use October\Rain\Router\Helper as RouterHelper;
-use ApplicationException;
-use ValidationException;
 use SystemException;
-use DirectoryIterator;
-use Exception;
+use Cms\Classes\Meta;
+use October\Rain\Support\Str;
 
 /**
  * Represents a front-end menu.
@@ -27,27 +13,12 @@ use Exception;
  * @package rainlab\pages
  * @author Alexey Bobkov, Samuel Georges
  */
-class Menu extends CmsObject
+class Menu extends Meta
 {
     /**
      * @var string The container name associated with the model, eg: pages.
      */
     protected $dirName = 'meta/menus';
-
-    /**
-     * @var array Cache store used by parseContent method.
-     */
-    protected $contentDataCache;
-
-    /**
-     * @var array Allowable file extensions.
-     */
-    protected $allowedExtensions = ['yaml'];
-
-    /**
-     * @var string Default file extension.
-     */
-    protected $defaultExtension = 'yaml';
 
     /**
      * @var array The attributes that are mass assignable.
@@ -56,7 +27,7 @@ class Menu extends CmsObject
         'content',
         'code',
         'name',
-        'itemData'
+        'itemData',
     ];
 
     /**
@@ -64,37 +35,22 @@ class Menu extends CmsObject
      */
     protected $purgeable = [
         'code',
-        'name',
-        'itemData'
     ];
 
     /**
-     * Triggered before the menu is saved.
-     * @return void
+     * @var array The rules to be applied to the data.
      */
-    public function beforeSave()
-    {
-        $this->content = $this->renderContent();
-    }
+    public $rules = [
+        'code' => 'required|regex:/^[0-9a-z\-\_]+$/i',
+    ];
 
     /**
-     * Validate custom attributes.
-     * @return void
+     * @var array The array of custom error messages.
      */
-    public function beforeValidate()
-    {
-        if (!strlen($this->code)) {
-            throw new ValidationException([
-                'code' => Lang::get('rainlab.pages::lang.menu.code_required')
-            ]);
-        }
-
-        if (!preg_match('/^[0-9a-z\-\_]+$/i', $this->code)) {
-            throw new ValidationException([
-                'code' => Lang::get('rainlab.pages::lang.menu.invalid_code')
-            ]);
-        }
-    }
+    public $customMessages = [
+        'required' => 'rainlab.pages::lang.menu.code_required',
+        'regex'    => 'rainlab.pages::lang.menu.invalid_code',
+    ];
 
     /**
      * Returns the menu code.
@@ -102,17 +58,7 @@ class Menu extends CmsObject
      */
     public function getCodeAttribute()
     {
-        if (isset($this->attributes['code'])) {
-            return $this->attributes['code'];
-        }
-
-        $place = strrpos($this->fileName, '.');
-
-        if ($place !== false) {
-            return substr($this->fileName, 0, $place);
-        }
-
-        return null;
+        return $this->getBaseFileName();
     }
 
     /**
@@ -124,26 +70,12 @@ class Menu extends CmsObject
     {
         $code = trim($code);
 
-        $this->attributes['code'] = $code;
-
         if (strlen($code)) {
             $this->fileName = $code.'.yaml';
+            $this->attributes = array_merge($this->attributes, ['code' => $code]);
         }
 
         return $this;
-    }
-
-    /**
-     * Returns a default value for name attribute.
-     * @return string
-     */
-    public function getNameAttribute()
-    {
-        if (array_key_exists('name', $this->attributes)) {
-            return $this->attributes['name'];
-        }
-
-        return $this->attributes['name'] = array_get($this->parseContent(), 'name');
     }
 
     /**
@@ -153,31 +85,24 @@ class Menu extends CmsObject
      */
     public function getItemsAttribute()
     {
-        if (array_key_exists('items', $this->attributes)) {
-            return $this->attributes['items'];
+        $items = [];
+        if (!empty($this->attributes['items'])) {
+            $items = MenuItem::initFromArray($this->attributes['items']);
         }
 
-        if ($items = array_get($this->parseContent(), 'items')) {
-            $itemObjects = MenuItem::initFromArray($items);
-        }
-        else {
-            $itemObjects = [];
-        }
-
-        return $this->attributes['items'] = $itemObjects;
+        return $items;
     }
 
     /**
-     * Returns a default value for itemData attribute.
-     * @return array
+     * Store the itemData in the items attribute
+     *
+     * @param array $data
+     * @return void
      */
-    public function getItemDataAttribute()
+    public function setItemDataAttribute($data)
     {
-        if (array_key_exists('itemData', $this->attributes)) {
-            return $this->attributes['itemData'];
-        }
-
-        return $this->attributes['itemData'] = array_get($this->parseContent(), 'items');
+        $this->items = $data;
+        return $this;
     }
 
     /**
@@ -186,44 +111,13 @@ class Menu extends CmsObject
      */
     protected function parseContent()
     {
-        if ($this->contentDataCache !== null) {
-            return $this->contentDataCache;
-        }
-
-        $parsedData = Yaml::parse($this->content);
-
-        if (!is_array($parsedData)) {
-            return null;
-        }
+        $parsedData = parent::parseContent();
 
         if (!array_key_exists('name', $parsedData)) {
-            throw new SystemException(sprintf('The content of the %s file is invalid: the name element is not found.', $fileName));
+            throw new SystemException(sprintf('The content of the %s file is invalid: the name element is not found.', $this->fileName));
         }
 
-        return $this->contentDataCache = $parsedData;
-    }
-
-    /**
-     * Compile the content for this CMS object, used by the theme logger.
-     * @return string
-     */
-    public function toCompiled()
-    {
-        return $this->renderContent();
-    }
-
-    /**
-     * Renders the menu data as a content string in YAML format.
-     * @return string
-     */
-    protected function renderContent()
-    {
-        $contentData = [
-            'name'  => $this->name,
-            'items' => $this->itemData ? $this->itemData : []
-        ];
-
-        return Yaml::render($contentData);
+        return $parsedData;
     }
 
     /**
@@ -269,7 +163,7 @@ class Menu extends CmsObject
                  */
                 if ($item->type == 'url') {
                     $parentReference->url = $item->url;
-                    $parentReference->isActive = $currentUrl == Str::lower($item->url) || $activeMenuItem === $item->code;
+                    $parentReference->isActive = $currentUrl == Str::lower(Url::to($item->url)) || $activeMenuItem === $item->code;
                 }
                 else {
                     /*
@@ -365,6 +259,40 @@ class Menu extends CmsObject
         };
 
         $iterator($items);
+
+        /*
+         * @event pages.menu.referencesGenerated
+         * Provides opportunity to dynamically change menu entries right after reference generation.
+         *
+         * For example you can use it to filter menu entries for user groups from RainLab.User
+         * Before doing so you have to add custom field 'group' to menu viewBag using backend.form.extendFields event
+         * where the group can be selected by the user. See how to do this here:
+         * https://octobercms.com/docs/backend/forms#extend-form-fields
+         *
+         * Parameter provided is `$items` - a collection of the MenuItemReference objects passed by reference
+         *
+         * For example to hide entries where group is not 'registered' you can use the following code. It can
+         * be used to show different menus for different user groups.
+         *
+         * Event::listen('pages.menu.referencesGenerated', function (&$items) {
+         *     $iterator = function ($menuItems) use (&$iterator, $clusterRepository) {
+         *         $result = [];
+         *         foreach ($menuItems as $item) {
+         *             if (isset($item->viewBag['group']) && $item->viewBag['group'] !== "registered") {
+         *                 $item->viewBag['isHidden'] = "1";
+         *             }
+         *             if ($item->items) {
+         *                 $item->items = $iterator($item->items);
+         *             }
+         *             $result[] = $item;
+         *         }
+         *         return $result;
+         *     };
+         *     $items = $iterator($items);
+         * });
+         */
+
+        Event::fire('pages.menu.referencesGenerated', [&$items]);
 
         return $items;
     }

@@ -1,6 +1,6 @@
 /*
  * ColorPicker plugin
- * 
+ *
  * Data attributes:
  * - data-control="colorpicker" - enables the plugin on an element
  * - data-data-locker="input#locker" - Input element to store and restore the chosen color
@@ -28,7 +28,8 @@
     ColorPicker.DEFAULTS = {
         showAlpha: false,
         allowEmpty: false,
-        dataLocker: null
+        dataLocker: null,
+        disabled: false
     }
 
     ColorPicker.prototype.init = function() {
@@ -39,10 +40,12 @@
         this.$customColorSpan = $('>span', this.$customColor)
         this.originalColor = this.$customColor.data('hexColor')
 
-        this.$colorList.on('click', '>li', function(){
-            self.selectColor(this)
-            self.$dataLocker.trigger('change')
-        })
+        if (!this.options.disabled) {
+            this.$colorList.on('click', '>li', function(){
+                self.selectColor(this)
+                self.$dataLocker.trigger('change')
+            })
+        }
 
         /*
          * Custom color
@@ -56,6 +59,8 @@
                 color: this.$customColor.data('hexColor'),
                 chooseText: $.oc.lang.get('colorpicker.choose', 'Ok'),
                 cancelText: '⨯',
+                appendTo: 'parent',
+                disabled: this.options.disabled,
                 hide: function(color) {
                     var hex = color ? color.toHexString() : ''
                     self.$customColorSpan.css('background', hex)
@@ -96,6 +101,10 @@
             .siblings().removeClass('active')
 
         this.setColor($item.data('hexColor'))
+
+        if($item.data('hexColor').length > 0) {
+            $item.addClass('sp-clear-display')
+        }
     }
 
     // COLORPICKER PLUGIN DEFINITION

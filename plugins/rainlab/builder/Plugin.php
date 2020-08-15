@@ -1,10 +1,14 @@
 <?php namespace RainLab\Builder;
 
 use Event;
+use Lang;
 use Backend;
 use System\Classes\PluginBase;
+use System\Classes\CombineAssets;
 use RainLab\Builder\Classes\StandardControlsRegistry;
 use RainLab\Builder\Classes\StandardBehaviorsRegistry;
+use Illuminate\Support\Facades\Validator;
+use RainLab\Builder\Rules\Reserved;
 
 class Plugin extends PluginBase
 {
@@ -31,7 +35,7 @@ class Plugin extends PluginBase
     {
         return [
             'rainlab.builder.manage_plugins' => [
-                'tab' => 'rainlab.builder::lang.plugin.name', 
+                'tab' => 'rainlab.builder::lang.plugin.name',
                 'label' => 'rainlab.builder::lang.plugin.manage_plugins']
         ];
     }
@@ -119,13 +123,35 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        Event::listen('pages.builder.registerControls', function($controlLibrary) {
+        Event::listen('pages.builder.registerControls', function ($controlLibrary) {
             new StandardControlsRegistry($controlLibrary);
         });
 
-        Event::listen('pages.builder.registerControllerBehaviors', function($behaviorLibrary) {
+        Event::listen('pages.builder.registerControllerBehaviors', function ($behaviorLibrary) {
             new StandardBehaviorsRegistry($behaviorLibrary);
         });
 
+        // Register reserved keyword validation
+        Event::listen('translator.beforeResolve', function ($key, $replaces, $locale) {
+            if ($key === 'validation.reserved') {
+                return Lang::get('rainlab.builder::lang.validation.reserved');
+            }
+        });
+
+        Validator::extend('reserved', Reserved::class);
+        Validator::replacer('reserved', function ($message, $attribute, $rule, $parameters) {
+            // Fixes lowercase attribute names in the new plugin modal form
+            return ucfirst($message);
+        });
+    }
+
+    public function register()
+    {
+        /*
+         * Register asset bundles
+         */
+        CombineAssets::registerCallback(function ($combiner) {
+            $combiner->registerBundle('$/rainlab/builder/assets/js/build.js');
+        });
     }
 }

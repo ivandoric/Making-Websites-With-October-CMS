@@ -85,6 +85,7 @@ class ResetPassword extends ComponentBase
 
         $data = [
             'name' => $user->name,
+            'username' => $user->username,
             'link' => $link,
             'code' => $code
         ];
@@ -101,7 +102,7 @@ class ResetPassword extends ComponentBase
     {
         $rules = [
             'code'     => 'required',
-            'password' => 'required|between:4,255'
+            'password' => 'required|between:' . UserModel::getMinPasswordLength() . ',255'
         ];
 
         $validation = Validator::make(post(), $rules);

@@ -4586,7 +4586,7 @@ ace.require('ace/config').set('basePath',this.options.vendorPath)
 editor.setOptions({enableEmmet:options.enableEmmet,enableBasicAutocompletion:options.autocompletion==='basic',enableSnippets:options.enableSnippets,enableLiveAutocompletion:options.autocompletion==='live'})
 editor.renderer.setScrollMargin(options.margin,options.margin,0,0)
 editor.renderer.setPadding(options.margin)
-this.$toolbar.find('>ul>li>a').each(function(){var abbr=$(this).find('>abbr'),label=abbr.text(),help=abbr.attr('title'),title=label+' (<strong>'+help+'</strong>)';$(this).attr('title',title)}).tooltip({delay:500,placement:'bottom',html:true});this.$fullscreenDisable.hide()
+this.$toolbar.find('>ul>li>a').each(function(){var abbr=$(this).find('>abbr'),label=abbr.text(),help=abbr.attr('title'),title=label+' (<strong>'+help+'</strong>)';$(this).attr('title',title)}).tooltip({delay:500,placement:'top',html:true});this.$fullscreenDisable.hide()
 this.$fullscreenEnable.on('click.codeeditor','>a',$.proxy(this.toggleFullscreen,this))
 this.$fullscreenDisable.on('click.codeeditor','>a',$.proxy(this.toggleFullscreen,this))
 this.$searchboxDisable.hide()
@@ -4595,7 +4595,7 @@ this.$searchboxDisable.on('click.codeeditor','>a',$.proxy(this.toggleSearchbox,t
 this.$replaceboxDisable.hide()
 this.$replaceboxEnable.on('click.codeeditor','>a',$.proxy(this.toggleReplacebox,this))
 this.$replaceboxDisable.on('click.codeeditor','>a',$.proxy(this.toggleReplacebox,this))
-this.$el.hotKey({hotkey:'esc',hotkeyMac:'esc',callback:this.proxy(this.onEscape)})
+this.$el.hotKey({hotkey:'esc',callback:this.proxy(this.onEscape)})
 editor.commands.addCommand({name:'toggleFullscreen',bindKey:{win:'Ctrl+Shift+F',mac:'Ctrl+Shift+F'},exec:$.proxy(this.toggleFullscreen,this),readOnly:true})}
 CodeEditor.prototype.dispose=function(){if(this.$el===null)
 return

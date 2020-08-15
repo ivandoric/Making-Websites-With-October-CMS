@@ -36,3 +36,6 @@
 1.0.13:
     - 'Updated table watchlearn_movies_'
     - builder_table_update_watchlearn_movies__4.php
+1.0.14:
+    - 'Updated table watchlearn_movies_'
+    - builder_table_update_watchlearn_movies__5.php

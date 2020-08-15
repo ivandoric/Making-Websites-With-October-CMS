@@ -7,7 +7,8 @@ return [
         'tab' => 'Felhasználók',
         'access_users' => 'Fiókok kezelése',
         'access_groups' => 'Csoportok kezelése',
-        'access_settings' => 'Beállítások kezelése'
+        'access_settings' => 'Beállítások kezelése',
+        'impersonate_user' => 'Átjelentkezett felhasználók'
     ],
     'users' => [
         'menu_label' => 'Felhasználók',
@@ -28,6 +29,9 @@ return [
         'convert_guest_confirm' => 'Legyen átkonvertálva teljes értékű felhasználóvá?',
         'convert_guest_manually' => 'Felhasználóvá konvertálás',
         'convert_guest_success' => 'A felhasználó konvertálása sikeresen megtörtént.',
+        'impersonate_user' => 'Átjelentkezés a fiókba',
+        'impersonate_confirm' => 'Biztos benne, hogy átjelentkezik a felhasználó saját fiókjába? Ezáltal a jelenlegi munkamenetből ki lesz jelentkeztetve.',
+        'impersonate_success' => 'Sikeresen átjelentkezett a másik fiókba',
         'delete_confirm' => 'Valóban törölni akarja ezt a felhasználót?',
         'unban_user' => 'Felhasználó engedélyezése',
         'unban_confirm' => 'Valóban engedélyezni akarja ezt a felhasználót?',
@@ -67,6 +71,7 @@ return [
         'activation_tab' => 'Aktiválás',
         'signin_tab' => 'Bejelentkezés',
         'registration_tab' => 'Regisztráció',
+        'profile_tab' => 'Profil',
         'notifications_tab' => 'Értesítések',
         'allow_registration' => 'Regisztráció engedélyezése',
         'allow_registration_comment' => 'Tiltás esetén csak az adminisztrátorok adhatnak hozzá felhasználót.',
@@ -82,10 +87,17 @@ return [
         'require_activation_comment' => 'A felhasználóknak aktivált fiókkal kell rendelkezniük a bejelentkezéshez.',
         'use_throttle' => 'Kísérletek késleltetése',
         'use_throttle_comment' => 'Az ismétlődő sikertelen bejelentkezések ideiglenesen felfüggesztik a felhasználót.',
+        'use_register_throttle' => 'Többszörös regisztráció',
+        'use_register_throttle_comment' => 'Akadályozzon meg több regisztrációt ugyanarról az IP-ről, ha röviddel egymás után történnek.',
         'block_persistence' => 'Egyidejű munkamenet',
         'block_persistence_comment' => 'Engedélyezés esetén a felhasználók nem tudnak bejelentkezni egyszerre több eszközről.',
         'login_attribute' => 'Bejelentkezési azonosító',
         'login_attribute_comment' => 'Válassza ki, hogy milyen felhasználói adatot kell használni a bejelentkezéshez.',
+        'remember_login' => 'Emlékezzen a felhasználóra.',
+        'remember_login_comment' => 'Válassza ki az alábbiak közül a munkamenet időtartalmát.',
+        'remember_always' => 'Mindig',
+        'remember_never' => 'Soha',
+        'remember_ask' => 'Kérdezzen rá'
     ],
     'user' => [
         'label' => 'Felhasználó',
@@ -117,7 +129,9 @@ return [
         'block_mail' => 'Az összes kimenő levél tiltása ennél a felhasználónál.',
         'status_guest' => 'Vendég',
         'status_activated' => 'Aktivált',
-        'status_registered' => 'Regisztrált'
+        'status_registered' => 'Regisztrált',
+        'created_ip_address' => 'Létrehozott IP cím',
+        'last_ip_address' => 'Legutóbbi IP cím'
     ],
     'group' => [
         'label' => 'Csoport',
@@ -151,13 +165,17 @@ return [
     'account' => [
         'account' => 'Fiók',
         'account_desc' => 'Felhasználó kezelési űrlap.',
+        'banned' => 'Sajnáljuk, ez a felhasználó jelenleg nincs aktiválva. Kérjük vegye fel velünk a kapcsolatot.',
         'redirect_to' => 'Átirányítás',
         'redirect_to_desc' => 'A lap neve az átirányításhoz frissítés, bejelentkezés vagy regisztrálás után.',
         'code_param' => 'Aktiválási kód',
         'code_param_desc' => 'A regisztrálás aktiválási kódjához használt oldal webcíme.',
+        'force_secure' => 'Biztonságos protokoll kényszerítése',
+        'force_secure_desc' => 'A webcím mindig legyen átírányítva HTTPS protokollra.',
         'invalid_user' => 'Nem található a megadott hitelesítési adatokkal rendelkező felhasználó.',
         'invalid_activation_code' => 'A megadott aktiválási kód érvénytelen.',
         'invalid_deactivation_pass' => 'A megadott jelszó érvénytelen.',
+        'invalid_current_pass' => 'A megadott jelenlegi jelszó érvénytelen.',
         'success_activation' => 'A fiók aktiválása sikerült.',
         'success_deactivation' => 'Sikeresen felfüggesztette a fiókját. További szép napot kívánunk!',
         'success_saved' => 'Sikerült menteni a beállításokat!',
@@ -165,6 +183,7 @@ return [
         'already_active' => 'Már aktiválta a fiókját!',
         'activation_email_sent' => 'Az aktiválási e-mail elküldése sikeresen megtörtént.',
         'registration_disabled' => 'A regisztráció jelenleg tiltva van az oldalon.',
+        'registration_throttled' => 'Újbóli regisztráció nem engedélyezett. Kérjük próbálja meg később.',
         'sign_in' => 'Bejelentkezés',
         'register' => 'Regisztráció',
         'full_name' => 'Teljes név',
@@ -172,7 +191,9 @@ return [
         'password' => 'Jelszó',
         'login' => 'Bejelentkezés',
         'new_password' => 'Új jelszó',
-        'new_password_confirm' => 'Új jelszó megerősítése'
+        'new_password_confirm' => 'Új jelszó megerősítése',
+        'update_requires_password' => 'Biztonságos adatmódosítás',
+        'update_requires_password_comment' => 'A profil megváltoztatásakor a rendszer elkéri a felhasználó jelenlegi jelszavát.'
     ],
     'reset_password' => [
         'reset_password' => 'Új jelszó megadása',
@@ -192,6 +213,7 @@ return [
         'allowed_groups_description' => 'Válassza ki az engedélyezni kívánt csoportokat vagy egyiket sem az összes elfogadásához.',
         'redirect_title' => 'Átirányítás',
         'redirect_desc' => 'Az átirányítandó lap neve, ha a hozzáférés meg van tagadva.',
-        'logout' => 'Sikeresen kijelentkezett!'
+        'logout' => 'Sikeresen kijelentkezett!',
+        'stop_impersonate_success' => 'Sikeresen visszajelentkezett az eredeti profiljába.'
     ]
 ];

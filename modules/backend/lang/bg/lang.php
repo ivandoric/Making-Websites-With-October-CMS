@@ -19,9 +19,6 @@ return [
             'help' => "Вие нямате нужните права за да видите тази страница.",
             'cms_link' => 'Върни се към администраторския-панел'
         ],
-        'invalid_token' => [
-            'label' => 'Невалиден код за сигурност (token)'
-        ]
     ],
     'partial' => [
         'not_found_name' => "Частичната страница ':name' не е намерена."
@@ -136,7 +133,6 @@ return [
         'setup_title' => 'Настройка на списък',
         'setup_help' => 'Използвайте тикчетата, за да изберете колони, които искате да видите в списъка. Можете да промените позицията на колони, като ги плъзнете нагоре или надолу.',
         'records_per_page' => 'Записи на страница',
-        'records_per_page_help' => 'Select the number of records per page to display. Please note that high number of records on a single page can reduce performance.',
         'records_per_page_help' => 'Изберете брой на записи за показване на страница. Моля, имайте предвид, че голям брой записи на една страница може да забави работата на страницата.',
         'delete_selected' => 'Изтрии избраните',
         'delete_selected_empty' => 'Не са избрани записи за изтриване.',
@@ -202,8 +198,8 @@ return [
         'preview_no_files_message' => 'Все още няма качени файлове.',
         'preview_no_record_message' => 'Не е избран запис.',
         'select' => 'Избери',
-        'select_all' => 'всичко',
-        'select_none' => 'нищо',
+        'select_all' => 'Избери всички',
+        'select_none' => 'изберете никой',
         'select_placeholder' => 'моля изберете',
         'insert_row' => 'Вмъкни ред',
         'insert_row_below' => 'Вмъкни ред По-долу',

@@ -8,6 +8,7 @@ use Model;
 class Movie extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Sortable;
 
     /*
      * Validation
@@ -42,6 +43,8 @@ class Movie extends Model
             'order' => 'name'
         ]
     ];
+
+
 
     public $attachOne = [
         'poster' => 'System\Models\File'

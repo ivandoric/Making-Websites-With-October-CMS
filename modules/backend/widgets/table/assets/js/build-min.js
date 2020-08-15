@@ -21,8 +21,9 @@ this.clickHandler=this.onClick.bind(this)
 this.keydownHandler=this.onKeydown.bind(this)
 this.documentClickHandler=this.onDocumentClick.bind(this)
 this.toolbarClickHandler=this.onToolbarClick.bind(this)
-if(this.options.postback&&this.options.clientDataSourceClass=='client')
-this.formSubmitHandler=this.onFormSubmit.bind(this)
+if(this.options.postback&&this.options.clientDataSourceClass=='client'){if(!this.options.postbackHandlerName){var formHandler=this.$el.closest('form').data('request')
+this.options.postbackHandlerName=formHandler||'onSave'}
+this.formSubmitHandler=this.onFormSubmit.bind(this)}
 this.navigation=null
 this.search=null
 this.recordsAddedOrDeleted=0
@@ -266,20 +267,18 @@ return
 for(var i=0,len=this.options.columns.length;i<len;i++){var column=this.options.columns[i].key
 this.cellProcessors[column].onClick(ev)}
 var target=this.getEventTarget(ev,'TD')
-if(!target)
-return
-if(target.tagName!='TD')
-return
+if(!target){this.unfocusTable();return;}
+if(target.tagName!='TD'){this.unfocusTable();return;}
 this.focusCell(target,true)}
-Table.prototype.onKeydown=function(ev){if(ev.keyCode==65&&ev.altKey&&this.options.adding){if(!ev.shiftKey){this.addRecord('below')}
+Table.prototype.onKeydown=function(ev){if((ev.key==='a'||ev.key==='A')&&ev.altKey&&this.options.adding){if(!ev.shiftKey){this.addRecord('below')}
 else{this.addRecord('above')}
 this.stopEvent(ev)
 return}
-if(ev.keyCode==68&&ev.altKey&&this.options.deleting){this.deleteRecord()
+if((ev.key==='d'||ev.key==='D')&&ev.altKey&&this.options.deleting){this.deleteRecord()
 this.stopEvent(ev)
 return}
 for(var i=0,len=this.options.columns.length;i<len;i++){var column=this.options.columns[i].key
-this.cellProcessors[column].onKeyDown(ev)}
+if(this.cellProcessors[column].onKeyDown(ev)===false){return}}
 if(this.navigation.onKeydown(ev)===false){return}
 if(this.search.onKeydown(ev)===false){return}}
 Table.prototype.onFormSubmit=function(ev,data){if(data.handler==this.options.postbackHandlerName){this.unfocusTable()
@@ -385,7 +384,7 @@ if(dataContainer.value!=value){dataContainer.value=value
 this.markCellRowDirty(cellElement)
 this.notifyRowProcessorsOnChange(cellElement)
 if(suppressEvents===undefined||!suppressEvents){this.$el.trigger('oc.tableCellChanged',[this.getCellColumnName(cellElement),value,this.getCellRowIndex(cellElement)])}}}
-Table.DEFAULTS={clientDataSourceClass:'client',keyColumn:'id',recordsPerPage:false,data:null,postback:true,postbackHandlerName:'onSave',adding:true,deleting:true,toolbar:true,searching:false,rowSorting:false,height:false,dynamicHeight:false}
+Table.DEFAULTS={clientDataSourceClass:'client',keyColumn:'id',recordsPerPage:false,data:null,postback:true,postbackHandlerName:null,adding:true,deleting:true,toolbar:true,searching:false,rowSorting:false,height:false,dynamicHeight:false}
 var old=$.fn.table
 $.fn.table=function(option){var args=Array.prototype.slice.call(arguments,1),result=undefined
 this.each(function(){var $this=$(this)
@@ -529,15 +528,15 @@ if(focusRow)
 this.focusCell(focusRow,cellIndex)
 else
 this.focusCell('top',cellIndex)}}
-Navigation.prototype.onKeydown=function(ev){if(ev.keyCode==40)
+Navigation.prototype.onKeydown=function(ev){if(ev.key==='ArrowDown')
 return this.navigateDown(ev)
-else if(ev.keyCode==38)
+else if(ev.key==='ArrowUp')
 return this.navigateUp(ev)
-else if(ev.keyCode==37)
+else if(ev.key==='ArrowLeft')
 return this.navigateLeft(ev)
-if(ev.keyCode==39)
+if(ev.key==='ArrowRight')
 return this.navigateRight(ev)
-if(ev.keyCode==9)
+if(ev.key==='Tab')
 return this.navigateNext(ev)}
 Navigation.prototype.onClick=function(ev){var target=this.tableObj.getEventTarget(ev,'A')
 if(!target||!$(target).hasClass('pagination-link'))
@@ -572,7 +571,7 @@ Search.prototype.searchEnabled=function(){return this.tableObj.options.searching
 Search.prototype.performSearch=function(query,onSuccess){var isDirty=this.activeQuery!=query
 this.activeQuery=query
 if(isDirty){this.tableObj.updateDataTable(onSuccess)}}
-Search.prototype.onKeydown=function(ev){if(ev.keyCode==9){this.onClick(ev)
+Search.prototype.onKeydown=function(ev){if(ev.key==='Tab'){this.onClick(ev)
 return}
 if(!this.isActive){return}
 var self=this
@@ -767,7 +766,7 @@ checkbox.setAttribute('tabindex','0')
 if(value&&value!=0&&value!="false"){checkbox.setAttribute('class','checked')}
 cellContentContainer.appendChild(checkbox)}
 CheckboxProcessor.prototype.onFocus=function(cellElement,isClick){cellElement.querySelector('div[data-checkbox-element]').focus()}
-CheckboxProcessor.prototype.onKeyDown=function(ev){if(ev.keyCode==32)
+CheckboxProcessor.prototype.onKeyDown=function(ev){if(ev.key==='(Space character)'||ev.key==='Spacebar'||ev.key===' ')
 this.onClick(ev)}
 CheckboxProcessor.prototype.onClick=function(ev){var target=this.tableObj.getEventTarget(ev,'DIV')
 if(target.getAttribute('data-checkbox-element')){var container=this.getCheckboxContainerNode(target)
@@ -789,20 +788,26 @@ throw new Error("The $.oc.table namespace is not defined. Make sure that the tab
 throw new Error("The $.oc.table.processor namespace is not defined. Make sure that the table.processor.base.js script is loaded.");var Base=$.oc.table.processor.base,BaseProto=Base.prototype
 var DropdownProcessor=function(tableObj,columnName,columnConfiguration){this.itemListElement=null
 this.cachedOptionPromises={}
+this.searching=false
+this.searchQuery=null
+this.searchInterval=null
 this.itemClickHandler=this.onItemClick.bind(this)
 this.itemKeyDownHandler=this.onItemKeyDown.bind(this)
+this.itemMouseMoveHandler=this.onItemMouseMove.bind(this)
 Base.call(this,tableObj,columnName,columnConfiguration)}
 DropdownProcessor.prototype=Object.create(BaseProto)
 DropdownProcessor.prototype.constructor=DropdownProcessor
 DropdownProcessor.prototype.dispose=function(){this.unregisterListHandlers()
 this.itemClickHandler=null
 this.itemKeyDownHandler=null
+this.itemMouseMoveHandler=null
 this.itemListElement=null
 this.cachedOptionPromises=null
 BaseProto.dispose.call(this)}
 DropdownProcessor.prototype.unregisterListHandlers=function(){if(this.itemListElement)
 {this.itemListElement.removeEventListener('click',this.itemClickHandler)
-this.itemListElement.removeEventListener('keydown',this.itemKeyDownHandler)}}
+this.itemListElement.removeEventListener('keydown',this.itemKeyDownHandler)
+this.itemListElement.removeEventListener('mousemove',this.itemMouseMoveHandler)}}
 DropdownProcessor.prototype.renderCell=function(value,cellContentContainer){var viewContainer=this.createViewContainer(cellContentContainer,'...')
 this.fetchOptions(cellContentContainer.parentNode,function renderCellFetchOptions(options){if(options[value]!==undefined)
 viewContainer.textContent=options[value]
@@ -825,6 +830,7 @@ self=this
 this.itemListElement=document.createElement('div')
 this.itemListElement.addEventListener('click',this.itemClickHandler)
 this.itemListElement.addEventListener('keydown',this.itemKeyDownHandler)
+this.itemListElement.addEventListener('mousemove',this.itemMouseMoveHandler)
 this.itemListElement.setAttribute('class','table-control-dropdown-list')
 this.itemListElement.style.width=cellContentContainer.offsetWidth+'px'
 this.itemListElement.style.left=containerPosition.left+'px'
@@ -866,37 +872,51 @@ return cachingKey}
 DropdownProcessor.prototype.getAbsolutePosition=function(element){var top=document.body.scrollTop,left=0
 do{top+=element.offsetTop||0;top-=element.scrollTop||0;left+=element.offsetLeft||0;element=element.offsetParent;}while(element)
 return{top:top,left:left}}
-DropdownProcessor.prototype.updateCellFromSelectedItem=function(selectedItem){this.tableObj.setCellValue(this.activeCell,selectedItem.getAttribute('data-value'))
-this.setViewContainerValue(this.activeCell,selectedItem.textContent)}
+DropdownProcessor.prototype.updateCellFromFocusedItem=function(focusedItem){if(!focusedItem){focusedItem=this.findFocusedItem();}
+this.setSelectedItem(focusedItem);}
 DropdownProcessor.prototype.findSelectedItem=function(){if(this.itemListElement)
 return this.itemListElement.querySelector('ul li.selected')
 return null}
+DropdownProcessor.prototype.setSelectedItem=function(item){if(!this.itemListElement)
+return null;if(item.tagName=='LI'&&this.itemListElement.contains(item)){this.itemListElement.querySelectorAll('ul li').forEach(function(option){option.removeAttribute('class');});item.setAttribute('class','selected');}
+this.tableObj.setCellValue(this.activeCell,item.getAttribute('data-value'))
+this.setViewContainerValue(this.activeCell,item.textContent)}
+DropdownProcessor.prototype.findFocusedItem=function(){if(this.itemListElement)
+return this.itemListElement.querySelector('ul li:focus')
+return null}
 DropdownProcessor.prototype.onItemClick=function(ev){var target=this.tableObj.getEventTarget(ev)
-if(target.tagName=='LI'){this.updateCellFromSelectedItem(target)
-var selected=this.findSelectedItem()
-if(selected)
-selected.setAttribute('class','')
-target.setAttribute('class','selected')
+if(target.tagName=='LI'){target.focus();this.updateCellFromFocusedItem(target)
 this.hideDropdown()}}
 DropdownProcessor.prototype.onItemKeyDown=function(ev){if(!this.itemListElement)
 return
-if(ev.keyCode==40||ev.keyCode==38)
-{var selected=this.findSelectedItem(),newSelectedItem=selected.nextElementSibling
-if(ev.keyCode==38)
-newSelectedItem=selected.previousElementSibling
-if(newSelectedItem){selected.setAttribute('class','')
-newSelectedItem.setAttribute('class','selected')
-newSelectedItem.focus()}
+if(ev.key==='ArrowDown'||ev.key==='ArrowUp')
+{var focused=this.findFocusedItem(),newFocusedItem=focused.nextElementSibling
+if(ev.key==='ArrowUp')
+newFocusedItem=focused.previousElementSibling
+if(newFocusedItem){newFocusedItem.focus()}
 return}
-if(ev.keyCode==13||ev.keyCode==32){this.updateCellFromSelectedItem(this.findSelectedItem())
+if(ev.key==='Enter'||ev.key==='(Space character)'||ev.key==='Spacebar'||ev.key===' '){this.updateCellFromFocusedItem()
 this.hideDropdown()
 return}
-if(ev.keyCode==9){this.updateCellFromSelectedItem(this.findSelectedItem())
+if(ev.key==='Tab'){this.updateCellFromFocusedItem()
 this.tableObj.navigation.navigateNext(ev)
-this.tableObj.stopEvent(ev)}
-if(ev.keyCode==27){this.hideDropdown()}}
-DropdownProcessor.prototype.onKeyDown=function(ev){if(ev.keyCode==32)
-this.showDropdown()}
+this.tableObj.stopEvent(ev)
+return}
+if(ev.key==='Escape'){this.hideDropdown()
+return}
+this.searchByTextInput(ev,true);}
+DropdownProcessor.prototype.onItemMouseMove=function(ev){if(!this.itemListElement)
+return
+var target=this.tableObj.getEventTarget(ev)
+if(target.tagName=='LI'){target.focus();}}
+DropdownProcessor.prototype.onKeyDown=function(ev){if(!this.itemListElement)
+return
+if((ev.key==='(Space character)'||ev.key==='Spacebar'||ev.key===' ')&&!this.searching){this.showDropdown()}else if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){var selected=this.findSelectedItem(),newSelectedItem;if(!selected){if(ev.key==='ArrowUp'){return false}
+newSelectedItem=this.itemListElement.querySelector('ul li:first-child')}else{newSelectedItem=selected.nextElementSibling
+if(ev.key==='ArrowUp')
+newSelectedItem=selected.previousElementSibling}
+if(newSelectedItem){this.setSelectedItem(newSelectedItem);}
+return false}else{this.searchByTextInput(ev);}}
 DropdownProcessor.prototype.onRowValueChanged=function(columnName,cellElement){if(!this.columnConfiguration.dependsOn)
 return
 var dependsOnColumn=false,dependsOn=this.columnConfiguration.dependsOn
@@ -912,6 +932,12 @@ viewContainer=null})}
 DropdownProcessor.prototype.elementBelongsToProcessor=function(element){if(!this.itemListElement)
 return false
 return this.tableObj.parentContainsElement(this.itemListElement,element)}
+DropdownProcessor.prototype.searchByTextInput=function(ev,focusOnly){if(focusOnly===undefined){focusOnly=false;}
+var character=ev.key;if(character.length===1||character==='Space'){if(!this.searching){this.searching=true;this.searchQuery='';}
+this.searchQuery+=(character==='Space')?' ':character;var validItem=null;var query=this.searchQuery;this.itemListElement.querySelectorAll('ul li').forEach(function(item){if(validItem===null&&item.dataset.value&&item.dataset.value.toLowerCase().indexOf(query.toLowerCase())===0){validItem=item;}});if(validItem){if(focusOnly===true){validItem.focus();}else{this.setSelectedItem(validItem);}
+if(this.searchInterval){clearTimeout(this.searchInterval);}
+this.searchInterval=setTimeout(this.cancelTextSearch.bind(this),1000);}else{this.cancelTextSearch();}}}
+DropdownProcessor.prototype.cancelTextSearch=function(){this.searching=false;this.searchQuery=null;this.searchInterval=null;}
 $.oc.table.processor.dropdown=DropdownProcessor;}(window.jQuery);+function($){"use strict";if($.oc.table===undefined)
 throw new Error("The $.oc.table namespace is not defined. Make sure that the table.js script is loaded.");if($.oc.table.processor===undefined)
 throw new Error("The $.oc.table.processor namespace is not defined. Make sure that the table.processor.base.js script is loaded.");var Base=$.oc.table.processor.string,BaseProto=Base.prototype

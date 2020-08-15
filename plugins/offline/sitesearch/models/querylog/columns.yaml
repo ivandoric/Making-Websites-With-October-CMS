@@ -1,0 +1,22 @@
+columns:
+    id:
+        label: 'offline.sitesearch::lang.log.id'
+        type: number
+    query:
+        label: 'offline.sitesearch::lang.log.query'
+        type: text
+    domain:
+        label: 'offline.sitesearch::lang.log.domain'
+        type: text
+    location:
+        label: 'offline.sitesearch::lang.log.location'
+        type: text
+    useragent:
+        label: 'offline.sitesearch::lang.log.useragent'
+        type: text
+    session_id:
+        label: 'offline.sitesearch::lang.log.session_id'
+        type: text
+    created_at:
+        label: 'offline.sitesearch::lang.log.created_at'
+        type: datetime

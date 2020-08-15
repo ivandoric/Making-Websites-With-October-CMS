@@ -33,6 +33,10 @@
         })
 
         $(document).on('click', '[data-snippet]', function() {
+            if ($(this).hasClass('inspector-open')) {
+                return
+            }
+
             $.oc.inspector.manager.createInspector(this)
             return false
         })
@@ -65,7 +69,7 @@
             })
 
             // If a component-based snippet was added, make sure that
-            // its code is unique, as it will be used as a component 
+            // its code is unique, as it will be used as a component
             // alias.
 
             snippetCode = this.generateUniqueComponentSnippetCode(componentClass, snippetCode, $pageForm)

@@ -4,8 +4,8 @@ use Url;
 use Lang;
 use Flash;
 use Config;
+use Event;
 use Request;
-use Response;
 use Exception;
 use BackendMenu;
 use Cms\Widgets\AssetList;
@@ -17,11 +17,13 @@ use Cms\Classes\Router;
 use Cms\Classes\Layout;
 use Cms\Classes\Partial;
 use Cms\Classes\Content;
+use Cms\Classes\CmsObject;
 use Cms\Classes\CmsCompoundObject;
 use Cms\Classes\ComponentManager;
 use Cms\Classes\ComponentPartial;
+use Cms\Helpers\Cms as CmsHelpers;
 use Backend\Classes\Controller;
-use Backend\Classes\WidgetManager;
+use System\Helpers\DateTime;
 use October\Rain\Router\Router as RainRouter;
 use ApplicationException;
 use Cms\Classes\Asset;
@@ -58,6 +60,24 @@ class Index extends Controller
     public function __construct()
     {
         parent::__construct();
+
+        Event::listen('backend.form.extendFieldsBefore', function ($widget) {
+            if (!$widget->getController() instanceof Index) {
+                return;
+            }
+            if (!$widget->model instanceof CmsCompoundObject) {
+                return;
+            }
+
+            if (empty($widget->secondaryTabs['fields'])) {
+                return;
+            }
+
+            if (array_key_exists('code', $widget->secondaryTabs['fields']) && CmsHelpers::safeModeEnabled()) {
+                $widget->secondaryTabs['fields']['safemode_notice']['hidden'] = false;
+                $widget->secondaryTabs['fields']['code']['readOnly'] = true;
+            };
+        });
 
         BackendMenu::setContext('October.Cms', 'cms', true);
 
@@ -97,6 +117,10 @@ class Index extends Controller
     // Pages
     //
 
+    /**
+     * Index page action
+     * @return void
+     */
     public function index()
     {
         $this->addJs('/modules/cms/assets/js/october.cmspage.js', 'core');
@@ -110,13 +134,17 @@ class Index extends Controller
 
         $this->bodyClass = 'compact-container';
         $this->pageTitle = 'cms::lang.cms.menu_label';
-        $this->pageTitleTemplate = '%s '.trans($this->pageTitle);
+        $this->pageTitleTemplate = '%s '.Lang::get($this->pageTitle);
 
         if (Request::ajax() && Request::input('formWidgetAlias')) {
             $this->bindFormWidgetToController();
         }
     }
 
+    /**
+     * Opens an existing template from the index page
+     * @return array
+     */
     public function index_onOpenTemplate()
     {
         $this->validateRequestTheme();
@@ -126,6 +154,9 @@ class Index extends Controller
         $widget = $this->makeTemplateFormWidget($type, $template);
 
         $this->vars['templatePath'] = Request::input('path');
+        $this->vars['lastModified'] = DateTime::makeCarbon($template->mtime);
+        $this->vars['canCommit'] = $this->canCommitTemplate($template);
+        $this->vars['canReset'] = $this->canResetTemplate($template);
 
         if ($type === 'page') {
             $router = new RainRouter;
@@ -143,6 +174,10 @@ class Index extends Controller
         ];
     }
 
+    /**
+     * Saves the template currently open
+     * @return array
+     */
     public function onSave()
     {
         $this->validateRequestTheme();
@@ -156,7 +191,7 @@ class Index extends Controller
         $templateData = [];
 
         $settings = array_get($saveData, 'settings', []) + Request::input('settings', []);
-        $settings = $this->upgradeSettings($settings);
+        $settings = $this->upgradeSettings($settings, $template->settings);
 
         if ($settings) {
             $templateData['settings'] = $settings;
@@ -181,44 +216,54 @@ class Index extends Controller
             $templateData['code'] = $this->convertLineEndings($templateData['code']);
         }
 
-        if (!Request::input('templateForceSave') && $template->mtime) {
-            if (Request::input('templateMtime') != $template->mtime) {
-                throw new ApplicationException('mtime-mismatch');
-            }
+        if (
+            !Request::input('templateForceSave') && $template->mtime
+            && Request::input('templateMtime') != $template->mtime
+        ) {
+            throw new ApplicationException('mtime-mismatch');
         }
 
         $template->attributes = [];
         $template->fill($templateData);
         $template->save();
 
-        /*
-         * Extensibility
+        /**
+         * @event cms.template.save
+         * Fires after a CMS template (page|partial|layout|content|asset) has been saved.
+         *
+         * Example usage:
+         *
+         *     Event::listen('cms.template.save', function ((\Cms\Controllers\Index) $controller, (mixed) $templateObject, (string) $type) {
+         *         \Log::info("A $type has been saved");
+         *     });
+         *
+         * Or
+         *
+         *     $CmsIndexController->bindEvent('template.save', function ((mixed) $templateObject, (string) $type) {
+         *         \Log::info("A $type has been saved");
+         *     });
+         *
          */
         $this->fireSystemEvent('cms.template.save', [$template, $type]);
 
         Flash::success(Lang::get('cms::lang.template.saved'));
 
-        $result = [
-            'templatePath'  => $template->fileName,
-            'templateMtime' => $template->mtime,
-            'tabTitle'      => $this->getTabTitle($type, $template)
-        ];
-
-        if ($type === 'page') {
-            $result['pageUrl'] = Url::to($template->url);
-            $router = new Router($this->theme);
-            $router->clearCache();
-            CmsCompoundObject::clearCache($this->theme);
-        }
-
-        return $result;
+        return $this->getUpdateResponse($template, $type);
     }
 
+    /**
+     * Displays a form that suggests the template has been edited elsewhere
+     * @return string
+     */
     public function onOpenConcurrencyResolveForm()
     {
         return $this->makePartial('concurrency_resolve_form');
     }
 
+    /**
+     * Create a new template
+     * @return array
+     */
     public function onCreateTemplate()
     {
         $type = Request::input('type');
@@ -231,6 +276,8 @@ class Index extends Controller
         $widget = $this->makeTemplateFormWidget($type, $template);
 
         $this->vars['templatePath'] = '';
+        $this->vars['canCommit'] = $this->canCommitTemplate($template);
+        $this->vars['canReset'] = $this->canResetTemplate($template);
 
         return [
             'tabTitle' => $this->getTabTitle($type, $template),
@@ -243,6 +290,10 @@ class Index extends Controller
         ];
     }
 
+    /**
+     * Deletes multiple templates at the same time
+     * @return array
+     */
     public function onDeleteTemplates()
     {
         $this->validateRequestTheme();
@@ -264,8 +315,22 @@ class Index extends Controller
             $error = $ex->getMessage();
         }
 
-        /*
-         * Extensibility
+        /**
+         * @event cms.template.delete
+         * Fires after a CMS template (page|partial|layout|content|asset) has been deleted.
+         *
+         * Example usage:
+         *
+         *     Event::listen('cms.template.delete', function ((\Cms\Controllers\Index) $controller, (string) $type) {
+         *         \Log::info("A $type has been deleted");
+         *     });
+         *
+         * Or
+         *
+         *     $CmsIndexController->bindEvent('template.delete', function ((string) $type) {
+         *         \Log::info("A $type has been deleted");
+         *     });
+         *
          */
         $this->fireSystemEvent('cms.template.delete', [$type]);
 
@@ -276,6 +341,10 @@ class Index extends Controller
         ];
     }
 
+    /**
+     * Deletes a template
+     * @return void
+     */
     public function onDelete()
     {
         $this->validateRequestTheme();
@@ -285,11 +354,15 @@ class Index extends Controller
         $this->loadTemplate($type, trim(Request::input('templatePath')))->delete();
 
         /*
-         * Extensibility
+         * Extensibility - documented above
          */
         $this->fireSystemEvent('cms.template.delete', [$type]);
     }
 
+    /**
+     * Returns list of available templates
+     * @return array
+     */
     public function onGetTemplateList()
     {
         $this->validateRequestTheme();
@@ -300,10 +373,14 @@ class Index extends Controller
         ];
     }
 
+    /**
+     * Remembers an open or closed state for a supplied token, for example, component folders.
+     * @return array
+     */
     public function onExpandMarkupToken()
     {
         if (!$alias = post('tokenName')) {
-            throw new ApplicationException(trans('cms::lang.component.no_records'));
+            throw new ApplicationException(Lang::get('cms::lang.component.no_records'));
         }
 
         // Can only expand components at this stage
@@ -312,37 +389,182 @@ class Index extends Controller
         }
 
         if (!($names = (array) post('component_names')) || !($aliases = (array) post('component_aliases'))) {
-            throw new ApplicationException(trans('cms::lang.component.not_found', ['name' => $alias]));
+            throw new ApplicationException(Lang::get('cms::lang.component.not_found', ['name' => $alias]));
         }
 
         if (($index = array_get(array_flip($aliases), $alias, false)) === false) {
-            throw new ApplicationException(trans('cms::lang.component.not_found', ['name' => $alias]));
+            throw new ApplicationException(Lang::get('cms::lang.component.not_found', ['name' => $alias]));
         }
 
         if (!$componentName = array_get($names, $index)) {
-            throw new ApplicationException(trans('cms::lang.component.not_found', ['name' => $alias]));
+            throw new ApplicationException(Lang::get('cms::lang.component.not_found', ['name' => $alias]));
         }
 
         $manager = ComponentManager::instance();
         $componentObj = $manager->makeComponent($componentName);
         $partial = ComponentPartial::load($componentObj, 'default');
+
+        if (!$partial) {
+            throw new ApplicationException(Lang::get('cms::lang.component.no_default_partial'));
+        }
+
         $content = $partial->getContent();
         $content = str_replace('__SELF__', $alias, $content);
 
         return $content;
     }
 
+    /**
+     * Commits the DB changes of a template to the filesystem
+     *
+     * @return array $response
+     */
+    public function onCommit()
+    {
+        $this->validateRequestTheme();
+        $type = Request::input('templateType');
+        $template = $this->loadTemplate($type, trim(Request::input('templatePath')));
+
+        if ($this->canCommitTemplate($template)) {
+            // Populate the filesystem with the template and then remove it from the db
+            $datasource = $this->getThemeDatasource();
+            $datasource->pushToSource($template, 'filesystem');
+            $datasource->removeFromSource($template, 'database');
+
+            Flash::success(Lang::get('cms::lang.editor.commit_success', ['type' => $type]));
+        }
+
+        return array_merge($this->getUpdateResponse($template, $type), ['forceReload' => true]);
+    }
+
+    /**
+     * Resets a template to the version on the filesystem
+     *
+     * @return array $response
+     */
+    public function onReset()
+    {
+        $this->validateRequestTheme();
+        $type = Request::input('templateType');
+        $template = $this->loadTemplate($type, trim(Request::input('templatePath')));
+
+        if ($this->canResetTemplate($template)) {
+            // Remove the template from the DB
+            $datasource = $this->getThemeDatasource();
+            $datasource->removeFromSource($template, 'database');
+
+            Flash::success(Lang::get('cms::lang.editor.reset_success', ['type' => $type]));
+        }
+
+        return array_merge($this->getUpdateResponse($template, $type), ['forceReload' => true]);
+    }
+
     //
-    // Methods for the internal use
+    // Methods for internal use
     //
 
+    /**
+     * Get the response to return in an AJAX request that updates a template
+     *
+     * @param object $template The template that has been affected
+     * @param string $type The type of template being affected
+     * @return array $result;
+     */
+    protected function getUpdateResponse($template, string $type)
+    {
+        $result = [
+            'templatePath'  => $template->fileName,
+            'templateMtime' => $template->mtime,
+            'tabTitle'      => $this->getTabTitle($type, $template)
+        ];
+
+        if ($type === 'page') {
+            $result['pageUrl'] = Url::to($template->url);
+            $router = new Router($this->theme);
+            $router->clearCache();
+            CmsCompoundObject::clearCache($this->theme);
+        }
+
+        $result['canCommit'] = $this->canCommitTemplate($template);
+        $result['canReset'] = $this->canResetTemplate($template);
+
+        return $result;
+    }
+
+    /**
+     * Get the active theme's datasource
+     *
+     * @return \October\Rain\Halcyon\Datasource\DatasourceInterface
+     */
+    protected function getThemeDatasource()
+    {
+        return $this->theme->getDatasource();
+    }
+
+    /**
+     * Check to see if the provided template can be committed
+     * Only available in debug mode, the DB layer must be enabled, and the template must exist in the database
+     *
+     * @param CmsObject $template
+     * @return boolean
+     */
+    protected function canCommitTemplate($template)
+    {
+        if ($template instanceof Cms\Contracts\CmsObject === false) {
+            return false;
+        }
+
+        $result = false;
+
+        if (Config::get('app.debug', false) &&
+            Theme::databaseLayerEnabled() &&
+            $this->getThemeDatasource()->sourceHasModel('database', $template)
+        ) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check to see if the provided template can be reset
+     * Only available when the DB layer is enabled and the template exists in both the DB & Filesystem
+     *
+     * @param CmsObject $template
+     * @return boolean
+     */
+    protected function canResetTemplate($template)
+    {
+        if ($template instanceof Cms\Contracts\CmsObject === false) {
+            return false;
+        }
+
+        $result = false;
+
+        if (Theme::databaseLayerEnabled()) {
+            $datasource = $this->getThemeDatasource();
+            $result = $datasource->sourceHasModel('database', $template) && $datasource->sourceHasModel('filesystem', $template);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Validate that the current request is within the active theme
+     * @return void
+     */
     protected function validateRequestTheme()
     {
         if ($this->theme->getDirName() != Request::input('theme')) {
-            throw new ApplicationException(trans('cms::lang.theme.edit.not_match'));
+            throw new ApplicationException(Lang::get('cms::lang.theme.edit.not_match'));
         }
     }
 
+    /**
+     * Resolves a template type to its class name
+     * @param string $type
+     * @return string
+     */
     protected function resolveTypeClassName($type)
     {
         $types = [
@@ -354,45 +576,76 @@ class Index extends Controller
         ];
 
         if (!array_key_exists($type, $types)) {
-            throw new ApplicationException(trans('cms::lang.template.invalid_type'));
+            throw new ApplicationException(Lang::get('cms::lang.template.invalid_type'));
         }
 
         return $types[$type];
     }
 
+    /**
+     * Returns an existing template of a given type
+     * @param string $type
+     * @param string $path
+     * @return mixed
+     */
     protected function loadTemplate($type, $path)
     {
         $class = $this->resolveTypeClassName($type);
 
         if (!($template = call_user_func([$class, 'load'], $this->theme, $path))) {
-            throw new ApplicationException(trans('cms::lang.template.not_found'));
+            throw new ApplicationException(Lang::get('cms::lang.template.not_found'));
         }
 
-        /*
-         * Extensibility
+        /**
+         * @event cms.template.processSettingsAfterLoad
+         * Fires immediately after a CMS template (page|partial|layout|content|asset) has been loaded and provides an opportunity to interact with it.
+         *
+         * Example usage:
+         *
+         *     Event::listen('cms.template.processSettingsAfterLoad', function ((\Cms\Controllers\Index) $controller, (mixed) $templateObject) {
+         *         // Make some modifications to the $template object
+         *     });
+         *
+         * Or
+         *
+         *     $CmsIndexController->bindEvent('template.processSettingsAfterLoad', function ((mixed) $templateObject) {
+         *         // Make some modifications to the $template object
+         *     });
+         *
          */
         $this->fireSystemEvent('cms.template.processSettingsAfterLoad', [$template]);
 
         return $template;
     }
 
+    /**
+     * Creates a new template of a given type
+     * @param string $type
+     * @return mixed
+     */
     protected function createTemplate($type)
     {
         $class = $this->resolveTypeClassName($type);
 
         if (!($template = $class::inTheme($this->theme))) {
-            throw new ApplicationException(trans('cms::lang.template.not_found'));
+            throw new ApplicationException(Lang::get('cms::lang.template.not_found'));
         }
 
         return $template;
     }
 
+    /**
+     * Returns the text for a template tab
+     * @param string $type
+     * @param string $template
+     * @return string
+     */
     protected function getTabTitle($type, $template)
     {
         if ($type === 'page') {
             $result = $template->title ?: $template->getFileName();
             if (!$result) {
-                $result = trans('cms::lang.page.new');
+                $result = Lang::get('cms::lang.page.new');
             }
 
             return $result;
@@ -401,7 +654,7 @@ class Index extends Controller
         if ($type === 'partial' || $type === 'layout' || $type === 'content' || $type === 'asset') {
             $result = in_array($type, ['asset', 'content']) ? $template->getFileName() : $template->getBaseFileName();
             if (!$result) {
-                $result = trans('cms::lang.'.$type.'.new');
+                $result = Lang::get('cms::lang.'.$type.'.new');
             }
 
             return $result;
@@ -410,6 +663,13 @@ class Index extends Controller
         return $template->getFileName();
     }
 
+    /**
+     * Returns a form widget for a specified template type.
+     * @param string $type
+     * @param string $template
+     * @param string $alias
+     * @return Backend\Widgets\Form
+     */
     protected function makeTemplateFormWidget($type, $template, $alias = null)
     {
         $formConfigs = [
@@ -421,19 +681,23 @@ class Index extends Controller
         ];
 
         if (!array_key_exists($type, $formConfigs)) {
-            throw new ApplicationException(trans('cms::lang.template.not_found'));
+            throw new ApplicationException(Lang::get('cms::lang.template.not_found'));
         }
 
         $widgetConfig = $this->makeConfig($formConfigs[$type]);
         $widgetConfig->model = $template;
-        $widgetConfig->alias = $alias ?: 'form'.studly_case($type).md5($template->getFileName()).uniqid();
+        $widgetConfig->alias = $alias ?: 'form'.studly_case($type).md5($template->exists ? $template->getFileName() : uniqid());
 
-        $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
-
-        return $widget;
+        return $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
     }
 
-    protected function upgradeSettings($settings)
+    /**
+     * Processes the component settings so they are ready to be saved.
+     * @param array $settings The new settings for this template.
+     * @param array $prevSettings The previous settings for this template.
+     * @return array
+     */
+    protected function upgradeSettings($settings, $prevSettings)
     {
         /*
          * Handle component usage
@@ -444,28 +708,46 @@ class Index extends Controller
 
         if ($componentProperties !== null) {
             if ($componentNames === null || $componentAliases === null) {
-                throw new ApplicationException(trans('cms::lang.component.invalid_request'));
+                throw new ApplicationException(Lang::get('cms::lang.component.invalid_request'));
             }
 
             $count = count($componentProperties);
             if (count($componentNames) != $count || count($componentAliases) != $count) {
-                throw new ApplicationException(trans('cms::lang.component.invalid_request'));
+                throw new ApplicationException(Lang::get('cms::lang.component.invalid_request'));
             }
 
             for ($index = 0; $index < $count; $index++) {
                 $componentName = $componentNames[$index];
                 $componentAlias = $componentAliases[$index];
 
-                $section = $componentName;
-                if ($componentAlias != $componentName) {
-                    $section .= ' '.$componentAlias;
+                $isSoftComponent = (substr($componentAlias, 0, 1) === '@');
+                $componentName = ltrim($componentName, '@');
+                $componentAlias = ltrim($componentAlias, '@');
+
+                if ($componentAlias !== $componentName) {
+                    $section = $componentName . ' ' . $componentAlias;
+                } else {
+                    $section = $componentName;
+                }
+                if ($isSoftComponent) {
+                    $section = '@' . $section;
                 }
 
                 $properties = json_decode($componentProperties[$index], true);
-                unset($properties['oc.alias']);
-                unset($properties['inspectorProperty']);
-                unset($properties['inspectorClassName']);
-                $settings[$section] = $properties;
+                unset($properties['oc.alias'], $properties['inspectorProperty'], $properties['inspectorClassName']);
+
+                if (!$properties) {
+                    $oldComponentSettings = array_key_exists($section, $prevSettings['components'])
+                        ? $prevSettings['components'][$section]
+                        : null;
+                    if ($isSoftComponent && $oldComponentSettings) {
+                        $settings[$section] = $oldComponentSettings;
+                    } else {
+                        $settings[$section] = $properties;
+                    }
+                } else {
+                    $settings[$section] = $properties;
+                }
             }
         }
 
@@ -477,23 +759,69 @@ class Index extends Controller
             $settings['viewBag'] = $viewBag;
         }
 
-        /*
-         * Extensibility
+        /**
+         * @event cms.template.processSettingsBeforeSave
+         * Fires before a CMS template (page|partial|layout|content|asset) is saved and provides an opportunity to interact with the settings data. `$dataHolder` = {settings: []}
+         *
+         * Example usage:
+         *
+         *     Event::listen('cms.template.processSettingsBeforeSave', function ((\Cms\Controllers\Index) $controller, (object) $dataHolder) {
+         *         // Make some modifications to the $dataHolder object
+         *     });
+         *
+         * Or
+         *
+         *     $CmsIndexController->bindEvent('template.processSettingsBeforeSave', function ((object) $dataHolder) {
+         *         // Make some modifications to the $dataHolder object
+         *     });
+         *
          */
         $dataHolder = (object) ['settings' => $settings];
-
         $this->fireSystemEvent('cms.template.processSettingsBeforeSave', [$dataHolder]);
 
         return $dataHolder->settings;
     }
 
+    /**
+     * Finds a given component by its alias.
+     *
+     * If found, this will return the component's name, alias and properties.
+     *
+     * @param string $aliasQuery The alias to search for
+     * @param array $components The array of components to look within.
+     * @return array|null
+     */
+    protected function findComponentByAlias(string $aliasQuery, array $components = [])
+    {
+        $found = null;
+
+        foreach ($components as $name => $properties) {
+            list($name, $alias) = strpos($name, ' ') ? explode(' ', $name) : [$name, $name];
+
+            if (ltrim($alias, '@') === ltrim($aliasQuery, '@')) {
+                $found = [
+                    'name' => ltrim($name, '@'),
+                    'alias' => $alias,
+                    'properties' => $properties
+                ];
+                break;
+            }
+        }
+
+        return $found;
+    }
+
+    /**
+     * Binds the active form widget to the controller
+     * @return void
+     */
     protected function bindFormWidgetToController()
     {
         $alias = Request::input('formWidgetAlias');
         $type = Request::input('templateType');
         $object = $this->loadTemplate($type, Request::input('templatePath'));
-
         $widget = $this->makeTemplateFormWidget($type, $object, $alias);
+
         $widget->bindToController();
     }
 

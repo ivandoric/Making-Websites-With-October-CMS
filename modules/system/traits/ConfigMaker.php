@@ -5,7 +5,6 @@ use File;
 use Lang;
 use Event;
 use SystemException;
-use Backend\Classes\Controller;
 use stdClass;
 use Config;
 
@@ -52,7 +51,6 @@ trait ConfigMaker
          * Process config from file contents
          */
         else {
-
             if (isset($this->controller) && method_exists($this->controller, 'getConfigPath')) {
                 $configFile = $this->controller->getConfigPath($configFile);
             }
@@ -67,10 +65,21 @@ trait ConfigMaker
                 ));
             }
 
-            $config = Yaml::parse(File::get($configFile));
+            $config = Yaml::parseFile($configFile);
 
-            /*
-             * Extensibility
+            /**
+             * @event system.extendConfigFile
+             * Provides an opportunity to modify config files
+             *
+             * Example usage:
+             *
+             *     Event::listen('system.extendConfigFile', function ((string) $path, (array) $config) {
+             *         if ($path === '/plugins/author/plugin-name/controllers/mycontroller/config_relation.yaml') {
+             *             unset($config['property_value']['view']['recordUrl']);
+             *             return $config;
+             *         }
+             *     });
+             *
              */
             $publicFile = File::localToPublic($configFile);
             if ($results = Event::fire('system.extendConfigFile', [$publicFile, $config])) {
@@ -101,8 +110,8 @@ trait ConfigMaker
     }
 
     /**
-     * Makes a config object from an array, making the first level keys properties a new object.
-     * Property values are converted to camelCase and are not set if one already exists.
+     * Makes a config object from an array, making the first level keys properties of a new object.
+     *
      * @param array $configArray Config array.
      * @return stdClass The config object
      */
@@ -115,8 +124,7 @@ trait ConfigMaker
         }
 
         foreach ($configArray as $name => $value) {
-            $_name = camel_case($name);
-            $object->{$name} = $object->{$_name} = $value;
+            $object->{$name} = $value;
         }
 
         return $object;
@@ -183,8 +191,7 @@ trait ConfigMaker
     {
         $classFolder = strtolower(class_basename($class));
         $classFile = realpath(dirname(File::fromClass($class)));
-        $guessedPath = $classFile ? $classFile . '/' . $classFolder . $suffix : null;
-        return $guessedPath;
+        return $classFile ? $classFile . '/' . $classFolder . $suffix : null;
     }
 
     /**

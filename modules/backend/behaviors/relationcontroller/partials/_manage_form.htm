@@ -1,7 +1,11 @@
 <div id="<?= $relationManageWidget->getId('managePopup') ?>">
     <?php if ($relationManageId): ?>
 
-        <?= Form::ajax('onRelationManageUpdate', ['data-popup-load-indicator' => true, 'sessionKey' => $newSessionKey]) ?>
+        <?= Form::ajax('onRelationManageUpdate', [
+            'data-popup-load-indicator' => true,
+            'sessionKey' => $newSessionKey,
+            'data-request-success' => "$.oc.relationBehavior.changed('" . e($this->vars['relationField']) . "', 'updated')",
+        ]) ?>
 
             <!-- Passable fields -->
             <input type="hidden" name="manage_id" value="<?= $relationManageId ?>" />
@@ -47,7 +51,11 @@
 
     <?php else: ?>
 
-        <?= Form::ajax('onRelationManageCreate', ['data-popup-load-indicator' => true, 'sessionKey' => $newSessionKey]) ?>
+        <?= Form::ajax('onRelationManageCreate', [
+            'data-popup-load-indicator' => true,
+            'data-request-success' => "$.oc.relationBehavior.changed('" . e($this->vars['relationField']) . "', 'created')",
+            'sessionKey' => $newSessionKey
+        ]) ?>
 
             <!-- Passable fields -->
             <input type="hidden" name="_relation_field" value="<?= $relationField ?>" />

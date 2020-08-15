@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Pagina\'s',
+        'template_title' => '%s Pagina\'s',
         'delete_confirmation' => 'Weet u zeker dat u de geselecteerde pagina\'s wilt verwijderen? Ook eventuele subpagina\'s zullen hierdoor verwijderd worden.',
         'no_records' => 'Geen pagina\'s gevonden',
         'delete_confirm_single' => 'Weet u zeker dat u deze pagina wilt verwijderen? Ook eventuele subpagina\'s zullen hierdoor verwijderd worden.',

@@ -25,6 +25,7 @@ fields:
         cssClass: collapse-visible
 
 tabs:
+    cssClass: master-area
     fields:
         viewBag[layout]:
             tab: cms::lang.editor.settings

@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Pages',
+        'template_title' => '%s Pages',
         'delete_confirmation' => 'Do you really want to delete selected pages? This will also delete the subpages, if any.',
         'no_records' => 'No pages found',
         'delete_confirm_single' => 'Do you really want delete this page? This will also delete the subpages, if any.',
@@ -60,13 +61,22 @@ return [
         'reference_required' => 'The menu item reference is required.',
         'url_required' => 'The URL is required',
         'cms_page_required' => 'Please select a CMS page',
+        'display_tab' => 'Display',
+        'hidden' => 'Hidden',
+        'hidden_comment' => 'Hide this menu item from appearing on the front-end.',
+        'attributes_tab' => 'Attributes',
         'code' => 'Code',
         'code_comment' => 'Enter the menu item code if you want to access it with the API.',
+        'css_class' => 'CSS Class',
+        'css_class_comment' => 'Enter a CSS class name to give this menu item a custom appearance.',
+        'external_link' => 'External link',
+        'external_link_comment' => 'Open links for this menu item in a new window.',
         'static_page' => 'Static Page',
         'all_static_pages' => 'All Static Pages'
     ],
     'content' => [
         'menu_label' => 'Content',
+        'saved' => 'The content has been successfully saved.',
         'cant_save_to_dir' => 'Saving content files to the static-pages directory is not allowed.',
     ],
     'sidebar' => [
@@ -75,6 +85,7 @@ return [
     ],
     'object' => [
         'invalid_type' => 'Unknown object type',
+        'unauthorized_type' => 'You are not authorized to manage :type objects',
         'not_found' => 'The requested object was not found.',
     ],
     'editor' => [
@@ -128,5 +139,7 @@ return [
         'static_menu_code_description' => 'Specify a code of the menu the component should output.',
         'static_breadcrumbs_name' => 'Static breadcrumbs',
         'static_breadcrumbs_description' => 'Outputs breadcrumbs for a static page.',
+        'child_pages_name' => 'Child pages',
+        'child_pages_description' => 'Displays a list of child pages for the current page',
     ]
 ];

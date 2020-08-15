@@ -21,6 +21,7 @@ use October\Rain\Router\Helper as RouterHelper;
 use October\Rain\Parse\Bracket as TextParser;
 use October\Rain\Parse\Syntax\Parser as SyntaxParser;
 use ApplicationException;
+use Twig\Node\Node as TwigNode;
 
 /**
  * Represents a static page.
@@ -116,8 +117,8 @@ class Page extends ContentBase
         parent::__construct($attributes);
 
         $this->customMessages = [
-            'url.regex'      => Lang::get('rainlab.pages::lang.page.invalid_url'),
-            'url.unique_url' => Lang::get('rainlab.pages::lang.page.url_not_unique')
+            'url.regex'      => 'rainlab.pages::lang.page.invalid_url',
+            'url.unique_url' => 'rainlab.pages::lang.page.url_not_unique',
         ];
     }
 
@@ -208,7 +209,7 @@ class Page extends ContentBase
     {
         $dir = rtrim($this->getFilePath(''), '/');
 
-        $fileName = trim(str_replace('/', '-', $this->getViewBag()->property('url')), '-');
+        $fileName = trim(str_slug(str_replace('/', '-', $this->getViewBag()->property('url')), '-'));
         if (strlen($fileName) > 200) {
             $fileName = substr($fileName, 0, 200);
         }
@@ -283,7 +284,7 @@ class Page extends ContentBase
      */
     public static function url($name)
     {
-        if (!$page = static::find($name)) {
+        if (empty($name) || !$page = static::find($name)) {
             return null;
         }
 
@@ -291,7 +292,7 @@ class Page extends ContentBase
 
         return Cms::url($url);
     }
-    
+
     /**
      * Determine the default layout for a new page
      * @param \RainLab\Pages\Classes\Page $parentPage
@@ -299,7 +300,7 @@ class Page extends ContentBase
     public function setDefaultLayout($parentPage)
     {
         // Check parent page for a defined child layout
-        if ($parentPage) {
+        if ($parentPage && $parentPage->layout) {
             $layout = Layout::load($this->theme, $parentPage->layout);
             $component = $layout ? $layout->getComponent('staticPage') : null;
             $childLayoutName = $component ? $component->property('childLayout', null) : null;
@@ -309,7 +310,7 @@ class Page extends ContentBase
                 return;
             }
         }
-        
+
         // Check theme layouts for one marked as the default
         foreach (Layout::listInTheme($this->theme) as $layout) {
             $component = $layout->getComponent('staticPage');
@@ -497,7 +498,7 @@ class Page extends ContentBase
     protected function flattenTwigNode($node)
     {
         $result = [];
-        if (!$node instanceof \Twig_Node) {
+        if (!$node instanceof TwigNode) {
             return $result;
         }
 
@@ -705,7 +706,7 @@ class Page extends ContentBase
      *   false if omitted.
      * - dynamicItems - Boolean value indicating whether the item type could generate new menu items.
      *   Optional, false if omitted.
-     * - cmsPages - a list of CMS pages (objects of the Cms\Classes\Page class), if the item type requires a CMS page reference to 
+     * - cmsPages - a list of CMS pages (objects of the Cms\Classes\Page class), if the item type requires a CMS page reference to
      *   resolve the item URL.
      * @param string $type Specifies the menu item type
      * @return array Returns an array
@@ -734,9 +735,9 @@ class Page extends ContentBase
      * - url - the menu item URL. Not required for menu item types that return all available records.
      *   The URL should be returned relative to the website root and include the subdirectory, if any.
      *   Use the Cms::url() helper to generate the URLs.
-     * - isActive - determines whether the menu item is active. Not required for menu item types that 
+     * - isActive - determines whether the menu item is active. Not required for menu item types that
      *   return all available records.
-     * - items - an array of arrays with the same keys (url, isActive, items) + the title key. 
+     * - items - an array of arrays with the same keys (url, isActive, items) + the title key.
      *   The items array should be added only if the $item's $nesting property value is TRUE.
      * @param \RainLab\Pages\Classes\MenuItem $item Specifies the menu item.
      * @param \Cms\Classes\Theme $theme Specifies the current theme.
@@ -892,7 +893,8 @@ class Page extends ContentBase
         $iterator($pageList->getPageTree(), null, 0);
 
         self::$menuTreeCache = $menuTree;
-        Cache::put($key, serialize($menuTree), Config::get('cms.parsedPageCacheTTL', 10));
+        $expiresAt = now()->addMinutes(Config::get('cms.parsedPageCacheTTL', 10));
+        Cache::put($key, serialize($menuTree), $expiresAt);
 
         return self::$menuTreeCache;
     }
@@ -931,5 +933,16 @@ class Page extends ContentBase
         };
 
         return $iterator($pageTree);
+    }
+
+    /**
+     * Disables safe mode check for static pages.
+     *
+     * This allows developers to use placeholders in layouts even if safe mode is enabled.
+     *
+     * @return void
+     */
+    protected function checkSafeMode()
+    {
     }
 }

@@ -36,6 +36,11 @@ class ReorderController extends ControllerBehavior
     protected $requiredConfig = ['modelClass'];
 
     /**
+     * @var array Visible actions in context of the controller
+     */
+    protected $actions = ['reorder'];
+
+    /**
      * @var Model Import model
      */
     public $model;
@@ -55,7 +60,7 @@ class ReorderController extends ControllerBehavior
      * - simple: October\Rain\Database\Traits\Sortable
      * - nested: October\Rain\Database\Traits\NestedTree
      */
-    protected $sortMode = null;
+    protected $sortMode;
 
     /**
      * @var Backend\Classes\WidgetBase Reference to the widget used for the toolbar.

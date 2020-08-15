@@ -1,7 +1,8 @@
 {% if canRegister %}
     <h3>Register</h3>
-    <form
-        data-request="onRegister">
+
+    {{ form_ajax('onRegister') }}
+
         <div class="form-group">
             <label for="registerName">Full Name</label>
             <input
@@ -45,7 +46,8 @@
         </div>
 
         <button type="submit" class="btn btn-default">Register</button>
-    </form>
+
+    {{ form_close() }}
 {% else %}
     <!-- Registration is disabled. -->
 {% endif %}

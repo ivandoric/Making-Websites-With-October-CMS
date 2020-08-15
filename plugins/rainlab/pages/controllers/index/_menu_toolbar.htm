@@ -8,11 +8,18 @@
         <?= e(trans('backend::lang.form.save')) ?>
     </a>
 
+    <?= $this->makePartial('~/modules/cms/controllers/index/_button_commit.htm'); ?>
+
+    <?= $this->makePartial('~/modules/cms/controllers/index/_button_reset.htm'); ?>
+
     <button
         type="button"
         class="btn btn-default empty oc-icon-trash-o <?php if (!$objectPath): ?>hide<?php endif ?>"
         data-request="onDelete"
         data-request-confirm="<?= e(trans('rainlab.pages::lang.menu.delete_confirm_single')) ?>"
         data-request-success="$.oc.pagesPage.updateObjectList('menu'); $(this).trigger('close.oc.tab', [{force: true}])"
-        data-control="delete-button"></button>
+        data-control="delete-button">
+    </button>
+
+    <?= $this->makePartial('~/modules/cms/controllers/index/_button_lastmodified.htm'); ?>
 </div>

@@ -56,7 +56,8 @@ return [
         'name' => [
             'label' => 'Bővítmény neve',
             'help' => 'Nevezze meg egyedi kódja alapján a bővítményt. Például: RainLab.Blog'
-        ]
+        ],
+        'by_author' => 'Fejlesztő: :name'
     ],
     'plugins' => [
         'manage' => 'Bővítmények kezelése',
@@ -69,6 +70,7 @@ return [
         'plugin_label'  => 'Bővítmény',
         'unknown_plugin' => 'A bővítményhet tartozó fájlok törölve lettek.',
         'select_label' => 'Művelet kiválasztása...',
+        'bulk_actions_label' => 'Csoportos műveletek',
         'check_yes' => 'Igen',
         'check_no' => 'Nem',
         'unfrozen' => 'Frissítés engedélyezve',
@@ -110,7 +112,7 @@ return [
     ],
     'settings' => [
         'menu_label' => 'Beállítások',
-        'not_found' => 'Nem találhatók a megadott beállítások.',
+        'not_found' => 'Nem létezik a megadott beállítás oldal.',
         'missing_model' => 'A beállítások lap egy modell definíciót hiányol.',
         'update_success' => 'A(z) :name beállításainak frissítése sikerült.',
         'return' => 'Vissza a beállításokhoz',
@@ -153,6 +155,9 @@ return [
         'ses_key_comment' => 'Adja meg az API kulcsot',
         'ses_secret' => 'SES kód',
         'ses_secret_comment' => 'Adja meg az API titkos kulcsot',
+        'sparkpost' => 'SparkPost',
+        'sparkpost_secret' => 'SparkPost kód',
+        'sparkpost_secret_comment' => 'Adja meg az API titkos kulcsot',
         'ses_region' => 'SES régió',
         'ses_region_comment' => 'Adja meg a régiót (pl. us-east-1)',
         'drivers_hint_header' => 'Hiányzó komponens',
@@ -195,7 +200,9 @@ return [
         'deleting' => 'Sablon törlése...',
         'deleting_layout' => 'Elrendezés törlése...',
         'sending' => 'Üzenet küldése folyamatban...',
-        'return' => 'Vissza a sablonokhoz'
+        'return' => 'Vissza a sablonokhoz',
+        'options' => 'Beállítások',
+        'disable_auto_inline_css' => 'Automatikusan beágyazott CSS tiltása'
     ],
     'mail_brand' => [
         'menu_label' => 'Kinézet',
@@ -272,11 +279,14 @@ return [
         'plugin_author' => 'Fejlesztő',
         'plugin_not_found' => 'A bővítmény nem található',
         'core_current_build' => 'Verziószám',
+        'core_view_changelog' => 'Részletek',
         'core_build' => 'Új verzió: :build',
         'core_build_help' => 'Elérhető a legújabb hivatalos kiadás.',
         'core_downloading' => 'Rendszer letöltése...',
         'core_extracting' => 'Rendszer kicsomagolása...',
         'core_set_build' => 'Rendszer beállítása...',
+        'changelog' => 'Kiadott verziók',
+        'changelog_view_details' => 'Részletek',
         'plugins' => 'Bővítmény',
         'themes' => 'Témák',
         'disabled' => 'Letiltva',
@@ -358,7 +368,7 @@ return [
         'preview_title' => 'Esemény részletei'
     ],
     'request_log' => [
-        'hint' => 'Ez a napló a böngészőkérelmeket listázza ki. Ha például egy látogató nem létező aloldalt nyit meg, akkor egy 404-es állapotkódú bejegyzés jön létre.',
+        'hint' => 'Ez a napló a böngésző kérelmeket listázza ki. Ha például egy látogató nem létező aloldalt nyit meg, akkor egy 404-es állapotkódú bejegyzés jön létre.',
         'menu_label' => 'Kérelem napló',
         'menu_description' => 'Rossz vagy átirányított kérelmek megtekintése.',
         'empty_link' => 'Kiürítés',
@@ -381,9 +391,11 @@ return [
         'manage_mail_templates' => 'Levél sablonok kezelése',
         'manage_mail_settings' => 'Levelezési beállítások kezelése',
         'manage_other_administrators' => 'Adminisztrátorok kezelése',
+        'impersonate_users' => 'Átjelentkezés felhasználók fiókjába',
         'manage_preferences' => 'Saját beállítások kezelése',
         'manage_editor' => 'Kódszerkesztő testreszabása',
         'view_the_dashboard' => 'Vezérlőpult elérése',
+        'manage_default_dashboard' => 'Vezérlőpult testreszabása',
         'manage_branding' => 'Kinézet testreszabása'
     ],
     'log' => [
@@ -399,6 +411,25 @@ return [
     ],
     'media' => [
         'invalid_path' => "Érvénytelen elérési útvonal: ':path'",
-        'folder_size_items' => 'fájl',
+        'folder_size_items' => 'fájl'
     ],
+    'page' => [
+        'custom_error' => [
+            'label' => 'Laphiba',
+            'help' => 'Sajnáljuk, de hiba történt, ezért az oldal nem megjeleníthető.'
+        ],
+        'invalid_token' => [
+            'label' => 'Biztonsági kód érvényessége lejárt. Kérjük töltse be újra az oldalt.'
+        ],
+        'maintenance' => [
+            'label' => 'Hamarosan visszatérünk!',
+            'help' => 'A weboldal karbantartás alatt áll. Látogasson vissza később!',
+            'message' => 'Üzenet:',
+            'available_at' => 'Újrapróbálás:'
+        ]
+    ],
+    'pagination' => [
+        'previous' => 'Előző',
+        'next' => 'Következő'
+    ]
 ];

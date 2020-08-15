@@ -111,3 +111,60 @@
     - Optimized support for multiple SearchInput components on a single page.
 1.3.9:
     - Added Chinese language support (thanks to Ckend)
+1.3.10:
+    - Fixed link to search result in default results partial (thanks to wizzard94)
+1.3.11:
+    - Trim query before searching
+1.3.12:
+    - Stability improvements
+1.3.13:
+    - Pre-populate search query in searchInput field
+1.3.14:
+    - Include placeholders on Rainlab.Pages pages in search results
+1.3.15:
+    - Catch invalid markup errors when searching RainLab.Pages
+1.3.16:
+    - Only search RainLab.Blog contents of current locale
+1.3.17:
+    - Fixed pagination links when using RainLab.Translate
+1.3.18:
+    - Updated persian translations (thanks to @sajjad-ser)
+1.3.19:
+    - Added finnish translations (thank to @mediaclinic)
+1.3.20:
+    - Added bulgarian translations (thank to @NGavanozov)
+1.3.21:
+    - Fixed RainLab.Blog published_at date handling
+1.3.22:
+    - Fixed problem with queries that contain only spaces
+1.4.0:
+    - 'SiteSearch can now log all search queries. Enable via backend settings.'
+1.4.1:
+    - 'Minor bugfixes'
+    - create_offline_sitesearch_query_logs.php
+1.4.2:
+    - 'Added User-Agent to list view'
+1.4.3:
+    - 'Fixed bug where empty queries resulted in an Exception' 
+1.4.4:
+    - 'Optimized support for cms pages search: Your Twig markup is now completely rendered and searched!'
+1.4.5:
+    - 'Use meta_title for RainLab.Pages results if available'
+1.4.6:
+    - 'Made getAgePenalty method static so it can be re-used in simple Event providers'
+1.4.7:
+    - 'Optimized searchResults component so it can be used in partials and static pages'
+1.4.8:
+    - 'Allow custom penalty parameters in ResultsProvider::agePenaltyForDays method'
+1.4.9:
+    - 'Moved query log link from main navbar to backend settings'
+1.4.10:
+    - 'Improved Czech translations'
+1.5.0:
+    - 'Added `offline.sitesearch.results` event to allow customization (filter, sort) of the results collection before it is displayed'
+1.5.1:
+    - 'Fixed typo in the newly added event name'
+1.5.2:
+    - 'Made Result::markQuery method public for easier extension'
+1.5.3:
+    - 'Fixed result order in searchInput component'

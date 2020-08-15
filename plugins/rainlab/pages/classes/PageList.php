@@ -1,12 +1,7 @@
 <?php namespace RainLab\Pages\Classes;
 
-use Yaml;
-use Lang;
-use File;
-use ApplicationException;
+use Cms\Classes\Meta;
 use RainLab\Pages\Classes\Page;
-use SystemException;
-use DirectoryIterator;
 
 /**
  * The page list class reads and manages the static page hierarchy.
@@ -147,31 +142,6 @@ class PageList
     }
 
     /**
-     * Updates the page hierarchy structure in the theme's meta/static-pages.yaml file.
-     * @param array $structure A nested associative array representing the page structure
-     */
-    public function updateStructure($structure)
-    {
-        $originalData = $this->getPagesConfig();
-        $originalData['static-pages'] = $structure;
-
-        $yamlData = Yaml::render($originalData);
-
-        $filePath = $this->getConfigFilePath();
-        $dirPath = dirname($filePath);
-
-        if (!file_exists($dirPath) || !is_dir($dirPath)) {
-            if (!File::makeDirectory($dirPath, 0777, true, true)) {
-                throw new ApplicationException(Lang::get('cms::lang.cms_object.error_creating_directory', ['name' => $dirPath]));
-            }
-        }
-
-        if (@File::put($filePath, $yamlData) === false) {
-            throw new ApplicationException(Lang::get('cms::lang.cms_object.error_saving', ['name' => $filePath]));
-        }
-    }
-
-    /**
      * Appends page to the page hierarchy.
      * The page can be added to the end of the hierarchy or as a subpage to any existing page.
      */
@@ -242,26 +212,30 @@ class PageList
             return self::$configCache;
         }
 
-        $filePath = $this->getConfigFilePath();
+        $config = Meta::loadCached($this->theme, 'static-pages.yaml');
 
-        if (!file_exists($filePath)) {
-            return self::$configCache = ['static-pages' => []];
+        if (!$config) {
+            $config = new Meta();
+            $config->fileName = 'static-pages.yaml';
+            $config['static-pages'] = [];
+            $config->save();
         }
 
-        $config = Yaml::parse(File::get($filePath));
-        if (!array_key_exists('static-pages', $config)) {
-            throw new SystemException('The content of the theme meta/static-pages.yaml file is invalid: the "static-pages" root element is not found.');
+        if (!isset($config->attributes['static-pages'])) {
+            $config['static-pages'] = [];
         }
 
         return self::$configCache = $config;
     }
 
     /**
-     * Returns an absolute path to the meta/static-pages.yaml file.
-     * @return string
+     * Updates the page hierarchy structure in the theme's meta/static-pages.yaml file.
+     * @param array $structure A nested associative array representing the page structure
      */
-    protected function getConfigFilePath()
+    public function updateStructure($structure)
     {
-        return $this->theme->getPath().'/meta/static-pages.yaml';
+        $config = $this->getPagesConfig();
+        $config['static-pages'] = $structure;
+        $config->save();
     }
 }

@@ -21,6 +21,8 @@ use OFFLINE\SiteSearch\Classes\Providers\RainlabPagesResultsProvider;
 use OFFLINE\SiteSearch\Classes\Providers\ResponsivShowcaseResultsProvider;
 use OFFLINE\SiteSearch\Classes\Providers\ResultsProvider;
 use OFFLINE\SiteSearch\Classes\Providers\VojtaSvobodaBrandsResultsProvider;
+use OFFLINE\SiteSearch\Models\QueryLog;
+use OFFLINE\SiteSearch\Models\Settings;
 
 class SearchService
 {
@@ -32,11 +34,16 @@ class SearchService
      * @var Controller
      */
     public $controller;
+    /**
+     * @var bool
+     */
+    public $logQueries;
 
     public function __construct($query, $controller = null)
     {
         $this->query      = $query;
         $this->controller = $controller ?: new Controller();
+        $this->logQueries = Settings::get('log_queries', false);
     }
 
     /**
@@ -47,10 +54,12 @@ class SearchService
      */
     public function results()
     {
+        $this->logQuery($this->query);
+
         $resultsCollection = new ResultCollection();
         $resultsCollection->setQuery($this->query);
 
-        if ($this->query === '') {
+        if (trim($this->query) === '') {
             return $resultsCollection;
         }
 
@@ -65,7 +74,9 @@ class SearchService
 
         $resultsCollection->addMany($results->toArray());
 
-        return $resultsCollection->sortByDesc('relevance');
+        $modified = Event::fire('offline.sitesearch.results', $resultsCollection);
+
+        return count($modified) > 0 ? $modified[0] : $resultsCollection->sortByDesc('relevance');
     }
 
     /**
@@ -112,7 +123,7 @@ class SearchService
      */
     protected function additionalResultsProviders()
     {
-        $returns = collect(Event::fire('offline.sitesearch.extend'))->flatten();
+        $returns = collect(Event::fire('offline.sitesearch.extend'))->filter()->flatten();
 
         $returns->each(function ($return) {
             if ( ! $return instanceof ResultsProvider) {
@@ -121,5 +132,22 @@ class SearchService
         });
 
         return $returns->toArray();
+    }
+
+    /**
+     * Log the current query.
+     *
+     * @return void
+     */
+    protected function logQuery($query)
+    {
+        if ( ! $this->logQueries || ! $query) {
+            return;
+        }
+
+        QueryLog::cleanup();
+        QueryLog::create([
+            'query' => $query
+        ]);
     }
 }

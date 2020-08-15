@@ -1,5 +1,5 @@
 /*
- * The menu item editor. Provides tools for managing the 
+ * The menu item editor. Provides tools for managing the
  * menu items.
  */
 +function ($) { "use strict";
@@ -91,7 +91,7 @@
                 // If the saved title is the default new item title, use reference title,
                 // removing CMS page [base file name] suffix
                 if (selectedTitle && self.properties.title === self.$popupForm.attr('data-new-item-title')) {
-                    $titleField.val(selectedTitle.replace(/\s*\[.*\]$/, ''))
+                    $titleField.val($.trim(selectedTitle.replace(/\s*\[.*\]$/, '')))
                 }
             })
 
@@ -279,7 +279,7 @@
             prevSelectedReference = this.referenceSearchOverride;
             this.referenceSearchOverride = null;
         }
-        
+
         if (typeInfo.references) {
             $optionSelector.find('option').remove()
             $referenceFormGroup.show()
@@ -431,7 +431,7 @@
                     return
 
                 var typeInfoProperty = typeInfoPropertyMap[property] !== undefined ? typeInfoPropertyMap[property] : property
-                if ((typeInfo[typeInfoProperty] === undefined || typeInfo[typeInfoProperty] === false) 
+                if ((typeInfo[typeInfoProperty] === undefined || typeInfo[typeInfoProperty] === false)
                     && basicProperties[property] === undefined)
                     delete data[property]
             })

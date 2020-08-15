@@ -35,10 +35,12 @@ return [
         'pt-br' => 'Português (Brasil)',
         'pt-pt' => 'Português (Portugal)',
         'ro' => 'Română',
+        'rs' => 'Srpski',
         'ru' => 'Русский',
         'fi' => 'Suomi',
         'sv' => 'Svenska',
         'sk' => 'Slovenský',
+        'sl' => 'Slovenščina',
         'tr' => 'Türkçe',
         'uk' => 'Українська мова',
         'zh-cn' => '简体中文',
@@ -50,6 +52,11 @@ return [
     ],
     'file' => [
         'create_fail' => 'Nie je možné vytvoriť súbor: :name'
+    ],
+    'page' => [
+        'invalid_token' => [
+            'label' => 'Neplatný bezpečnostný token',
+        ],
     ],
     'combiner' => [
         'not_found' => "Zlučujúci súbor ':name' nebol nájdený."
@@ -96,7 +103,8 @@ return [
         'name' => [
             'label' => 'Názov pluginu',
             'help' => 'Názov pluginu podľa jeho unikátneho kódu. Napríklad, RainLab.Blog'
-        ]
+        ],
+        'by_author' => 'Vytvoril :name'
     ],
     'plugins' => [
         'manage' => 'Správa pluginov',
@@ -386,13 +394,13 @@ return [
         'hint' => 'Tento záznam zobrazuje zoznam potencionálnch chýb v aplikácií, ako napríklad výnimky a ladiace informácie.',
         'menu_label' => 'Záznam udalostí',
         'menu_description' => 'Zobraziť záznam systémových správ s časom a detailami.',
-        'empty_link' => 'Zobraziť záznam udalostí',
+        'empty_link' => 'Zmazať záznam udalostí',
         'empty_loading' => 'Mazanie záznamu udalostí...',
         'empty_success' => 'Záznam udalostí zmazaný',
         'return_link' => 'Späť na záznam udalostí',
         'id' => 'ID',
         'id_label' => 'ID udalosti',
-        'created_at' => 'D8tum a čas',
+        'created_at' => 'Dátum a čas',
         'message' => 'Správa',
         'level' => 'Úroveň',
         'preview_title' => 'Udalosť'

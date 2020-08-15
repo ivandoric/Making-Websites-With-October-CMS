@@ -5,11 +5,9 @@ use Str;
 use Lang;
 use Flash;
 use Event;
-use Input;
 use Redirect;
 use Backend;
 use Backend\Classes\ControllerBehavior;
-use October\Rain\Html\Helper as HtmlHelper;
 use October\Rain\Router\Helper as RouterHelper;
 use ApplicationException;
 use Exception;
@@ -81,18 +79,23 @@ class FormController extends ControllerBehavior
     protected $requiredConfig = ['modelClass', 'form'];
 
     /**
+     * @var array Visible actions in context of the controller
+     */
+    protected $actions = ['create', 'update', 'preview'];
+
+    /**
      * @var string The context to pass to the form widget.
      */
     protected $context;
 
     /**
-     * @var Model The initialized model used by the form.
+     * @var \October\Rain\Database\Model|\October\Rain\Halcyon\Model The initialized model used by the form.
      */
     protected $model;
 
     /**
      * Behavior constructor
-     * @param Backend\Classes\Controller $controller
+     * @param \Backend\Classes\Controller $controller
      */
     public function __construct($controller)
     {
@@ -112,8 +115,8 @@ class FormController extends ControllerBehavior
      * actually rendering the form. The model used by this form is passed
      * to this behavior via this method as the first argument.
      *
-     * @see Backend\Widgets\Form
-     * @param October\Rain\Database\Model $model
+     * @see \Backend\Widgets\Form
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model $model
      * @param string $context Form context
      * @return void
      */
@@ -140,6 +143,11 @@ class FormController extends ControllerBehavior
          */
         $this->formWidget = $this->makeWidget('Backend\Widgets\Form', $config);
 
+        // Setup the default preview mode on form initialization if the context is preview
+        if ($config->context === 'preview') {
+            $this->formWidget->previewMode = true;
+        }
+
         $this->formWidget->bindEvent('form.extendFieldsBefore', function () {
             $this->controller->formExtendFieldsBefore($this->formWidget);
         });
@@ -150,7 +158,9 @@ class FormController extends ControllerBehavior
 
         $this->formWidget->bindEvent('form.beforeRefresh', function ($holder) {
             $result = $this->controller->formExtendRefreshData($this->formWidget, $holder->data);
-            if (is_array($result)) $holder->data = $result;
+            if (is_array($result)) {
+                $holder->data = $result;
+            }
         });
 
         $this->formWidget->bindEvent('form.refreshFields', function ($fields) {
@@ -176,7 +186,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Prepares commonly used view data.
-     * @param October\Rain\Database\Model $model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model $model
      */
     protected function prepareVars($model)
     {
@@ -222,7 +232,7 @@ class FormController extends ControllerBehavior
      * `formBeforeCreate` and `formAfterCreate`.
      *
      * @param string $context Form context
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|void
      */
     public function create_onSave($context = null)
     {
@@ -248,7 +258,7 @@ class FormController extends ControllerBehavior
 
         Flash::success($this->getLang("{$this->context}[flashSave]", 'backend::lang.form.create_success'));
 
-        if ($redirect = $this->makeRedirect('create', $model)) {
+        if ($redirect = $this->makeRedirect($this->context, $model)) {
             return $redirect;
         }
     }
@@ -292,7 +302,8 @@ class FormController extends ControllerBehavior
      *
      * @param int $recordId Record identifier
      * @param string $context Form context
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|void
+     * @throws \October\Rain\Exception\ApplicationException if the provided recordId is not found
      */
     public function update_onSave($recordId = null, $context = null)
     {
@@ -315,7 +326,7 @@ class FormController extends ControllerBehavior
 
         Flash::success($this->getLang("{$this->context}[flashSave]", 'backend::lang.form.update_success'));
 
-        if ($redirect = $this->makeRedirect('update', $model)) {
+        if ($redirect = $this->makeRedirect($this->context, $model)) {
             return $redirect;
         }
     }
@@ -328,7 +339,9 @@ class FormController extends ControllerBehavior
      * `formAfterDelete`.
      *
      * @param int $recordId Record identifier
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|void
+     * @throws \October\Rain\Exception\ApplicationException if the provided recordId is not found
+     * @throws Exception if there is no primary key on the model
      */
     public function update_onDelete($recordId = null)
     {
@@ -392,9 +405,10 @@ class FormController extends ControllerBehavior
      *
      *     <?= $this->formRender(['preview' => true, section' => 'primary']) ?>
      *
-     * @see Backend\Widgets\Form
+     * @see \Backend\Widgets\Form
      * @param array $options Render options
      * @return string Rendered HTML for the form.
+     * @throws \October\Rain\Exception\ApplicationException if the Form Widget isn't set
      */
     public function formRender($options = [])
     {
@@ -410,7 +424,7 @@ class FormController extends ControllerBehavior
      * The model will be provided by one of the page actions or AJAX
      * handlers via the `initForm` method.
      *
-     * @return October\Rain\Database\Model
+     * @return \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formGetModel()
     {
@@ -432,13 +446,12 @@ class FormController extends ControllerBehavior
     /**
      * Internal method used to prepare the form model object.
      *
-     * @return October\Rain\Database\Model
+     * @return \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     protected function createModel()
     {
         $class = $this->config->modelClass;
-        $model = new $class;
-        return $model;
+        return new $class;
     }
 
     /**
@@ -446,8 +459,8 @@ class FormController extends ControllerBehavior
      * the model primary key.
      *
      * @param string $context Redirect context, eg: create, update, delete
-     * @param Model $model The active model to parse in it's ID and attributes.
-     * @return Redirect
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model $model The active model to parse in it's ID and attributes.
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function makeRedirect($context = null, $model = null)
     {
@@ -461,11 +474,11 @@ class FormController extends ControllerBehavior
         }
 
         if (post('redirect', true)) {
-            $redirectUrl = $this->getRedirectUrl($context);
+            $redirectUrl = $this->controller->formGetRedirectUrl($context, $model);
         }
 
         if ($model && $redirectUrl) {
-            $redirectUrl = RouterHelper::parseValues($model, array_keys($model->getAttributes()), $redirectUrl);
+            $redirectUrl = RouterHelper::replaceParameters($model, $redirectUrl);
         }
 
         if (starts_with($redirectUrl, 'http://') || starts_with($redirectUrl, 'https://')) {
@@ -473,20 +486,22 @@ class FormController extends ControllerBehavior
             $redirect = Redirect::to($redirectUrl);
         } else {
             // Process relative redirects
-            $redirect = ($redirectUrl) ? Backend::redirect($redirectUrl) : null;
+            $redirect = $redirectUrl ? Backend::redirect($redirectUrl) : null;
         }
 
         return $redirect;
     }
 
     /**
-     * Internal method that returns a redirect URL from the config based on
-     * supplied context. Otherwise the default redirect is used.
+     * Returns a redirect URL from the config based on supplied context.
+     * Otherwise the default redirect is used. Relative URLs are treated as
+     * backend URLs.
      *
      * @param string $context Redirect context, eg: create, update, delete.
+     * @param Model $model The active model.
      * @return string
      */
-    protected function getRedirectUrl($context = null)
+    public function formGetRedirectUrl($context = null, $model = null)
     {
         $redirectContext = explode('-', $context, 2)[0];
         $redirectSource = ends_with($context, '-close') ? 'redirectClose' : 'redirect';
@@ -533,11 +548,12 @@ class FormController extends ControllerBehavior
      *     <?= $this->formRenderField('field_name') ?>
      *
      * @param string $name Field name
+     * @param array $options (e.g. ['useContainer'=>false])
      * @return string HTML markup
      */
-    public function formRenderField($name)
+    public function formRenderField($name, $options = [])
     {
-        return $this->formWidget->renderField($name);
+        return $this->formWidget->renderField($name, $options);
     }
 
     /**
@@ -546,6 +562,7 @@ class FormController extends ControllerBehavior
      *     <?= $this->formRenderPreview() ?>
      *
      * @return string The form HTML markup.
+     * @throws \October\Rain\Exception\ApplicationException if the Form Widget isn't set
      */
     public function formRenderPreview()
     {
@@ -574,6 +591,7 @@ class FormController extends ControllerBehavior
      *     <?= $this->formRenderOutsideFields() ?>
      *
      * @return string HTML markup
+     * @throws \October\Rain\Exception\ApplicationException if the Form Widget isn't set
      */
     public function formRenderOutsideFields()
     {
@@ -602,6 +620,7 @@ class FormController extends ControllerBehavior
      *     <?= $this->formRenderPrimaryTabs() ?>
      *
      * @return string HTML markup
+     * @throws \October\Rain\Exception\ApplicationException if the Form Widget isn't set
      */
     public function formRenderPrimaryTabs()
     {
@@ -630,6 +649,7 @@ class FormController extends ControllerBehavior
      *     <?= $this->formRenderPrimaryTabs() ?>
      *
      * @return string HTML markup
+     * @throws \October\Rain\Exception\ApplicationException if the Form Widget isn't set
      */
     public function formRenderSecondaryTabs()
     {
@@ -639,7 +659,7 @@ class FormController extends ControllerBehavior
     /**
      * Returns the form widget used by this behavior.
      *
-     * @return Backend\Widgets\Form
+     * @return \Backend\Widgets\Form
      */
     public function formGetWidget()
     {
@@ -681,7 +701,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called before the creation or updating form is saved.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formBeforeSave($model)
     {
@@ -689,7 +709,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called after the creation or updating form is saved.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formAfterSave($model)
     {
@@ -697,7 +717,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called before the creation form is saved.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formBeforeCreate($model)
     {
@@ -705,7 +725,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called after the creation form is saved.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formAfterCreate($model)
     {
@@ -713,7 +733,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called before the updating form is saved.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formBeforeUpdate($model)
     {
@@ -721,7 +741,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called after the updating form is saved.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formAfterUpdate($model)
     {
@@ -729,7 +749,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called after the form model is deleted.
-     * @param Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formAfterDelete($model)
     {
@@ -739,7 +759,8 @@ class FormController extends ControllerBehavior
      * Finds a Model record by its primary identifier, used by update actions. This logic
      * can be changed by overriding it in the controller.
      * @param string $recordId
-     * @return Model
+     * @return \October\Rain\Database\Model|\October\Rain\Halcyon\Model
+     * @throws \October\Rain\Exception\ApplicationException if the provided recordId is not found
      */
     public function formFindModelObject($recordId)
     {
@@ -770,7 +791,7 @@ class FormController extends ControllerBehavior
     /**
      * Creates a new instance of a form model. This logic can be changed
      * by overriding it in the controller.
-     * @return Model
+     * @return \October\Rain\Database\Model|\October\Rain\Halcyon\Model
      */
     public function formCreateModelObject()
     {
@@ -779,7 +800,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called before the form fields are defined.
-     * @param Backend\Widgets\Form $host The hosting form widget
+     * @param \Backend\Widgets\Form $host The hosting form widget
      * @return void
      */
     public function formExtendFieldsBefore($host)
@@ -788,7 +809,7 @@ class FormController extends ControllerBehavior
 
     /**
      * Called after the form fields are defined.
-     * @param Backend\Widgets\Form $host The hosting form widget
+     * @param \Backend\Widgets\Form $host The hosting form widget
      * @param array $fields Array of all defined form field objects (\Backend\Classes\FormField)
      * @return void
      */
@@ -798,9 +819,9 @@ class FormController extends ControllerBehavior
 
     /**
      * Called before the form is refreshed, should return an array of additional save data.
-     * @param Backend\Widgets\Form $host The hosting form widget
+     * @param \Backend\Widgets\Form $host The hosting form widget
      * @param array $saveData Current save data
-     * @return array
+     * @return array|void
      */
     public function formExtendRefreshData($host, $saveData)
     {
@@ -808,9 +829,9 @@ class FormController extends ControllerBehavior
 
     /**
      * Called when the form is refreshed, giving the opportunity to modify the form fields.
-     * @param Backend\Widgets\Form $host The hosting form widget
+     * @param \Backend\Widgets\Form $host The hosting form widget
      * @param array $fields Current form fields
-     * @return array
+     * @return array|void
      */
     public function formExtendRefreshFields($host, $fields)
     {
@@ -818,9 +839,9 @@ class FormController extends ControllerBehavior
 
     /**
      * Called after the form is refreshed, should return an array of additional result parameters.
-     * @param Backend\Widgets\Form $host The hosting form widget
+     * @param \Backend\Widgets\Form $host The hosting form widget
      * @param array $result Current result parameters.
-     * @return array
+     * @return array|void
      */
     public function formExtendRefreshResults($host, $result)
     {
@@ -829,8 +850,8 @@ class FormController extends ControllerBehavior
     /**
      * Extend supplied model used by create and update actions, the model can
      * be altered by overriding it in the controller.
-     * @param Model $model
-     * @return Model
+     * @param \October\Rain\Database\Model|\October\Rain\Halcyon\Model $model
+     * @return \October\Rain\Database\Model|\October\Rain\Halcyon\Model|void
      */
     public function formExtendModel($model)
     {
@@ -839,7 +860,7 @@ class FormController extends ControllerBehavior
     /**
      * Extend the query used for finding the form model. Extra conditions
      * can be applied to the query, for example, $query->withTrashed();
-     * @param October\Rain\Database\Builder $query
+     * @param \October\Rain\Database\Builder|\October\Rain\Halcyon\Builder $query
      * @return void
      */
     public function formExtendQuery($query)

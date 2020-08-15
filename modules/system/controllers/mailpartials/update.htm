@@ -13,8 +13,8 @@
             <div class="scoreboard">
                 <div data-control="toolbar">
                     <div class="scoreboard-item title-value">
-                        <h4><?= e(trans('system::lang.mail_templates.layout')) ?></h4>
-                        <p><?= $formModel->code ?></p>
+                        <h4><?= e(trans('system::lang.mail_templates.partial')) ?></h4>
+                        <p><?= e($formModel->code) ?></p>
                     </div>
                 </div>
             </div>
@@ -29,6 +29,7 @@
                 <button
                     type="submit"
                     data-request="onSave"
+                    data-browser-validate
                     data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
                     data-load-indicator="<?= e(trans('system::lang.mail_templates.saving_layout')) ?>"
@@ -38,6 +39,7 @@
                 <button
                     type="button"
                     data-request="onSave"
+                    data-browser-validate
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
                     data-load-indicator="<?= e(trans('system::lang.mail_templates.saving_layout')) ?>"

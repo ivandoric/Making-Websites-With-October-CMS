@@ -5,10 +5,15 @@
         'author'                     => 'OFFLINE LLC',
         'manage_settings'            => 'Manage SiteSearch settings',
         'manage_settings_permission' => 'Can manage SiteSearch settings',
+        'view_log_permission'        => 'Can view query log',
     ],
     'settings'          => [
         'mark_results'               => 'Mark matches in search results',
         'mark_results_comment'       => 'Wrap the search term in <mark> tags',
+        'log_queries'                => 'Log queries',
+        'log_queries_comment'        => 'Log all queries to the database',
+        'log_keep_days'              => 'Clean log after days',
+        'log_keep_days_comment'      => 'Delete old log entries after that many days (Default: 365)',
         'excerpt_length'             => 'Excerpt length',
         'excerpt_length_comment'     => 'Length of the excerpt shown in the search results listing.',
         'use_this_provider'          => 'Use this provider',
@@ -23,8 +28,6 @@
         'album_page_comment'         => 'Select a page used to display a photo album. Needed to form URL for albums.',
         'photo_page'                 => 'Photo page',
         'photo_page_comment'         => 'Select a page used to display a single photo. Needed to form URL for photos.',
-        'news_page'                  => 'News post page',
-        'news_page_comment'          => 'Select a page used to display a single news post. Needed to form URL for news.',
         'portfolio_itemurl'          => 'Url of portfolio detail page',
         'portfolio_itemurl_comment'  => 'Only specify the fixed part of the URL without any dynamic parameters',
         'brands_itemurl'             => 'Url of brand detail page',
@@ -41,6 +44,8 @@
         'experimental'               => 'Experimental feature:',
         'experimental_refer_to_docs' => 'This provider is experimental! Please refer to <a target="_blank"
 href="http://octobercms.com/plugin/offline-sitesearch#documentation">the documentation</a> before using it.',
+        'news_page'                  => 'News post page',
+        'news_page_comment'          => 'Select a page used to display a single news post. Needed to form URL for news.',
     ],
     'searchResults'     => [
         'title'       => 'Search results',
@@ -63,25 +68,38 @@ href="http://octobercms.com/plugin/offline-sitesearch#documentation">the documen
             ],
         ],
     ],
-    'searchInput'     => [
+    'searchInput'       => [
         'title'       => 'Search input',
         'description' => 'Displays a search input',
         'properties'  => [
-            'use_auto_complete' => [
+            'use_auto_complete'          => [
                 'title' => 'Search while typing',
             ],
             'auto_complete_result_count' => [
                 'title' => 'Max. autocomplete results',
             ],
-            'search_page' => [
-                'title' => 'Page for search results',
+            'search_page'                => [
+                'title'       => 'Page for search results',
                 'description' => 'Your search query will be sent to this page.',
-                'null_value' => '-- Don\'t display a link',
+                'null_value'  => '-- Don\'t display a link',
             ],
         ],
     ],
     'siteSearchInclude' => [
         'title'       => 'Include in SiteSearch',
         'description' => 'Add this to a CMS page to include it in the search results',
+    ],
+    'log'               => [
+        'id'           => 'ID',
+        'description'  => 'Log of all search queries',
+        'title'        => 'Search queries',
+        'title_update' => 'Vie search query',
+        'query'        => 'Query',
+        'created_at'   => 'Created at',
+        'domain'       => 'Domain',
+        'location'     => 'Path',
+        'session_id'   => 'Session',
+        'export'       => 'Export log',
+        'useragent'    => 'User agent',
     ],
 ];

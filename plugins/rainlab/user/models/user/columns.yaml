@@ -38,3 +38,13 @@ columns:
         label: rainlab.user::lang.user.is_guest
         type: switch
         invisible: true
+
+    created_ip_address:
+        label: rainlab.user::lang.user.created_ip_address
+        searchable: true
+        invisible: true
+
+    last_ip_address:
+        label: rainlab.user::lang.user.last_ip_address
+        searchable: true
+        invisible: true

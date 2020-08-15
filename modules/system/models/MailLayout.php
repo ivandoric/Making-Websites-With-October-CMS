@@ -41,6 +41,13 @@ class MailLayout extends Model
         'content_html'          => 'required',
     ];
 
+    /**
+     * @var array Options array
+     */
+    protected $jsonable = [
+        'options'
+    ];
+
     public static $codeCache;
 
     public function beforeDelete()
@@ -62,6 +69,19 @@ class MailLayout extends Model
     public static function getIdFromCode($code)
     {
         return array_get(self::listCodes(), $code);
+    }
+
+    public static function findOrMakeLayout($code)
+    {
+        $layout = self::whereCode($code)->first();
+
+        if (!$layout && View::exists($code)) {
+            $layout = new self;
+            $layout->code = $code;
+            $layout->fillFromView($code);
+        }
+
+        return $layout;
     }
 
     /**

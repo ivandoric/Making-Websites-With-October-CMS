@@ -7,7 +7,7 @@ A user account has been created for you. Please use the following login and pass
 
 {% partial 'panel' body %}
 - Login: `{{ login }}`
-- Password: `{{ password }}`
+- Password: `{{ password|raw }}`
 {% endpartial %}
 
 After signing in you should change your password as soon as possible.

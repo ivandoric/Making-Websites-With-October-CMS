@@ -65,3 +65,11 @@
 1.4.4: Fixes bug where impersonation touches the last seen timestamp.
 1.4.5: Added token fallback process to Account / Reset Password components when parameter is missing.
 1.4.6: Fixes Auth::register method signature mismatch with core OctoberCMS Auth library
+1.4.7: Fixes redirect bug in Account component / Update translations and separate user and group management.
+1.4.8: Fixes a bug where calling MailBlocker::removeBlock could remove all mail blocks for the user.
+1.5.0: !!! Required password length is now a minimum of 8 characters. Previous passwords will not be affected until the next password change.
+1.5.1:
+    - User IP addresses are now logged. Introduce registration throttle.
+    - users_add_ip_address.php
+1.5.2: Whitespace from usernames is now trimmed, allowed for username to be added to Reset Password mail templates.
+1.5.3: Fixes a bug in the user update functionality if password is not changed. Added highlighting for banned users in user list.

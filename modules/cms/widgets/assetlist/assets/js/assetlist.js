@@ -83,6 +83,9 @@
     }
 
     AssetList.prototype.onUploadFail = function(file, message) {
+        if (file.xhr.status === 413) {
+            message = 'Server rejected the file because it was too large, try increasing post_max_size';
+        }
         if (!message) {
             message = 'Error uploading file'
         }
@@ -149,8 +152,18 @@
                 url: window.location,
                 paramName: 'file_data',
                 previewsContainer: $('<div />').get(0),
-                clickable: $link.get(0)
+                clickable: $link.get(0),
+                timeout: 0,
+                headers: {}
             }
+
+        /*
+         * Add CSRF token to headers
+         */
+        var token = $('meta[name="csrf-token"]').attr('content')
+        if (token) {
+            uploaderOptions.headers['X-CSRF-TOKEN'] = token
+        }
 
         var dropzone = new Dropzone($('<div />').get(0), uploaderOptions)
         dropzone.on('error', $.proxy(self.onUploadFail, self))
@@ -160,6 +173,7 @@
             $.each(self.$form.serializeArray(), function (index, field) {
                 formData.append(field.name, field.value)
             })
+            xhr.setRequestHeader('X-OCTOBER-REQUEST-HANDLER', self.alias + '::onUpload')
             self.onUploadStart()
         })
     }

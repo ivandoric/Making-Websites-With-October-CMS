@@ -139,10 +139,12 @@ class MailBlocker extends Model
         $blocker = static::where([
             'template' => $template,
             'user_id'  => $user->id
-        ])->orWhere([
-            'template' => $template,
-            'email'    => $user->email
-        ])->get();
+        ])->orWhere(function ($query) use ($template, $user) {
+            $query->where([
+                'template' => $template,
+                'email'    => $user->email
+            ]);
+        })->get();
 
         if (!$blocker->count()) {
             return false;

@@ -1,0 +1,4 @@
+export:
+    title: offline.sitesearch::lang.log.export
+    modelClass: OFFLINE\SiteSearch\Models\QueryLogExport
+    list: $/offline/sitesearch/models/querylog/columns.yaml

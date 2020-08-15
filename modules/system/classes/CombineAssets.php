@@ -11,7 +11,6 @@ use Config;
 use Request;
 use Response;
 use Assetic\Asset\FileAsset;
-use Assetic\Asset\GlobAsset;
 use Assetic\Asset\AssetCache;
 use Assetic\Asset\AssetCollection;
 use Assetic\Factory\AssetFactory;
@@ -148,10 +147,12 @@ class CombineAssets
         /*
          * Common Aliases
          */
-        $this->registerAlias('jquery', '~/modules/backend/assets/js/vendor/jquery.min.js');
+        $this->registerAlias('jquery', '~/modules/backend/assets/js/vendor/jquery-and-migrate.min.js');
         $this->registerAlias('framework', '~/modules/system/assets/js/framework.js');
         $this->registerAlias('framework.extras', '~/modules/system/assets/js/framework.extras.js');
+        $this->registerAlias('framework.extras.js', '~/modules/system/assets/js/framework.extras.js');
         $this->registerAlias('framework.extras', '~/modules/system/assets/css/framework.extras.css');
+        $this->registerAlias('framework.extras.css', '~/modules/system/assets/css/framework.extras.css');
 
         /*
          * Deferred registration
@@ -201,17 +202,32 @@ class CombineAssets
      * @param string $localPath Prefix all assets with this path (optional)
      * @return void
      */
-    public function combineToFile($assets = [], $destination, $localPath = null)
+    public function combineToFile($assets, $destination, $localPath = null)
     {
         // Disable cache always
         $this->storagePath = null;
 
+        // Prefix all assets
+        if ($localPath) {
+            if (substr($localPath, -1) !== '/') {
+                $localPath = $localPath.'/';
+            }
+            $assets = array_map(function ($asset) use ($localPath) {
+                if (substr($asset, 0, 1) === '@') {
+                    return $asset;
+                }
+                return $localPath.$asset;
+            }, $assets);
+        }
+
         list($assets, $extension) = $this->prepareAssets($assets);
 
         $rewritePath = File::localToPublic(dirname($destination));
+
         $combiner = $this->prepareCombiner($assets, $rewritePath);
 
         $contents = $combiner->dump();
+
         File::put($destination, $contents);
     }
 
@@ -242,7 +258,6 @@ class CombineAssets
         /*
          * Set 304 Not Modified header, if necessary
          */
-        header_remove();
         $response = Response::make();
         $response->header('Content-Type', $mime);
         $response->header('Cache-Control', 'private, max-age=604800');
@@ -396,8 +411,17 @@ class CombineAssets
      */
     protected function prepareCombiner(array $assets, $rewritePath = null)
     {
-        /*
-         * Extensibility
+        /**
+         * @event cms.combiner.beforePrepare
+         * Provides an opportunity to interact with the asset combiner before assets are combined.
+         * >**NOTE**: Plugin's must be elevated (`$elevated = true` on Plugin.php) to be run on the /combine route and thus listen to this event
+         *
+         * Example usage:
+         *
+         *     Event::listen('cms.combiner.beforePrepare', function ((\System\Classes\CombineAssets) $assetCombiner, (array) $assets) {
+         *         $assetCombiner->registerFilter(...)
+         *     });
+         *
          */
         Event::fire('cms.combiner.beforePrepare', [$this, $assets]);
 
@@ -405,7 +429,7 @@ class CombineAssets
         $filesSalt = null;
         foreach ($assets as $asset) {
             $filters = $this->getFilters(File::extension($asset)) ?: [];
-            $path = file_exists($asset) ? $asset : File::symbolizePath($asset, null) ?: $this->localPath . $asset;
+            $path = file_exists($asset) ? $asset : (File::symbolizePath($asset, null) ?: $this->localPath . $asset);
             $files[] = new FileAsset($path, $filters, public_path());
             $filesSalt .= $this->localPath . $asset;
         }
@@ -459,7 +483,7 @@ class CombineAssets
         $key = '';
 
         $assetFiles = array_map(function ($file) {
-            return file_exists($file) ? $file : File::symbolizePath($file, null) ?: $this->localPath . $file;
+            return file_exists($file) ? $file : (File::symbolizePath($file, null) ?: $this->localPath . $file);
         }, $assets);
 
         foreach ($assetFiles as $file) {
@@ -488,9 +512,8 @@ class CombineAssets
         if ($actionExists) {
             return Url::action($combineAction, [$outputFilename], false);
         }
-        else {
-            return '/combine/'.$outputFilename;
-        }
+
+        return '/combine/'.$outputFilename;
     }
 
     /**
@@ -528,7 +551,7 @@ class CombineAssets
      * `registerBundle` method. This instance is passed to the callback
      * function as an argument. Usage:
      *
-     *     CombineAssets::registerCallback(function($combiner){
+     *     CombineAssets::registerCallback(function ($combiner) {
      *         $combiner->registerBundle('~/modules/backend/assets/less/october.less');
      *     });
      *
@@ -598,12 +621,12 @@ class CombineAssets
         if ($extension === null) {
             return $this->filters;
         }
-        elseif (isset($this->filters[$extension])) {
+
+        if (isset($this->filters[$extension])) {
             return $this->filters[$extension];
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 
     //
@@ -666,12 +689,12 @@ class CombineAssets
         if ($extension === null) {
             return $this->bundles;
         }
-        elseif (isset($this->bundles[$extension])) {
+
+        if (isset($this->bundles[$extension])) {
             return $this->bundles[$extension];
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 
     //
@@ -729,12 +752,12 @@ class CombineAssets
         if ($extension === null) {
             return $this->aliases;
         }
-        elseif (isset($this->aliases[$extension])) {
+
+        if (isset($this->aliases[$extension])) {
             return $this->aliases[$extension];
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 
     //
@@ -757,7 +780,9 @@ class CombineAssets
         }
 
         $this->putCacheIndex($cacheKey);
+
         Cache::forever($cacheKey, base64_encode(serialize($cacheInfo)));
+
         return true;
     }
 
@@ -793,10 +818,19 @@ class CombineAssets
             $cacheKey .= $this->getDeepHashFromAssets($assets);
         }
 
-        /*
-         * Extensibility
-         */
         $dataHolder = (object) ['key' => $cacheKey];
+
+        /**
+         * @event cms.combiner.getCacheKey
+         * Provides an opportunity to modify the asset combiner's cache key
+         *
+         * Example usage:
+         *
+         *     Event::listen('cms.combiner.getCacheKey', function ((\System\Classes\CombineAssets) $assetCombiner, (stdClass) $dataHolder) {
+         *         $dataHolder->key = rand();
+         *     });
+         *
+         */
         Event::fire('cms.combiner.getCacheKey', [$this, $dataHolder]);
         $cacheKey = $dataHolder->key;
 

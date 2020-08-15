@@ -7,10 +7,11 @@ use Config;
 use Cms\Twig\Loader as TwigLoader;
 use Cms\Twig\Extension as CmsTwigExtension;
 use Cms\Components\ViewBag;
+use Cms\Helpers\Cms as CmsHelpers;
 use System\Twig\Extension as SystemTwigExtension;
 use October\Rain\Halcyon\Processors\SectionParser;
-use Twig_Source;
-use Twig_Environment;
+use Twig\Source as TwigSource;
+use Twig\Environment as TwigEnvironment;
 use ApplicationException;
 
 /**
@@ -73,7 +74,7 @@ class CmsCompoundObject extends CmsObject
     /**
      * @var array|null Cache for component properties.
      */
-    protected static $objectComponentPropertyMap = null;
+    protected static $objectComponentPropertyMap;
 
     /**
      * @var mixed Cache store for the getViewBag method.
@@ -143,12 +144,7 @@ class CmsCompoundObject extends CmsObject
      */
     protected function checkSafeMode()
     {
-        $safeMode = Config::get('cms.enableSafeMode', null);
-        if ($safeMode === null) {
-            $safeMode = !Config::get('app.debug', false);
-        }
-
-        if ($safeMode && $this->isDirty('code') && strlen(trim($this->code))) {
+        if (CmsHelpers::safeModeEnabled() && $this->isDirty('code') && strlen(trim($this->code))) {
             throw new ApplicationException(Lang::get('cms::lang.cms_object.safe_mode_enabled'));
         }
     }
@@ -237,7 +233,6 @@ class CmsCompoundObject extends CmsObject
         $componentName = $componentManager->resolve($componentName);
 
         foreach ($this->settings['components'] as $sectionName => $values) {
-
             $result = $sectionName;
 
             if ($sectionName == $componentName) {
@@ -257,7 +252,6 @@ class CmsCompoundObject extends CmsObject
             if ($sectionName == $componentName) {
                 return $result;
             }
-
         }
 
         return false;
@@ -279,7 +273,7 @@ class CmsCompoundObject extends CmsObject
         else {
             $cached = Cache::get($key, false);
             $unserialized = $cached ? @unserialize(@base64_decode($cached)) : false;
-            $objectComponentMap = $unserialized ? $unserialized : [];
+            $objectComponentMap = $unserialized ?: [];
             if ($objectComponentMap) {
                 self::$objectComponentPropertyMap = $objectComponentMap;
             }
@@ -405,16 +399,16 @@ class CmsCompoundObject extends CmsObject
      * @link http://twig.sensiolabs.org/doc/internals.html Twig internals
      * @param mixed $markup Specifies the markup content.
      * Use FALSE to load the content from the markup section.
-     * @return Twig_Node_Module A node tree
+     * @return Twig\Node\ModuleNode A node tree
      */
     public function getTwigNodeTree($markup = false)
     {
         $loader = new TwigLoader();
-        $twig = new Twig_Environment($loader, []);
+        $twig = new TwigEnvironment($loader, []);
         $twig->addExtension(new CmsTwigExtension());
         $twig->addExtension(new SystemTwigExtension);
 
-        $stream = $twig->tokenize(new Twig_Source($markup === false ? $this->markup : $markup, 'getTwigNodeTree'));
+        $stream = $twig->tokenize(new TwigSource($markup === false ? $this->markup : $markup, 'getTwigNodeTree'));
         return $twig->parse($stream);
     }
 

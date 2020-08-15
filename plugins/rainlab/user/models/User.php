@@ -4,6 +4,8 @@ use Str;
 use Auth;
 use Mail;
 use Event;
+use Config;
+use Carbon\Carbon;
 use October\Rain\Auth\Models\User as UserBase;
 use RainLab\User\Models\Settings as UserSettings;
 use October\Rain\Auth\AuthException;
@@ -24,8 +26,8 @@ class User extends UserBase
         'email'    => 'required|between:6,255|email|unique:users',
         'avatar'   => 'nullable|image|max:4000',
         'username' => 'required|between:2,255|unique:users',
-        'password' => 'required:create|between:4,255|confirmed',
-        'password_confirmation' => 'required_with:password|between:4,255',
+        'password' => 'required:create|between:8,255|confirmed',
+        'password_confirmation' => 'required_with:password|between:8,255',
     ];
 
     /**
@@ -49,8 +51,17 @@ class User extends UserBase
         'username',
         'email',
         'password',
-        'password_confirmation'
+        'password_confirmation',
+        'created_ip_address',
+        'last_ip_address'
     ];
+    
+    /**
+     * Reset guarded fields, because we use $fillable instead.
+     * @var array The attributes that aren't mass assignable.
+     */
+    protected $guarded = ['*'];
+
 
     /**
      * Purge attributes from data set.
@@ -75,9 +86,18 @@ class User extends UserBase
      */
     public function attemptActivation($code)
     {
-        $result = parent::attemptActivation($code);
-        if ($result === false) {
-            return false;
+        if ($this->trashed()) {
+            if ($code === $this->activation_code) {
+                $this->restore();
+            } else {
+                return false;
+            }
+        } else {
+            $result = parent::attemptActivation($code);
+
+            if ($result === false) {
+                return false;
+            }
         }
 
         Event::fire('rainlab.user.activate', [$this]);
@@ -183,6 +203,15 @@ class User extends UserBase
         return static::$loginAttribute = UserSettings::get('login_attribute', UserSettings::LOGIN_EMAIL);
     }
 
+    /**
+     * Returns the minimum length for a new password from settings.
+     * @return int
+     */
+    public static function getMinPasswordLength()
+    {
+        return Config::get('rainlab.user::minPasswordLength', 8);
+    }
+
     //
     // Scopes
     //
@@ -225,6 +254,13 @@ class User extends UserBase
         ) {
             $this->username = $this->email;
         }
+
+        /*
+         * Apply Password Length Settings
+         */
+        $minPasswordLength = static::getMinPasswordLength();
+        $this->rules['password'] = "required:create|between:$minPasswordLength,255|confirmed";
+        $this->rules['password_confirmation'] = "required_with:password|between:$minPasswordLength,255";
     }
 
     /**
@@ -329,6 +365,68 @@ class User extends UserBase
     }
 
     //
+    // Suspending
+    //
+
+    /**
+     * Check if the user is suspended.
+     * @return bool
+     */
+    public function isSuspended()
+    {
+        return Auth::findThrottleByUserId($this->id)->checkSuspended();
+    }
+
+    /**
+     * Remove the suspension on this user.
+     * @return void
+     */
+    public function unsuspend()
+    {
+        Auth::findThrottleByUserId($this->id)->unsuspend();
+    }
+
+    //
+    // IP Recording and Throttle
+    //
+
+    /**
+     * Records the last_ip_address to reflect the last known IP for this user.
+     * @param string|null $ipAddress
+     * @return void
+     */
+    public function touchIpAddress($ipAddress)
+    {
+        $this
+            ->newQuery()
+            ->where('id', $this->id)
+            ->update(['last_ip_address' => $ipAddress])
+        ;
+    }
+
+    /**
+     * Returns true if IP address is throttled and cannot register
+     * again. Maximum 3 registrations every 60 minutes.
+     * @param string|null $ipAddress
+     * @return bool
+     */
+    public static function isRegisterThrottled($ipAddress)
+    {
+        if (!$ipAddress) {
+            return false;
+        }
+
+        $timeLimit = Carbon::now()->subMinutes(60);
+        $count = static::make()
+            ->where('created_ip_address', $ipAddress)
+            ->where('created_at', '>', $timeLimit)
+            ->count()
+        ;
+
+        return $count > 2;
+    }
+
+    //
     // Last Seen
     //
 
@@ -418,6 +516,6 @@ class User extends UserBase
      */
     protected function generatePassword()
     {
-        $this->password = $this->password_confirmation = Str::random(6);
+        $this->password = $this->password_confirmation = Str::random(static::getMinPasswordLength());
     }
 }

@@ -4,6 +4,27 @@ use Watchlearn\Movies\Models\Movie;
 use Watchlearn\Movies\Models\Actor;
 use Watchlearn\Movies\Models\Genre;
 
+Route::get('api/my-items', function() {
+    $movies = Movie::all();
+    $returnObject = [];
+
+    foreach ($movies as $movie) {
+        $newMovie['id'] = $movie->id; 
+        $newMovie['title'] = $movie->name;
+        $newMovie['gallery'] = [];
+
+        $gallery = $movie->movie_gallery;
+
+        foreach ($gallery as $image) {
+            $newMovie['gallery'][] = $image->path;
+        }
+        
+        $returnObject[] = $newMovie;
+    };
+
+    return $returnObject;
+});
+
 Route::get('seed-actors', function () {
     
     $faker = Faker\Factory::create();
@@ -25,13 +46,14 @@ Route::get('/populate-movies', function(){
     $movies = Movie::all();
     
 
-    foreach ($movies as $movie) {
+    foreach ($movies as $index => $movie) {
         $genres = Genre::all()->random(3);
         
         $movie->genres = $genres;
         
         $movie->created_at = $faker->date($format = 'Y-m-d H:i:s', $max = 'now');
         $movie->published = $faker->boolean($chanceOfGettingTrue = 50);
+        $movie->sort_order = $index;
         $movie->save();
     }
 

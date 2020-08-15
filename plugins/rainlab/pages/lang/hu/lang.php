@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Lapok',
+        'template_title' => '%s Lapok',
         'delete_confirmation' => 'Valóban törölni akarja a kijelölt lapokat? Ez az allapokat is törölni fogja.',
         'no_records' => 'Nem található lap',
         'delete_confirm_single' => 'Valóban törölni akarja ezt a lapot? Ez az allapokat is törölni fogja.',

@@ -1,5 +1,6 @@
 <?php namespace RainLab\Blog\Components;
 
+use Event;
 use BackendAuth;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
@@ -32,7 +33,7 @@ class Post extends ComponentBase
                 'title'       => 'rainlab.blog::lang.settings.post_slug',
                 'description' => 'rainlab.blog::lang.settings.post_slug_description',
                 'default'     => '{{ :slug }}',
-                'type'        => 'string'
+                'type'        => 'string',
             ],
             'categoryPage' => [
                 'title'       => 'rainlab.blog::lang.settings.post_category',
@@ -48,10 +49,31 @@ class Post extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function init()
+    {
+        Event::listen('translate.localePicker.translateParams', function ($page, $params, $oldLocale, $newLocale) {
+            $newParams = $params;
+
+            if (isset($params['slug'])) {
+                $records = BlogPost::transWhere('slug', $params['slug'], $oldLocale)->first();
+                if ($records) {
+                    $records->translateContext($newLocale);
+                    $newParams['slug'] = $records['slug'];
+                }
+            }
+
+            return $newParams;
+        });
+    }
+
     public function onRun()
     {
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
         $this->post = $this->page['post'] = $this->loadPost();
+        if (!$this->post) {
+            $this->setStatusCode(404);
+            return $this->controller->run('404');
+        }
     }
 
     public function onRender()
@@ -66,21 +88,24 @@ class Post extends ComponentBase
         $slug = $this->property('slug');
 
         $post = new BlogPost;
+        $query = $post->query();
 
-        $post = $post->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
-            ? $post->transWhere('slug', $slug)
-            : $post->where('slug', $slug);
-
-        if (!$this->checkEditor()) {
-            $post = $post->isPublished();
+        if ($post->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')) {
+            $query->transWhere('slug', $slug);
+        } else {
+            $query->where('slug', $slug);
         }
 
-        $post = $post->first();
+        if (!$this->checkEditor()) {
+            $query->isPublished();
+        }
+        
+        $post = $query->first();
 
         /*
          * Add a "url" helper attribute for linking to each category
          */
-        if ($post && $post->categories->count()) {
+        if ($post && $post->exists && $post->categories->count()) {
             $post->categories->each(function($category) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });
@@ -125,6 +150,7 @@ class Post extends ComponentBase
     protected function checkEditor()
     {
         $backendUser = BackendAuth::getUser();
+
         return $backendUser && $backendUser->hasAccess('rainlab.blog.access_posts');
     }
 }

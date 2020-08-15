@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Stránky',
+        'template_title' => '%s Stránky',
         'delete_confirmation' => 'Opravdu chcete odstranit vybrané stránky? Budou odstraněny i případné podstránky.',
         'no_records' => 'Stránky nenalezeny',
         'delete_confirm_single' => 'Opravu chcete odstranit tuto stránku? Budou odstraněny i případné podstránky.',
@@ -26,7 +27,7 @@ return [
     'menu' => [
         'menu_label' => 'Menu',
         'delete_confirmation' => 'Opravdu chcete odstranit vybraná menu?',
-        'no_records' => 'Menu nenalezena',
+        'no_records' => 'Položky nenalezeny',
         'new' => 'Nové menu',
         'new_name' => 'Nové menu',
         'new_code' => 'nove-menu',
@@ -36,7 +37,6 @@ return [
         'code' => 'Kód',
         'items' => 'Položky menu',
         'add_subitem' => 'Přidat položku',
-        'no_records' => 'Položky nenalezeny',
         'code_required' => 'Pole kód je povinné.',
         'invalid_code' => 'Pole kód obsahuje neplatné znaky. Může obsahovat pouze číslice, písmena a znaky: _-'
     ],
@@ -48,6 +48,7 @@ return [
         'allow_nested_items_comment' => 'Vnořené položky mohou být automaticky vygenerovány statickými stránkami nebo jinými typy stránek.',
         'url' => 'URL',
         'reference' => 'Odkaz',
+        'search_placeholder' => 'Prohledat odkazy...',
         'title_required' => 'Titulek je povinný',
         'unknown_type' => 'Neznámý typ položky',
         'unnamed' => 'Nepojmenovaný typ položky',
@@ -60,8 +61,18 @@ return [
         'reference_required' => 'Odkaz je povinný.',
         'url_required' => 'URL je povinné',
         'cms_page_required' => 'Prosím vyberte CMS stránku',
+        'display_tab' => 'Zobrazení',
+        'hidden' => 'Skrytá',
+        'hidden_comment' => 'Skrýt tuto položku menu pro celý front-end.',
+        'attributes_tab' => 'Vlastnosti',
         'code' => 'Kód',
-        'code_comment' => 'Zadejte kód položky menu pokud k ní chcete přistupovat přes API.'
+        'code_comment' => 'Zadejte kód položky menu pokud k ní chcete přistupovat přes API.',
+        'css_class' => 'CSS třída',
+        'css_class_comment' => 'Vložte název CSS třídy k zajištění specifického vzhledu této položky menu.',
+        'external_link' => 'Externí odkaz',
+        'external_link_comment' => 'Otevřít odkaz této položky v novém okně.',
+        'static_page' => 'Statická stránka',
+        'all_static_pages' => 'Všechny statické stránky'
     ],
     'content' => [
         'menu_label' => 'Obsah',

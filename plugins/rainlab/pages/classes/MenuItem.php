@@ -92,7 +92,7 @@ class MenuItem
     public $viewBag = [];
 
     /**
-     * Initializes a menu item from a data array. 
+     * Initializes a menu item from a data array.
      * @param array $items Specifies the menu item data.
      * @return Returns an array of the MenuItem objects.
      */

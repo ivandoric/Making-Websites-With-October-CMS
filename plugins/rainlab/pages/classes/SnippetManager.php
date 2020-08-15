@@ -50,7 +50,7 @@ class SnippetManager
     public function findByCodeOrComponent($theme, $code, $componentClass, $allowCaching = false)
     {
         if (!$allowCaching) {
-            // If caching is not allowed, list all available snippets, 
+            // If caching is not allowed, list all available snippets,
             // find the snippet in the list and return it.
             $snippets = $this->listSnippets($theme);
 
@@ -155,7 +155,8 @@ class SnippetManager
             $result[$snippetCode] = $partial->getFileName();
         }
 
-        Cache::put($key, serialize($result), Config::get('cms.parsedPageCacheTTL', 10));
+        $expiresAt = now()->addMinutes(Config::get('cms.parsedPageCacheTTL', 10));
+        Cache::put($key, serialize($result), $expiresAt);
 
         return $result;
     }
@@ -206,7 +207,7 @@ class SnippetManager
             }
 
             foreach ($snippets as $componentClass => $componentCode) {
-                // TODO: register snippet components later, during 
+                // TODO: register snippet components later, during
                 // the page life cycle.
                 $snippet = new Snippet;
                 $snippet->initFromComponentInfo($componentClass, $componentCode);

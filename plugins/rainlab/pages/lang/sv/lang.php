@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Sidor',
+        'template_title' => '%s Sidor',
         'delete_confirmation' => 'Vill du verkligen ta bort de valda sidorna? Detta kommer också ta bort undersidorna, ifall det finns några.',
         'no_records' => 'Inga sidor hittades',
         'delete_confirm_single' => 'Vill du verkligen ta bort den valda sidan? Detta kommer också ta bort sidans undersidor, ifall det finns några.',

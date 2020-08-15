@@ -20,3 +20,7 @@ columns:
     published:
         label: Published
         type: switch
+    sort_order:
+        label: 'Sort order'
+        type: number
+        sortable: true

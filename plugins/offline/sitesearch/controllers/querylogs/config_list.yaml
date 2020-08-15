@@ -1,0 +1,18 @@
+list: $/offline/sitesearch/models/querylog/columns.yaml
+modelClass: OFFLINE\SiteSearch\Models\QueryLog
+title: offline.sitesearch::lang.log.title
+recordUrl: offline/sitesearch/querylogs/update/:id
+noRecordsMessage: backend::lang.list.no_records
+recordsPerPage: 20
+showPageNumbers: true
+filter: config_filter.yaml
+showSetup: true
+showSorting: true
+showCheckboxes: true
+defaultSort:
+    column: created_at
+    direction: desc
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: backend::lang.list.search_prompt

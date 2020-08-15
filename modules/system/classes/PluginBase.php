@@ -1,5 +1,6 @@
 <?php namespace System\Classes;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider as ServiceProviderBase;
 use ReflectionClass;
 use SystemException;
@@ -50,8 +51,9 @@ class PluginBase extends ServiceProviderBase
 
         if (!array_key_exists('plugin', $configuration)) {
             throw new SystemException(sprintf(
-                'The plugin configuration file plugin.yaml should contain the "plugin" section: %s.', $thisClass)
-            );
+                'The plugin configuration file plugin.yaml should contain the "plugin" section: %s.',
+                $thisClass
+            ));
         }
 
         return $configuration['plugin'];
@@ -69,7 +71,7 @@ class PluginBase extends ServiceProviderBase
     /**
      * Boot method, called right before the request route.
      *
-     * @return array
+     * @return void
      */
     public function boot()
     {
@@ -147,7 +149,7 @@ class PluginBase extends ServiceProviderBase
     /**
      * Registers scheduled tasks that are executed on a regular basis.
      *
-     * @param string $schedule
+     * @param Schedule $schedule
      * @return void
      */
     public function registerSchedule($schedule)
@@ -203,17 +205,49 @@ class PluginBase extends ServiceProviderBase
     }
 
     /**
+     * Registers any mail layouts implemented by this plugin.
+     * The layouts must be returned in the following format:
+     *
+     *     return [
+     *         'marketing'    => 'acme.blog::layouts.marketing',
+     *         'notification' => 'acme.blog::layouts.notification',
+     *     ];
+     *
+     * @return array
+     */
+    public function registerMailLayouts()
+    {
+        return [];
+    }
+
+    /**
      * Registers any mail templates implemented by this plugin.
      * The templates must be returned in the following format:
      *
      *     return [
-     *         ['acme.blog::mail.welcome' => 'This is a description of the welcome template'],
-     *         ['acme.blog::mail.forgot_password' => 'This is a description of the forgot password template'],
+     *         'acme.blog::mail.welcome',
+     *         'acme.blog::mail.forgot_password',
      *     ];
      *
      * @return array
      */
     public function registerMailTemplates()
+    {
+        return [];
+    }
+
+    /**
+     * Registers any mail partials implemented by this plugin.
+     * The partials must be returned in the following format:
+     *
+     *     return [
+     *         'tracking'  => 'acme.blog::partials.tracking',
+     *         'promotion' => 'acme.blog::partials.promotion',
+     *     ];
+     *
+     * @return array
+     */
+    public function registerMailPartials()
     {
         return [];
     }
@@ -256,9 +290,8 @@ class PluginBase extends ServiceProviderBase
             if ($exceptionMessage) {
                 throw new SystemException($exceptionMessage);
             }
-            else {
-                $this->loadedYamlConfiguration = [];
-            }
+
+            $this->loadedYamlConfiguration = [];
         }
         else {
             $this->loadedYamlConfiguration = Yaml::parse(file_get_contents($yamlFilePath));

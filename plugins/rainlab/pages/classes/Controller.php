@@ -60,6 +60,9 @@ class Controller
             $cmsPage->settings[$property] = array_get($viewBag, $property);
         }
 
+        // Transer page ID to CMS page
+        $cmsPage->settings['id'] = $page->getId();
+
         return $cmsPage;
     }
 

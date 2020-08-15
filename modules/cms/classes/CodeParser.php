@@ -128,7 +128,7 @@ class CodeParser
         $body = $this->object->code;
         $body = preg_replace('/^\s*function/m', 'public function', $body);
 
-        $codeNamespaces = [];
+        $namespaces = [];
         $pattern = '/(use\s+[a-z0-9_\\\\]+(\s+as\s+[a-z0-9_]+)?;\n?)/mi';
         preg_match_all($pattern, $body, $namespaces);
         $body = preg_replace($pattern, '', $body);
@@ -141,7 +141,9 @@ class CodeParser
         $fileContents = '<?php '.PHP_EOL;
 
         foreach ($namespaces[0] as $namespace) {
-            $fileContents .= $namespace;
+            if (str_contains($namespace, '\\')) {
+                $fileContents .= $namespace;
+            }
         }
 
         $fileContents .= 'class '.$className.$parentClass.PHP_EOL;
@@ -192,11 +194,9 @@ class CodeParser
         $path = array_get($data, 'filePath', $this->getCacheFilePath());
 
         if (is_file($path)) {
-            if ($className = $this->extractClassFromFile($path)) {
-                if (class_exists($className)) {
-                    $data['className'] = $className;
-                    return $data;
-                }
+            if (($className = $this->extractClassFromFile($path)) && class_exists($className)) {
+                $data['className'] = $className;
+                return $data;
             }
 
             @unlink($path);
@@ -271,10 +271,8 @@ class CodeParser
     {
         $cached = $this->getCachedInfo();
 
-        if ($cached !== null) {
-            if (array_key_exists($this->filePath, $cached)) {
-                return $cached[$this->filePath];
-            }
+        if ($cached !== null && array_key_exists($this->filePath, $cached)) {
+            return $cached[$this->filePath];
         }
 
         return null;
@@ -313,7 +311,7 @@ class CodeParser
 
     /**
      * Writes content with concurrency support and cache busting
-     * This work is based on the Twig_Cache_Filesystem class
+     * This work is based on the Twig\Cache\FilesystemCache class
      */
     protected function writeContentSafe($path, $content)
     {
@@ -338,7 +336,14 @@ class CodeParser
          * Compile cached file into bytecode cache
          */
         if (Config::get('cms.forceBytecodeInvalidation', false)) {
-            if (function_exists('opcache_invalidate')) {
+            $opcache_enabled = ini_get('opcache.enable');
+            $opcache_path = trim(ini_get('opcache.restrict_api'));
+
+            if (!empty($opcache_path) && !starts_with(__FILE__, $opcache_path)) {
+                $opcache_enabled = false;
+            }
+
+            if (function_exists('opcache_invalidate') && $opcache_enabled) {
                 opcache_invalidate($path, true);
             }
             elseif (function_exists('apc_compile_file')) {

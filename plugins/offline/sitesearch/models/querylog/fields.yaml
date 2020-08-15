@@ -1,0 +1,27 @@
+fields:
+    query:
+        label: 'offline.sitesearch::lang.log.query'
+        size: tiny
+        span: auto
+        type: textarea
+    created_at:
+        label: 'offline.sitesearch::lang.log.created_at'
+        mode: datetime
+        span: auto
+        type: datepicker
+    domain:
+        label: 'offline.sitesearch::lang.log.domain'
+        span: auto
+        type: text
+    location:
+        label: 'offline.sitesearch::lang.log.location'
+        span: auto
+        type: text
+    session_id:
+        label: 'offline.sitesearch::lang.log.session_id'
+        span: auto
+        type: text
+    useragent:
+        label: 'offline.sitesearch::lang.log.useragent'
+        span: auto
+        type: text

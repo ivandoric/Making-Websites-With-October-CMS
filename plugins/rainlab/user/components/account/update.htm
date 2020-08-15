@@ -20,6 +20,14 @@
         <input name="password_confirmation" type="password" class="form-control" id="accountPasswordConfirm">
     </div>
 
+    {% if updateRequiresPassword %}
+        <p>To change these details, please confirm your current password.</p>
+        <div class="form-group">
+            <label for="accountPasswordCurrent">Current Password <small class="text-danger">* required</small></label>
+            <input name="password_current" type="password" class="form-control" id="accountPasswordCurrent">
+        </div>
+    {% endif %}
+
     <button type="submit" class="btn btn-default">Save</button>
 
 {{ form_close() }}

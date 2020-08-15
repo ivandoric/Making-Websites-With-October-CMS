@@ -1,15 +1,12 @@
 <?php namespace Cms\Controllers;
 
 use File;
-use Yaml;
 use Flash;
-use Config;
 use Backend;
 use Redirect;
 use BackendMenu;
 use ValidationException;
 use ApplicationException;
-use Cms\Models\ThemeData;
 use Cms\Models\ThemeExport;
 use Cms\Models\ThemeImport;
 use Cms\Classes\Theme as CmsTheme;
@@ -31,7 +28,10 @@ class Themes extends Controller
     /**
      * @var array Permissions required to view this page.
      */
-    public $requiredPermissions = ['cms.manage_themes'];
+    public $requiredPermissions = [
+        'cms.manage_themes',
+        'cms.manage_theme_options',
+    ];
 
     /**
      * Constructor.
@@ -49,8 +49,8 @@ class Themes extends Controller
         /*
          * Custom redirect for unauthorized request
          */
-        $this->bindEvent('page.beforeDisplay', function() {
-            if (!$this->user->hasAnyAccess($this->requiredPermissions)) {
+        $this->bindEvent('page.beforeDisplay', function () {
+            if (!$this->user->hasAccess('cms.manage_themes')) {
                 return Backend::redirect('cms/themeoptions/update');
             }
         });
@@ -117,8 +117,7 @@ class Themes extends Controller
         $widgetConfig->arrayName = 'Theme';
         $widgetConfig->context = 'update';
 
-        $widget = $this->makeWidget(Form::class, $widgetConfig);
-        return $widget;
+        return $this->makeWidget(Form::class, $widgetConfig);
     }
 
     //
@@ -175,8 +174,7 @@ class Themes extends Controller
         $widgetConfig->arrayName = 'Theme';
         $widgetConfig->context = 'create';
 
-        $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
-        return $widget;
+        return $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
     }
 
     //
@@ -258,8 +256,7 @@ class Themes extends Controller
         $widgetConfig->model->theme = $theme;
         $widgetConfig->arrayName = 'ThemeExport';
 
-        $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
-        return $widget;
+        return $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
     }
 
     //
@@ -295,8 +292,7 @@ class Themes extends Controller
         $widgetConfig->model->theme = $theme;
         $widgetConfig->arrayName = 'ThemeImport';
 
-        $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
-        return $widget;
+        return $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
     }
 
     //

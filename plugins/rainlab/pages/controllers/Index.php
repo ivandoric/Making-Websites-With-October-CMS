@@ -10,8 +10,10 @@ use Response;
 use BackendMenu;
 use Cms\Classes\Layout;
 use Cms\Classes\Theme;
+use Cms\Classes\CmsObject;
 use Cms\Classes\CmsCompoundObject;
 use Cms\Widgets\TemplateList;
+use System\Helpers\DateTime;
 use Backend\Classes\Controller;
 use RainLab\Pages\Widgets\PageList;
 use RainLab\Pages\Widgets\MenuList;
@@ -47,24 +49,47 @@ class Index extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('RainLab.Pages', 'pages', 'pages');
-
         try {
             if (!($this->theme = Theme::getEditTheme())) {
                 throw new ApplicationException(Lang::get('cms::lang.theme.edit.not_found'));
             }
 
-            new PageList($this, 'pageList');
-            new MenuList($this, 'menuList');
-            new SnippetList($this, 'snippetList');
+            if ($this->user) {
+                if ($this->user->hasAccess('rainlab.pages.manage_pages')) {
+                    new PageList($this, 'pageList');
+                    $this->vars['activeWidgets'][] = 'pageList';
+                }
 
-            new TemplateList($this, 'contentList', function() {
-                return $this->getContentTemplateList();
-            });
+                if ($this->user->hasAccess('rainlab.pages.manage_menus')) {
+                    new MenuList($this, 'menuList');
+                    $this->vars['activeWidgets'][] = 'menuList';
+                }
+
+                if ($this->user->hasAccess('rainlab.pages.manage_content')) {
+                    new TemplateList($this, 'contentList', function() {
+                        return $this->getContentTemplateList();
+                    });
+                    $this->vars['activeWidgets'][] = 'contentList';
+                }
+
+                if ($this->user->hasAccess('rainlab.pages.access_snippets')) {
+                    new SnippetList($this, 'snippetList');
+                    $this->vars['activeWidgets'][] = 'snippetList';
+                }
+            }
         }
         catch (Exception $ex) {
             $this->handleError($ex);
         }
+
+        $context = [
+            'pageList' => 'pages',
+            'menuList' => 'menus',
+            'contentList' => 'content',
+            'snippetList' => 'snippets',
+        ];
+
+        BackendMenu::setContext('RainLab.Pages', 'pages', @$context[$this->vars['activeWidgets'][0]]);
     }
 
     //
@@ -74,9 +99,9 @@ class Index extends Controller
     public function index()
     {
         $this->addJs('/modules/backend/assets/js/october.treeview.js', 'core');
-        $this->addJs('/plugins/rainlab/pages/assets/js/pages-page.js');
-        $this->addJs('/plugins/rainlab/pages/assets/js/pages-snippets.js');
-        $this->addCss('/plugins/rainlab/pages/assets/css/pages.css');
+        $this->addJs('/plugins/rainlab/pages/assets/js/pages-page.js', 'RainLab.Pages');
+        $this->addJs('/plugins/rainlab/pages/assets/js/pages-snippets.js', 'RainLab.Pages');
+        $this->addCss('/plugins/rainlab/pages/assets/css/pages.css', 'RainLab.Pages');
 
         // Preload the code editor class as it could be needed
         // before it loads dynamically.
@@ -84,7 +109,7 @@ class Index extends Controller
 
         $this->bodyClass = 'compact-container';
         $this->pageTitle = 'rainlab.pages::lang.plugin.name';
-        $this->pageTitleTemplate = '%s Pages';
+        $this->pageTitleTemplate = Lang::get('rainlab.pages::lang.page.template_title');
 
         if (Request::ajax() && Request::input('formWidgetAlias')) {
             $this->bindFormWidgetToController();
@@ -115,21 +140,12 @@ class Index extends Controller
         Event::fire('pages.object.save', [$this, $object, $type]);
         $this->fireEvent('object.save', [$object, $type]);
 
-        $result = [
-            'objectPath'  => $type != 'content' ? $object->getBaseFileName() : $object->fileName,
-            'objectMtime' => $object->mtime,
-            'tabTitle'    => $this->getTabTitle($type, $object)
-        ];
-
-        if ($type == 'page') {
-            $result['pageUrl'] = Url::to($object->getViewBag()->property('url'));
-
-            PagesPlugin::clearCache();
-        }
+        $result = $this->getUpdateResponse($object, $type);
 
         $successMessages = [
             'page' => 'rainlab.pages::lang.page.saved',
-            'menu' => 'rainlab.pages::lang.menu.saved'
+            'menu' => 'rainlab.pages::lang.menu.saved',
+            'content' => 'rainlab.pages::lang.content.saved',
         ];
 
         $successMessage = isset($successMessages[$type])
@@ -160,6 +176,8 @@ class Index extends Controller
 
         $widget = $this->makeObjectFormWidget($type, $object);
         $this->vars['objectPath'] = '';
+        $this->vars['canCommit'] = $this->canCommitObject($object);
+        $this->vars['canReset'] = $this->canResetObject($object);
 
         $result = [
             'tabTitle' => $this->getTabTitle($type, $object),
@@ -258,7 +276,7 @@ class Index extends Controller
 
         $object = $this->fillObjectFromPost($type);
 
-        return $this->pushObjectForm($type, $object);
+        return $this->pushObjectForm($type, $object, Request::input('formWidgetAlias'));
     }
 
     public function onGetInspectorConfiguration()
@@ -328,9 +346,130 @@ class Index extends Controller
         return $widget->onSearch();
     }
 
+    /**
+     * Commits the DB changes of a object to the filesystem
+     *
+     * @return array $response
+     */
+    public function onCommit()
+    {
+        $this->validateRequestTheme();
+        $type = Request::input('objectType');
+        $object = $this->loadObject($type, trim(Request::input('objectPath')));
+
+        if ($this->canCommitObject($object)) {
+            // Populate the filesystem with the object and then remove it from the db
+            $datasource = $this->getThemeDatasource();
+            $datasource->pushToSource($object, 'filesystem');
+            $datasource->removeFromSource($object, 'database');
+
+            Flash::success(Lang::get('cms::lang.editor.commit_success', ['type' => $type]));
+        }
+
+        return array_merge($this->getUpdateResponse($object, $type), ['forceReload' => true]);
+    }
+
+    /**
+     * Resets a object to the version on the filesystem
+     *
+     * @return array $response
+     */
+    public function onReset()
+    {
+        $this->validateRequestTheme();
+        $type = Request::input('objectType');
+        $object = $this->loadObject($type, trim(Request::input('objectPath')));
+
+        if ($this->canResetObject($object)) {
+            // Remove the object from the DB
+            $datasource = $this->getThemeDatasource();
+            $datasource->removeFromSource($object, 'database');
+
+            Flash::success(Lang::get('cms::lang.editor.reset_success', ['type' => $type]));
+        }
+
+        return array_merge($this->getUpdateResponse($object, $type), ['forceReload' => true]);
+    }
+
     //
-    // Methods for the internal use
+    // Methods for internal use
     //
+
+    /**
+     * Get the response to return in an AJAX request that updates an object
+     *
+     * @param CmsObject $object The object that has been affected
+     * @param string $type The type of object being affected
+     * @return array $result;
+     */
+    protected function getUpdateResponse(CmsObject $object, string $type)
+    {
+        $result = [
+            'objectPath'  => $type != 'content' ? $object->getBaseFileName() : $object->fileName,
+            'objectMtime' => $object->mtime,
+            'tabTitle'    => $this->getTabTitle($type, $object)
+        ];
+
+        if ($type == 'page') {
+            $result['pageUrl'] = Url::to($object->getViewBag()->property('url'));
+            PagesPlugin::clearCache();
+        }
+
+        $result['canCommit'] = $this->canCommitObject($object);
+        $result['canReset'] = $this->canResetObject($object);
+
+        return $result;
+    }
+
+    /**
+     * Get the active theme's datasource
+     *
+     * @return \October\Rain\Halcyon\Datasource\DatasourceInterface
+     */
+    protected function getThemeDatasource()
+    {
+        return $this->theme->getDatasource();
+    }
+
+    /**
+     * Check to see if the provided object can be committed
+     * Only available in debug mode, the DB layer must be enabled, and the object must exist in the database
+     *
+     * @param CmsObject $object
+     * @return boolean
+     */
+    protected function canCommitObject(CmsObject $object)
+    {
+        $result = false;
+
+        if (Config::get('app.debug', false) &&
+            Theme::databaseLayerEnabled() &&
+            $this->getThemeDatasource()->sourceHasModel('database', $object)
+        ) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check to see if the provided object can be reset
+     * Only available when the DB layer is enabled and the object exists in both the DB & Filesystem
+     *
+     * @param CmsObject $object
+     * @return boolean
+     */
+    protected function canResetObject(CmsObject $object)
+    {
+        $result = false;
+
+        if (Theme::databaseLayerEnabled()) {
+            $datasource = $this->getThemeDatasource();
+            $result = $datasource->sourceHasModel('database', $object) && $datasource->sourceHasModel('filesystem', $object);
+        }
+
+        return $result;
+    }
 
     protected function validateRequestTheme()
     {
@@ -374,7 +513,18 @@ class Index extends Controller
         ];
 
         if (!array_key_exists($type, $types)) {
-            throw new ApplicationException(trans('rainlab.pages::lang.object.invalid_type'));
+            throw new ApplicationException(Lang::get('rainlab.pages::lang.object.invalid_type') . ' - type - ' . $type);
+        }
+
+        $allowed = false;
+        if ($type === 'content') {
+            $allowed = $this->user->hasAccess('rainlab.pages.manage_content');
+        } else {
+            $allowed = $this->user->hasAccess("rainlab.pages.manage_{$type}s");
+        }
+
+        if (!$allowed) {
+            throw new ApplicationException(Lang::get('rainlab.pages::lang.object.unauthorized_type', ['type' => $type]));
         }
 
         return $types[$type];
@@ -389,12 +539,12 @@ class Index extends Controller
         ];
 
         if (!array_key_exists($type, $formConfigs)) {
-            throw new ApplicationException(trans('rainlab.pages::lang.object.not_found'));
+            throw new ApplicationException(Lang::get('rainlab.pages::lang.object.not_found'));
         }
 
         $widgetConfig = $this->makeConfig($formConfigs[$type]);
         $widgetConfig->model = $object;
-        $widgetConfig->alias = $alias ?: 'form'.studly_case($type).md5($object->getFileName()).uniqid();
+        $widgetConfig->alias = $alias ?: 'form' . studly_case($type) . md5($object->exists ? $object->getFileName() : uniqid());
         $widgetConfig->context = !$object->exists ? 'create' : 'update';
 
         $widget = $this->makeWidget('Backend\Widgets\Form', $widgetConfig);
@@ -417,6 +567,11 @@ class Index extends Controller
         }
 
         $component = $layout->getComponent('staticPage');
+
+        if (!$component) {
+            return;
+        }
+
         if (!$component->property('useContent', true)) {
             unset($formWidget->secondaryTabs['fields']['markup']);
         }
@@ -430,8 +585,10 @@ class Index extends Controller
             if ($fieldConfig['type'] == 'fileupload') continue;
 
             if ($fieldConfig['type'] == 'repeater') {
-                $fieldConfig['form']['fields'] = array_get($fieldConfig, 'fields', []);
-                unset($fieldConfig['fields']);
+                if (empty($fieldConfig['form']) || !is_string($fieldConfig['form'])) {
+                    $fieldConfig['form']['fields'] = array_get($fieldConfig, 'fields', []);
+                    unset($fieldConfig['fields']);
+                }
             }
 
             /*
@@ -440,7 +597,7 @@ class Index extends Controller
             $placement = (!empty($fieldConfig['placement']) ? $fieldConfig['placement'] : NULL);
 
             switch ($placement) {
-                case "primary":
+                case 'primary':
                     $formWidget->tabs['fields']['viewBag[' . $fieldCode . ']'] = $fieldConfig;
                     break;
 
@@ -538,7 +695,7 @@ class Index extends Controller
     {
         $objectPath = trim(Request::input('objectPath'));
         $object = $objectPath ? $this->loadObject($type, $objectPath) : $this->createObject($type);
-        $formWidget = $this->makeObjectFormWidget($type, $object);
+        $formWidget = $this->makeObjectFormWidget($type, $object, Request::input('formWidgetAlias'));
 
         $saveData = $formWidget->getSaveData();
         $postData = post();
@@ -587,6 +744,18 @@ class Index extends Controller
             }
         }
 
+        if ($type == 'menu') {
+            // If no item data is sent through POST, this means the menu is empty
+            if (!isset($objectData['itemData'])) {
+                $objectData['itemData'] = [];
+            } else {
+                $objectData['itemData'] = json_decode($objectData['itemData'], true);
+                if (json_last_error() !== JSON_ERROR_NONE || !is_array($objectData['itemData'])) {
+                    $objectData['itemData'] = [];
+                }
+            }
+        }
+
         if (!empty($objectData['markup']) && Config::get('cms.convertLineEndings', false) === true) {
             $objectData['markup'] = $this->convertLineEndings($objectData['markup']);
         }
@@ -609,11 +778,14 @@ class Index extends Controller
         return $object;
     }
 
-    protected function pushObjectForm($type, $object)
+    protected function pushObjectForm($type, $object, $alias = null)
     {
-        $widget = $this->makeObjectFormWidget($type, $object);
+        $widget = $this->makeObjectFormWidget($type, $object, $alias);
 
+        $this->vars['canCommit'] = $this->canCommitObject($object);
+        $this->vars['canReset'] = $this->canResetObject($object);
         $this->vars['objectPath'] = Request::input('path');
+        $this->vars['lastModified'] = DateTime::makeCarbon($object->mtime);
 
         if ($type == 'page') {
             $this->vars['pageUrl'] = Url::to($object->getViewBag()->property('url'));

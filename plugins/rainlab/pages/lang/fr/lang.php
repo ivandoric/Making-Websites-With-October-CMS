@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Pages',
+        'template_title' => '%s Pages',
         'delete_confirmation' => 'Confirmez-vous la suppression des pages sélectionnées ? Les sous-pages seront également supprimées.',
         'no_records' => 'Aucune page trouvée',
         'delete_confirm_single' => 'Confirmez-vous la suppression de cette page ? Les sous-pages seront également supprimées.',
@@ -60,8 +61,16 @@ return [
         'reference_required' => 'La référence de l’élément du menu est requis.',
         'url_required' => 'L’URL est requise',
         'cms_page_required' => 'Sélectionnez une page CMS s’il vous plaît',
+        'display_tab' => 'Affichage',
+        'hidden' => 'Caché',
+        'hidden_comment' => "Empêcher ce menu d'apparaître sur le site web.",
+        'attributes_tab' => 'Attributs',
         'code' => 'Code',
         'code_comment' => 'Entrez le code de l’élément du menu si vous souhaitez y accéder via l’API.',
+        'css_class' => 'Classe CSS',
+        'css_class_comment' => 'Entrez un nom de classe CSS pour donner à cet élément de menu une apparence personnalisée.',
+        'external_link' => 'Lien externe',
+        'external_link_comment' => 'Ouvrir les liens pour ce menu dans une nouvelle fenêtre.',
         'static_page' => 'Page Statique',
         'all_static_pages' => 'Toutes les pages'
     ],
@@ -128,5 +137,7 @@ return [
         'static_menu_code_description' => 'Spécifiez le code du menu que le composant devrait afficher.',
         'static_breadcrumbs_name' => 'Breadcrumbs statique',
         'static_breadcrumbs_description' => 'Affiche l\' aide à la navigation dans une page statique.',
+        'child_pages_name' => 'Pages enfants',
+        'child_pages_description' => 'Affiche une liste de pages enfants pour la page en cours',
     ],
 ];

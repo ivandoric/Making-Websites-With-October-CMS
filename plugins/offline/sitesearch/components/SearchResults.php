@@ -1,10 +1,12 @@
 <?php namespace OFFLINE\SiteSearch\Components;
 
 use DomainException;
+use Event;
 use Illuminate\Pagination\LengthAwarePaginator;
 use OFFLINE\SiteSearch\Classes\ResultCollection;
 use OFFLINE\SiteSearch\Classes\SearchService;
 use Request;
+use Url;
 
 /**
  * SearchResults Component
@@ -107,7 +109,7 @@ class SearchResults extends BaseComponent
                 'type'              => 'string',
                 'default'           => 'Visit page',
                 'showExternalParam' => false,
-            ]
+            ],
         ];
     }
 
@@ -182,27 +184,9 @@ class SearchResults extends BaseComponent
             $this->pageNumber
         );
 
-        return $paginator->setPath(\Url::to($this->getPageUrl()))->appends('q', $this->query);
-    }
+        $pageUrl = Url::to(Request::url());
 
-    /**
-     * Try to get the page's url.
-     *
-     * @return string
-     */
-    public function getPageUrl()
-    {
-        // Component sits in cms page
-        if (isset($this->page->settings['url'])) {
-            return $this->page->settings['url'];
-        }
-
-        // Component sits in static page via snippet
-        if (isset($this->page->apiBag['staticPage'])) {
-            return $this->page->apiBag['staticPage']->viewBag['url'];
-        }
-
-        return '';
+        return $paginator->setPath($pageUrl)->appends('q', $this->query);
     }
 
     /**

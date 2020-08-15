@@ -5,10 +5,15 @@
         'author'                     => 'OFFLINE GmbH',
         'manage_settings'            => 'Konfigurieren Sie Ihre Suchfunktion',
         'manage_settings_permission' => 'Kann Einstellungen verwalten',
+        'view_log_permission'        => 'Kann Suchprotokoll einsehen',
     ],
     'settings'          => [
         'mark_results'               => 'Markiere Treffer in Suchergebnissen',
         'mark_results_comment'       => 'Suchbegriff wird mit <mark> Tags umschlossen',
+        'log_queries'                => 'Zeichne Suchanfragen auf',
+        'log_queries_comment'        => 'Protokolliere alle Suchanfragen von Besuchern',
+        'log_keep_days'              => 'Lösche Suchanfragen nach Tagen',
+        'log_keep_days_comment'      => 'Das Protokoll wird nach dieser Anzahl Tagen bereinigt (Standard: 365)',
         'excerpt_length'             => 'Länge des Textauszuges',
         'excerpt_length_comment'     => 'Länge des Textauszuges, der in den Suchresultaten angezeigt wird',
         'use_this_provider'          => 'Diesen Provider verwenden',
@@ -65,21 +70,34 @@ href="http://octobercms.com/plugin/offline-sitesearch#documentation">die Dokumen
         'title'       => 'Suchfeld',
         'description' => 'Zeigt ein Suchfeld an',
         'properties'  => [
-            'use_auto_complete' => [
+            'use_auto_complete'          => [
                 'title' => 'Suche während der Eingabe',
             ],
             'auto_complete_result_count' => [
                 'title' => 'Max. Anzahl Sofort-Resultate',
             ],
-            'search_page' => [
-                'title' => 'Seite für Suchresultate',
+            'search_page'                => [
+                'title'       => 'Seite für Suchresultate',
                 'description' => 'Die Suchanfrage wird an diese Seite versendet.',
-                'null_value' => '-- Nicht verlinkt',
+                'null_value'  => '-- Nicht verlinkt',
             ],
         ],
     ],
     'siteSearchInclude' => [
         'title'       => 'In SiteSearch beachten',
         'description' => 'Zu einer CMS Seite hinzufügen, um diese bei der Suche zu berücksichtigen',
+    ],
+    'log'               => [
+        'id'           => 'ID',
+        'title'        => 'Suchanfragen',
+        'description'  => 'Aufzeichnung aller Suchanfragen',
+        'title_update' => 'Suchanfrage bearbeiten',
+        'query'        => 'Suchbegriff',
+        'created_at'   => 'Zeitpunkt',
+        'domain'       => 'Domain',
+        'location'     => 'Pfad',
+        'session_id'   => 'Session',
+        'export'       => 'Suchanfragen exportieren',
+        'useragent'    => 'User-Agent',
     ],
 ];

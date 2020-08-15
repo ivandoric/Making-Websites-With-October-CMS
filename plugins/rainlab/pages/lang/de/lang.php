@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Seiten',
+        'template_title' => '%s Seiten',
         'delete_confirmation' => 'Möchten Sie die ausgewählten Seiten wirklich löschen? Dadurch werden auch mögliche Unterseiten gelöscht.',
         'no_records' => 'Keine Seiten gefunden',
         'delete_confirm_single' => 'Möchten Sie die ausgewählte Seite wirklich löschen? Dadurch werden auch mögliche Unterseiten gelöscht.',

@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Pagine',
+        'template_title' => '%s Pagine',
         'delete_confirmation' => 'Vuoi davvero eliminare le pagine selezionate? L\'operazione cancellerà anche le sottopagine, se presenti.',
         'no_records' => 'Nessuna pagina trovata',
         'delete_confirm_single' => 'Vuoi davvero eliminare questa pagina? L\'operazione cancellerà anche le sottopagine, se presenti.',

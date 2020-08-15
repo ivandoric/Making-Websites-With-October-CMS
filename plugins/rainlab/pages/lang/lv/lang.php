@@ -6,6 +6,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Lapas',
+        'template_title' => '%s Lapas',
         'delete_confirmation' => 'Vai tu tiešām vēlies dzēst izvēlētās lapas? Šī operācija izdzēsīs arī apakšlapas (ja tādas ir).',
         'no_records' => 'Neviena lapa netika atrasta',
         'delete_confirm_single' => 'Vai tu tiešām vēlies dzēst izvēlēto lapu? Šī operācija izdzēsīs arī apakšlapas (ja tādas ir).',

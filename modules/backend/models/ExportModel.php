@@ -5,6 +5,7 @@ use Lang;
 use Model;
 use Response;
 use League\Csv\Writer as CsvWriter;
+use October\Rain\Parse\League\EscapeFormula as CsvEscapeFormula;
 use ApplicationException;
 use SplTempFileObject;
 
@@ -62,12 +63,7 @@ abstract class ExportModel extends Model
             throw new ApplicationException(Lang::get('backend::lang.import_export.file_not_found_error'));
         }
 
-        $headers = Response::download($csvPath, $outputName)->headers->all();
-        $result = Response::make(File::get($csvPath), 200, $headers);
-
-        @unlink($csvPath);
-
-        return $result;
+        return Response::download($csvPath, $outputName)->deleteFileAfterSend(true);
     }
 
     /**
@@ -101,7 +97,7 @@ abstract class ExportModel extends Model
          * Prepare CSV
          */
         $csv = CsvWriter::createFromFileObject(new SplTempFileObject);
-        
+
         $csv->setOutputBOM(CsvWriter::BOM_UTF8);
 
         if ($options['delimiter'] !== null) {
@@ -116,6 +112,9 @@ abstract class ExportModel extends Model
             $csv->setEscape($options['escape']);
         }
 
+        // Temporary until upgrading to league/csv >= 9.1.0 (will be $csv->addFormatter($formatter))
+        $formatter = new CsvEscapeFormula();
+
         /*
          * Add headers
          */
@@ -129,6 +128,10 @@ abstract class ExportModel extends Model
          */
         foreach ($results as $result) {
             $data = $this->matchDataToColumns($result, $columns);
+
+            // Temporary until upgrading to league/csv >= 9.1.0
+            $data = $formatter($data);
+
             $csv->insertOne($data);
         }
 
@@ -198,8 +201,7 @@ abstract class ExportModel extends Model
         foreach ($data as $value) {
             if (is_array($value)) {
                 $newData[] = 'Array';
-            }
-            else {
+            } else {
                 $newData[] = str_replace($delimeter, '\\'.$delimeter, $value);
             }
         }

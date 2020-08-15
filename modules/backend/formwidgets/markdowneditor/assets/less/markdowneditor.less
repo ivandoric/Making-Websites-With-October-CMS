@@ -163,7 +163,7 @@
     //
 
     &.is-fullscreen {
-        z-index: @zindex-fullscreen;
+        z-index: @zindex-dropdown;
         position: fixed !important;
         top: 0;
         left: 0;
@@ -172,6 +172,31 @@
         &, .editor-toolbar {
             border-radius: 0 !important;
             border: none;
+        }
+    }
+
+    //
+    // Disabled
+    //
+
+    &.disabled {
+        .ace_scroller {
+            cursor: not-allowed;
+        }
+        .control-toolbar.editor-toolbar {
+            .toolbar-item {
+                .btn {
+                    cursor: not-allowed;
+                    color: #bdbdbd;
+                    &:hover {
+                        background-color: transparent;
+                        color: #bdbdbd;
+                    }
+                }
+                .btn.oc-autumn-button {
+                    color: #bdbdbd!important;
+                }
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Sider',
+        'template_title' => '%s Sider',
         'delete_confirmation' => 'Vil du virkelig slette de valgte sidene? Hvis siden har undersider, blir de også slettet.',
         'no_records' => 'Ingen sider funnet',
         'delete_confirm_single' => 'Vil du virkelig slette denne siden? Hvis siden har undersider, blir de også slettet.',

@@ -4,6 +4,7 @@ use Lang;
 use Config;
 use BackendAuth;
 use System\Models\Parameter;
+use System\Models\LogSetting;
 use System\Classes\UpdateManager;
 use System\Classes\PluginManager;
 use Backend\Classes\ReportWidgetBase;
@@ -56,12 +57,17 @@ class Status extends ReportWidgetBase
     protected function loadData()
     {
         $manager = UpdateManager::instance();
+
         $this->vars['canUpdate'] = BackendAuth::getUser()->hasAccess('system.manage_updates');
-        $this->vars['updates'] = $manager->check();
-        $this->vars['warnings'] = $this->getSystemWarnings();
+        $this->vars['updates']   = $manager->check();
+        $this->vars['warnings']  = $this->getSystemWarnings();
         $this->vars['coreBuild'] = Parameter::get('system::core.build');
-        $this->vars['eventLog'] = EventLog::count();
-        $this->vars['requestLog'] = RequestLog::count();
+
+        $this->vars['eventLog']      = EventLog::count();
+        $this->vars['eventLogMsg']   = LogSetting::get('log_events', false) ? false : true;
+        $this->vars['requestLog']    = RequestLog::count();
+        $this->vars['requestLogMsg'] = LogSetting::get('log_requests', false) ? false : true;
+
         $this->vars['appBirthday'] = PluginVersion::orderBy('created_at')->value('created_at');
     }
 
@@ -75,7 +81,7 @@ class Status extends ReportWidgetBase
     {
         $warnings = [];
 
-        $missingPlugins = PluginManager::instance()->findMissingDependencies();
+        $missingDependencies = PluginManager::instance()->findMissingDependencies();
 
         $writablePaths = [
             temp_path(),
@@ -88,17 +94,25 @@ class Status extends ReportWidgetBase
             storage_path('cms/twig'),
             storage_path('cms/combiner'),
         ];
-        
+
         if (in_array('Cms', Config::get('cms.loadModules', []))) {
             $writablePaths[] = themes_path();
         }
 
+        if (Config::get('app.debug', true)) {
+            $warnings[] = Lang::get('backend::lang.warnings.debug');
+        }
+
+        if (Config::get('develop.decompileBackendAssets', false)) {
+            $warnings[] = Lang::get('backend::lang.warnings.decompileBackendAssets');
+        }
+
         $requiredExtensions = [
-            'GD' => extension_loaded('gd'),
+            'GD'       => extension_loaded('gd'),
             'fileinfo' => extension_loaded('fileinfo'),
-            'Zip' => class_exists('ZipArchive'),
-            'cURL' => function_exists('curl_init') && defined('CURLOPT_FOLLOWLOCATION'),
-            'OpenSSL' => function_exists('openssl_random_pseudo_bytes'),
+            'Zip'      => class_exists('ZipArchive'),
+            'cURL'     => function_exists('curl_init') && defined('CURLOPT_FOLLOWLOCATION'),
+            'OpenSSL'  => function_exists('openssl_random_pseudo_bytes'),
         ];
 
         foreach ($writablePaths as $path) {
@@ -113,8 +127,13 @@ class Status extends ReportWidgetBase
             }
         }
 
-        foreach ($missingPlugins as $pluginCode) {
-            $warnings[] = Lang::get('backend::lang.warnings.plugin_missing', ['name' => '<strong>'.$pluginCode.'</strong>']);
+        foreach ($missingDependencies as $pluginCode => $plugin) {
+            foreach ($plugin as $missingPluginCode) {
+                $warnings[] = Lang::get('system::lang.updates.update_warnings_plugin_missing', [
+                    'code' => '<strong>' . $missingPluginCode . '</strong>',
+                    'parent_code' => '<strong>' . $pluginCode . '</strong>'
+                ]);
+            }
         }
 
         return $warnings;

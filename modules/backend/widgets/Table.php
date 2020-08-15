@@ -1,9 +1,12 @@
 <?php namespace Backend\Widgets;
 
+use Config;
+use Backend;
 use Lang;
 use Input;
 use Request;
 use Backend\Classes\WidgetBase;
+use October\Rain\Html\Helper as HtmlHelper;
 use SystemException;
 
 /**
@@ -34,12 +37,12 @@ class Table extends WidgetBase
     /**
      * @var Backend\Widgets\Table\DatasourceBase
      */
-    protected $dataSource = null;
+    protected $dataSource;
 
     /**
      * @var string Field name used for request data.
      */
-    protected $fieldName = null;
+    protected $fieldName;
 
     /**
      * @var string
@@ -79,11 +82,13 @@ class Table extends WidgetBase
 
         if (Request::method() == 'POST' && $this->isClientDataSource()) {
             if (strpos($this->fieldName, '[') === false) {
-                $requestDataField = $this->fieldName.'TableData';
+                $requestDataField = $this->fieldName . 'TableData';
+            } else {
+                $requestDataField = $this->fieldName . '[TableData]';
             }
-            else {
-                $requestDataField = $this->fieldName.'[TableData]';
-            }
+
+            // Use dot notation for request data field
+            $requestDataField = implode('.', HtmlHelper::nameToArray($requestDataField));
 
             if (Request::exists($requestDataField)) {
                 // Load data into the client memory data source on POST
@@ -120,7 +125,7 @@ class Table extends WidgetBase
         $this->vars['recordsKeyFrom'] = $this->recordsKeyFrom;
 
         $this->vars['recordsPerPage'] = $this->getConfig('recordsPerPage', false) ?: 'false';
-        $this->vars['postbackHandlerName'] = $this->getConfig('postbackHandlerName', 'onSave');
+        $this->vars['postbackHandlerName'] = $this->getConfig('postbackHandlerName');
         $this->vars['searching'] = $this->getConfig('searching', false);
         $this->vars['adding'] = $this->getConfig('adding', true);
         $this->vars['deleting'] = $this->getConfig('deleting', true);
@@ -135,9 +140,8 @@ class Table extends WidgetBase
         $isClientDataSource = $this->isClientDataSource();
 
         $this->vars['clientDataSourceClass'] = $isClientDataSource ? 'client' : 'server';
-        $this->vars['data'] = json_encode($isClientDataSource
-            ? $this->dataSource->getAllRecords()
-            : []
+        $this->vars['data'] = json_encode(
+            $isClientDataSource ? $this->dataSource->getAllRecords() : []
         );
     }
 
@@ -151,29 +155,39 @@ class Table extends WidgetBase
     protected function loadAssets()
     {
         $this->addCss('css/table.css', 'core');
-        $this->addJs('js/build-min.js', 'core');
+
+        if (Config::get('develop.decompileBackendAssets', false)) {
+            $scripts = Backend::decompileAsset($this->getAssetPath('js/build.js'));
+            foreach ($scripts as $script) {
+                $this->addJs($script, 'core');
+            }
+        } else {
+            $this->addJs('js/build-min.js', 'core');
+        }
     }
 
     /**
      * Converts the columns associative array to a regular array and translates column headers and drop-down options.
      * Working with regular arrays is much faster in JavaScript.
      * References:
-     * - http://www.smashingmagazine.com/2012/11/05/writing-fast-memory-efficient-javascript/
-     * - http://jsperf.com/performance-of-array-vs-object/3
+     * - https://www.smashingmagazine.com/2012/11/05/writing-fast-memory-efficient-javascript/
+     * - https://jsperf.com/performance-of-array-vs-object/3
      */
     protected function prepareColumnsArray()
     {
         $result = [];
 
-        foreach ($this->columns as $key=>$data) {
+        foreach ($this->columns as $key => $data) {
             $data['key'] = $key;
 
-            if (isset($data['title']))
+            if (isset($data['title'])) {
                 $data['title'] = trans($data['title']);
+            }
 
             if (isset($data['options'])) {
-                foreach ($data['options'] as &$option)
+                foreach ($data['options'] as &$option) {
                     $option = trans($option);
+                }
             }
 
             if (isset($data['validation'])) {

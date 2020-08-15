@@ -44,3 +44,11 @@
 1.2.17: Changes locations of custom fields to secondary tabs instead of the primary Settings area. New menu search ability on adding menu items
 1.2.18: Fixes cache-invalidation issues when RainLab.Translate is not installed. Added Greek & Simplified Chinese translations. Removed deprecated calls. Allowed saving HTML in snippet properties. Added support for the MediaFinder in menu items.
 1.2.19: Catch exception with corrupted menu file.
+1.2.20: StaticMenu component now exposes menuName property; added pages.menu.referencesGenerated event.
+1.2.21: Fixes a bug where last Static Menu item cannot be deleted. Improved Persian, Slovak and Turkish translations.
+1.3.0: Added support for using Database-driven Themes when enabled in the CMS configuration.
+1.3.1: Added ChildPages Component, prevent hidden pages from being returned via menu item resolver.
+1.3.2: Fixes error when creating a subpage whose parent has no layout set.
+1.3.3: Improves user experience for users with only partial access through permissions
+1.3.4: Fix error where large menus were being truncated due to the PHP "max_input_vars" configuration value. Improved Slovenian translation.
+1.3.5: Minor fix to bust the browser cache for JS assets. Prevent duplicate property fields in snippet inspector.

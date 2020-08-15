@@ -1,5 +1,5 @@
-<form
-    data-request="onSignin">
+{{ form_ajax('onSignin') }}
+
     <div class="form-group">
         <label for="userSigninLogin">{{ loginAttributeLabel }}</label>
         <input
@@ -20,5 +20,14 @@
             placeholder="Enter your password" />
     </div>
 
+    {% if rememberLoginMode == 'ask' %}
+    <div class="form-group">
+        <div class="checkbox">
+        <label><input name="remember" type="checkbox" value="1">Stay logged in</label>
+        </div>
+    </div>
+    {% endif %}
+
     <button type="submit" class="btn btn-default">Sign in</button>
-</form>
+
+{{ form_close() }}

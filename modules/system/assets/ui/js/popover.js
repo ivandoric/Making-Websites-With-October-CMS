@@ -115,6 +115,12 @@
          */
         this.reposition()
 
+        $(window).on('resize', function() {
+            if (self.$container) {
+                self.reposition()
+            }
+        })
+
         /*
          * Display the popover
          */
@@ -149,7 +155,7 @@
                    return false
                }
 
-               if (e.keyCode == 27) {
+               if (e.key === 'Escape') {
                    self.hide()
                    return false
                }

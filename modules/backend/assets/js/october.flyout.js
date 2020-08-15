@@ -172,7 +172,7 @@
     }
 
     Flyout.prototype.onDocumentKeydown = function(ev) {
-        if (ev.which == 27) {
+        if (ev.key === 'Escape') {
             this.hide();
         }
     }
@@ -218,7 +218,7 @@
 
     // Currently flyouts don't use the document render event
     // and can't be created dynamically (performance considerations).
-    $(document).on('ready', function(){
+    $(document).ready(function(){
         $('div[data-control=flyout]').flyout()
     })
 }(window.jQuery);

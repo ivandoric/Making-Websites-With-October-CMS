@@ -537,7 +537,8 @@ class Snippet
             }
 
             $cached[$pageName] = $map;
-            Cache::put($key, serialize($cached), Config::get('cms.parsedPageCacheTTL', 10));
+            $expiresAt = now()->addMinutes(Config::get('cms.parsedPageCacheTTL', 10));
+            Cache::put($key, serialize($cached), $expiresAt);
         }
 
         self::$pageSnippetMap[$pageName] = $map;

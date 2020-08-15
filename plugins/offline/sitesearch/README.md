@@ -75,7 +75,7 @@ Use the `searchResults.query` parameter to display the user's search query.
 ```html
 title = "Search results"
 url = "/search"
-...
+layout = "default"
 
 [searchResults]
 resultsPerPage = 10
@@ -122,17 +122,42 @@ visitPageMessage = "Visit page"
 
 If you want to modify the user's search query before the search is executed you can call the `forceQuery` method on the `searchResults` component from your page's `onStart` method.
 
-```
+```php
 [searchResults]
 resultsPerPage = 10
 showProviderBadge = 1
 noResultsMessage = "Your search returned no results."
 visitPageMessage = "Visit page"
 ==
-function onStart() {
+function onStart()
+{
     $query = Request::get('q');
     $query = str_replace('ё', 'e', $query);
     $this->page->components['searchResults']->forceQuery($query);
+}
+==
+{% component 'searchResults' %}
+```
+
+#### Change the results collection before displaying 
+
+You can listen for the `offline.sitesearch.results` event and modify the query as you wish.
+
+This is useful to remove certain results or change the sort order.
+
+```php
+[searchResults]
+resultsPerPage = 10
+showProviderBadge = 1
+noResultsMessage = "Your search returned no results."
+visitPageMessage = "Visit page"
+==
+function onInit()
+{
+    \Event::listen('offline.sitesearch.results', function ($results) {
+        // return $results->filter(...);
+        return $results->sortByDesc('model.custom_attribute');
+    });
 }
 ==
 {% component 'searchResults' %}
@@ -247,28 +272,33 @@ public function boot()
 {
     \Event::listen('offline.sitesearch.query', function ($query) {
 
+        // The controller is used to generate page URLs.
+        $controller = \Cms\Classes\Controller::getController() ?? new \Cms\Classes\Controller();
+
         // Search your plugin's contents
-        $items = YourCustomDocumentModel::where('title', 'like', "%${query}%")
-                                        ->orWhere('content', 'like', "%${query}%")
-                                        ->get();
+        $items = YourCustomDocumentModel
+            ::where('title', 'like', "%${query}%")
+            ->orWhere('content', 'like', "%${query}%")
+            ->get();
 
         // Now build a results array
-        $results = $items->map(function ($item) use ($query) {
+        $results = $items->map(function ($item) use ($query, $controller) {
 
             // If the query is found in the title, set a relevance of 2
             $relevance = mb_stripos($item->title, $query) !== false ? 2 : 1;
             
             // Optional: Add an age penalty to older results. This makes sure that
-            // never results are listed first.
-            // if ($relevance > 1 && $item->published_at) {
-            //     $relevance -= $this->getAgePenalty($item->published_at->diffInDays(Carbon::now()));
+            // newer results are listed first.
+            // if ($relevance > 1 && $item->created_at) {
+            //    $ageInDays = $item->created_at->diffInDays(\Illuminate\Support\Carbon::now());
+            //    $relevance -= \OFFLINE\SiteSearch\Classes\Providers\ResultsProvider::agePenaltyForDays($ageInDays);
             // }
 
             return [
                 'title'     => $item->title,
                 'text'      => $item->content,
-                'url'       => '/document/' . $item->slug,
-                'thumb'     => $item->images->first(), // Instance of System\Models\File
+                'url'       => $controller->pageUrl('cms-page-file-name', ['slug' => $item->slug]),
+                'thumb'     => optional($item->images)->first(), // Instance of System\Models\File
                 'relevance' => $relevance, // higher relevance results in a higher
                                            // position in the results listing
                 // 'meta' => 'data',       // optional, any other information you want
@@ -409,11 +439,10 @@ If you want to provide search results for CMS pages change the `enabled` setting
 You have to specifically add the component `siteSearchInclude` to every CMS page you want to be searched.
 Pages **without** this component will **not** be searched.
 
-Components on CMS pages will **not** be rendered. Use this provider only for simple html pages. All Twig syntax will be stripped out to prevent the leaking of source code to the search results.
+This feature works best with simple pages that include components, but don't rely on url parametres or other
+variables (like a page number). CMS pages with dynamic URLs (like `/page/:slug`) won't be linked correctly from the search results listing.
 
-CMS pages with dynamic URLs (like `/page/:slug`) won't be linked correctly from the search results listing.
-
-If you have CMS pages with dynamic contents consider writing your own search provider (see `Add support for custom
+If you have CMS pages with more complex dynamic contents consider writing your own search provider (see `Add support for custom
 plugin contents`)
 
 
@@ -423,4 +452,3 @@ To overwrite the default markup copy all files from `plugins/offline/sitesearch/
 `themes/your-theme/partials/searchResults` and modify them as needed.
 
 If you gave an alias to the `searchResults` component make sure to put the markup in the appropriate partials directory `themes/your-theme/partials/your-given-alias`.
-

@@ -92,7 +92,7 @@ class Router
     /**
      * Loads the URL map - a list of page file names and corresponding URL patterns.
      * The URL map can is cached. The clearUrlMap() method resets the cache. By default
-     * the map is updated every time when a page is saved in the back-end, or 
+     * the map is updated every time when a page is saved in the back-end, or
      * when the interval defined with the cms.urlCacheTtl expires.
      * @return boolean Returns true if the URL map was loaded from the cache. Otherwise returns false.
      */
@@ -132,7 +132,8 @@ class Router
             self::$urlMap = $map;
 
             if ($cacheable) {
-                Cache::put($key, serialize($map), Config::get('cms.urlCacheTtl', 1));
+                $expiresAt = now()->addMinutes(Config::get('cms.urlCacheTtl', 1));
+                Cache::put($key, serialize($map), $expiresAt);
             }
 
             return false;

@@ -160,6 +160,7 @@ return [
         'login_first' => 'Devi prima effettuare l\'accesso!',
         'already_active' => 'Il tuo account è già stato attivato!',
         'activation_email_sent' => 'Una mail di attivazione è stata inviata al tuo indirizzo mail.',
+        'activation_by_admin' => 'Registrazione effettuata con successo. Il tuo account non è ancora attivo e deve essere approvato da un amministratore.',
         'registration_disabled' => 'La registrazione è al momento disattivata.',
         'sign_in' => 'Accedi',
         'register' => 'Registra',

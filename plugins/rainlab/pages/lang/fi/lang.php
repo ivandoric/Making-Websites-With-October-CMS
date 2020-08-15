@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Sivut',
+        'template_title' => '%s Sivut',
         'delete_confirmation' => 'Haluatko varmasti poistaa valitut sivut? Tämä poistaa myös alasivut, jos sellaisia on.',
         'no_records' => 'Sivuja ei löytynyt',
         'delete_confirm_single' => 'Haluatko varmasti poistaa tämän sivun? Tämä poistaa myös alasivut, jos sellaisia on.',

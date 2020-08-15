@@ -62,7 +62,7 @@
         $(document).on('submenu.oc.treeview', 'form.layout[data-content-id=pages]', this.proxy(this.onSidebarSubmenuItemClick))
 
         // The Delete Object button click
-        $(document).on('click', '#pages-side-panel form button[data-control=delete-object], #pages-side-panel form button[data-control=delete-template]', 
+        $(document).on('click', '#pages-side-panel form button[data-control=delete-object], #pages-side-panel form button[data-control=delete-template]',
             this.proxy(this.onDeleteObject))
 
         // A new tab is added to the editor
@@ -204,6 +204,10 @@
         var $form = $(event.currentTarget),
             $tabPane = $form.closest('.tab-pane')
 
+         // Update the visibilities of the commit & reset buttons
+        $('[data-control=commit-button]', $form).toggleClass('hide', !data.canCommit)
+        $('[data-control=reset-button]', $form).toggleClass('hide', !data.canReset)
+
         if (data.objectPath !== undefined) {
             $('input[name=objectPath]', $form).val(data.objectPath)
             $('input[name=objectMtime]', $form).val(data.objectMtime)
@@ -228,11 +232,18 @@
         $('[data-control=filelist]', this.$sidePanel).fileList('markActive', tabId)
 
         var objectType = $('input[name=objectType]', $form).val()
-        if (objectType.length > 0 && context.handler == 'onSave')
+        if (objectType.length > 0 &&
+            (context.handler == 'onSave' || context.handler == 'onCommit' || context.handler == 'onReset')
+        )
            this.updateObjectList(objectType)
 
         if (context.handler == 'onSave' && (!data['X_OCTOBER_ERROR_FIELDS'] && !data['X_OCTOBER_ERROR_MESSAGE']))
             $form.trigger('unchange.oc.changeMonitor')
+
+        // Reload the form if the server has requested it
+        if (data.forceReload) {
+            this.reloadForm($form)
+        }
     }
 
     PagesPage.prototype.onBeforeSaveContent = function(e, data) {
@@ -504,6 +515,8 @@
 
         $form.on('changed.oc.changeMonitor', function() {
             $panel.trigger('modified.oc.tab')
+            $panel.find('[data-control=commit-button]').addClass('hide');
+            $panel.find('[data-control=reset-button]').addClass('hide');
             self.updateModifiedCounter()
         })
 
@@ -537,11 +550,11 @@
             return result
         }
 
-        data.options.data['itemData'] = iterator($items)
+        data.options.data['itemData'] = JSON.stringify(iterator($items))
     }
 
     /*
-     * Updates the content editor to correspond the conten file extension
+     * Updates the content editor to correspond to the content file extension
      */
     PagesPage.prototype.updateContentEditorMode = function(pane, initialization) {
         if ($('[data-toolbar-type]', pane).data('toolbar-type') !== 'content')

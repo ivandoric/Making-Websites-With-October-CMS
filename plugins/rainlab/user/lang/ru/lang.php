@@ -95,6 +95,11 @@ return [
         'block_persistence_comment' => 'Если включено, пользователи не могут войти с разных устройств одновременно.',
         'login_attribute' => 'Логин',
         'login_attribute_comment' => 'Поле, используемое в качестве логина пользователя.',
+        'remember_login' => 'Режим "Запомнить меня"',
+        'remember_login_comment' => 'Выберите, должна ли сессия пользователя быть постоянной.',
+        'remember_always' => 'Всегда',
+        'remember_never' => 'Никогда',
+        'remember_ask' => 'Спросить пользователя при входе',
     ],
     'user' =>
     [

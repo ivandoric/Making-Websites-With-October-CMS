@@ -1,6 +1,8 @@
 <?php
+
 namespace OFFLINE\SiteSearch\Classes\Providers;
 
+use Cms\Classes\Controller;
 use Cms\Classes\Page;
 use Cms\Classes\Theme;
 use Illuminate\Database\Eloquent\Collection;
@@ -27,9 +29,16 @@ class CmsPagesResultsProvider extends ResultsProvider
         }
 
         foreach ($this->pages() as $page) {
-            $contents = $this->removeTwigTags($page->markup);
+            // Only include pages that contain the siteSearchInclude component.
+            if ( ! $page->hasComponent('siteSearchInclude')) {
+                continue;
+            }
 
-            if ( ! $page->hasComponent('siteSearchInclude') || ! $this->containsQueryIn($contents, $page)) {
+            // Render page in empty layout.
+            $page->settings['layout'] = null;
+
+            $contents = \Html::strip((new Controller())->runPage($page));
+            if ( ! $this->containsQueryIn($contents, $page)) {
                 continue;
             }
 
@@ -56,18 +65,6 @@ class CmsPagesResultsProvider extends ResultsProvider
     protected function isEnabled()
     {
         return Settings::get('cms_pages_enabled', false);
-    }
-
-    /**
-     * Removes {{ }} and {% %} markup blocks.
-     *
-     * @param $html
-     *
-     * @return mixed
-     */
-    private function removeTwigTags($html)
-    {
-        return preg_replace('/\{[%\{][^\}]*[%\}]\}/', '', $html);
     }
 
     /**

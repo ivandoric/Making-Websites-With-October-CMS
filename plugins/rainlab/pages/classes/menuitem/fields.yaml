@@ -45,25 +45,25 @@ fields:
 tabs:
     fields:
         viewBag[isHidden]:
-            label: Hidden
-            comment: Hide this menu item from appearing on the front-end.
+            label: rainlab.pages::lang.menuitem.hidden
+            comment: rainlab.pages::lang.menuitem.hidden_comment
             type: checkbox
-            tab: Display
+            tab: rainlab.pages::lang.menuitem.display_tab
 
         code:
             label: rainlab.pages::lang.menuitem.code
             comment: rainlab.pages::lang.menuitem.code_comment
-            tab: Attributes
+            tab: rainlab.pages::lang.menuitem.attributes_tab
             span: auto
 
         viewBag[cssClass]:
-            label: CSS Class
-            comment: Enter a CSS class name to give this menu item a custom appearance.
-            tab: Attributes
+            label: rainlab.pages::lang.menuitem.css_class
+            comment: rainlab.pages::lang.menuitem.css_class_comment
+            tab: rainlab.pages::lang.menuitem.attributes_tab
             span: auto
 
         viewBag[isExternal]:
-            label: External link
-            comment: Open links for this menu item in a new window.
+            label: rainlab.pages::lang.menuitem.external_link
+            comment: rainlab.pages::lang.menuitem.external_link_comment
             type: checkbox
-            tab: Attributes
+            tab: rainlab.pages::lang.menuitem.attributes_tab

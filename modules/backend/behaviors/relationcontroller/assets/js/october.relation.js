@@ -60,8 +60,17 @@
         }
 
         /*
+         * This function is called every time a record is created, added, removed
+         * or deleted using the relation widget. It triggers the change.oc.formwidget
+         * event to notify other elements on the page about the changed form state.
+         */
+        this.changed = function(relationId, event) {
+            $('[data-field-name="' + relationId + '"]').trigger('change.oc.formwidget', {event: event});
+        }
+
+        /*
          * This function transfers the supplied variables as hidden form inputs,
-         * to any popup that is spawned within the supplied container. The spawned 
+         * to any popup that is spawned within the supplied container. The spawned
          * popup must contain a form element.
          */
         this.bindToPopups = function(container, vars) {
@@ -78,7 +87,7 @@
             if (typeof value == 'object') return value
 
             try {
-                return JSON.parse(JSON.stringify(eval("({" + value + "})")))
+                return ocJSON("{" + value + "}")
             }
             catch (e) {
                 throw new Error('Error parsing the '+name+' attribute value. '+e)

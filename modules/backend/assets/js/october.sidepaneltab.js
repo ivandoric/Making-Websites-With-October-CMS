@@ -35,7 +35,7 @@
                 return
             }
 
-            if (Modernizr.touch && $(window).width() < self.options.breakpoint) {
+            if (Modernizr.touchevents && $(window).width() < self.options.breakpoint) {
                 if ($(this).data('menu-item') == self.visibleItemId && self.panelVisible) {
                     self.hideSidePanel()
                     return
@@ -50,7 +50,7 @@
             return false
         })
 
-        if (!Modernizr.touch) {
+        if (!Modernizr.touchevents) {
             // The side panel now opens only when a menu item is hovered and
             // when the item doesn't have the "data-no-side-panel" attribute.
             // TODO: remove the comment and the code below if no issues noticed.
@@ -115,7 +115,9 @@
 
         this.visibleItemId = menuItemId
 
-        $.oc.sideNav.setActiveItem(menuItemId)
+        if ($.oc.sideNav !== undefined) {
+            $.oc.sideNav.setActiveItem(menuItemId)
+        }
 
         this.$sidePanelItems.each(function() {
             var  $el = $(this)
@@ -151,7 +153,7 @@
     }
 
     SidePanelTab.prototype.updatePanelPosition = function() {
-        if (!this.panelFixed() || Modernizr.touch) {
+        if (!this.panelFixed() || Modernizr.touchevents) {
             this.$el.height($(document).height() - this.mainNavHeight)
         }
         else {
@@ -164,6 +166,10 @@
     }
 
     SidePanelTab.prototype.updateActiveTab = function() {
+        if ($.oc.sideNav === undefined) {
+            return
+        }
+
         if (!this.panelVisible && ($(window).width() < this.options.breakpoint || !this.panelFixed())) {
             $.oc.sideNav.unsetActiveItem()
         }
@@ -230,7 +236,7 @@
     // DATA-API
     // ============
 
-    $(window).load(function() {
+    $(document).ready(function(){
         $('[data-control=layout-sidepanel]').sidePanelTab()
     })
 
@@ -238,7 +244,7 @@
     // ====================
 
     $(document).ready(function() {
-        if (Modernizr.touch || (typeof(localStorage) !== 'undefined')) {
+        if (Modernizr.touchevents || (typeof(localStorage) !== 'undefined')) {
             if (localStorage.ocSidePanelFixed == 0) {
                 $(document.body).addClass('side-panel-not-fixed')
                 $(window).trigger('resize')

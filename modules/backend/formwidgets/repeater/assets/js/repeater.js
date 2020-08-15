@@ -35,7 +35,8 @@
         sortableContainer: 'ul.field-repeater-items',
         titleFrom: null,
         minItems: null,
-        maxItems: null
+        maxItems: null,
+        style: 'default',
     }
 
     Repeater.prototype.init = function() {
@@ -49,6 +50,7 @@
         this.$el.one('dispose-control', this.proxy(this.dispose))
 
         this.togglePrompt()
+        this.applyStyle()
     }
 
     Repeater.prototype.dispose = function() {
@@ -84,6 +86,7 @@
     }
 
     Repeater.prototype.clickAddGroupButton = function(ev) {
+        var $self = this;
         var templateHtml = $('> [data-group-palette-template]', this.$el).html(),
             $target = $(ev.target),
             $form = this.$el.closest('form'),
@@ -107,6 +110,7 @@
 
                 $form.one('ajaxComplete', function() {
                     $loadContainer.loadIndicator('hide')
+                    $self.togglePrompt()
                 })
             })
 
@@ -114,12 +118,27 @@
     }
 
     Repeater.prototype.onRemoveItemSuccess = function(ev) {
-        $(ev.target).closest('.field-repeater-item').remove()
+        var $target = $(ev.target)
+
+        // Allow any widgets inside a deleted item to be disposed
+        $target.closest('.field-repeater-item').find('[data-disposable]').each(function () {
+            var $elem = $(this),
+                control = $elem.data('control'),
+                widget = $elem.data('oc.' + control)
+
+            if (widget && typeof widget['dispose'] === 'function') {
+                widget.dispose()
+            }
+        })
+
+        $target.closest('[data-field-name]').trigger('change.oc.formwidget')
+        $target.closest('.field-repeater-item').remove()
         this.togglePrompt()
     }
 
     Repeater.prototype.onAddItemSuccess = function(ev) {
         this.togglePrompt()
+        $(ev.target).closest('[data-field-name]').trigger('change.oc.formwidget')
     }
 
     Repeater.prototype.togglePrompt = function () {
@@ -144,6 +163,13 @@
 
         ev.preventDefault()
 
+        if (this.getStyle() === 'accordion') {
+            if (isCollapsed) {
+                this.expand($item)
+            }
+            return
+        }
+
         if (ev.ctrlKey || ev.metaKey) {
             isCollapsed ? this.expandAll() : this.collapseAll()
         }
@@ -154,7 +180,7 @@
 
     Repeater.prototype.collapseAll = function() {
         var self = this,
-            items = $('.field-repeater-item', this.$el)
+            items = $(this.$el).children('.field-repeater-items').children('.field-repeater-item')
 
         $.each(items, function(key, item){
             self.collapse($(item))
@@ -163,7 +189,7 @@
 
     Repeater.prototype.expandAll = function() {
         var self = this,
-            items = $('.field-repeater-item', this.$el)
+            items = $(this.$el).children('.field-repeater-items').children('.field-repeater-item')
 
         $.each(items, function(key, item){
             self.expand($(item))
@@ -176,6 +202,9 @@
     }
 
     Repeater.prototype.expand = function($item) {
+        if (this.getStyle() === 'accordion') {
+            this.collapseAll()
+        }
         $item.removeClass('collapsed')
     }
 
@@ -198,9 +227,14 @@
             $target = $item
         }
 
-        var $textInput = $('input[type=text]:first', $target)
+        var $textInput = $('input[type=text]:first, select:first', $target).first();
         if ($textInput.length) {
-            return $textInput.val()
+            switch($textInput.prop("tagName")) {
+                case 'SELECT':
+                    return $textInput.find('option:selected').text();
+                default:
+                    return $textInput.val();
+            }
         } else {
             var $disabledTextInput = $('.text-field:first > .form-control', $target)
             if ($disabledTextInput.length) {
@@ -209,6 +243,36 @@
         }
 
         return defaultText
+    }
+
+    Repeater.prototype.getStyle = function() {
+        var style = 'default';
+
+        // Validate style
+        if (this.options.style && ['collapsed', 'accordion'].indexOf(this.options.style) !== -1) {
+            style = this.options.style
+        }
+
+        return style;
+    }
+
+    Repeater.prototype.applyStyle = function() {
+        var style = this.getStyle(),
+            self = this,
+            items = $(this.$el).children('.field-repeater-items').children('.field-repeater-item')
+
+        $.each(items, function(key, item) {
+            switch (style) {
+                case 'collapsed':
+                    self.collapse($(item))
+                    break
+                case 'accordion':
+                    if (key !== 0) {
+                        self.collapse($(item))
+                    }
+                    break
+            }
+        })
     }
 
     // FIELD REPEATER PLUGIN DEFINITION

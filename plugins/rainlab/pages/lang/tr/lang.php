@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Sayfalar',
+        'template_title' => '%s Sayfalar',
         'delete_confirmation' => 'Seçili sayfaları silmek istiyor musunuz? Alt sayfalar da silinecektir.',
         'no_records' => 'Sayfa bulunamadı',
         'delete_confirm_single' => 'Bu sayfayı silmek istiyor musunuz? Alt sayfalar da silinecektir',
@@ -37,7 +38,7 @@ return [
         'items' => 'Menü Ögeleri',
         'add_subitem' => 'Altöge ekle',
         'code_required' => 'Kod gerekli',
-        'invalid_code' => 'Geçersiz KOD formatı. Kod yalnızca rakam, Latin harfleri ve bu sembolleri: _- içerebilir.'
+        'invalid_code' => 'Geçersiz KOD formatı. Kod yalnızca rakam, Latin harfleri ve bu sembolleri: _- içerebilir.',
     ],
     'menuitem' => [
         'title' => 'Başlık',
@@ -47,6 +48,7 @@ return [
         'allow_nested_items_comment' => 'İç içe öğeler statik sayfa ve bazı diğer öğe türlerine göre dinamik olarak üretilen olabilir',
         'url' => 'URL',
         'reference' => 'Referans',
+        'search_placeholder' => 'Referansları ara...',
         'title_required' => 'Başlık gerekli',
         'unknown_type' => 'Geçersiz menü ögesi türü',
         'unnamed' => 'İsimsiz menü ögesi',
@@ -59,22 +61,30 @@ return [
         'reference_required' => 'Menü ögesi referansı gereklidir.',
         'url_required' => 'URL gereklidir',
         'cms_page_required' => 'Lütfen bir CMS sayfası seçin',
+        'display_tab' => 'Görünüm',
+        'hidden' => 'Gizli',
+        'hidden_comment' => 'Bu menüyü önyüzde gizle.',
+        'attributes_tab' => 'Öznitellikler',
         'code' => 'Kod',
         'code_comment' => 'API ile giriş yapabilmek için menü ögesi kodunu girin.',
+        'css_class' => 'CSS Class',
+        'css_class_comment' => 'Bu menüye özel bir görünüm vermek için bir CSS sınıfı adı girin.',
+        'external_link' => 'Dış link',
+        'external_link_comment' => 'Bu menü için bağlantıları yeni sekmede aç.',
         'static_page' => 'Sayfa',
-        'all_static_pages' => 'Tüm sayfalar'
+        'all_static_pages' => 'Tüm sayfalar',
     ],
     'content' => [
         'menu_label' => 'İçerik',
-        'cant_save_to_dir' => 'Statik sayfalar dizinine içerik dosyalarını kaydetme izni verilmez.'
+        'cant_save_to_dir' => 'Statik sayfalar dizinine içerik dosyalarını kaydetme izni verilmez.',
     ],
     'sidebar' => [
         'add' => 'Ekle',
-        'search' => 'Ara...'
+        'search' => 'Ara...',
     ],
     'object' => [
         'invalid_type' => 'Bilineyen nesne türü',
-        'not_found' => 'İstenen nesne bulunamadı'
+        'not_found' => 'İstenen nesne bulunamadı',
     ],
     'editor' => [
         'title' => 'Başlık',
@@ -90,7 +100,7 @@ return [
         'hidden' => 'Gizli',
         'hidden_comment' => 'Gizli sayfalar yalnızca yönetim paneline giriş yapmış kullanıcılar tarafından görüntülenebilir.',
         'navigation_hidden' => 'Menüde Gizle',
-        'navigation_hidden_comment' => 'Otomatik olarak oluşturulan menüler ve kırıntıları gizlemek için bu kutuyu işaretleyin.'
+        'navigation_hidden_comment' => 'Otomatik olarak oluşturulan menüler ve kırıntıları gizlemek için bu kutuyu işaretleyin.',
     ],
     'snippet' => [
         'partialtab' => 'Snippet',
@@ -115,11 +125,17 @@ return [
     'component' => [
         'static_page_name' => 'Sabit sayfa',
         'static_page_description' => 'CMS bölümüne sabit sayfa içeriği ekler.',
-        'static_menu_name' => 'Static menü',
+        'static_page_use_content_name' => 'Sayfa içeriği alanını kullan',
+        'static_page_use_content_description' => 'Seçilmezse, statik sayfa düzenlenirken içerik bölümü görünmez. Sayfa içeriği yalnızca placeholderlar ve değişkenler aracılığıyla belirlenir.',
+        'static_page_default_name' => 'Varsayılan şablon',
+        'static_page_default_description' => 'Bu şablonu yeni sayfalar için varsayılan olarak tanımlar.',
+        'static_page_child_layout_name' => 'Alt sayfa şablobu',
+        'static_page_child_layout_description' => 'Yeni alt sayfalar için varsayılan olarak kullanılacak şablon',
+        'static_menu_name' => 'Statik (sabit) menü',
         'static_menu_description' => 'CMS bölümüne sabit menü içeriği ekler.',
         'static_menu_code_name' => 'Menü',
         'static_menu_code_description' => 'Component in göstereceği menünün kodunu belirtin.',
         'static_breadcrumbs_name' => 'Sabit breadcrumbs',
         'static_breadcrumbs_description' => 'Sabit sayfaya breadcrumbs ekler.',
-    ]
+    ],
 ];

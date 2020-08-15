@@ -1,5 +1,5 @@
 <h4 class="ss-result__title">
-    <a href="{{ result.url }}">{{ result.title | raw }}</a>
+    <a href="{{ result.url | app }}">{{ result.title | raw }}</a>
     {% if __SELF__.showProviderBadge %}
         <span class="ss-result__badge">
             {{ result.provider }}

@@ -1,0 +1,21 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: offline.sitesearch::lang.log.title
+
+# Model Form Field configuration
+form: $/offline/sitesearch/models/querylog/fields.yaml
+
+# Model Class name
+modelClass: OFFLINE\SiteSearch\Models\QueryLog
+
+# Default redirect location
+defaultRedirect: offline/sitesearch/querylogs
+
+# Update page
+update:
+    title: offline.sitesearch::lang.log.title_update
+    redirect: offline/sitesearch/querylogs
+    redirectClose: offline/sitesearch/querylogs

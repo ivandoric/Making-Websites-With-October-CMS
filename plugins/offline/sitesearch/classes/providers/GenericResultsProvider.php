@@ -21,7 +21,7 @@ class GenericResultsProvider extends ResultsProvider
      */
     public function search()
     {
-        $returns = Event::fire('offline.sitesearch.query', $this->query);
+        $returns = array_filter(Event::fire('offline.sitesearch.query', $this->query));
 
         foreach ($returns as $return) {
             $results  = array_key_exists('results', $return) ? $return['results'] : [];

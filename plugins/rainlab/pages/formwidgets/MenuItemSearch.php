@@ -59,6 +59,29 @@ class MenuItemSearch extends FormWidgetBase
 
         $words = explode(' ', $searchTerm);
 
+        $iterator = function ($type, $references) use (&$iterator, $words) {
+            $typeMatches = [];
+
+            foreach ($references as $key => $referenceInfo) {
+                $title = (is_array($referenceInfo))
+                    ? $referenceInfo['title']
+                    : $referenceInfo;
+
+                if ($this->textMatchesSearch($words, $title)) {
+                    $typeMatches[] = [
+                        'id'   => "$type::$key",
+                        'text' => $title
+                    ];
+                }
+
+                if (isset($referenceInfo['items']) && count($referenceInfo['items'])) {
+                    $typeMatches = array_merge($typeMatches, $iterator($type, $referenceInfo['items']));
+                }
+            }
+
+            return $typeMatches;
+        };
+
         $types = [];
         $item = new MenuItem();
         foreach ($item->getTypeOptions() as $type => $typeTitle) {
@@ -67,17 +90,7 @@ class MenuItemSearch extends FormWidgetBase
                 continue;
             }
 
-            $typeMatches = [];
-            foreach ($typeInfo['references'] as $key => $referenceInfo) {
-                $title = is_array($referenceInfo) ? $referenceInfo['title'] : $referenceInfo;
-
-                if ($this->textMatchesSearch($words, $title)) {
-                    $typeMatches[] = [
-                        'id'   => "$type::$key",
-                        'text' => $title
-                    ];
-                }
-            }
+            $typeMatches = $iterator($type, $typeInfo['references']);
 
             if (!empty($typeMatches)) {
                 $types[] = [

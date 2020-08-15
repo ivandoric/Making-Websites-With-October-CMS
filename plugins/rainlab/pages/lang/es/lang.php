@@ -7,6 +7,7 @@ return [
     ],
     'page' => [
         'menu_label' => 'Páginas',
+        'template_title' => '%s Páginas',
         'delete_confirmation' => 'Estas seguro de querer borrar las páginas seleccionadas? Esto también borrará las sub-páginas que existan.',
         'no_records' => 'No se ha encontrado ninguna página',
         'delete_confirm_single' => 'Estas seguro de querer borrar esta página? Esto también borrará las sub-páginas que existan.',

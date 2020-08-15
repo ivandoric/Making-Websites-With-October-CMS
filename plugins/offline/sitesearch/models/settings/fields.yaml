@@ -1,17 +1,31 @@
 fields:
     mark_results:
-        span: left
+        span: auto
         type: switch
         label: offline.sitesearch::lang.settings.mark_results
         comment: offline.sitesearch::lang.settings.mark_results_comment
         default: true
+    log_queries:
+        span: auto
+        type: switch
+        label: offline.sitesearch::lang.settings.log_queries
+        comment: offline.sitesearch::lang.settings.log_queries_comment
     excerpt_length:
-        span: right
+        span: auto
         type: text
         label: offline.sitesearch::lang.settings.excerpt_length
         comment: offline.sitesearch::lang.settings.excerpt_length_comment
         default: 250
-
+    log_keep_days:
+        span: auto
+        type: number
+        label: offline.sitesearch::lang.settings.log_keep_days
+        comment: offline.sitesearch::lang.settings.log_keep_days_comment
+        default: 365
+        trigger:
+            action: show
+            field: log_queries
+            condition: checked
 tabs:
     fields:
         rainlab_blog_enabled:

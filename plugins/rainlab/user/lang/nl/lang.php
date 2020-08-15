@@ -66,7 +66,8 @@ return [
         'empty_groups' => 'There are no user groups available.',
         'avatar' => 'Profielfoto',
         'details' => 'Details',
-        'account' => 'Account'
+        'account' => 'Account',
+        'last_seen' => 'Laatste login',
     ],
     'group' => [
         'label' => 'Groep',
@@ -107,6 +108,8 @@ return [
         'code_param_desc' => 'De pagina URL parameter die gebruikt wordt voor de registratie activatie code.',
         'invalid_activation_code' => 'Onjuiste activatie code',
         'invalid_user' => 'Geen gebruiker gevonden.',
+        'invalid_deactivation_pass' => 'Het ingevoerde wachtwoord is ongelding.',
+        'invalid_current_pass' => 'Het ingevoerde huidige wachtwoord is ongeldig.',
         'success_activation' => 'Uw account is succesvol geactiveerd.',
         'success_saved' => 'Instellingen zijn opgeslagen.',
         'login_first' => 'U moet ingelogd zijn om deze pagina te bekijken.',

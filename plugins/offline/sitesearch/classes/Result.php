@@ -206,6 +206,24 @@ class Result
     }
 
     /**
+     * Surrounds all instances of the query
+     * in $text with <mark> tags.
+     *
+     * @param $text
+     *
+     * @return string
+     */
+    public function markQuery($text)
+    {
+        // Only mark the query if this feature is enabled
+        if ( ! Settings::get('mark_results', true)) {
+            return $text;
+        }
+
+        return (string)preg_replace('/(' . preg_quote($this->query, '/') . ')/iu', '<mark>$0</mark>', $text);
+    }
+
+    /**
      * Shortens a string and removes all HTML.
      *
      * @param string $string
@@ -249,25 +267,6 @@ class Result
         }
 
         return $this->markQuery($excerpt);
-    }
-
-
-    /**
-     * Surrounds all instances of the query
-     * in $text with <mark> tags.
-     *
-     * @param $text
-     *
-     * @return string
-     */
-    private function markQuery($text)
-    {
-        // Only mark the query if this feature is enabled
-        if ( ! Settings::get('mark_results', true)) {
-            return $text;
-        }
-
-        return (string)preg_replace('/(' . preg_quote($this->query, '/') . ')/iu', '<mark>$0</mark>', $text);
     }
 
 }

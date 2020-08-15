@@ -3,8 +3,6 @@
  *
  * Data attributes:
  * - data-control="fileupload" - enables the file upload plugin
- * - data-unique-id="XXX" - an optional identifier for multiple uploaders on the same page, this value will
- *   appear in the postback variable called X_OCTOBER_FILEUPLOAD
  * - data-template - a Dropzone.js template to use for each item
  * - data-error-template - a popover template used to show an error
  * - data-sort-handler - AJAX handler for sorting postbacks
@@ -103,6 +101,8 @@
             clickable: this.$uploadButton.get(0),
             previewsContainer: this.$filesContainer.get(0),
             maxFiles: !this.options.isMulti ? 1 : null,
+            maxFilesize: this.options.maxFilesize,
+            timeout: 0,
             headers: {}
         }
 
@@ -112,10 +112,6 @@
 
         if (this.options.template) {
             this.uploaderOptions.previewTemplate = $(this.options.template).html()
-        }
-
-        if (this.options.uniqueId) {
-            this.uploaderOptions.headers['X-OCTOBER-FILEUPLOAD'] = this.options.uniqueId
         }
 
         this.uploaderOptions.thumbnailWidth = this.options.thumbnailWidth
@@ -176,7 +172,11 @@
     }
 
     FileUpload.prototype.onUploadAddedFile = function(file) {
-        var $object = $(file.previewElement).data('dzFileObject', file)
+        var $object = $(file.previewElement).data('dzFileObject', file),
+            filesize = this.getFilesize(file)
+
+        // Change filesize format to match October\Rain\Filesystem\Filesystem::sizeToString() format
+        $(file.previewElement).find('[data-dz-size]').html('<strong>' + filesize.size + '</strong> ' + filesize.units)
 
         // Remove any exisiting objects for single variety
         if (!this.options.isMulti) {
@@ -188,6 +188,7 @@
 
     FileUpload.prototype.onUploadSending = function(file, xhr, formData) {
         this.addExtraFormData(formData)
+        xhr.setRequestHeader('X-OCTOBER-REQUEST-HANDLER', this.options.uploadHandler)
     }
 
     FileUpload.prototype.onUploadSuccess = function(file, response) {
@@ -386,14 +387,51 @@
         }
     }
 
+    /*
+     * Replicates the formatting of October\Rain\Filesystem\Filesystem::sizeToString(). This method will return
+     * an object with the file size amount and the unit used as `size` and `units` respectively.
+     */
+    FileUpload.prototype.getFilesize = function (file) {
+        var formatter = new Intl.NumberFormat('en', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }),
+            size = 0,
+            units = 'bytes'
+
+        if (file.size >= 1073741824) {
+            size = formatter.format(file.size / 1073741824)
+            units = 'GB'
+        } else if (file.size >= 1048576) {
+            size = formatter.format(file.size / 1048576)
+            units = 'MB'
+        } else if (file.size >= 1024) {
+            size = formatter.format(file.size / 1024)
+            units = 'KB'
+        } else if (file.size > 1) {
+            size = file.size
+            units = 'bytes'
+        } else if (file.size == 1) {
+            size = 1
+            units = 'byte'
+        }
+
+        return {
+            size: size,
+            units: units
+        }
+    }
+
     FileUpload.DEFAULTS = {
         url: window.location,
+        uploadHandler: null,
         configHandler: null,
         sortHandler: null,
-        uniqueId: null,
         extraData: {},
         paramName: 'file_data',
         fileTypes: null,
+        maxFilesize: 256,
         template: null,
         errorTemplate: null,
         isMulti: null,

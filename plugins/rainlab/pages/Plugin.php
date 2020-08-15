@@ -27,6 +27,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
+            '\RainLab\Pages\Components\ChildPages' => 'childPages',
             '\RainLab\Pages\Components\StaticPage' => 'staticPage',
             '\RainLab\Pages\Components\StaticMenu' => 'staticMenu',
             '\RainLab\Pages\Components\StaticBreadcrumbs' => 'staticBreadcrumbs'
@@ -208,6 +209,13 @@ class Plugin extends PluginBase
             if ($type === 'static-page') {
                 return StaticPage::getRichEditorTypeInfo($type);
             }
+        });
+
+        Event::listen('system.console.theme.sync.getAvailableModelClasses', function () {
+            return [
+                Classes\Menu::class,
+                Classes\Page::class,
+            ];
         });
     }
 
