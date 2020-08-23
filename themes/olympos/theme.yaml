@@ -3,3 +3,31 @@ description: 'New starter theme'
 author: 'Ivan Doric'
 homepage: 'http://watch-learn.com'
 code: ''
+
+form:
+  fields:
+    site_name:
+      label: Site name
+      comment: The website name as it should appear on the front-end
+      default: My Amazing Site!
+    header_color:
+      label: Header Color
+      type: colorpicker
+    logo:
+      label: logo
+      type: mediafinder
+      mode: image
+      imageWidth: 100
+      imageHeight: 100
+    our_friends:
+      type: repeater
+      label: Our friends
+      titleFrom: name
+      form:
+        fields:
+          name: 
+            label: name
+            type: text
+          url:
+            label: URL
+            type: text

@@ -136,4 +136,6 @@
   'RainLab\\Builder\\Widgets\\DefaultBehaviorDesignTimeProvider' => 'plugins/rainlab/builder/widgets/DefaultBehaviorDesignTimeProvider.php',
   'RainLab\\Builder\\Classes\\MigrationModel' => 'plugins/rainlab/builder/classes/MigrationModel.php',
   'RainLab\\Builder\\Classes\\TableMigrationCodeGenerator' => 'plugins/rainlab/builder/classes/TableMigrationCodeGenerator.php',
+  'cms\\Controllers\\themes' => 'modules/cms/controllers/themes.php',
+  'cms\\Controllers\\themeoptions' => 'modules/cms/controllers/themeoptions.php',
 );

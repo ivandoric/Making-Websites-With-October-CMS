@@ -3,9 +3,11 @@ code = "headermenu"
 
 [viewBag]
 ==
-<header class="main-header">
+<header class="main-header" style="background-color: {{ this.theme.header_color }}">
     <div class="container clearfix">
-        <h1 class="logo">October Movies</h1>
+        <h1 class="logo">
+            <img src="{{this.theme.logo|media}}" alt="">
+        </h1>
 
         <nav class="main-nav">
          
