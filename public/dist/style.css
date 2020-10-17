@@ -264,13 +264,13 @@ h6 {
 
 table {
   margin-top: 1.5rem;
-  border-spacing: 0px;
+  border-spacing: 1px;
   border-collapse: collapse;
 }
 
 table td,
 table th {
-  padding: 0;
+  padding: 1;
   line-height: 33px;
 }
 
@@ -458,7 +458,7 @@ form button {
 
 .main-nav a {
   display: inline-block;
-  padding: 0 10px;
+  padding: 1 10px;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 12px;
